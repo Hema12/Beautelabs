@@ -1,0 +1,249 @@
+
+@import "app/theme/theme.scss";
+
+.mat-card-header img {
+    /* width:100%; */
+    height: 70px !important;
+}
+
+// .mat-fab.mat-primary, .mat-flat-button.mat-primary, .mat-mini-fab.mat-primary, .mat-raised-button.mat-primary{
+//     background:$primary-color-blue;
+// }
+// .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+//     background-color: #3c4451 !important;
+// }
+.mat-form-field.mat-focused, .mat-form-field-label {
+    // color:$primary-color-lightgrey !important;  
+    font-size: 14px !important;
+}
+.mat-form-field {
+    // width:90% !important;
+    display: block !important;
+}
+
+.mat-table {
+    width: 100% !important;
+    border:1px solid #e6e9ed !important;
+}
+.staffcategory th.mat-header-cell {
+    width:20% !important;
+}
+
+.mat-toolbar.mat-primary {
+    background: $primary-color-lightblack !important;
+    background: $primary-color-lightblue !important;
+    box-shadow: 2px 0px 2px 0px #505456 !important;
+}
+.mat-toolbar-row, .mat-toolbar-single-row {
+    // background: $primary-color-blue !important;
+    padding:0% !important;
+    align-items: normal !important;
+}
+// .mat-toolbar-multiple-rows {
+//     min-height: 50px !important;
+// }
+.mat-drawer.mat-drawer-side {
+    min-width: 12% !important;
+    // background: $primary-color-lightblack;
+    background: $primary-color-white;
+    height:90vh !important;
+    width:auto !important
+}
+// .mat-drawer-side {
+//     border-right: none !important;
+// }
+.mat-drawer-inner-container {
+    overflow: hidden !important;
+}
+.mat-drawer-container {
+    min-height: 90vh !important;
+    // background: $primary-color-lightwhite !important;
+    background: #f5f4f4 !important;
+    margin-bottom: 3% !important;
+}
+.mat-drawer-content {
+    padding:0.5% 1% !important;
+   // background: $primary-color-lightwhite !important;
+}
+.mat-nav-list a {
+    // color:$primary-color-white !important;
+    color:$primary-color-black !important;
+    font-size: $primary-font-size;
+}
+.mat-list-base .mat-list-item {
+    // color:$primary-color-white !important;
+    color:$primary-color-black;
+    height: 50px !important;
+}
+.mat-list-item:hover {
+    background: #ece9e9!important;
+    border-right: 5px solid #03a9f4;
+}
+// .mat-list-item:hover a{
+//     color: $primary-color-white !important;
+// }
+// .mat-list-item:hover mat-icon{
+//     color: $primary-color-white !important;
+// }
+//paginator
+.mat-paginator {
+    width:100% !important;
+    background: transparent !important;
+}
+tr.mat-header-row {
+    background: #f5f4f4 !important;
+    height: 50px !important;
+}
+.mat-header-cell {
+    font-size: 13px !important;
+    letter-spacing: 0.5px !important;
+    // font-weight: 500 !important;
+     color:$primary-color-lightblack !important;
+}
+.mat-menu-item {
+    height: 40px !important;
+    line-height: 40px !important;
+}
+button.mat-menu-item {
+    min-height: 5vh;
+    min-width: 170px !important;
+}
+// .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+//     background: #3498DB !important;
+//     border: 1px solid #2e6da4 !important;
+// }
+.mat-flat-button.mat-success, .mat-raised-button.mat-success, .mat-fab.mat-success, .mat-mini-fab.mat-success
+{
+    background: $primary-color-lightblue !important;
+    color:$primary-color-white !important;
+}
+.mat-paginator-page-size-label {
+    display: none !important;
+}
+.mat-paginator-page-size-select {
+     width:35px !important;
+}
+.mat-paginator.mat-select {
+    text-align: center !important;
+}
+.mat-select-panel {
+    min-width: 52px !important
+}
+.mat-paginator-range-label {
+    margin:0px 5px 0px 0px !important;
+}
+.mat-paginator-container {
+    min-height: 64px !important;
+}
+.mat-card-footer {
+    margin:0 -16px -14px -16px !important;
+}
+.staff .mat-card-header {
+    position: absolute !important;
+    right: 10px !important;    
+}
+.staff .mat-card-footer {
+    margin:-28px -16px -14px -16px !important
+}
+.mat-flat-button.mat-success, .mat-raised-button.mat-success, .mat-fab.mat-success, .mat-mini-fab.mat-success {
+    background: #8bc34a !important;
+}
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: #F5F4F4 !important;
+}
+.mat-tab-labels {
+    display: inline-grid !important;
+    width:100% !important;
+}
+.mat-tab-header {
+    width:18% !important;
+    background: #f5f4f4;
+    border: 1px solid #e0e0e0;
+    margin-right: 2% !important;
+}
+.mat-tab-label {
+    justify-content: flex-start !important;
+    height: 55px !important;
+}
+.mat-tab-body-wrapper {
+    width:80% !important;
+}
+.mat-tab-group {
+    flex-direction: row !important;
+}
+.mat-tab-label-active {
+    // border-left: 3px solid $primary-color-blue !important;
+   // background: #1a495f;
+    background: #fff;  
+    opacity: 1 !important;
+    border-left: 3px solid #03a9f4;
+}
+.mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
+    display: none !important;
+}
+.mat-menu-panel {
+    border-radius: 10px !important;
+}
+.mat-menu-content:not(:empty) {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+.staff.mat-card-header-text{
+    margin:0px !important;
+}
+.mat-progress-bar {
+    position: absolute !important;
+    z-index: 5 !important;
+}
+.mat-list-base {
+    padding-top:0px !important;
+}
+.sidebarSubmenu {
+    position: absolute !important;
+    left: 12% !important;
+    border-radius: 0px !important;
+    top: -8% !important;
+}
+.mat-menu-item .mat-icon {
+    margin-top: 8px !important;
+    color: #272727 !important;
+}
+.customerForm .mat-form-field {
+    width:90% !important;
+    line-height: 2.125 !important;
+}
+.breadcrumb {
+    background: unset !important;    
+    font-family: $primary-font-family-table;
+    font-size: $primary-font-size;
+    padding:0rem 1rem !important;
+}
+.breadcrumb .active {
+    background: unset !important;
+    border-right: none !important;
+    color:$primary-color-blue;
+}
+.breadcrumb .mat-icon {
+    margin-top:-3px !important;
+}
+.breadcrumb a {
+    color:$primary-color-lightblack;
+}
+
+.customer .mat-tab-group {
+    flex-direction: column !important;
+}
+.customer .mat-tab-labels {
+    display: unset !important;
+    width: unset !important;
+}
+.customer .mat-tab-header {
+    width:100% !important;
+    background: #f5f4f4;
+    border: 1px solid #e0e0e0;
+    margin-right: 2% !important;
+    margin-bottom: 3% !important;
+}
+.customer .mat-tab-body-wrapper {
+    width:100% !important;
+}

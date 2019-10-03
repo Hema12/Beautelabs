@@ -1,0 +1,140 @@
+<div fxLayout="column">
+    <div fxLayout="row">
+        <div fxLayoutAlign="start" fxFlex="85%">
+            <h2 class="page-title">Add New Appointment</h2>
+        </div>
+        <div fxFlex="15%" fxHide fxShow.gt-sm fxLayoutAlign="end">
+            <!-- <p>
+                <a [routerLink]="['cbot-admin/dashboard']"><mat-icon>home</mat-icon></a> / <span [routerLink]="['cbot-admin/custoemer']">Customers</span> / <span>Create</span>
+            </p>  -->
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#" [routerLink]="['/beautelabs/cbot-admin/dashboard']"><mat-icon>home</mat-icon></a></li>
+                    <li class="breadcrumb-item"><a href="#" [routerLink]="['/beautelabs/cbot-admin/appointment']">Appointment </a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Create</li>
+                </ol>
+                </nav>
+        </div>
+    </div>
+</div>
+<mat-card>
+    <mat-card-content>
+        <form method="POST" [formGroup]="bookingForm"> 
+            <div class="form-container">
+                <div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 mb-2 mt-2">
+                    <div class="col-md-4 col-sm-12 col-lg-12 col-xl-12">
+                        <mat-form-field>
+                            <input matInput placeholder="Customer" aria-label="Customer" [matAutocomplete]="customer" [formControl]="customerDet">
+                            <mat-autocomplete #customer="matAutocomplete">
+                                <mat-option *ngFor="let customer of filteredCustomer | async" [value]="customer.name">
+                                <span>{{customer.name}} | {{customer.mobile}}</span>
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                        <!-- <mat-form-field>
+                            <input matInput formControlName="customerName" placeholder="CustomerName" required>                        
+                                <mat-error *ngIf="bookingForm.controls['customerName'].errors || !bookingForm.controls['customerName'].dirty">
+                                    <span *ngIf="bookingForm.controls['customerName'].errors.required">Name is required </span>
+                                </mat-error>
+                        </mat-form-field> -->
+                    </div>  
+                    <div class="col-md-4 col-sm-12 col-lg-12 col-xl-12">
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="picker" required formControlName="bookingDate" (click)="picker.open()" placeholder="Date">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-error *ngIf="bookingForm.controls['bookingDate'].errors || !bookingForm.controls['bookingDate'].dirty">
+                                <span *ngIf="bookingForm.controls['bookingDate'].errors.required">Date is required </span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div> 
+                    <div class="col-md-4 col-sm-12 col-lg-12 col-xl-12">
+                        <mat-form-field>
+                            <mat-label>Status</mat-label>
+                            <mat-select formControlName="bookingStatus">
+                                <mat-option *ngFor="let statusList of status" [value]="statusList.value">
+                                {{statusList.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>  
+                </div>     
+                <!-- <div class="row col-md-12">
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Service" aria-label="Service" [matAutocomplete]="service" [formControl]="bookingService">
+                            <mat-autocomplete #service="matAutocomplete">
+                                <mat-option *ngFor="let service of filteredService | async" [value]="service.name">
+                                <span>{{service.name}}</span>
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field>
+                            <mat-label>Staff</mat-label>
+                            <mat-select formControlName="bookingStaff">
+                                <mat-option *ngFor="let staffList of staffs" [value]="staffList.value">
+                                {{staffList.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        
+                    </div>
+                </div>  -->            
+                <h4 matDialogTitle class="candidate-title">Services</h4>
+                <!-- <div formArrayName="service" *ngFor="let ser of bookingForm.controls['service'].controls; let i = index;"> -->
+                    <div formArrayName="serviceProducts" *ngFor="let ser of bookingForm.controls.service['controls']; let i=index">
+                    <div class="row col-md-12" [formGroupName]="i">
+                        <div class="col-md-4">                   
+                            <mat-form-field>
+                                <mat-label>Service</mat-label>
+                                <mat-select formControlName="bookingService">
+                                    <mat-option *ngFor="let serviceList of services" [value]="serviceList.name">
+                                    {{serviceList.name}}
+                                    </mat-option>
+                                </mat-select>
+                                <!-- <input matInput placeholder="Service" aria-label="Service" [matAutocomplete]="service" [formControl]="bookingService">
+                                <mat-autocomplete #service="matAutocomplete">
+                                    <mat-option *ngFor="let service of filteredService | async" [value]="service.name">
+                                    <span>{{service.name}}</span>
+                                    </mat-option>
+                                </mat-autocomplete> -->
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field>
+                                <mat-label>Staff</mat-label>
+                                <mat-select formControlName="bookingStaff">
+                                    <mat-option *ngFor="let staffList of staffs" [value]="staffList.value">
+                                    {{staffList.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>                    
+                        </div>
+                        <div class="col-md-3">
+                            <ngx-timepicker-field [defaultTime]="'09:00 AM'" formControlName="bookingStartTime"></ngx-timepicker-field>
+                        </div>
+                        <div class="col-md-1">
+                            <button mat-icon-button (click)="Delete(i)" color="primary">
+                                <mat-icon>delete</mat-icon>
+                            </button> 
+                        </div>
+                    </div>
+                </div>  
+                <button mat-raised-button color="primary" (click)="addService()" class="mb-2"> Add Service </button>
+                <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                    <div class="col-md-12 col-lg-6 col-xl-6 col-sm-6">
+                        <mat-form-field>
+                            <textarea matInput formControlName="bookingNote" placeholder="Booking Notes"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>  
+                <div class="col-md-12 tr">
+                    <button mat-raised-button color="warn">Clear</button> 
+                    <button mat-raised-button color="primary" (click)="create()" class="ml-1">Submit</button> 
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

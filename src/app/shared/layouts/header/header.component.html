@@ -1,0 +1,85 @@
+<div class="header">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row color="primary">           
+          <div class="logo">
+              <h1>Beautelabs</h1>
+          </div>
+          <!-- <div fxHide.gt-md class="menutoggle"> 
+            <mat-icon (click)="sidenav.toggle()" class="sidenav-menu" (click)="toggleRightSidenav()">menu</mat-icon> 
+           </div> -->
+          <mat-icon class="sidenav-menu" (click)="toggleRightSidenav()">menu</mat-icon>
+          <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs class="notification">
+              <button mat-button [matMenuTriggerFor]="createmenu"><mat-icon inline>add</mat-icon>Create
+                <mat-menu #createmenu="matMenu">
+                    <button mat-menu-item [routerLink]="['cbot-admin/saleCreate']" routerLinkActive="active"><mat-icon>receipt</mat-icon>Sales</button>
+                    <button mat-menu-item [routerLink]="['cbot-admin/bookingCreate']" routerLinkActive="active"><mat-icon>event_note</mat-icon>Appointment</button>
+                    <button mat-menu-item [routerLink]="['cbot-admin/customerCreate']" routerLinkActive="active"><mat-icon>person</mat-icon>Customer</button>
+                </mat-menu>
+              </button>
+              <button mat-button [matMenuTriggerFor]="remindermenu"><mat-icon matBadge="5" matBadgeColor="warn">alarm</mat-icon></button>
+              <mat-menu #remindermenu="matMenu">
+                  <div class="notify-detail">
+                    <div class="notify-header">
+                      <h6>Reminders</h6>
+                    </div>
+                    <div class="notify-content">
+                      <div class="row col-md-12">                    
+                        <div class="col-md-12">
+                          <p>New appointment created - Customer Name</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="notify-content">
+                        <div class="row col-md-12">                    
+                          <div class="col-md-12">
+                            <p>New product added - Product Name</p>
+                          </div>
+                        </div>
+                      </div>
+                    <div class="notify-content">
+                      <div class="row col-md-12">                    
+                        <div class="col-md-12">
+                          <p>New Bill Created - Customer Name</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </mat-menu>
+            <button mat-button [matMenuTriggerFor]="notifymenu"><mat-icon matBadge="5" matBadgeColor="warn">notification_important</mat-icon></button>
+            <mat-menu #notifymenu="matMenu">
+              <div class="notify-detail">
+                <div class="notify-header">
+                  <h6>Notification</h6>
+                </div>
+                <div class="notify-content">
+                  <div class="row col-md-12">                    
+                    <div class="col-md-12">
+                      <p>New appointment created - Customer Name</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="notify-content">
+                    <div class="row col-md-12">                    
+                      <div class="col-md-12">
+                        <p>New product added - Product Name</p>
+                      </div>
+                    </div>
+                  </div>
+                <div class="notify-content">
+                  <div class="row col-md-12">                    
+                    <div class="col-md-12">
+                      <p>New Bill Created - Customer Name</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-menu>
+            <button mat-button [matMenuTriggerFor]="logoutmenu"><mat-icon>account_circle</mat-icon></button>
+            <mat-menu #logoutmenu="matMenu">
+              <button mat-menu-item><mat-icon>account_box</mat-icon>Profile</button>
+              <button mat-menu-item [routerLink]="['/login']" routerLinkActive="active"><mat-icon>exit_to_app</mat-icon>Logout</button>
+            </mat-menu>
+          </div> 
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>

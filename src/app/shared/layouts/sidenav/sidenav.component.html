@@ -1,0 +1,338 @@
+<!-- <div class="header">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row color="primary">           
+        <div class="logo">
+            <h1>Beautelabs</h1>
+        </div>
+          <mat-icon (click)="sidenav.toggle()" class="sidenav-menu">menu</mat-icon>
+        <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs class="notification">
+            <button mat-button [matMenuTriggerFor]="menu"><mat-icon matBadge="5" matBadgeColor="warn">alarm</mat-icon></button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>Item 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+          <button mat-button [matMenuTriggerFor]="notifymenu"><mat-icon matBadge="5" matBadgeColor="warn">notification_important</mat-icon></button>
+          <mat-menu #notifymenu="matMenu">
+            <div class="notify-detail">
+              <div class="notify-header">
+                <h6>Notification</h6>
+              </div>
+              <div class="notify-content">
+                <div class="row col-md-12">                    
+                  <div class="col-md-12">
+                    <p>New appointment created</p>
+                  </div>
+                </div>
+              </div>
+              <div class="notify-content">
+                  <div class="row col-md-12">                    
+                    <div class="col-md-12">
+                      <p>New product added</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </mat-menu>
+          <button mat-button [matMenuTriggerFor]="logoutmenu"><mat-icon>account_circle</mat-icon></button>
+          <mat-menu #logoutmenu="matMenu">
+            <button mat-menu-item><mat-icon>account_box</mat-icon>Profile</button>
+            <button mat-menu-item><mat-icon>exit_to_app</mat-icon>Logout</button>
+          </mat-menu>
+        </div> 
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div> -->
+ 
+<mat-sidenav-container>
+  <mat-sidenav #sidenav color="primary" mode="side" disableClose="true" class="example-sidenav" opened="true" (mouseenter)="increase()" (mouseleave)="decrease()">   
+      <mat-nav-list>
+        <mat-list-item [routerLink]="['cbot-admin/dashboard']" routerLinkActive="active" >
+          <mat-icon mat-list-icon>dashboard</mat-icon>
+          <div fxFlex="10"></div>
+          <div class="sidenav-item">
+            <a class="lead">Dashboard</a>
+          </div>
+        </mat-list-item>
+        <mat-list-item [routerLink]="['cbot-admin/appointment']" routerLinkActive="active">
+          <mat-icon mat-list-icon>event_note</mat-icon>
+          <div fxFlex="10"></div>
+          <div class="sidenav-item">
+            <a class="lead">Appointment</a>
+          </div>
+        </mat-list-item>
+        <mat-list-item [routerLink]="['cbot-admin/sales']" routerLinkActive="active">
+          <mat-icon mat-list-icon>receipt</mat-icon>
+          <div fxFlex="10"></div>
+          <div class="sidenav-item">
+            <a class="lead">Sales</a>
+          </div>
+        </mat-list-item>
+        <mat-list-item [routerLink]="['cbot-admin/campaigns']" routerLinkActive="active">
+          <mat-icon mat-list-icon>insert_chart</mat-icon>
+          <div fxFlex="10"></div>
+          <div class="sidenav-item">
+          <a class="lead">Campaigns</a>
+          </div>
+        </mat-list-item>
+        <mat-list-item [routerLink]="['cbot-admin/customers']" routerLinkActive="active">
+          <mat-icon mat-list-icon>person</mat-icon>
+          <div fxFlex="10"></div>
+          <div class="sidenav-item">
+            <a class="lead">Customers</a>
+          </div>
+        </mat-list-item>
+        <mat-list-item [routerLink]="['cbot-admin/services']" routerLinkActive="active">
+          <mat-icon mat-list-icon>group_work</mat-icon>
+          <div fxFlex="10"></div>
+          <div class="sidenav-item">
+              <a class="lead">Services</a>
+          </div>
+        </mat-list-item>
+        <mat-list-item [routerLink]="['cbot-admin/products']" routerLinkActive="active">
+            <mat-icon mat-list-icon>shopping_basket</mat-icon>
+            <div fxFlex="10"></div>
+            <div class="sidenav-item">
+                <a class="lead">Products</a>
+            </div>
+        </mat-list-item>
+        <mat-list-item [routerLink]="['cbot-admin/vendors']" routerLinkActive="active">
+          <mat-icon mat-list-icon>shopping_cart</mat-icon>
+          <div fxFlex="10"></div>
+          <div class="sidenav-item">
+          <a class="lead">Vendors</a>
+          </div>
+        </mat-list-item>
+        <!-- <mat-list-item [routerLink]="['cbot-admin/dashboard']" routerLinkActive="active">
+          <mat-icon mat-list-icon>shopping_cart</mat-icon>
+          <div fxFlex="10"></div>
+          <div class="sidenav-item">
+          <a class="lead">Purcahse</a>
+          </div>
+        </mat-list-item> -->
+        <!-- <mat-list-item>
+          <mat-icon mat-list-icon>shopping_cart</mat-icon>  
+            <div fxFlex="10"></div> 
+            <div class="sidenav-item">
+              <a class="lead">Purcahse</a>
+            </div>
+          <button mat-button mat-icon-button (click)="showSubmenu = !showSubmenu">
+            <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}">expand_more</mat-icon>
+          </button>
+        </mat-list-item>
+        <div class="submenu" [ngClass]="{'expanded' : showSubmenu}">
+          <mat-list-item [routerLink]="['cbot-admin/purchaseOrder']" routerLinkActive="active">
+            <mat-icon mat-list-icon>shopping_cart</mat-icon>  
+            <div fxFlex="10"></div> 
+            <div class="sidenav-item">
+              <a class="lead">Purchase Order</a>
+            </div>
+          </mat-list-item>
+          <mat-list-item [routerLink]="['cbot-admin/purchaseBill']" routerLinkActive="active">
+            <mat-icon mat-list-icon>shopping_cart</mat-icon>  
+            <div fxFlex="10"></div> 
+            <div class="sidenav-item">
+              <a class="lead">Purchase Bill</a>
+            </div>
+          </mat-list-item>          
+        </div> -->
+        <mat-list-item [matMenuTriggerFor]="purchaseMenu" routerLinkActive="active">
+            <mat-icon mat-list-icon>shopping_cart</mat-icon>
+            <div fxFlex="10"></div>
+            <div class="sidenav-item">
+              <a class="lead">Purchase</a> <mat-icon>keyboard_arrow_down</mat-icon>
+            </div>
+          </mat-list-item>
+          <mat-menu #purchaseMenu="matMenu" class="sidebarSubmenu">
+              <button mat-menu-item [routerLink]="['cbot-admin/purchaseOrder']" routerLinkActive="active">
+                  <mat-icon mat-list-icon>shopping_cart</mat-icon>
+                  <div fxFlex="10"></div>
+                  <div class="sidenav-item">
+                    <a class="lead">Purchase Order</a>
+                  </div>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/purchaseBill']" routerLinkActive="active">
+                <mat-icon mat-list-icon>shopping_cart</mat-icon>
+                <div fxFlex="10"></div>
+                <div class="sidenav-item">
+                  <a class="lead">Purchase bill</a>
+                </div>
+              </button>
+          </mat-menu>
+        <mat-list-item [matMenuTriggerFor]="invMenu" routerLinkActive="active">
+          <mat-icon mat-list-icon>store_mall_directory</mat-icon>
+          <div fxFlex="10"></div>
+          <div class="sidenav-item">
+            <a class="lead">Inventory</a> <mat-icon>keyboard_arrow_down</mat-icon>
+          </div>
+        </mat-list-item>
+        <mat-menu #invMenu="matMenu" class="sidebarSubmenu">
+            <button mat-menu-item [routerLink]="['cbot-admin/inventory']" routerLinkActive="active">
+                <mat-icon mat-list-icon>store_mall_directory</mat-icon>
+                <div fxFlex="10"></div>
+                <div class="sidenav-item">
+                  <a class="lead">Store Track</a>
+                </div>
+            </button>
+            <button mat-menu-item [routerLink]="['cbot-admin/storeTransfer']" routerLinkActive="active">
+              <mat-icon mat-list-icon>store_mall_directory</mat-icon>
+              <div fxFlex="10"></div>
+              <div class="sidenav-item">
+                <a class="lead">Transfer</a>
+              </div>
+            </button>
+            <button mat-menu-item [routerLink]="['cbot-admin/location']" routerLinkActive="active">
+                <mat-icon mat-list-icon>store_mall_directory</mat-icon>
+                <div fxFlex="10"></div>
+                <div class="sidenav-item">
+                  <a class="lead">Locations</a>
+                </div>
+            </button>
+        </mat-menu>
+        <mat-list-item [matMenuTriggerFor]="accMenu" routerLinkActive="active">
+          <mat-icon mat-list-icon>store_mall_directory</mat-icon>
+        <div fxFlex="10"></div>
+        <div class="sidenav-item">
+          <a class="lead">Accounts</a> <mat-icon>keyboard_arrow_down</mat-icon>
+        </div>
+        </mat-list-item>
+        <mat-menu #accMenu="matMenu" class="sidebarSubmenu">
+          <button mat-menu-item [routerLink]="['cbot-admin/saleBill']" routerLinkActive="active">
+              <mat-icon mat-list-icon>store_mall_directory</mat-icon>
+              <div fxFlex="10"></div>
+              <div class="sidenav-item">
+                <a class="lead">Sale Bills</a>
+              </div>
+          </button>
+          <button mat-menu-item [routerLink]="['cbot-admin/vendorBill']" routerLinkActive="active">
+            <mat-icon mat-list-icon>store_mall_directory</mat-icon>
+            <div fxFlex="10"></div>
+            <div class="sidenav-item">
+              <a class="lead">Vendor Bills</a>
+            </div>
+          </button>
+          <button mat-menu-item [routerLink]="['cbot-admin/cashRegister']" routerLinkActive="active">
+            <mat-icon mat-list-icon>store_mall_directory</mat-icon>
+            <div fxFlex="10"></div>
+            <div class="sidenav-item">
+              <a class="lead">Bank &amp; Cash</a>
+            </div>
+          </button>
+          <button mat-menu-item [routerLink]="['cbot-admin/dayBook']" routerLinkActive="active">
+            <mat-icon mat-list-icon>store_mall_directory</mat-icon>
+            <div fxFlex="10"></div>
+            <div class="sidenav-item">
+              <a class="lead">Day Book</a>
+            </div>
+          </button>
+        </mat-menu>
+        <mat-list-item routerLinkActive="active" [matMenuTriggerFor]="hrMenu">
+          <mat-icon mat-list-icon>supervisor_account</mat-icon>
+          <div fxFlex="10"></div>
+          <div class="sidenav-item">
+          <a class="lead">HR</a> <mat-icon>keyboard_arrow_down</mat-icon>
+          </div>
+        </mat-list-item>
+        <mat-menu #hrMenu="matMenu" class="sidebarSubmenu">
+          <button mat-menu-item [routerLink]="['cbot-admin/staffs']" routerLinkActive="true">
+              <mat-icon mat-list-icon>store_mall_directory</mat-icon>
+              <div fxFlex="10"></div>
+              <div class="sidenav-item">
+                <a class="lead">Staff</a> 
+              </div>
+          </button>
+          <button mat-menu-item [routerLink]="['cbot-admin/attendance']" routerLinkActive="active">
+            <mat-icon mat-list-icon>store_mall_directory</mat-icon>
+            <div fxFlex="10"></div>
+            <div class="sidenav-item">
+              <a class="lead">Attendance</a>
+            </div>
+          </button>
+          <button mat-menu-item [routerLink]="['cbot-admin/payroll']" routerLinkActive="active">
+            <mat-icon mat-list-icon>store_mall_directory</mat-icon>
+            <div fxFlex="10"></div>
+            <div class="sidenav-item">
+              <a class="lead">Payroll</a>
+            </div>
+          </button>
+          <button mat-menu-item [routerLink]="['cbot-admin/leaves']" routerLinkActive="active">
+            <mat-icon mat-list-icon>store_mall_directory</mat-icon>
+            <div fxFlex="10"></div>
+            <div class="sidenav-item">
+              <a class="lead">Leaves</a>
+            </div>
+          </button>
+          <button mat-menu-item [routerLink]="['cbot-admin/payrollMaster']" routerLinkActive="active">
+            <mat-icon mat-list-icon>store_mall_directory</mat-icon>
+            <div fxFlex="10"></div>
+            <div class="sidenav-item">
+              <a class="lead">Payroll Master</a>
+            </div>
+          </button>
+        </mat-menu>
+        <mat-list-item routerLinkActive="active" [matMenuTriggerFor]="dealMenu">
+          <mat-icon mat-list-icon>loyalty</mat-icon>
+        <div fxFlex="10"></div>
+        <div class="sidenav-item">
+          <a class="lead">Deals</a> <mat-icon>keyboard_arrow_down</mat-icon>
+        </div>
+        </mat-list-item>
+        <mat-menu #dealMenu="matMenu" class="sidebarSubmenu">
+          <button mat-menu-item [routerLink]="['cbot-admin/giftVoucher']" routerLinkActive="active">
+              <mat-icon mat-list-icon>loyalty</mat-icon>
+              <div fxFlex="10"></div>
+              <div class="sidenav-item">
+                <a class="lead">Promo / Gift Voucher</a>
+              </div>
+          </button>
+          <button mat-menu-item [routerLink]="['cbot-admin/prepaidCard']" routerLinkActive="active">
+            <mat-icon mat-list-icon>loyalty</mat-icon>
+            <div fxFlex="10"></div>
+            <div class="sidenav-item">
+              <a class="lead">Prepaid Card</a>
+            </div>
+          </button>
+          <button mat-menu-item [routerLink]="['cbot-admin/loyalty']" routerLinkActive="active">
+              <mat-icon mat-list-icon>loyalty</mat-icon>
+              <div fxFlex="10"></div>
+              <div class="sidenav-item">
+                <a class="lead">Loyalty</a>
+              </div>
+          </button>
+        </mat-menu>
+        <mat-list-item [routerLink]="['cbot-admin/reports']" routerLinkActive="active">
+          <mat-icon mat-list-icon>report</mat-icon>
+          <div fxFlex="10"></div>
+          <div class="sidenav-item">
+          <a class="lead">Reports</a>
+          </div>
+
+        </mat-list-item>
+        <mat-list-item [routerLink]="['cbot-admin/settings']" routerLinkActive="active">
+            <mat-icon mat-list-icon>settings</mat-icon>
+          <div fxFlex="10"></div>
+          <div class="sidenav-item">
+            <a class="lead">Settings</a>
+          </div>
+        </mat-list-item>
+        <mat-list-item [routerLink]="['cbot-admin/expenses']" routerLinkActive="active">
+          <mat-icon mat-list-icon>store_mall_directory</mat-icon>
+        <div fxFlex="10"></div>
+        <div class="sidenav-item">
+          <a class="lead">Expenses</a>
+        </div>
+        </mat-list-item>
+        <mat-list-item [routerLink]="['/login']" routerLinkActive="active">
+          <mat-icon mat-list-icon>exit_to_app</mat-icon>
+          <div fxFlex="10"></div>
+          <div class="sidenav-item">
+            <a class="lead">Log out</a>
+          </div>
+        </mat-list-item>
+
+      </mat-nav-list> 
+  
+    </mat-sidenav>
+    <mat-sidenav-content>      
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container> 

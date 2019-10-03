@@ -1,0 +1,42 @@
+<div class="login-bg">
+        <div fxLayout="column">
+            <div fxLayout="row" fxLayoutAlign="center center" style="height: 100vh;">
+                <div fxFlex="55%" class="border">
+                    <mat-card class="loginpage">
+                        <div fxFlex="55%">
+                            <mat-card-header>
+                                <img src="../../../../assets/images/logo.png" />                                               
+                            </mat-card-header>
+                            <div class="loginpage-content">
+                                Welcome to <br />Salon <br />Management Software
+                            </div> 
+                        </div>
+                        <div fxFlex class="borderleft">
+                            <mat-card-content>
+                                <div class="loginpage-title">
+                                    Login
+                                </div>
+                                
+                                <form class="mt-15">
+                                    <p>
+                                        <mat-form-field>
+                                            <input matInput placeholder="UserName" />
+                                        </mat-form-field>
+                                    </p>
+                                    <p>
+                                        <mat-form-field>
+                                            <input matInput type="password" placeholder="Password" />
+                                        </mat-form-field>
+                                    </p>
+                                    <mat-card-actions align="start">
+                                        <button mat-raised-button color="primary" (click)="validate()">Submit</button> 
+                                    </mat-card-actions>
+                                </form>
+                            </mat-card-content>
+                        </div>
+                    </mat-card>
+                </div>
+            </div>        
+        </div> 
+        </div> 
+        

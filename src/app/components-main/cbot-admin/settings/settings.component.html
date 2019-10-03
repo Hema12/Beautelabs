@@ -1,0 +1,592 @@
+<div fxLayout="column" fxLayoutAlign="start">
+    <div fxLayout="row">
+        <div fxFlex="83%" fxLayoutAlign="start">
+            <h2>Settings</h2>
+        </div>
+        <div fxFlex="16%" fxHide fxShow.gt-sm fxLayoutAlign="end">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#" [routerLink]="['/beautelabs/cbot-admin/dashboard']"><mat-icon>home</mat-icon></a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Settings</li>
+                </ol>
+                </nav>
+        </div>
+    </div>    
+</div>
+<mat-card class="settingstabhgt">
+    <mat-tab-group>
+        <mat-tab label="Entity Management">             
+            <form [formGroup]="entityForm">
+                <div class="form-container">
+                    <h5 class="candidate-title mb-5">Business Details</h5>
+                    <div class="row col-md-6 col-lg-12 col-xl-12 col-sm-12"> 
+                        <div class="col-md-12 col-lg-4 col-xl-4 col-sm-12">
+                            <mat-form-field>
+                                <mat-label>Business Name</mat-label>                               
+                                <input matInput formControlName="businessName" required />
+                            </mat-form-field> 
+                        </div>    
+                        <div class="col-md-12 col-lg-4 col-xl-4 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="contactName" placeholder="Contact Name" required>     
+                            </mat-form-field>  
+                        </div>     
+                        <div class="col-md-12 col-lg-4 col-xl-4 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="contactNumber" placeholder="Contact Number" required>     
+                            </mat-form-field>  
+                        </div>   
+                    </div>
+                    <div class="row col-md-6 col-lg-12 col-xl-12 col-sm-12"> 
+                        <div class="col-md-12 col-lg-4 col-xl-4 col-sm-12">
+                            <mat-form-field>
+                                <mat-label>Email Id</mat-label>                               
+                                <input matInput formControlName="businessEmail" required />
+                            </mat-form-field> 
+                        </div>    
+                    </div>
+                </div>
+            </form>
+        </mat-tab>
+        <mat-tab label="Vendors"> 
+            <div fxLayout="column">
+                <div fxLayout="row">
+                    <div fxLayoutAlign="start" fxFlex="50%">
+                        <button mat-raised-button color="primary" (click)="serviceSubCategoryCreate(subcategorycreatetemplate)" style="height: 35px; margin-top: 2%;">Add Sub Category</button> 
+                    </div>
+                    <div fxFlex="32%" fxHide fxShow.gt-sm fxLayoutAlign="middle">
+                        <mat-form-field class="searchInputfull">
+                            <input matInput (keyup)="applySubCategoryFilter($event.target.value)" placeholder="Search Service by category / sub category name">
+                            <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>
+                    </div>
+                    
+                    <div fxFlex="18%" fxHide fxShow.gt-sm fxLayoutAlign="end">
+                        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+                    </div>
+                </div>
+            </div>
+            
+            <div fxLayout="row">
+                <table mat-table [dataSource]="serviceSubCatgeorySource" class="mat-elevation-z8" matSort>
+                
+                <ng-container matColumnDef="sno">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="serviceCategoryName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+                    <td mat-cell *matCellDef="let element"> {{element.serviceCategoryName}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="serviceSubCategoryName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Sub Category </th>
+                    <td mat-cell *matCellDef="let element"> {{element.serviceSubCategoryName}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef>Action</th>
+                    <td mat-cell *matCellDef="let element; let i=index;">
+                        <button mat-flat-button [matMenuTriggerFor]="menu" color="primary">Action</button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>
+                                <mat-icon>remove_red_eye</mat-icon>
+                                <span>View</span>
+                            </button>
+                            <button mat-menu-item>
+                                <mat-icon>edit</mat-icon>
+                                <span>Edit</span>
+                            </button>
+                            <button mat-menu-item>
+                                <mat-icon>delete</mat-icon>
+                                <span>Delete</span>
+                            </button>
+                        </mat-menu>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedSubCategoryColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedSubCategoryColumns;"></tr>
+                </table>
+            </div>
+        </mat-tab>
+        <mat-tab label="Products"> 
+            <div fxLayout="column">
+                <div fxLayout="row">
+                    <div fxLayoutAlign="start" fxFlex="50%">
+                        <button mat-raised-button color="primary" (click)="productsCreate()" style="height: 35px; margin-top: 2%;">Add Products</button> 
+                    </div>
+                    <div fxFlex="32%" fxHide fxShow.gt-sm fxLayoutAlign="middle">
+                        <mat-form-field class="searchInputfull">
+                            <input matInput (keyup)="applyProductFilter($event.target.value)" placeholder="Search Products by Name">
+                            <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>
+                    </div>
+                    
+                    <div fxFlex="18%" fxHide fxShow.gt-sm fxLayoutAlign="end">
+                        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row">                     
+                <table mat-table [dataSource]="serviceSource" class="mat-elevation-z8" matSort>                
+                <ng-container matColumnDef="sno">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="serviceName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.serviceName}} </td>
+                </ng-container>
+                <ng-container matColumnDef="serviceCategory">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+                    <td mat-cell *matCellDef="let element"> {{element.serviceCategory}} </td>
+                </ng-container>
+                <ng-container matColumnDef="serviceSubCategory">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Sub category </th>
+                    <td mat-cell *matCellDef="let element"> {{element.serviceSubCategory}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="servicePrice">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+                    <td mat-cell *matCellDef="let element"> {{element.servicePrice}} </td>
+                </ng-container>
+                <ng-container matColumnDef="serviceDuration">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Duration </th>
+                    <td mat-cell *matCellDef="let element"> {{element.serviceDuration}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef>Action</th>
+                    <td mat-cell *matCellDef="let element; let i=index;">
+                        <button mat-flat-button [matMenuTriggerFor]="menu" color="primary">Action</button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>
+                                <mat-icon>remove_red_eye</mat-icon>
+                                <span>View</span>
+                            </button>
+                            <button mat-menu-item>
+                                <mat-icon>edit</mat-icon>
+                                <span>Edit</span>
+                            </button>
+                            <button mat-menu-item>
+                                <mat-icon>store_mall_directory</mat-icon>
+                                <span>Update Quantity</span>
+                            </button>
+                            <button mat-menu-item>
+                                <mat-icon>delete</mat-icon>
+                                <span>Delete</span>
+                            </button>
+                        </mat-menu>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+        </mat-tab>
+        <mat-tab label="Membership"> 
+            <div fxLayout="column">
+                <div fxLayout="row">
+                    <div fxLayoutAlign="start" fxFlex="50%">
+                        <button mat-raised-button color="primary" (click)="openMembershipCreateModal(membershipcreatetemplate)" style="height: 35px; margin-top: 2%;">Add Membership</button> 
+                    </div>
+                    <div fxFlex="32%" fxHide fxShow.gt-sm fxLayoutAlign="middle">
+                        <mat-form-field class="searchInputfull">
+                            <input matInput (keyup)="applyMembershipFilter($event.target.value)" placeholder="Search Membership by Name">
+                            <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>
+                    </div>
+                    
+                    <div fxFlex="18%" fxHide fxShow.gt-sm fxLayoutAlign="end">
+                        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row">                     
+                <table mat-table [dataSource]="membershipSource" class="mat-elevation-z8" matSort>                
+                <ng-container matColumnDef="sno">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="membershipName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.membershipName}} </td>
+                </ng-container>
+                <ng-container matColumnDef="membershipValue">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Value </th>
+                    <td mat-cell *matCellDef="let element"> {{element.membershipValue}} </td>
+                </ng-container>
+                <ng-container matColumnDef="membershipValidity">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Validity (Days) </th>
+                    <td mat-cell *matCellDef="let element"> {{element.membershipValidity}} </td>
+                </ng-container>
+                <ng-container matColumnDef="membershipStatus">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                    <td mat-cell *matCellDef="let element"> {{element.membershipStatus}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef>Action</th>
+                    <td mat-cell *matCellDef="let element; let i=index;">
+                        <button mat-flat-button [matMenuTriggerFor]="menu" color="primary">Action</button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>
+                                <mat-icon>edit</mat-icon>
+                                <span>Edit</span>
+                            </button>
+                            <button mat-menu-item>
+                                <mat-icon>delete</mat-icon>
+                                <span>Delete</span>
+                            </button>
+                        </mat-menu>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedMembershipColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedMembershipColumns;"></tr>
+                </table>
+            </div>
+        </mat-tab>
+        <mat-tab label="Package"> 
+            <div fxLayout="column">
+                <div fxLayout="row">
+                    <div fxLayoutAlign="start" fxFlex="50%">
+                        <button mat-raised-button color="primary" (click)="openPackageCreateModal(packagecreatetemplate)" style="height: 35px; margin-top: 2%;">Add Package</button> 
+                    </div>
+                    <div fxFlex="32%" fxHide fxShow.gt-sm fxLayoutAlign="middle">
+                        <mat-form-field class="searchInputfull">
+                            <input matInput (keyup)="applyPackageFilter($event.target.value)" placeholder="Search Package by Name">
+                            <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>
+                    </div>
+                    
+                    <div fxFlex="18%" fxHide fxShow.gt-sm fxLayoutAlign="end">
+                        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row">                     
+                <table mat-table [dataSource]="packageSource" class="mat-elevation-z8" matSort>                
+                <ng-container matColumnDef="sno">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="packageName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.packageName}} </td>
+                </ng-container>
+                <ng-container matColumnDef="packageValue">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Value </th>
+                    <td mat-cell *matCellDef="let element"> {{element.packageValue}} </td>
+                </ng-container>
+                <ng-container matColumnDef="packageStatus">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                    <td mat-cell *matCellDef="let element"> {{element.packageStatus}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef>Action</th>
+                    <td mat-cell *matCellDef="let element; let i=index;">
+                        <button mat-flat-button [matMenuTriggerFor]="menu" color="primary">Action</button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>
+                                <mat-icon>edit</mat-icon>
+                                <span>Edit</span>
+                            </button>
+                            <button mat-menu-item>
+                                <mat-icon>delete</mat-icon>
+                                <span>Delete</span>
+                            </button>
+                        </mat-menu>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedPackageColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedPackageColumns;"></tr>
+                </table>
+            </div>
+        </mat-tab>
+        <mat-tab label="Staff Category"> 
+            <div fxLayout="column">
+                <div fxLayout="row">
+                    <div fxLayoutAlign="start" fxFlex="50%">
+                        <button mat-raised-button color="primary" (click)="openStaffCreateModal(staffCategorycreatetemplate)" style="height: 35px; margin-top: 2%;">Add Staff Category</button> 
+                    </div>
+                    <div fxFlex="32%" fxHide fxShow.gt-sm fxLayoutAlign="middle">
+                        <mat-form-field class="searchInputfull">
+                            <input matInput (keyup)="applyStaffCategoryFilter($event.target.value)" placeholder="Search Staff category by Name">
+                            <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>
+                    </div>
+                    
+                    <div fxFlex="18%" fxHide fxShow.gt-sm fxLayoutAlign="end">
+                        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row">                     
+                <table mat-table [dataSource]="staffCategorySource" class="mat-elevation-z8" matSort>                
+                <ng-container matColumnDef="sno">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="staffCategoryName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.staffCategoryName}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef>Action</th>
+                    <td mat-cell *matCellDef="let element; let i=index;">
+                        <button mat-flat-button [matMenuTriggerFor]="menu" color="primary">Action</button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>
+                                <mat-icon>remove_red_eye</mat-icon>
+                                <span>View</span>
+                            </button>
+                            <button mat-menu-item>
+                                <mat-icon>edit</mat-icon>
+                                <span>Edit</span>
+                            </button>
+                            <button mat-menu-item>
+                                <mat-icon>delete</mat-icon>
+                                <span>Delete</span>
+                            </button>
+                        </mat-menu>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedStaffCategoryColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedStaffCategoryColumns;"></tr>
+                </table>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</mat-card>
+    
+    <!-- Category Create -->
+    <ng-template #categorycreatetemplate>
+        <h2 matDialogTitle class="modal-title">Add Category</h2>
+        <mat-dialog-content class="dialog-detail">
+            <form method="POST" [formGroup]="serviceCategoryForm"> 
+                <div class="form-container">
+                    <div class="row col-md-12">
+                        <div class="col-md-12">
+                            <mat-form-field>
+                                <input matInput formControlName="CategoryName" placeholder="Category Name" required>                        
+                                    <mat-error *ngIf="serviceCategoryForm.controls['CategoryName'].errors || !serviceCategoryForm.controls['CategoryName'].dirty">
+                                        <span *ngIf="serviceCategoryForm.controls['CategoryName'].errors.required">Category Name is required </span>
+                                    </mat-error>
+                            </mat-form-field> 
+                        </div> 
+                    </div>     
+                </div>
+            </form>
+        </mat-dialog-content>
+        <mat-dialog-actions align="end" class="submit-button">
+            <button mat-raised-button color="warn" (click)="cancel()" class="mb-5">Close</button>
+            <button mat-raised-button color="primary" class="mb-5 ml-2">Submit</button>
+        </mat-dialog-actions>
+    </ng-template>
+
+    <!-- Sub Category Create -->
+    <ng-template #subcategorycreatetemplate>
+        <h2 matDialogTitle class="modal-title">Add Sub Category</h2>
+        <mat-dialog-content class="dialog-detail">
+            <form method="POST" [formGroup]="serviceSubCategoryForm"> 
+                <div class="form-container">
+                    <div class="row col-md-12"> 
+                        <div class="col-md-12">
+                            <mat-form-field>
+                                <mat-label>Category</mat-label>                               
+                                <mat-select formControlName="categoryName">
+                                    <mat-option *ngFor="let det of category" [value]="det.value">
+                                    {{det.viewValue}}
+                                    </mat-option>
+                                </mat-select> 
+                            </mat-form-field> 
+                        </div>    
+                        <div class="col-md-12">
+                            <mat-form-field>
+                                <input matInput formControlName="subCategoryName" placeholder="Sub category" required>                        
+                                    <mat-error *ngIf="serviceSubCategoryForm.controls['subCategoryName'].errors || !serviceSubCategoryForm.controls['subCategoryName'].dirty">
+                                        <span *ngIf="serviceSubCategoryForm.controls['subCategoryName'].errors.required">Sub Category Name is required </span>
+                                    </mat-error>
+                            </mat-form-field>  
+                        </div>     
+                    </div>
+                </div>
+            </form>
+        </mat-dialog-content>
+        <mat-dialog-actions align="end" class="submit-button">
+            <button mat-raised-button color="warn" (click)="cancel()" class="mb-5">Close</button>
+            <button mat-raised-button color="primary" class="mb-5 ml-2">Submit</button>
+        </mat-dialog-actions>
+    </ng-template>
+
+    <!-- Membership Create-->
+    <ng-template #membershipcreatetemplate>
+        <h2 matDialogTitle class="modal-title mb-5">Add Membership</h2>
+        <mat-dialog-content class="dialog-detail">
+            <form method="POST" [formGroup]="membershipForm"> 
+                <div class="form-container">
+                    <div class="row col-md-6 col-lg-12 col-xl-12 col-sm-12">
+                        <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="membershipName" placeholder="Membership Name" required>                        
+                                    <mat-error *ngIf="membershipForm.controls['membershipName'].errors || !membershipForm.controls['membershipName'].dirty">
+                                        <span *ngIf="membershipForm.controls['membershipName'].errors.required">Membership Name is required </span>
+                                    </mat-error>
+                            </mat-form-field> 
+                        </div> 
+                        <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="membershipValue" placeholder="Membership Value" required>                        
+                                    <mat-error *ngIf="membershipForm.controls['membershipValue'].errors || !membershipForm.controls['membershipValue'].dirty">
+                                        <span *ngIf="membershipForm.controls['membershipValue'].errors.required">Membership Value is required </span>
+                                    </mat-error>
+                            </mat-form-field> 
+                        </div> 
+                    </div>  
+                    <div class="row col-md-6 col-lg-12 col-xl-12 col-sm-12">
+                        <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="membershipValidity" placeholder="Membership Validity" required>                        
+                                    <mat-error *ngIf="membershipForm.controls['membershipValidity'].errors || !membershipForm.controls['membershipValidity'].dirty">
+                                        <span *ngIf="membershipForm.controls['membershipValidity'].errors.required">Membership Validity is required </span>
+                                    </mat-error>
+                            </mat-form-field> 
+                        </div> 
+                        <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                            <mat-form-field>
+                                <mat-label>Membership Status</mat-label>                               
+                                <mat-select formControlName="membershipStatus">
+                                    <mat-option *ngFor="let det of memberStatus" [value]="det.statusName">
+                                    {{det.statusName}}
+                                    </mat-option>
+                                </mat-select> 
+                            </mat-form-field> 
+                        </div> 
+                    </div>     
+                </div>
+            </form>
+        </mat-dialog-content>
+        <mat-dialog-actions align="end" class="submit-button">
+            <button mat-raised-button color="warn" (click)="cancel()" class="mb-5">Close</button>
+            <button mat-raised-button color="primary" class="mb-5 ml-2">Submit</button>
+        </mat-dialog-actions>
+    </ng-template>
+
+     <!-- Package Create-->
+     <ng-template #packagecreatetemplate>
+        <h2 matDialogTitle class="modal-title mb-5">Add Package</h2>
+        <mat-dialog-content class="dialog-detail">
+            <form method="POST" [formGroup]="packageForm"> 
+                <div class="form-container">
+                    <div class="row col-md-6 col-lg-12 col-xl-12 col-sm-12">
+                        <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="packageName" placeholder="Package Name" required>                        
+                                    <mat-error *ngIf="packageForm.controls['packageName'].errors || !packageForm.controls['packageName'].dirty">
+                                        <span *ngIf="packageForm.controls['packageName'].errors.required">package Name is required </span>
+                                    </mat-error>
+                            </mat-form-field> 
+                        </div> 
+                        <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="packageValue" placeholder="Package Value" required>                        
+                                    <mat-error *ngIf="packageForm.controls['packageValue'].errors || !packageForm.controls['packageValue'].dirty">
+                                        <span *ngIf="packageForm.controls['packageValue'].errors.required">Package Value is required </span>
+                                    </mat-error>
+                            </mat-form-field> 
+                        </div> 
+                    </div>  
+                    <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                        <mat-form-field>
+                            <mat-label>Package Status</mat-label>                               
+                            <mat-select formControlName="packageStatus">
+                                <mat-option *ngFor="let det of packageStatus" [value]="det.statusName">
+                                {{det.statusName}}
+                                </mat-option>
+                            </mat-select> 
+                        </mat-form-field> 
+                    </div> 
+                </div>     
+            </form>
+        </mat-dialog-content>
+        <mat-dialog-actions align="end" class="submit-button">
+            <button mat-raised-button color="warn" (click)="cancel()" class="mb-5">Close</button>
+            <button mat-raised-button color="primary" class="mb-5 ml-2">Submit</button>
+        </mat-dialog-actions>
+    </ng-template>
+
+     <!-- Staff category Create-->
+     <ng-template #staffCategorycreatetemplate>
+        <h2 matDialogTitle class="modal-title mb-5">Add Staff Category</h2>
+        <mat-dialog-content class="dialog-detail">
+            <form method="POST" [formGroup]="staffCategoryForm"> 
+                <div class="form-container">
+                    <div class="row col-md-6 col-lg-12 col-xl-12 col-sm-12">
+                        <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="staffCategoryName" placeholder="Staff Category Name" required>                        
+                                    <mat-error *ngIf="staffCategoryForm.controls['staffCategoryName'].errors || !staffCategoryForm.controls['staffCategoryName'].dirty">
+                                        <span *ngIf="staffCategoryForm.controls['staffCategoryName'].errors.required">Category Name is required </span>
+                                    </mat-error>
+                            </mat-form-field> 
+                        </div> 
+                    </div>  
+                    <div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 mb-5">
+                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 staffcategory">
+                            <ng-container matColumnDef="select">
+                                <th mat-header-cell *matHeaderCellDef>
+                                <mat-checkbox (change)="$event ? masterToggle() : null"
+                                                [checked]="selection.hasValue() && isAllSelected()"
+                                                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                                [aria-label]="checkboxLabel()">
+                                </mat-checkbox>
+                                </th>
+                                <td mat-cell *matCellDef="let row">
+                                <mat-checkbox (click)="$event.stopPropagation()"
+                                                (change)="$event ? selection.toggle(row) : null"
+                                                [checked]="selection.isSelected(row)"
+                                                [aria-label]="checkboxLabel(row)">
+                                </mat-checkbox>
+                                </td>
+                            </ng-container>        
+
+                            <ng-container matColumnDef="day">
+                                <th mat-header-cell *matHeaderCellDef> Day </th>
+                                <td mat-cell *matCellDef="let element"> {{element.day}} </td>
+                            </ng-container>
+                            
+                            <ng-container matColumnDef="startTime">
+                                <th mat-header-cell *matHeaderCellDef> Start Time </th>
+                                <td mat-cell *matCellDef="let element"> 
+                                    <input matInput placeholder="09:00" />
+                                </td>
+                            </ng-container>
+                            
+                            <ng-container matColumnDef="endTime">
+                                <th mat-header-cell *matHeaderCellDef> End Time </th>
+                                <td mat-cell *matCellDef="let element">                                     
+                                    <input matInput placeholder="09:00" />
+                                </td>
+                            </ng-container>
+                            
+                            <tr mat-header-row *matHeaderRowDef="displayedWorkColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedWorkColumns;"
+                                (click)="selection.toggle(row)">
+                            </tr>
+                        </table>
+                    </div>
+                </div>     
+            </form>
+        </mat-dialog-content>
+        <mat-dialog-actions align="end" class="submit-button">
+            <button mat-raised-button color="warn" (click)="cancel()" class="mb-5">Close</button>
+            <button mat-raised-button color="primary" class="mb-5 ml-2">Submit</button>
+        </mat-dialog-actions>
+    </ng-template>

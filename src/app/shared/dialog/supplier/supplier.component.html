@@ -1,0 +1,252 @@
+<div fxLayout="column">
+        <div fxLayout="row">
+            <div fxLayoutAlign="start" fxFlex="85%">
+                <h2 matDialogTitle class="candidate-title">Add Vendor</h2>
+            </div>
+            <div fxFlex="15%" fxHide fxShow.gt-sm fxLayoutAlign="end">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#" [routerLink]="['/beautelabs/cbot-admin/dashboard']"><mat-icon>home</mat-icon></a></li>
+                        <li class="breadcrumb-item"><a href="#" [routerLink]="['/beautelabs/cbot-admin/vendors']">Vendors </a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Create</li>
+                    </ol>
+                    </nav>
+            </div>
+        </div>
+    </div>
+    <mat-card>
+        <mat-card-content>
+            <form method="POST" [formGroup]="vendorForm" class="customerForm"> 
+                <div class="form-container">
+                    <h4 matDialogTitle>Basic Details</h4>
+                    <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="vendorName" placeholder="Vendor Name" required>                        
+                                    <mat-error *ngIf="vendorForm.controls['vendorName'].errors || !vendorForm.controls['vendorName'].dirty">
+                                        <span *ngIf="vendorForm.controls['vendorName'].errors.required">Vendor Name is required </span>
+                                    </mat-error>
+                            </mat-form-field>
+                        </div>  
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="vendorRefNo" required placeholder="Ref Number">
+                                <mat-error *ngIf="vendorForm.controls['vendorRefNo'].errors && vendorForm.controls['vendorRefNo'].touched || !vendorForm.controls['vendorRefNo'].dirty">
+                                    <span *ngIf="vendorForm.controls['vendorRefNo'].errors.required">Reference No is required </span>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>   
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="vendorMobile" required placeholder="Mobile Number">
+                                <mat-error *ngIf="vendorForm.controls['vendorMobile'].errors || !vendorForm.controls['vendorMobile'].dirty">
+                                    <span *ngIf="vendorForm.controls['vendorMobile'].errors.required">Mobile Number is required </span>
+                                    <span *ngIf="vendorForm.controls['vendorMobile'].errors.pattern">Mobile Number is invalid </span>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="vendorEmail" required placeholder="Email Id">
+                                <mat-error *ngIf="vendorForm.controls['vendorEmail'].errors || !vendorForm.controls['vendorEmail'].dirty">
+                                    <span *ngIf="vendorForm.controls['vendorEmail'].errors.required">Email is required </span>
+                                    <span *ngIf="vendorForm.controls['vendorEmail'].errors.email">Email is invalid </span>
+                                </mat-error>
+                            </mat-form-field>                    
+                        </div>
+                    </div>     
+
+
+                    <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="vendorAltMobile" placeholder="Alternate Mobile Number">
+                                <mat-error *ngIf="vendorForm.controls['vendorAltMobile'].errors || !vendorForm.controls['vendorAltMobile'].dirty">
+                                    <span *ngIf="vendorForm.controls['vendorAltMobile'].errors?.pattern">Alternate Number is invalid </span>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="vendorWhatsappMobile" placeholder="Whatsapp Number">
+                                <mat-error *ngIf="vendorForm.controls['vendorWhatsappMobile'].errors || !vendorForm.controls['vendorWhatsappMobile'].dirty">
+                                    <span *ngIf="vendorForm.controls['vendorWhatsappMobile'].errors?.pattern">Whastapp Number is invalid </span>
+                                </mat-error>
+                            </mat-form-field>                    
+                        </div>
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="vendorStreet1" required placeholder="Street1">
+                                <mat-error *ngIf="vendorForm.controls['vendorStreet1'].errors || !vendorForm.controls['vendorStreet1'].dirty">
+                                    <span *ngIf="vendorForm.controls['vendorStreet1'].errors.required">Street is required </span>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="vendorStreet2" placeholder="Street2">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="vendorCity" required placeholder="City">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="vendorState" required placeholder="State">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="vendorPinCode" required placeholder="Pin Code">
+                                <mat-error *ngIf="vendorForm.controls['vendorPinCode'].errors || !vendorForm.controls['vendorPinCode'].dirty">
+                                    <span *ngIf="vendorForm.controls['vendorPinCode'].errors.required">Pin Code is required </span>
+                                    <span *ngIf="vendorForm.controls['vendorPinCode'].errors.pattern">Pin Code is invalid </span>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="gstNumber" required placeholder="GST Number">
+                                <mat-error *ngIf="vendorForm.controls['gstNumber'].errors || !vendorForm.controls['gstNumber'].dirty">
+                                    <span *ngIf="vendorForm.controls['gstNumber'].errors.required">GST Number is required </span>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">                
+                        <div class="col-md-12 col-lg-6 col-xl-6 col-sm-12">
+                            <p class="radioLabel">GST Applicable</p>
+                            <mat-radio-group formControlName="gstApplicable" color="primary" layout="row">
+                                <mat-radio-button  [value]="1">Yes</mat-radio-button>
+                                <mat-radio-button [value]="2" class="ml-2">No</mat-radio-button>
+                            </mat-radio-group> 
+                        </div>
+                    </div>
+                    <hr>
+                    <h4 matDialogTitle>Products</h4>
+                     <!-- <div formArrayName="vendorProducts" *ngFor="let ser of vendorForm.controls['vendorProducts'].controls; let i = index;"> -->
+                        <div formArrayName="vendorProducts" *ngFor="let ser of vendorForm.controls.vendorProducts['controls']; let i=index">
+                        <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12" [formGroupName]="i">
+                            <div class="col-md-11 col-lg-3 col-xl-3 col-sm-12">                   
+                                <mat-form-field>
+                                    <input matInput placeholder="Products" aria-label="Products" [matAutocomplete]="produts" [formControl]="productDet">
+                                    <mat-autocomplete #produts="matAutocomplete">
+                                        <mat-option *ngFor="let produts of filteredProducts | async" [value]="produts.productName">
+                                        <span>{{produts.productName}}</span>
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field> 
+                            </div>
+                            <div class="col-md-11 col-lg-2 col-xl-2 col-sm-12">
+                                <mat-form-field>
+                                    <input matInput placeholder="Price" formControlName="productPrice">
+                                </mat-form-field>                    
+                            </div>
+                            <div class="col-md-11 col-lg-2 col-xl-2 col-sm-12">
+                                <mat-form-field>
+                                    <input matInput placeholder="Discount %" formControlName="productDisc">
+                                </mat-form-field>                    
+                            </div>
+                            <div class="col-md-11 col-lg-2 col-xl-2 col-sm-12">                   
+                                <mat-form-field>
+                                    <input matInput [matDatepicker]="picker" formControlName="productStartDisc" (click)="picker.open()"(keyup)="dobCheck($event)" placeholder="Start Date">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-11 col-lg-2 col-xl-2 col-sm-12">
+                                <mat-form-field>
+                                    <input matInput [matDatepicker]="picker1" formControlName="productEndDisc" (click)="picker1.open()"(keyup)="dobCheck($event)" placeholder="End date">
+                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker1></mat-datepicker>
+                                </mat-form-field>                
+                            </div>
+                            <div class="col-md-1 col-lg-1 col-xl-1 col-sm-12">
+                                <button mat-icon-button (click)="Delete(i)" color="warn" class="pt-22">
+                                    <mat-icon>delete</mat-icon>
+                                </button> 
+                            </div>
+                        </div>
+                    </div> 
+                    <!-- <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Disc %</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Action</th>
+                            </tr>                        
+                        </thead>
+                        <tbody>
+                            <ng-container formArrayName="vendorProducts" *ngFor="let ser of vendorForm.controls['vendorProducts'].controls; let i = index;">
+                                <tr [formGroupName]="i">
+                                    <td>
+                                        <mat-form-field>
+                                            <input matInput placeholder="Products" aria-label="Products" [matAutocomplete]="produts" [formControl]="productDet">
+                                            <mat-autocomplete #produts="matAutocomplete">
+                                                <mat-option *ngFor="let produts of filteredProducts | async" [value]="produts.productName">
+                                                <span>{{produts.productName}}</span>
+                                                </mat-option>
+                                            </mat-autocomplete>
+                                        </mat-form-field> 
+                                    </td>
+                                    <td>
+                                        <mat-form-field>
+                                            <input matInput placeholder="Price" formControlName="productPrice">
+                                        </mat-form-field> 
+                                    </td>
+                                    <td>
+                                        <mat-form-field>
+                                            <input matInput placeholder="Discount %" formControlName="productDisc">
+                                        </mat-form-field>    
+                                    </td>
+                                    <td>
+                                        <mat-form-field>
+                                            <input matInput [matDatepicker]="picker" formControlName="productStartDisc" (click)="picker.open()"(keyup)="dobCheck($event)" placeholder="Start Date">
+                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker></mat-datepicker>
+                                        </mat-form-field>
+                                    </td>
+                                    <td>
+                                        <mat-form-field>
+                                            <input matInput [matDatepicker]="picker1" formControlName="productEndDisc" (click)="picker1.open()"(keyup)="dobCheck($event)" placeholder="End date">
+                                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker1></mat-datepicker>
+                                        </mat-form-field>                
+                                    </td>
+                                    <td>
+                                        <button mat-icon-button (click)="Delete(i)" color="primary">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>  
+                                    </td>
+
+                                </tr>
+                            </ng-container>
+                            
+                        </tbody>
+                    </table> -->
+                    
+                    <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                        <button mat-raised-button color="primary" (click)="addServiceProducts()" class="mb-2"> Add Products </button>
+                    </div>
+                    <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                        <mat-form-field>
+                            <textarea matInput formControlName="vendorNote" placeholder="vendor Notes"></textarea>
+                        </mat-form-field>
+                    </div>
+                    <!-- <div class="col-md-12"> -->
+                        <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12 tr">
+                            <button mat-raised-button color="warn">Clear</button> 
+                            <button mat-raised-button color="primary" [disabled]="!vendorForm.valid" class="ml-1">Submit</button> 
+                        </div>
+                    <!-- </div> -->
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>

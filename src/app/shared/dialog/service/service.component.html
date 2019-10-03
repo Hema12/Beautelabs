@@ -1,0 +1,119 @@
+<h2 matDialogTitle class="candidate-title">Add Service</h2>
+<mat-dialog-content>
+    <!-- <form [formGroup]="candidateForm"> -->
+    <form method="POST" [formGroup]="serviceForm"> 
+        <div class="form-container">
+            <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                <div class="col-md-12 col-lg-6 col-xl-6 col-sm-12">
+                    <mat-form-field>
+                        <input matInput formControlName="serviceName" placeholder="Service Name" required>                        
+                            <mat-error *ngIf="serviceForm.controls['serviceName'].errors || !serviceForm.controls['serviceName'].dirty">
+                                <span *ngIf="serviceForm.controls['serviceName'].errors.required">Service Name is required </span>
+                            </mat-error>
+                    </mat-form-field>
+                </div>  
+                <div class="col-md-12 col-lg-6 col-xl-6 col-sm-12">
+                    <mat-form-field>
+                        <input matInput formControlName="servicePrice" required placeholder="Price">
+                        <mat-error *ngIf="serviceForm.controls['servicePrice'].errors || !serviceForm.controls['servicePrice'].dirty">
+                            <span *ngIf="serviceForm.controls['servicePrice'].errors.required">Price is required </span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>  
+            </div>     
+
+            <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                <div class="col-md-12 col-lg-6 col-xl-6 col-sm-12">
+                    <mat-form-field>
+                        <mat-label>Category</mat-label>
+                        <mat-select formControlName="serviceCategory">
+                            <mat-option *ngFor="let categoryList of category" [value]="categoryList.name">
+                            {{categoryList.categoryName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>  
+                <div class="col-md-12 col-lg-6 col-xl-6 col-sm-12">
+                    <mat-form-field>
+                        <mat-label>Subcategory</mat-label>
+                        <mat-select formControlName="serviceSubCategory">
+                            <mat-option *ngFor="let subcategoryList of subcategory" [value]="subcategoryList.name">
+                            {{subcategoryList.subcategoryName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>   
+            </div>     
+
+            <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                <div class="col-md-12 col-lg-6 col-xl-6 col-sm-12">
+                    <mat-form-field>
+                        <input matInput formControlName="serviceDuration" required placeholder="Duration (In Hours)">
+                        <mat-error *ngIf="serviceForm.controls['serviceDuration'].errors || !serviceForm.controls['serviceDuration'].dirty">
+                            <span *ngIf="serviceForm.controls['serviceDuration'].errors.required">Duration is required </span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-12 col-lg-6 col-xl-6 col-sm-12">
+                    <mat-form-field>
+                        <input matInput formControlName="serviceUOM" required placeholder="UOM">
+                        <mat-error *ngIf="serviceForm.controls['serviceUOM'].errors || !serviceForm.controls['serviceUOM'].dirty">
+                            <span *ngIf="serviceForm.controls['serviceUOM'].errors.required">UOM is required </span>
+                        </mat-error>
+                    </mat-form-field>
+                    
+                </div>
+            </div>
+            <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">                
+                <div class="col-md-12 col-lg-6 col-xl-6 col-sm-12">
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker" required formControlName="serviceEndDate" (click)="picker.open()" placeholder="Date">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                <mat-form-field>
+                    <textarea matInput formControlName="serviceNote" placeholder="Notes"></textarea>
+                </mat-form-field>
+            </div>
+            <h4 matDialogTitle class="candidate-title">Products</h4>
+            <!-- <div formArrayName="serviceProducts" *ngFor="let ser of serviceForm.controls['serviceProducts'].controls; let i = index;"> -->
+                <div formArrayName="serviceProducts" *ngFor="let ser of serviceForm.controls.serviceProducts['controls']; let i=index">
+                    <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12" [formGroupName]="i">
+                        <div class="col-md-11 col-lg-5 col-xl-5 col-sm-12">                   
+                            <mat-form-field>
+                                <input matInput placeholder="Products" aria-label="Products" [matAutocomplete]="produts" [formControl]="productDet">
+                                <mat-autocomplete #produts="matAutocomplete">
+                                    <mat-option *ngFor="let produts of filteredProducts | async" [value]="produts.productName">
+                                    <span>{{produts.productName}}</span>
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-11 col-lg-5 col-xl-5 col-sm-12">
+                            <mat-form-field>
+                                <input matInput placeholder="Consumption" aria-label="Service" [matAutocomplete]="service" formControlName="productConsumed">
+                            </mat-form-field>                    
+                        </div>
+                        <div class="col-md-1 col-lg-2 col-xl-2 col-sm-12">
+                            <button mat-icon-button (click)="Delete(i)" color="primary">
+                                <mat-icon>delete</mat-icon>
+                            </button> 
+                        </div>
+                    </div>
+            </div> 
+            <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                <button mat-raised-button color="primary" (click)="addServiceProducts()" class="mb-2"> Add Products </button>
+            </div>
+            <!-- <div class="col-md-12"> -->
+                <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12 fr">
+                    <button mat-raised-button color="warn" (click)="cloesModal()">Close</button>
+                    <button mat-raised-button color="warn" class="ml-2">Clear</button> 
+                    <button mat-raised-button color="primary" (click)="create()" [disabled]="!serviceForm.valid" class="ml-2">Submit</button> 
+                </div>
+            <!-- </div> -->
+        </div>
+    </form>
+</mat-dialog-content>
