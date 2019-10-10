@@ -51,7 +51,7 @@
     </div>
 </div>
 <div class="row col-md-12 col-sm-12 col-xs-12 col-xl-12 col-lg-12 pl-0">
-    <mat-card class="mt-2 col-md-4 col-sm-12 col-xs-12 col-lg-3 col-xl-3 staff" *ngFor="let customerList of customerData | async">
+    <mat-card class="mt-sm col-md-4 col-sm-12 col-xs-12 col-lg-3 col-xl-3 staff" *ngFor="let customerList of customerData | async">
         <mat-card-header class="rgt">
             <mat-card-title>
                 <button mat-mini-fab color="accent" *ngIf="customerList.membership" matTooltip="Gold Membership"><mat-icon>card_membership</mat-icon></button>

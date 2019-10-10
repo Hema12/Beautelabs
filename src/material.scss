@@ -28,11 +28,14 @@
 .staffcategory th.mat-header-cell {
     width:20% !important;
 }
-
+.mat-toolbar {
+    background: $primary-color-white !important;
+    border-bottom:1px solid #dee3e7 !important;
+}
 .mat-toolbar.mat-primary {
     background: $primary-color-lightblack !important;
     background: $primary-color-lightblue !important;
-    box-shadow: 2px 0px 2px 0px #505456 !important;
+    box-shadow: 2px 0px 2px 0px #505456 !important;    
 }
 .mat-toolbar-row, .mat-toolbar-single-row {
     // background: $primary-color-blue !important;
@@ -43,11 +46,11 @@
 //     min-height: 50px !important;
 // }
 .mat-drawer.mat-drawer-side {
-    min-width: 12% !important;
+    // min-width: 12%;
     // background: $primary-color-lightblack;
-    background: $primary-color-white;
-    height:90vh !important;
-    width:auto !important
+    background: $primary-color-darkblue;
+    width:auto !important;
+    height: 100% !important;
 }
 // .mat-drawer-side {
 //     border-right: none !important;
@@ -56,13 +59,12 @@
     overflow: hidden !important;
 }
 .mat-drawer-container {
-    min-height: 90vh !important;
-    // background: $primary-color-lightwhite !important;
-    background: #f5f4f4 !important;
-    margin-bottom: 3% !important;
+   min-height:96vh !important;
+   margin-bottom: 1% !important;
+   background: #F7F7F8 !important
 }
 .mat-drawer-content {
-    padding:0.5% 1% !important;
+    // padding:0.5% 1% !important;
    // background: $primary-color-lightwhite !important;
 }
 .mat-nav-list a {
@@ -76,8 +78,25 @@
     height: 50px !important;
 }
 .mat-list-item:hover {
-    background: #ece9e9!important;
-    border-right: 5px solid #03a9f4;
+    background: #293a54!important;
+    // border-right: 5px solid #03a9f4;
+}
+.mat-list-item-content .mat-icon {
+    color:$primary-color-gray !important;
+}
+.mat-list-item-content .matToolTip {
+    position: absolute !important;
+    left:50% !important;
+}
+.mat-list-text {
+    color: $primary-color-gray !important;
+    font-size: $primary-font-size !important;
+    letter-spacing: 0.01em !important;
+}
+.mat-toolbar img {
+    height: 180px !important;
+    margin-top: -54px !important;
+    margin-left: 0.8%;
 }
 // .mat-list-item:hover a{
 //     color: $primary-color-white !important;
@@ -143,7 +162,7 @@ button.mat-menu-item {
     right: 10px !important;    
 }
 .staff .mat-card-footer {
-    margin:-28px -16px -14px -16px !important
+    // margin:-28px -16px -14px -16px !important
 }
 .mat-flat-button.mat-success, .mat-raised-button.mat-success, .mat-fab.mat-success, .mat-mini-fab.mat-success {
     background: #8bc34a !important;
@@ -224,7 +243,7 @@ button.mat-menu-item {
     color:$primary-color-blue;
 }
 .breadcrumb .mat-icon {
-    margin-top:-3px !important;
+    margin-top:-4px !important;    
 }
 .breadcrumb a {
     color:$primary-color-lightblack;
@@ -239,11 +258,98 @@ button.mat-menu-item {
 }
 .customer .mat-tab-header {
     width:100% !important;
-    background: #f5f4f4;
+    background: #2c3e50;
     border: 1px solid #e0e0e0;
     margin-right: 2% !important;
-    margin-bottom: 3% !important;
+    margin-bottom: 2% !important;
+    height: 55px !important;
+    display: unset !important;
 }
 .customer .mat-tab-body-wrapper {
     width:100% !important;
+}
+.customer .mat-tab-label .mat-tab-label-content {
+    color:#ffffff;
+}
+.customer .mat-tab-label-active .mat-tab-label-content  {
+    color:#2c3e50;
+}
+
+.booking .mat-tab-group {
+    flex-direction: column !important;
+}
+.booking .mat-tab-labels {
+    display: unset !important;
+    width: unset !important;
+}
+.booking .mat-tab-header {
+    width:12% !important;
+    background: transparent;
+    border: none;
+    height: 33px !important;
+    display: unset !important;
+}
+.booking .mat-tab-body-wrapper {
+    width:100% !important;
+}
+.booking .mat-tab-label .mat-tab-label-content {
+    color:#ffffff;
+}
+.booking .mat-tab-label-active .mat-tab-label-content  {
+    color:#2c3e50;
+}
+.booking .mat-tab-label {
+    min-width: 50px !important;
+    height: 42px !important;
+}
+.booking .mat-tab-label-active {
+    background:transparent !important;
+    color:$primary-color-darkblue !important;
+    border-left:none !important;
+}
+.booking .mat-tab-label-active .mat-icon {
+    color:$primary-color-darkblue !important;
+}
+.bookingicon{
+    color:#2c3e50  !important;
+    font-size: 27px !important;
+}
+.booking .mat-tab-header{
+    margin-top:0.5% !important;
+    margin-left:10% !important;
+    // position: absolute !important
+}
+.mb-50 {
+    margin-top:-50px !important;
+}
+.mat-form-field-flex {
+    border:1px solid #dee3e7 !important;
+    padding-left: 3px !important;
+    border-radius: 3px !important
+}
+.mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding:0.5em 0 !important;
+ //   margin-top:4px !important;
+}
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+    background: none !important;
+}
+.mat-form-field-infix {
+    border-top:none !important;
+}
+.selplaceHolder {
+    color:$primary-color-darkblue !important;
+}
+textarea.mat-input-element {
+    min-height: 8vh !important;
+}
+.mat-option {
+    line-height: 36px !important;
+    height: 36px !important;
+}
+.mat-option-text {
+    font-size: 15px !important;
+}
+.profileHistory .mat-card-header-text {
+    margin:0px !important;
 }

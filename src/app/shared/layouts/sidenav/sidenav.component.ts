@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
-import { Sidebar } from '@syncfusion/ej2-navigations';
 import { MatSidenav } from '@angular/material';
 import { SidenavService } from '../../services/sidenav.service';
 

@@ -16,9 +16,7 @@ export class BeautelabsComponent implements OnInit {
   }
   loaderToggle() {
     this.router.events.subscribe(event => {
-       if (event instanceof NavigationStart) {
-         console.log(this.loader);
-         
+       if (event instanceof NavigationStart) {         
         setTimeout(()=>{    
           this.loader = false;
      }, 1000);

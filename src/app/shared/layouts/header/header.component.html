@@ -1,12 +1,294 @@
-<div class="header">
+<!-- <div class="example-container">
+  <mat-toolbar class="example-toolbar">
+    <mat-icon (click)="isExpanded = !isExpanded">menu</mat-icon>
+    <span class="example-fill-remaining-space"></span>
+    <mat-icon>logout</mat-icon>
+  </mat-toolbar>
+
+<mat-sidenav-container  class="example-sidenav-container" autosize>
+  <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true">
+    <mat-nav-list class="dashboard">
+      <a mat-list-item (click)="toggleActive($event)">
+        <mat-icon mat-list-icon >account_circle</mat-icon>
+        <p matLine *ngIf="isExpanded">Name</p>
+      </a>
+
+      <mat-divider></mat-divider>
+
+      <a mat-list-item (click)="toggleActive($event)">
+          <mat-icon mat-list-icon>inbox</mat-icon>
+          <p matLine *ngIf="isExpanded">Inbox</p>
+      </a>
+      <a mat-list-item (click)="toggleActive($event)">
+          <mat-icon mat-list-icon>star</mat-icon>
+          <p matLine *ngIf="isExpanded">Starred</p>
+      </a>
+      <a mat-list-item (click)="toggleActive($event)">
+          <mat-icon mat-list-icon>drafts</mat-icon>
+          <p matLine *ngIf="isExpanded">Drafts</p>
+      </a>
+
+      <mat-divider></mat-divider>
+
+      <a mat-list-item (click)="toggleActive($event)">
+          <mat-icon mat-list-icon>mail</mat-icon>
+          <p matLine *ngIf="isExpanded">All Mail</p>
+      </a>
+      <a mat-list-item (click)="toggleActive($event)">
+          <mat-icon mat-list-icon>delete</mat-icon>
+          <p matLine *ngIf="isExpanded">Trash</p>
+      </a>
+      <a mat-list-item (click)="toggleActive($event)">
+          <mat-icon mat-list-icon>warning</mat-icon>
+          <p matLine *ngIf="isExpanded">Spam</p>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <div class="example-sidenav-content">
+    Main Content Goes Here !!!
+  </div>
+
+</mat-sidenav-container>
+</div> -->
+<!-- <div class="header"> -->
+    <mat-drawer-container class="example-container mat-typography" autosize>
+        <mat-toolbar>
+          <mat-toolbar-row>                 
+              <!-- <div class="logo">
+                  <h1>Beautelabs</h1>
+              </div>
+                <div fxHide.gt-md class="menutoggle"> 
+                <mat-icon (click)="sidenav.toggle()" class="sidenav-menu" (click)="toggleRightSidenav()">menu</mat-icon> 
+                </div>
+              <mat-icon class="sidenav-menu" (click)="toggleRightSidenav()">menu</mat-icon> -->
+              <img src="../../../../assets/images/beauty-labs1.png" />
+              <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs class="notification">
+                  <button mat-button [matMenuTriggerFor]="createmenu" matTooltip="Add">
+                    <mat-icon inline class="addicon">add</mat-icon>
+                    <mat-menu #createmenu="matMenu">
+                        <button mat-menu-item [routerLink]="['cbot-admin/saleCreate']" routerLinkActive="active"><mat-icon>receipt</mat-icon>Sales</button>
+                        <button mat-menu-item [routerLink]="['cbot-admin/bookingCreate']" routerLinkActive="active"><mat-icon>event_note</mat-icon>Appointment</button>
+                        <button mat-menu-item [routerLink]="['cbot-admin/customerCreate']" routerLinkActive="active"><mat-icon>person</mat-icon>Customer</button>
+                    </mat-menu>
+                  </button>
+                  <button mat-button [matMenuTriggerFor]="remindermenu"><mat-icon matBadge="5" matBadgeColor="warn">alarm</mat-icon></button>
+                  <mat-menu #remindermenu="matMenu">
+                      <div class="notify-detail">
+                        <div class="notify-header">
+                          <h6>Reminders</h6>
+                        </div>
+                        <div class="notify-content">
+                          <div class="row col-md-12">                    
+                            <div class="col-md-12">
+                              <p>New appointment created - Customer Name</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="notify-content">
+                            <div class="row col-md-12">                    
+                              <div class="col-md-12">
+                                <p>New product added - Product Name</p>
+                              </div>
+                            </div>
+                          </div>
+                        <div class="notify-content">
+                          <div class="row col-md-12">                    
+                            <div class="col-md-12">
+                              <p>New Bill Created - Customer Name</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </mat-menu>
+                <button mat-button [matMenuTriggerFor]="notifymenu"><mat-icon matBadge="5" matBadgeColor="warn">notifications_none</mat-icon></button>
+                <mat-menu #notifymenu="matMenu">
+                  <div class="notify-detail">
+                    <div class="notify-header">
+                      <h6>Notification</h6>
+                    </div>
+                    <div class="notify-content">
+                      <div class="row col-md-12">                    
+                        <div class="col-md-12">
+                          <p>New appointment created - Customer Name</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="notify-content">
+                        <div class="row col-md-12">                    
+                          <div class="col-md-12">
+                            <p>New product added - Product Name</p>
+                          </div>
+                        </div>
+                      </div>
+                    <div class="notify-content">
+                      <div class="row col-md-12">                    
+                        <div class="col-md-12">
+                          <p>New Bill Created - Customer Name</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </mat-menu>
+                <button mat-button [matMenuTriggerFor]="logoutmenu"><mat-icon>account_circle</mat-icon></button>
+                <mat-menu #logoutmenu="matMenu">
+                  <button mat-menu-item><mat-icon>account_box</mat-icon>Profile</button>
+                  <button mat-menu-item [routerLink]="['/login']" routerLinkActive="active"><mat-icon>exit_to_app</mat-icon>Logout</button>
+                </mat-menu>
+              </div> 
+          </mat-toolbar-row>
+        </mat-toolbar>
+        <mat-drawer #drawer mode="side" disableClose="true" opened="true" color="primary">         
+            <mat-icon aria-label="Menu" (click)="isExpanded = !isExpanded" class="menuicon">menu_open</mat-icon>
+          <mat-nav-list>
+            <mat-list-item>
+              <mat-icon mat-list-icon matTooltip="Dashboard" matTooltipPosition='right' matTooltipClass="menu-tooltip">dashboard</mat-icon>
+              <h4 mat-line *ngIf="isExpanded">Dashboard</h4>
+            </mat-list-item>
+            <mat-list-item [routerLink]="['cbot-admin/appointment']" routerLinkActive="active">
+              <mat-icon mat-list-icon matTooltip="Appointment" matTooltipPosition='right' matTooltipClass="menu-tooltip">event_note</mat-icon>
+              <h4 mat-line *ngIf="isExpanded">Appointment</h4>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon mat-list-icon matTooltip="Sales" matTooltipPosition='right' matTooltipClass="menu-tooltip">receipt</mat-icon>
+              <h4 mat-line *ngIf="isExpanded">Sales</h4>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon mat-list-icon matTooltip="Campaigns" matTooltipPosition='right' matTooltipClass="menu-tooltip">insert_chart</mat-icon>
+              <h4 mat-line *ngIf="isExpanded">Campaigns</h4>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon mat-list-icon matTooltip="Customers" matTooltipPosition='right' matTooltipClass="menu-tooltip">person</mat-icon>
+              <h4 mat-line *ngIf="isExpanded">Customers</h4>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon mat-list-icon matTooltip="Services" matTooltipPosition='right' matTooltipClass="menu-tooltip">group_work</mat-icon>
+              <h4 mat-line *ngIf="isExpanded">Services</h4>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon mat-list-icon matTooltip="Products" matTooltipPosition='right' matTooltipClass="menu-tooltip">shopping_basket</mat-icon>
+              <h4 mat-line *ngIf="isExpanded">Products</h4>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon mat-list-icon matTooltip="Vendors" matTooltipPosition='right' matTooltipClass="menu-tooltip">shopping_cart</mat-icon>
+              <h4 mat-line *ngIf="isExpanded">Vendors</h4>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon mat-list-icon matTooltip="Purchase" matTooltipPosition='right' matTooltipClass="menu-tooltip">shopping_basket</mat-icon>
+              <h4 mat-line *ngIf="isExpanded">Purchase</h4>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon mat-list-icon matTooltip="Inventory" matTooltipPosition='right' matTooltipClass="menu-tooltip">shopping_basket</mat-icon>
+              <h4 mat-line *ngIf="isExpanded">Inventory</h4>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon mat-list-icon matTooltip="Accounts" matTooltipPosition='right' matTooltipClass="menu-tooltip">shopping_basket</mat-icon>
+              <h4 mat-line *ngIf="isExpanded">Accounts</h4>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon mat-list-icon matTooltip="HR" matTooltipPosition='right' matTooltipClass="menu-tooltip">shopping_basket</mat-icon>
+              <h4 mat-line *ngIf="isExpanded">HR</h4>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon mat-list-icon matTooltip="Deals" matTooltipPosition='right' matTooltipClass="menu-tooltip">shopping_basket</mat-icon>
+              <h4 mat-line *ngIf="isExpanded">Deals</h4>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon mat-list-icon matTooltip="Reports" matTooltipPosition='right' matTooltipClass="menu-tooltip">report</mat-icon>
+              <h4 mat-line *ngIf="isExpanded">Reports</h4>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon mat-list-icon matTooltip="Settings" matTooltipPosition='right' matTooltipClass="menu-tooltip">settings</mat-icon>
+              <h4 mat-line *ngIf="isExpanded">Settings</h4>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon mat-list-icon matTooltip="Expenses" matTooltipPosition='right' matTooltipClass="menu-tooltip">store_mall_directory</mat-icon>
+              <h4 mat-line *ngIf="isExpanded">Expenses</h4>
+            </mat-list-item>
+          </mat-nav-list>
+        </mat-drawer>
+      
+        <div class="main-content">
+        <router-outlet></router-outlet>
+        </div>
+      </mat-drawer-container> 
+  
+<!-- </div> -->
+
+<!-- <mat-toolbar color="accent">
+  <button mat-icon-button matTooltip="Application Menu" (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+  </button>
+  Account Settings
+  <span style="flex: 1 1 auto;"></span>
+  <div>
+      <button mat-icon-button matTooltip="Switch Apps">
+          <mat-icon>apps</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Notifications">
+          <mat-icon>notifications</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="My Account" [matMenuTriggerFor]="accountMenu">
+          <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #accountMenu [overlapTrigger]="false" yPosition="below">
+          <button mat-menu-item routerLink="#">
+              <mat-icon>person</mat-icon><span>My Account</span>
+          </button>
+          <button mat-menu-item>
+              <mat-icon>help</mat-icon><span>Help</span>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item>
+              <mat-icon>exit_to_app</mat-icon>Logout
+          </button>
+      </mat-menu>
+  </div>
+</mat-toolbar>
+<mat-sidenav-container style="height: calc(100% - 64px); margin: 0;">
+  <mat-sidenav #sidenav mode="side" [class.mat-elevation-z4]="true" style="width: 240px">
+      <mat-nav-list dense>
+          <mat-list-item routerLink="#"><mat-icon>dashboard</mat-icon>Dashboard</mat-list-item>
+          <mat-list-item routerLink="#"><mat-icon>check_box</mat-icon>General</mat-list-item>
+          <mat-list-item routerLink="#"><mat-icon>person</mat-icon>Profile</mat-list-item>
+          <mat-list-item routerLink="#"><mat-icon>notification_important</mat-icon>Notification</mat-list-item>
+          <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+              <mat-expansion-panel-header>
+                  Preference
+              </mat-expansion-panel-header>
+              <mat-nav-list dense>
+                  <a mat-list-item routerLink="#"><mat-icon>attach_money</mat-icon>Billing</a>
+                  <a mat-list-item routerLink="#"><mat-icon>notification_important</mat-icon>Notification</a>
+              </mat-nav-list>
+          </mat-expansion-panel>
+          <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+              <mat-expansion-panel-header>
+                  Privacy
+              </mat-expansion-panel-header>
+              <mat-nav-list dense>
+                  <a mat-list-item routerLink="#"><mat-icon>person_add</mat-icon>Partnership Request</a>
+                  <a mat-list-item routerLink="#"><mat-icon>visibility</mat-icon>Profile Visibility</a>
+              </mat-nav-list>
+          </mat-expansion-panel>
+      </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+      <router-outlet>
+          <div class="container mat-body-1">
+              Account Component
+          </div>
+      </router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container> -->
+<!-- <div class="header">
     <mat-toolbar color="primary">
       <mat-toolbar-row color="primary">           
           <div class="logo">
               <h1>Beautelabs</h1>
           </div>
-          <!-- <div fxHide.gt-md class="menutoggle"> 
+           <div fxHide.gt-md class="menutoggle"> 
             <mat-icon (click)="sidenav.toggle()" class="sidenav-menu" (click)="toggleRightSidenav()">menu</mat-icon> 
-           </div> -->
+           </div>
           <mat-icon class="sidenav-menu" (click)="toggleRightSidenav()">menu</mat-icon>
           <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs class="notification">
               <button mat-button [matMenuTriggerFor]="createmenu"><mat-icon inline>add</mat-icon>Create
@@ -82,4 +364,4 @@
           </div> 
       </mat-toolbar-row>
     </mat-toolbar>
-  </div>
+  </div> -->

@@ -71,8 +71,11 @@ const PRODUCT_DATA: productList[] = [
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  toggleActive:boolean = false;
-
+  nav_position: string = 'end';
+  onTogglePosition(position: string) {
+    this.nav_position = position === 'start' ? 'end' : 'start';
+    
+  }
   displayedColumns: string[] = ['sno', 'productName','productCategory','productSubCategory', 'productSKU', 'productPrice','productQuantity','action'];
   displayedSubCategoryColumns: string[] = ['sno','productCategoryName','productSubCategoryName','action'];
   displayedCategoryColumns: string[] = ['sno','productCategoryName','action'];  
@@ -127,7 +130,7 @@ export class ProductsComponent implements OnInit {
     const dialogRef = this.dialog.open(ProductComponent, {
       width: '50%',
       // position: dialogPosition,
-      data: {name: 'sfd', animal: 'dsfd'}
+      data: {}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -186,5 +189,9 @@ export class ProductsComponent implements OnInit {
  cancel() {
   this.modalRef.hide();
 }
+ sideNavToggle(sideNav, val) {
+   sideNav.toggle();   
+   this.View = this.productList.filteredData.find(obj => obj.sno === val.sno);   
+ }
 
 }

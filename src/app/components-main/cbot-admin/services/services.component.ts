@@ -39,29 +39,28 @@ const CATEGORY_DATA: categoryList[] = [
   {sno:7, serviceCategoryName:'Lightening'}
 ]
 const SUB_CATEGORY_DATA: subCategoryList[] = [
-  {sno:1, serviceCategoryName:'Hair Care',serviceSubCategoryName:''},
-  {sno:2, serviceCategoryName:'Face Cream',serviceSubCategoryName:''},
-  {sno:3, serviceCategoryName:'Face Pack',serviceSubCategoryName:''},
-  {sno:4, serviceCategoryName:'Hair Oil',serviceSubCategoryName:''},
+  {sno:1, serviceCategoryName:'Hair Care',serviceSubCategoryName:'Hair Spa'},
+  {sno:2, serviceCategoryName:'Face Cream',serviceSubCategoryName:'Facial'},
+  {sno:3, serviceCategoryName:'Face Pack',serviceSubCategoryName:'Bleech'},
+  {sno:4, serviceCategoryName:'Hair Oil',serviceSubCategoryName:'Hair Spa'},
   {sno:5, serviceCategoryName:'Shampoo',serviceSubCategoryName:''},
-  {sno:6, serviceCategoryName:'Hair Brushes',serviceSubCategoryName:''},
-  {sno:7, serviceCategoryName:'Lightening',serviceSubCategoryName:''}
+  {sno:6, serviceCategoryName:'Hair Brushes',serviceSubCategoryName:'Hair Spa'},
+  {sno:7, serviceCategoryName:'Lightening',serviceSubCategoryName:'Facial'}
 ]
 const SERVICE_DATA: serviceList[] = [
-  {sno: 1, serviceName: 'LOREAL Shampoo', serviceCategory: 'KJHGHGFHK34', servicePrice: '540',serviceSubCategory:'Hair Care',serviceDuration:'Shampoo'},
-  {sno: 2, serviceName: 'LOREAL Hair Spa Cream', serviceCategory:'Hair Care',servicePrice: '1200', serviceSubCategory:'Hair Care', serviceDuration:'Cream'},
-  {sno: 3, serviceName: 'Skeydnor Cleansor', serviceCategory: 'KJGHGFHKJI897', servicePrice: '800',serviceSubCategory:'Hair Care',serviceDuration:'Face Pack'},
-  {sno: 4, serviceName: 'LAKME Face Cream', serviceCategory: 'HJQWDSGWERWFD877', servicePrice: '750',serviceSubCategory:'Hair Care',serviceDuration:''},
-  {sno: 5, serviceName: 'LOREAL Face Mask', serviceCategory: 'JHHSDGJSGF45', servicePrice: '3500',serviceSubCategory:'Hair Care',serviceDuration:''},
-  {sno: 6, serviceName: 'LAKME Peel Off Mask', serviceCategory: '-', servicePrice: '450',serviceSubCategory:'Hair Care',serviceDuration:''},
-  {sno: 7, serviceName: 'REVLON Touch & Glow Moisturising Powder', serviceCategory: 'ASDESRFDSFSD3445', servicePrice: '3500',serviceSubCategory:'Hair Care',serviceDuration:''},
-  {sno: 8, serviceName: 'MAYBELLINE Poreless Powder', serviceCategory: 'ASDGSFDSGDGD34', servicePrice: '670',serviceSubCategory:'',serviceDuration:''},
-  {sno: 9, serviceName: 'MAYBELLINE Concealer', serviceCategory: 'MNBSDSFD4356', servicePrice: '495',serviceSubCategory:'',serviceDuration:''},
-  {sno: 10, serviceName: 'BIO SANDALWOOD', serviceCategory: 'DSFDGFGDFGF', servicePrice: '340',serviceSubCategory:'',serviceDuration:''},
-  {sno: 11, serviceName: 'LOREAL Lash Paradise Mascara', serviceCategory: 'FDSFDSERT5T6', servicePrice: '2540',serviceSubCategory:'',serviceDuration:''},
-  {sno: 12, serviceName: 'BIO GREEN APPLE', serviceCategory: 'DSFDTRET4ETERTDFG', servicePrice: '3210',serviceSubCategory:'',serviceDuration:''},
-  {sno: 13, serviceName: 'LAKME 9TO5 Natural Gel Eye Liners', serviceCategory: 'DFDGVCVSDASDWAE', servicePrice: '900',serviceSubCategory:'',serviceDuration:''},
-  {sno: 14, serviceName: 'LAKME 9TO5 Naturale Foundation Drops', serviceCategory: 'OIUOLHJHJT765', servicePrice: '4500',serviceSubCategory:'',serviceDuration:''}
+  {sno: 1, serviceName: 'Facial', serviceCategory: 'KJHGHGFHK34', servicePrice: '540',serviceSubCategory:'Hair Care',serviceDuration:'1:10'},
+  {sno: 2, serviceName: 'Hair Spa', serviceCategory:'Hair Care',servicePrice: '1200', serviceSubCategory:'Hair Care', serviceDuration:'00:30'},
+  {sno: 3, serviceName: 'Hair Coloring', serviceCategory: 'KJGHGFHKJI897', servicePrice: '800',serviceSubCategory:'Hair Care',serviceDuration:'00:45'},
+  {sno: 4, serviceName: 'Bleech', serviceCategory: 'HJQWDSGWERWFD877', servicePrice: '750',serviceSubCategory:'Hair Care',serviceDuration:'00:30'},
+  {sno: 5, serviceName: 'Threading', serviceCategory: 'JHHSDGJSGF45', servicePrice: '3500',serviceSubCategory:'Hair Care',serviceDuration:'00:15'},
+  {sno: 6, serviceName: 'Hair Cut', serviceCategory: '-', servicePrice: '450',serviceSubCategory:'Hair Care',serviceDuration:'00:20'},
+  {sno: 7, serviceName: 'Tan Pack', serviceCategory: 'ASDESRFDSFSD3445', servicePrice: '3500',serviceSubCategory:'Hair Care',serviceDuration:'00:40'},
+  {sno: 8, serviceName: 'Nech Bleeech', serviceCategory: 'ASDGSFDSGDGD34', servicePrice: '670',serviceSubCategory:'',serviceDuration:'00:30'},
+  {sno: 9, serviceName: 'Waxing', serviceCategory: 'MNBSDSFD4356', servicePrice: '495',serviceSubCategory:'',serviceDuration:'01:20'},
+  {sno: 10, serviceName: 'Pedicure', serviceCategory: 'DSFDGFGDFGF', servicePrice: '340',serviceSubCategory:'',serviceDuration:'01:00'},
+  {sno: 11, serviceName: 'Manicure', serviceCategory: 'FDSFDSERT5T6', servicePrice: '2540',serviceSubCategory:'',serviceDuration:'00:40'},
+  {sno: 12, serviceName: 'Face Lightening', serviceCategory: 'DSFDTRET4ETERTDFG', servicePrice: '3210',serviceSubCategory:'',serviceDuration:'01:30'},
+  {sno: 13, serviceName: 'Bridal Makeup', serviceCategory: 'DFDGVCVSDASDWAE', servicePrice: '900',serviceSubCategory:'',serviceDuration:'02:30'},
 ];
 
 @Component({
@@ -70,7 +69,11 @@ const SERVICE_DATA: serviceList[] = [
   styleUrls: ['./services.component.scss']
 })
 export class ServicesComponent implements OnInit {
-  @HostBinding('@.disabled') disabled = true
+  @HostBinding('@.disabled') disabled = true;
+  nav_position: string = 'end';
+  onTogglePosition(position: string) {
+    this.nav_position = position === 'start' ? 'end' : 'start';    
+  }
   displayedColumns: string[] = ['sno', 'serviceName','serviceCategory','serviceSubCategory', 'servicePrice','serviceDuration','action'];
   displayedSubCategoryColumns: string[] = ['sno','serviceCategoryName','serviceSubCategoryName','action'];
   displayedCategoryColumns: string[] = ['sno','serviceCategoryName','action'];  
@@ -157,5 +160,9 @@ export class ServicesComponent implements OnInit {
  }
  cancel() {
   this.modalRef.hide();
+}
+sideNavToggle(sideNav, val) {
+  sideNav.toggle();   
+  this.View = this.serviceList.filteredData.find(obj => obj.sno === val.sno);   
 }
 }

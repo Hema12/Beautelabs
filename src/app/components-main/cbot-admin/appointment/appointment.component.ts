@@ -1,13 +1,18 @@
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, HostBinding } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-// import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { BookingComponent } from 'src/app/shared/dialog/booking/booking.component';
-import { ChartDataSets, ChartOptions } from 'chart.js';
-import { Color, Label } from 'ng2-charts';
 import Swal from 'sweetalert2';
-
+import { FullCalendarComponent } from '@fullcalendar/angular';
+import { EventInput } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGrigPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import resourceTimeGrid from '@fullcalendar/resource-timegrid';
+import { Router } from '@angular/router';
+import { DateTime } from 'luxon';
 export interface PeriodicElement {
   name: string;
   sno: number;
@@ -39,6 +44,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class AppointmentComponent implements OnInit {
   public data: Object[];
+  @HostBinding('@.disabled') disabled = true;
   public eventMarkers: any;
   taskfield:any;
   displayedColumns: string[] = ['sno', 'name', 'mobile','totalCount','action'];
@@ -48,6 +54,28 @@ export class AppointmentComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   animal: string;
   name: string;
+  @ViewChild(FullCalendarComponent, {static: true}) calendarComponent: FullCalendarComponent;
+  nowIndicator: true;
+  now: '2019-10-09T10:25:00';
+  calendarVisible = true;
+  calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin, resourceTimeGrid];
+  calendarWeekends = true;
+  resourceText: string;
+  resources: any;
+  events: any;
+  toggleWeekends() {
+    this.calendarWeekends = !this.calendarWeekends;
+  }
+
+  // gotoPast() {
+  //   let calendarApi = this.calendarComponent.getApi();
+  //   calendarApi.gotoDate('2000-01-01'); // call a method on the Calendar object
+  // }
+
+  handleDateClick(arg) {
+    this.router.navigate(['/beautelabs/cbot-admin/bookingCreate', { Seldate: arg.dateStr }]);
+
+  }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
     if (this.dataSource.paginator) {
@@ -55,61 +83,8 @@ export class AppointmentComponent implements OnInit {
     }
   }
  
-  public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-  ];
-  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChartOptions: (ChartOptions) = {
-    responsive: true,
-    maintainAspectRatio: false
-  };
-  public lineChartColors: Color[] = [
-    {
-      borderColor: 'black',
-      backgroundColor: 'rgba(255,0,0,0.3)',
-    },
-  ];
-  public lineChartLegend = true;
-  public lineChartType = 'line';
-  public lineChartPlugins = [];
-  public barChartOptions: ChartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [
-       {
-           ticks: {
-             min: 1,
-             max: 24,
-             stepSize: 1,
-             beginAtZero:true,
-             
-           },
-           gridLines: {
-                 offsetGridLines: false
-             }
-       }
-     ],
-   }
-  };
-  public barChartLabels: Label[] = ['Aadhi', 'Devi', 'Jai', 'Hari', 'Nithya', 'Karthi', 'Zenath'];
-  public barChartType = 'horizontalBar';
-  public barChartLegend = true;
-  public barChartPlugins = [];
-  public barChartColors: Color[] = [
-    {
-      borderColor: 'black',
-      backgroundColor: 'rgba(30,144,255,0.3)',
-    },
-  ];
-  public barChartData: ChartDataSets[] = [
-    { data: [9, 8, 10, 11, 7, 6, 5], label: '' },
-    { data: [9, 8, 10, 11, 7, 6, 5], label: '' },
-    { data: [9, 8, 10, 5], label: '' }
-  ];
-
-  // constructor(private modalService: BsModalService, public dialog: MatDialog) { }
-  constructor(private modalService: BsModalService) { }
+   constructor(private modalService: BsModalService, public dialog: MatDialog, public router: Router) { }
+  // constructor(private modalService: BsModalService) { }
 
   // appointmentCreate(): void {
   //   const dialogRef = this.dialog.open(BookingComponent, {
@@ -128,45 +103,23 @@ export class AppointmentComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.eventMarkers = [{
-      day: '04/04/2019',
-      time:'9.00AM',
-      label: 'Research phase'
-  }];
-    this.data = [{
-      TaskID: 1,
-      TaskName: 'Service1',
-      startTime:'9:00AM',
-      endTime:'10:00AM',
-      StartDate: new Date(),
-      EndDate: new Date(),
-      subtasks: [{
-          TaskID: 2,
-          TaskName: 'Defining the product and its usage',
-          StartDate: new Date('04/02/2019'),
-          Duration: 5,
-          Progress: 30
-      },
-    ]}, 
-  {
-    TaskID: 2,
-    TaskName: 'Service2',
-    startTime:'9:00AM',
-    endTime:'10:00AM',
-    StartDate: new Date(),
-    EndDate: new Date(),
-}, 
-];
-  this.taskfield = {
-      id: 'TaskID',
-      name: 'TaskName',
-      startTime:'startTime',
-      startDate: 'StartDate',
-      endTime: 'endTime',
-      endDate: 'EndDate',
-      child: 'subtasks'
-  };
-
-  // Am Charts
+    this.initFunction();
+}
+initFunction() {
+  this.resourceText = "Timings";
+  this.resources = [
+    {id:'1',title:'Devi'},
+    {id:'2',title:'Ramya'},
+    {id:'3',title:'Nithya'},
+    {id:'4',title:'Ashika'},
+    {id:'5',title:'Ravi'},
+  ];
+  this.events = [
+    { title: 'Hair Cut - Devi - 10:00 AM', start: new Date(), backgroundColor:'#f00'},
+    { title: 'Bleech - Devi - 10:45 AM', start: new Date(), backgroundColor:'#9fb3d4' },
+    { title: 'Facial - Nithya - 11:30 AM', start: new Date('2019-10-06'), backgroundColor:'#407d5d' },
+    { title: 'Hair Coloring - Abhi - 03:00 PM', start: new Date('2019-10-04'), backgroundColor:'#34cf7d' }
+  ]; 
+  resources:'Resouces'
 }
 }

@@ -1,103 +1,139 @@
 <div fxLayout="column" fxLayoutAlign="start">
     <div fxLayout="row">
-        <div fxFlex="83%" fxLayoutAlign="start">
-            <h2>Appointments</h2>
+        <div fxFlex="23%" fxLayoutAlign="start">
+            <!-- <h2>Appointments</h2> -->
+            <button mat-raised-button color="primary" [routerLink]="['/beautelabs/cbot-admin/bookingCreate']" style="height:35px;" class="mt-2">Add New Appointment</button>                           
         </div>
-        <div fxFlex="16%" fxHide fxShow.gt-sm fxLayoutAlign="end">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#" [routerLink]="['/beautelabs/cbot-admin/dashboard']"><mat-icon>home</mat-icon></a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Appointments</li>
-                </ol>
-                </nav>
+       
+        <div fxFlex="76%" fxHide fxShow.gt-sm fxLayoutAlign="end">
         </div>
     </div>    
 </div>
-<div fxLayout="column">
-    <div fxLayout="row">
-        <div fxFlex="68%" fxLayoutAlign="start" class="mb-10 mt-2">
-            <!-- <button mat-raised-button color="primary" (click)="appointmentCreate()">Add New Appointment</button>  -->
-            <button mat-raised-button color="primary" [routerLink]="['/beautelabs/cbot-admin/bookingCreate']" style="height:35px;">Add New Appointment</button> 
-        </div>        
-        <div fxFlex="12%">
-            <mat-form-field>
-                <mat-label>Select</mat-label>
-                <mat-select>
-                    <mat-option value="today">Today</mat-option>
-                    <mat-option value="last week">Last Week</mat-option>
-                    <mat-option value="last 15 days">Last 15 Days</mat-option>
-                    <mat-option value="last month">Last Month</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <div fxFlex="18%" fxLayoutAlign="end">
-            <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
-        </div>
-    </div>
+<div fxLayout="column" class="booking mb-50">
+    <mat-tab-group>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon class="bookingicon">event_note</mat-icon>
+            </ng-template>
+            <div fxLayout="row">
+                <div fxFlex="68%" fxLayoutAlign="start" class="mb-10 mt-2">
+                    
+                    <!-- <button mat-raised-button color="primary" (click)="appointmentCreate()">Add New Appointment</button>  -->                    
+                </div>        
+                <div fxFlex="30%" fxLayoutAlign="end">
+                    <mat-form-field class="bookingstaff">
+                        <mat-label>Select</mat-label>
+                        <mat-select>
+                            <mat-option value="today">All Staffs</mat-option>
+                            <mat-option value="today">Devi</mat-option>
+                            <mat-option value="last week">Ramya</mat-option>
+                            <mat-option value="last 15 days">Nithya</mat-option>
+                            <mat-option value="last month">Ashika</mat-option>
+                            <mat-option value="last month">Ravi</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxLayout="row">
+                 <!-- <div class='app-calendar'>
+                    <full-calendar
+                        #calendar
+                        defaultView="dayGridMonth"
+                        [header]="{
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                        }"
+                        [plugins]="calendarPlugins"
+                        [weekends]="calendarWeekends"
+                        [events]="calendarEvents"
+                        (dateClick)="handleDateClick($event)">
+                    </full-calendar>
+                </div>  -->
+                <div class='app-calendar'>
+                        <full-calendar deepChangeDetection="true" color="success"
+                            #calendar
+                            defaultView="dayGridMonth"
+                            [header]="{
+                            left: 'prev,today,next',
+                            center: 'title',
+                            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                            }"
+                            [resources]="resources"
+                            [events]="events"
+                            nowIndicator= "true"
+                            now="2019-10-09T10:25:00"
+                            [resourceLabelText]="resourceText"
+                            [plugins]="calendarPlugins"
+                            [weekends]="calendarWeekends"
+                            [events]="events"
+                            (dateClick)="handleDateClick($event)">
+                        </full-calendar>
+                    </div>
+            </div>
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon class="bookingicon">list</mat-icon>
+            </ng-template>
+            <div fxLayout="row">
+                <div fxFlex="68%" fxLayoutAlign="start" class="mb-10 mt-2">  
+                    <!-- <button mat-raised-button color="primary" [routerLink]="['/beautelabs/cbot-admin/bookingCreate']" style="height:35px;">Add New Appointment</button>                            -->
+                </div>        
+                <div fxFlex="12%" fxLayoutAlign="end" class="mt-sm">
+                    <mat-form-field>
+                        <mat-label>Select</mat-label>
+                        <mat-select>
+                            <mat-option value="today">Today</mat-option>
+                            <mat-option value="last week">Last Week</mat-option>
+                            <mat-option value="last 15 days">Last 15 Days</mat-option>
+                            <mat-option value="last month">Last Month</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="18%" fxLayoutAlign="end">
+                    <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+                </div>
+            </div>
+            <div fxLayout="row">        
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>        
+                    <ng-container matColumnDef="sno">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                        <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Staff </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>                
+                    
+                    <ng-container matColumnDef="mobile">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Mobile Number </th>
+                        <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="totalCount">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Service Today </th>
+                        <td mat-cell *matCellDef="let element"> {{element.totalCount}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef>Action</th>
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-flat-button [matMenuTriggerFor]="menu" color="primary">Action</button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item>
+                                        <mat-icon>edit</mat-icon>
+                                        <span>Add Service</span>
+                                </button>                    
+                            </mat-menu>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+    
 </div>
-<div fxLayout="row">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>        
-    <ng-container matColumnDef="sno">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
-    </ng-container>
-    
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Staff </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>                
-    
-    <ng-container matColumnDef="mobile">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Mobile Number </th>
-        <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="totalCount">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Service Today </th>
-        <td mat-cell *matCellDef="let element"> {{element.totalCount}} </td>
-    </ng-container>
-    
-    <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef>Action</th>
-        <td mat-cell *matCellDef="let element">
-            <button mat-flat-button [matMenuTriggerFor]="menu" color="primary">Action</button>
-            <mat-menu #menu="matMenu">
-                <button mat-menu-item>
-                        <mat-icon>edit</mat-icon>
-                        <span>Add Service</span>
-                </button>                    
-            </mat-menu>
-        </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-</div>
-
-    <!-- <ejs-gantt id='GanttSample' 
-  [dataSource]='data' 
-  height= '450px' 
-  allowFiltering = 'true'
-  [eventMarkers] = 'eventMarkers'
-  [taskFields]= 'taskfield'>
-</ejs-gantt> -->
-<div style="display: block;">
-        <!-- <canvas baseChart width="400" height="400"
-          [datasets]="lineChartData"
-          [labels]="lineChartLabels"
-          [options]="lineChartOptions"
-          [colors]="lineChartColors"
-          [legend]="lineChartLegend"
-          [chartType]="lineChartType"
-          [plugins]="lineChartPlugins">
-        </canvas> -->
-        <!-- <canvas baseChart  width="400" height="400"
-        [datasets]="barChartData"
-        [labels]="barChartLabels"
-        [options]="barChartOptions"
-        [plugins]="barChartPlugins"
-        [legend]="barChartLegend"
-        [colors]="barChartColors"
-        [chartType]="barChartType">
-      </canvas> -->
-      </div>

@@ -31,12 +31,9 @@ import { DatePipe } from '@angular/common';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import { ChartsModule } from 'ng2-charts';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
-// import { GanttModule } from '@syncfusion/ej2-angular-gantt';
-import { GanttModule, ResizeService, SortService, FilterService, SelectionService, ReorderService,
-    EditService, DayMarkersService, ToolbarService } from '@syncfusion/ej2-angular-gantt';
 
 registerLocaleData(en);
 @NgModule({
@@ -46,7 +43,6 @@ registerLocaleData(en);
         RouterModule,
         ReactiveFormsModule,
         FormsModule,
-        GanttModule
     ],
     exports: [
         RouterModule,
@@ -83,21 +79,19 @@ registerLocaleData(en);
         MatTooltipModule,
         NgxMaterialTimepickerModule,
         DatePipe,
-        MatSlideToggleModule,
+        MatSlideToggleModule,        
         MatProgressBarModule,
         MatExpansionModule,
-        GanttModule,
-        ChartsModule
-        
+        FullCalendarModule
+                
     ],    
     providers: [
         {
             provide: HTTP_INTERCEPTORS,
             useClass: MyInterceptor,
             multi: true,
-        },
-        ResizeService, SortService, FilterService, SelectionService, ReorderService,
-        EditService, DayMarkersService, ToolbarService
+        },      
+        DatePipe
     ]
 })
 export class SharedModule { }
