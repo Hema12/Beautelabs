@@ -22,7 +22,7 @@
                 </div>        
                 <div fxFlex="30%" fxLayoutAlign="end">
                     <mat-form-field class="bookingstaff">
-                        <mat-label>Select</mat-label>
+                        <mat-label>Staff</mat-label>
                         <mat-select>
                             <mat-option value="today">All Staffs</mat-option>
                             <mat-option value="today">Devi</mat-option>
@@ -51,7 +51,7 @@
                     </full-calendar>
                 </div>  -->
                 <div class='app-calendar'>
-                        <full-calendar deepChangeDetection="true" color="success"
+                        <full-calendar color="success"
                             #calendar
                             defaultView="dayGridMonth"
                             [header]="{
@@ -61,12 +61,14 @@
                             }"
                             [resources]="resources"
                             [events]="events"
-                            nowIndicator= "true"
-                            now="2019-10-09T10:25:00"
+                            [nowIndicator]= "true"
                             [resourceLabelText]="resourceText"
                             [plugins]="calendarPlugins"
                             [weekends]="calendarWeekends"
                             [events]="events"
+                            [allDaySlot] = "false"
+                            slotDuration='00:15:00'
+                            slotMinutes= '00:15:00'
                             (dateClick)="handleDateClick($event)">
                         </full-calendar>
                     </div>
@@ -77,7 +79,7 @@
                 <mat-icon class="bookingicon">list</mat-icon>
             </ng-template>
             <div fxLayout="row">
-                <div fxFlex="68%" fxLayoutAlign="start" class="mb-10 mt-2">  
+                <div fxFlex="63%" fxLayoutAlign="start" class="mb-10 mt-2">  
                     <!-- <button mat-raised-button color="primary" [routerLink]="['/beautelabs/cbot-admin/bookingCreate']" style="height:35px;">Add New Appointment</button>                            -->
                 </div>        
                 <div fxFlex="12%" fxLayoutAlign="end" class="mt-sm">
@@ -91,7 +93,7 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
-                <div fxFlex="18%" fxLayoutAlign="end">
+                <div fxFlex="23%" fxLayoutAlign="end" class="mt-red10">
                     <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
                 </div>
             </div>

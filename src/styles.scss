@@ -5,9 +5,10 @@
 @import "material.scss";
 
 @import "app/theme/theme.scss";
-@import '~@fullcalendar/core/main.css';
-@import '~@fullcalendar/daygrid/main.css';
-@import '~@fullcalendar/timegrid/main.css';
+@import '@fullcalendar/core/main.css';
+@import '@fullcalendar/daygrid/main.css';
+@import '@fullcalendar/timegrid/main.css';
+
 body {
     margin:0px !important;
     font-family: $primary-font-family !important;
@@ -268,7 +269,16 @@ th {
 .searchInputfull {
     width: 90% !important;
 }
-
+.recurMenu {
+    padding: 6% 10%;
+    width: 400px;
+}
+.recurPopupForm {
+    margin-top: 5% !important;
+}
+.recurSelectPopupForm {
+    padding:10px !important;
+}
 .mt-6 {
     margin-top: 6% !important;
 }
@@ -312,6 +322,13 @@ th {
 }
 .profile .mat-icon {
     font-size: 16px !important;
+    vertical-align: sub !important;
+}
+.mt-red10 {
+    margin-top:-10px !important;
+}
+.pall-zero {
+    padding:0px !important;
 }
 .mb-red15 {
     margin-bottom: -15px !important;
@@ -468,7 +485,7 @@ th {
     margin:5px 0px 5px 3px !important;
 }
 .customerProfile img {
-    height: 110px !important;
+    height: 95px !important;
 }
 .customer img {
     width:170px;
@@ -561,6 +578,7 @@ th {
 .rightsidemodal {
     padding:0% 2% !important;
     min-width: 20% !important;
+    background: $primary-color-white !important;
     font-family: $primary-font-family-common;
 }
 .rightsidemodal .mat-dialog-actions {
@@ -592,6 +610,12 @@ th {
 .fc-scroller, .fc-day-grid-container {
     height: 700px !important;
     overflow: hidden !important;
+}
+.fc-view-container *, .fc-view-container *:before, .fc-view-container *:after {
+    font-size: 11px !important;
+}
+.fc-icon:hover{
+    color:#1a5fd2;
 }
 .fc-head {
     background: #2c3e500d !important;
@@ -631,7 +655,7 @@ a:not([href]):not([tabindex]) {
 }
 .fc-next-button{
     position: absolute !important;
-    left: 2216% !important;
+    left:2344% !important;
     // margin-top: -56% !important;
     background: #fff !important;
     border-color: #dee3e7 !important;
@@ -661,6 +685,7 @@ a:not([href]):not([tabindex]) {
 .fc-center {
     width: 283px !important;
     background: #fff !important;   
+    margin-left: -3% !important;
 }
 .fc-center h2 {
     margin: -1px !important;
@@ -671,7 +696,7 @@ a:not([href]):not([tabindex]) {
     padding: 0px 17px !important;
     height: 35px !important;
     font-family: 'Proxima Nova', sans-serif !important;
-    font-size: 15px !important;
+    font-size: 13px !important;
     text-align: center !important;
 }
 .addicon {
@@ -680,6 +705,9 @@ a:not([href]):not([tabindex]) {
 }
 .viewbill {
     vertical-align: bottom !important;
+}
+.abspos {
+    position: absolute !important;
 }
 //menu
 .menuicon {
@@ -833,9 +861,95 @@ a:not([href]):not([tabindex]) {
     // .cdk-overlay-pane {
     //     width:100% !important;
     // }
+    .fc-toolbar.fc-header-toolbar {
+        margin-top:30px !important;
+    }
+    .booking .mat-tab-header {
+        margin-top: 1.5% !important;
+        margin-left: 23% !important;
+    }
+    .fc-prev-button {
+        left:10% !important;
+    }
+    .fc-next-button {
+        left:785% !important;
+    }
+    .fc-center {
+        margin-left: -31% !important;
+    }
+    .bookingstaff {
+        position: absolute !important;
+        right: 23% !important;
+        top: 5.7% !important;
+        width: 23% !important;
+    }
 }
-@media only screen and (min-width: 769px) and (max-width:1199px) {
+@media only screen and (min-width: 769px) and (max-width:1400px) {
     .grid-item {
         width:100% !important;
     }
+    .fc-toolbar.fc-header-toolbar {
+        margin-top:1px !important;
+    }
+    .booking .mat-tab-header {
+        margin-top: 0.8% !important;
+        margin-left: 13% !important;
+    }
+    .fc-prev-button {
+        left:10% !important;
+    }
+    .fc-next-button {
+        left:918% !important;
+    }
+    .fc-center {
+        margin-left: -48% !important;
+    }
+    .fc-today-button {
+        left:112% !important;
+    }
+    .bookingstaff {
+        position: absolute !important;
+        right: 23% !important;
+        top: 1% !important;
+        width: 23% !important;
+    }
+    .fc-dayGridMonth-view.bookingstaff {
+        position: absolute !important;
+        right: 23% !important;
+        top: 3% !important;
+        width: 23% !important;
+    }
+    .fc-day-grid .fc-row {
+        height: 9em !important;
+    }
+    .fc-scroller, .fc-day-grid-container {
+        height: auto !important;
+    }
+    .fc-time-grid .fc-slats td {
+        height:1em !important;
+    }
 }
+    @media only screen and (min-width: 1090x) and (max-width:2300px) {
+        .grid-item {
+            width:100% !important;
+        }
+        .fc-toolbar.fc-header-toolbar {
+            margin-top:30px !important;
+        }
+        .booking .mat-tab-header {
+            margin-top: 1.5% !important;
+            margin-left: 23% !important;
+        }
+        .fc-prev-button {
+            left:10% !important;
+        }
+        .fc-next-button {
+            left:989% !important;
+        }
+        .fc-center {
+            margin-left: -48% !important;
+        }
+        .fc-today-button {
+            left:112% !important;
+        }
+    }

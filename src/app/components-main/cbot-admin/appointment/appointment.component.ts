@@ -54,15 +54,15 @@ export class AppointmentComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   animal: string;
   name: string;
-  @ViewChild(FullCalendarComponent, {static: true}) calendarComponent: FullCalendarComponent;
-  nowIndicator: true;
-  now: '2019-10-09T10:25:00';
+  @ViewChild(FullCalendarComponent, {static: true}) calendarComponent: FullCalendarComponent;  
   calendarVisible = true;
   calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin, resourceTimeGrid];
   calendarWeekends = true;
   resourceText: string;
   resources: any;
   events: any;
+  todayDate = new Date();
+  slotDuration: any; 
   toggleWeekends() {
     this.calendarWeekends = !this.calendarWeekends;
   }
@@ -103,17 +103,19 @@ export class AppointmentComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    console.log(this.todayDate);
     this.initFunction();
 }
 initFunction() {
   this.resourceText = "Timings";
+  this.slotDuration = "00:15:00";
   this.resources = [
     {id:'1',title:'Devi'},
     {id:'2',title:'Ramya'},
     {id:'3',title:'Nithya'},
     {id:'4',title:'Ashika'},
     {id:'5',title:'Ravi'},
-  ];
+  ];  
   this.events = [
     { title: 'Hair Cut - Devi - 10:00 AM', start: new Date(), backgroundColor:'#f00'},
     { title: 'Bleech - Devi - 10:45 AM', start: new Date(), backgroundColor:'#9fb3d4' },

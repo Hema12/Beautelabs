@@ -149,62 +149,140 @@
               <mat-icon mat-list-icon matTooltip="Appointment" matTooltipPosition='right' matTooltipClass="menu-tooltip">event_note</mat-icon>
               <h4 mat-line *ngIf="isExpanded">Appointment</h4>
             </mat-list-item>
-            <mat-list-item>
+            <mat-list-item [routerLink]="['cbot-admin/sales']" routerLinkActive="active">
               <mat-icon mat-list-icon matTooltip="Sales" matTooltipPosition='right' matTooltipClass="menu-tooltip">receipt</mat-icon>
               <h4 mat-line *ngIf="isExpanded">Sales</h4>
             </mat-list-item>
-            <mat-list-item>
+            <mat-list-item [routerLink]="['cbot-admin/campaigns']" routerLinkActive="active">
               <mat-icon mat-list-icon matTooltip="Campaigns" matTooltipPosition='right' matTooltipClass="menu-tooltip">insert_chart</mat-icon>
               <h4 mat-line *ngIf="isExpanded">Campaigns</h4>
             </mat-list-item>
-            <mat-list-item>
+            <mat-list-item [routerLink]="['cbot-admin/customers']" routerLinkActive="active">
               <mat-icon mat-list-icon matTooltip="Customers" matTooltipPosition='right' matTooltipClass="menu-tooltip">person</mat-icon>
               <h4 mat-line *ngIf="isExpanded">Customers</h4>
             </mat-list-item>
-            <mat-list-item>
+            <mat-list-item [routerLink]="['cbot-admin/services']" routerLinkActive="active">
               <mat-icon mat-list-icon matTooltip="Services" matTooltipPosition='right' matTooltipClass="menu-tooltip">group_work</mat-icon>
               <h4 mat-line *ngIf="isExpanded">Services</h4>
             </mat-list-item>
-            <mat-list-item>
+            <mat-list-item [routerLink]="['cbot-admin/products']" routerLinkActive="active">
               <mat-icon mat-list-icon matTooltip="Products" matTooltipPosition='right' matTooltipClass="menu-tooltip">shopping_basket</mat-icon>
               <h4 mat-line *ngIf="isExpanded">Products</h4>
             </mat-list-item>
             <mat-list-item>
               <mat-icon mat-list-icon matTooltip="Vendors" matTooltipPosition='right' matTooltipClass="menu-tooltip">shopping_cart</mat-icon>
               <h4 mat-line *ngIf="isExpanded">Vendors</h4>
-            </mat-list-item>
-            <mat-list-item>
+            </mat-list-item>           
+            <mat-list-item [matMenuTriggerFor]="purchaseMenu">
               <mat-icon mat-list-icon matTooltip="Purchase" matTooltipPosition='right' matTooltipClass="menu-tooltip">shopping_basket</mat-icon>
-              <h4 mat-line *ngIf="isExpanded">Purchase</h4>
+              <h4 mat-line *ngIf="isExpanded">Purchase <mat-icon class="abspos">keyboard_arrow_down</mat-icon></h4>
             </mat-list-item>
-            <mat-list-item>
-              <mat-icon mat-list-icon matTooltip="Inventory" matTooltipPosition='right' matTooltipClass="menu-tooltip">shopping_basket</mat-icon>
-              <h4 mat-line *ngIf="isExpanded">Inventory</h4>
+            <mat-menu #purchaseMenu="matMenu" class="sidebarSubmenu">              
+              <button mat-menu-item [routerLink]="['cbot-admin/purchaseOrder']" routerLinkActive="active">
+                  <mat-icon mat-list-icon>shopping_cart</mat-icon>
+                  <button mat-flat-button>Purchase Order</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/purchaseBill']" routerLinkActive="active">
+                <mat-icon mat-list-icon>shopping_cart</mat-icon>
+                <button mat-flat-button>Purchase bill</button>
+              </button>
+            </mat-menu>
+            <mat-list-item [matMenuTriggerFor]="inventoryMenu">
+              <mat-icon mat-list-icon matTooltip="Inventory" matTooltipPosition='right' matTooltipClass="menu-tooltip">store_mall_directory</mat-icon>
+              <h4 mat-line *ngIf="isExpanded">Inventory <mat-icon class="abspos">keyboard_arrow_down</mat-icon></h4>
             </mat-list-item>
-            <mat-list-item>
-              <mat-icon mat-list-icon matTooltip="Accounts" matTooltipPosition='right' matTooltipClass="menu-tooltip">shopping_basket</mat-icon>
-              <h4 mat-line *ngIf="isExpanded">Accounts</h4>
+            <mat-menu #inventoryMenu="matMenu" class="sidebarSubmenu">              
+              <button mat-menu-item [routerLink]="['cbot-admin/inventory']" routerLinkActive="active">
+                  <mat-icon mat-list-icon>store_mall_directory</mat-icon>
+                  <button mat-flat-button>Store Track</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/storeTransfer']" routerLinkActive="active">
+                <mat-icon mat-list-icon>store_mall_directory</mat-icon>
+                <button mat-flat-button>Transfer</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/location']" routerLinkActive="active">
+                <mat-icon mat-list-icon>store_mall_directory</mat-icon>
+                <button mat-flat-button>Locations</button>
+              </button>
+            </mat-menu>
+            <mat-list-item [matMenuTriggerFor]="accountsMenu">
+              <mat-icon mat-list-icon matTooltip="Accounts" matTooltipPosition='right' matTooltipClass="menu-tooltip">credit_card</mat-icon>
+              <h4 mat-line *ngIf="isExpanded">Accounts <mat-icon class="abspos">keyboard_arrow_down</mat-icon></h4>
             </mat-list-item>
-            <mat-list-item>
-              <mat-icon mat-list-icon matTooltip="HR" matTooltipPosition='right' matTooltipClass="menu-tooltip">shopping_basket</mat-icon>
-              <h4 mat-line *ngIf="isExpanded">HR</h4>
+            <mat-menu #accountsMenu="matMenu" class="sidebarSubmenu">              
+              <button mat-menu-item [routerLink]="['cbot-admin/saleBill']" routerLinkActive="active">
+                  <mat-icon mat-list-icon>credit_card</mat-icon>
+                  <button mat-flat-button>Sale Bills</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/vendorBill']" routerLinkActive="active">
+                <mat-icon mat-list-icon>credit_card</mat-icon>
+                <button mat-flat-button>Vendor Bills</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/cashRegister']" routerLinkActive="active">
+                <mat-icon mat-list-icon>credit_card</mat-icon>
+                <button mat-flat-button>Bank &amp; Cash</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/dayBook']" routerLinkActive="active">
+                <mat-icon mat-list-icon>credit_card</mat-icon>
+                <button mat-flat-button>Day Book</button>
+              </button>
+            </mat-menu>
+            <mat-list-item [matMenuTriggerFor]="hrMenu">
+              <mat-icon mat-list-icon matTooltip="HR" matTooltipPosition='right' matTooltipClass="menu-tooltip">supervisor_account</mat-icon>
+              <h4 mat-line *ngIf="isExpanded">HR <mat-icon class="abspos">keyboard_arrow_down</mat-icon></h4>
             </mat-list-item>
-            <mat-list-item>
-              <mat-icon mat-list-icon matTooltip="Deals" matTooltipPosition='right' matTooltipClass="menu-tooltip">shopping_basket</mat-icon>
-              <h4 mat-line *ngIf="isExpanded">Deals</h4>
+            <mat-menu #hrMenu="matMenu" class="sidebarSubmenu">              
+              <button mat-menu-item [routerLink]="['cbot-admin/staffs']" routerLinkActive="active">
+                  <mat-icon mat-list-icon>supervisor_account</mat-icon>
+                  <button mat-flat-button>Staff</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/attendance']" routerLinkActive="active">
+                <mat-icon mat-list-icon>supervisor_account</mat-icon>
+                <button mat-flat-button>Attendance</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/payroll']" routerLinkActive="active">
+                <mat-icon mat-list-icon>supervisor_account</mat-icon>
+                <button mat-flat-button>Payroll</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/leaves']" routerLinkActive="active">
+                <mat-icon mat-list-icon>supervisor_account</mat-icon>
+                <button mat-flat-button>Leaves</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/payrollMaster']" routerLinkActive="active">
+                <mat-icon mat-list-icon>supervisor_account</mat-icon>
+                <button mat-flat-button>Payroll Master</button>
+              </button>
+            </mat-menu>
+            <mat-list-item [matMenuTriggerFor]="dealMenu">
+              <mat-icon mat-list-icon matTooltip="Deals" matTooltipPosition='right' matTooltipClass="menu-tooltip">loyalty</mat-icon>
+              <h4 mat-line *ngIf="isExpanded">Deals <mat-icon class="abspos">keyboard_arrow_down</mat-icon></h4>
             </mat-list-item>
-            <mat-list-item>
+            <mat-menu #dealMenu="matMenu" class="sidebarSubmenu">              
+              <button mat-menu-item [routerLink]="['cbot-admin/giftVoucher']" routerLinkActive="active">
+                  <mat-icon mat-list-icon>loyalty</mat-icon>
+                  <button mat-flat-button>Promo / Gift Voucher</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/prepaidCard']" routerLinkActive="active">
+                <mat-icon mat-list-icon>loyalty</mat-icon>
+                <button mat-flat-button>Prepaid Card</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/loyalty']" routerLinkActive="active">
+                <mat-icon mat-list-icon>loyalty</mat-icon>
+                <button mat-flat-button>Loyalty</button>
+              </button>
+            </mat-menu>
+            <mat-list-item [routerLink]="['cbot-admin/expenses']" routerLinkActive="active">
+              <mat-icon mat-list-icon matTooltip="Expenses" matTooltipPosition='right' matTooltipClass="menu-tooltip">credit_card</mat-icon>
+              <h4 mat-line *ngIf="isExpanded">Expenses</h4>
+            </mat-list-item>
+            <mat-list-item [routerLink]="['cbot-admin/reports']" routerLinkActive="active">
               <mat-icon mat-list-icon matTooltip="Reports" matTooltipPosition='right' matTooltipClass="menu-tooltip">report</mat-icon>
               <h4 mat-line *ngIf="isExpanded">Reports</h4>
             </mat-list-item>
-            <mat-list-item>
+            <mat-list-item [routerLink]="['cbot-admin/settings']" routerLinkActive="active">
               <mat-icon mat-list-icon matTooltip="Settings" matTooltipPosition='right' matTooltipClass="menu-tooltip">settings</mat-icon>
               <h4 mat-line *ngIf="isExpanded">Settings</h4>
-            </mat-list-item>
-            <mat-list-item>
-              <mat-icon mat-list-icon matTooltip="Expenses" matTooltipPosition='right' matTooltipClass="menu-tooltip">store_mall_directory</mat-icon>
-              <h4 mat-line *ngIf="isExpanded">Expenses</h4>
-            </mat-list-item>
+            </mat-list-item>            
           </mat-nav-list>
         </mat-drawer>
       

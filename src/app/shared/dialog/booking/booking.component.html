@@ -55,7 +55,22 @@
                                     </mat-form-field>
                                 </div> 
                                 <div class="col-sm-12 col-lg-2 col-xl-2">
-                                    <button mat-raised-button class="recurbtn">Recurring <mat-icon matSuffix>autorenew</mat-icon></button>
+                                    <button mat-raised-button class="recurbtn" (click)="openRecur()">Recurring <mat-icon matSuffix>autorenew</mat-icon></button>                                    
+                                    <!-- <button mat-raised-button class="recurbtn" [matMenuTriggerFor]="recurMenu">Recurring <mat-icon matSuffix>autorenew</mat-icon></button>
+                                    <mat-menu  #recurMenu=matMenu>                                                                                                                  
+                                        <form method="POST" [formGroup]="recurForm" class="recurSelectPopupForm">  
+                                            <mat-form-field class="mt-6">     
+                                                <mat-label>Frequency</mat-label>
+                                                <mat-select formControlName="recurFrequency">
+                                                    <mat-option *ngFor="let recurList of recurFrequency" [value]="recurList.value">
+                                                    {{recurList.value}}
+                                                    </mat-option>
+                                                </mat-select>     
+                                            </mat-form-field>                                           
+                                            <button mat-raised-button color="primary" class="ml-1">Submit</button> 
+                                        </form>                                         
+                                    </mat-menu>  -->
+                                        
                                 </div>  
                             </div>     
                             <hr class="horizontalline" />
@@ -123,11 +138,11 @@
             <mat-card class="full-width">   
                 <div *ngIf="customerHistory">
                     <mat-card-header class="profileHistory">
-                        <div class="row col-md-12 col-xl-12 col-lg-12">
+                        <div class="row col-md-12 col-xl-12 col-lg-12 pall-zero">
                             <div class="col-md-4 col-xl-3 col-lg-3 customerProfile">
                                 <img src="../../../../assets/images/profile.png" />                                
                             </div>
-                            <div class="col-md-9 col-xl-9 col-lg-9 profile">
+                            <div class="col-md-9 col-xl-9 col-lg-9 profile pall-zero">
                                 <h2>Jai Nishanth <mat-icon matSuffix class="ml-2">edit</mat-icon> </h2>
                                 <p><mat-icon matPrefix>phone</mat-icon> +91 9876545679 <span class="pl-5"><mat-icon>email</mat-icon>jainishanth17@gmail.com</span></p>
                                 <p><span><mat-icon class="viewbill" matPrefix>payment</mat-icon> Billing History</span><span class="pl-53"><mat-icon>person</mat-icon>Preferred Staff : Ramesh</span></p>
@@ -175,3 +190,15 @@
         </div>
     </div>
 </div>
+
+
+<ng-template #recurringtemplate>
+        <h2 matDialogTitle class="candidate-title">Details</h2>
+        <mat-dialog-content class="candidate-detail">
+            <p>Product Name : </p>
+            
+        </mat-dialog-content>
+        <mat-dialog-actions align="end" class="submit-button">
+            <button mat-button (click)="cancel()" class="mr-5 mb-5">Close</button>
+        </mat-dialog-actions>
+    </ng-template>

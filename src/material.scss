@@ -140,7 +140,7 @@ button.mat-menu-item {
     display: none !important;
 }
 .mat-paginator-page-size-select {
-     width:35px !important;
+    //  width:35px !important;
 }
 .mat-paginator.mat-select {
     text-align: center !important;
@@ -219,13 +219,19 @@ button.mat-menu-item {
 }
 .sidebarSubmenu {
     position: absolute !important;
-    left: 12% !important;
+    left: 8.7% !important;
     border-radius: 0px !important;
-    top: -8% !important;
+    top: -6% !important;
+}
+.sidebarSubmenu {
+    position: absolute !important;
+    left: 3.4% !important;
+    border-radius: 0px !important;
+    top: -6% !important;
 }
 .mat-menu-item .mat-icon {
-    margin-top: 8px !important;
     color: #272727 !important;
+    margin-right: 0px !important;
 }
 .customerForm .mat-form-field {
     width:90% !important;
@@ -283,7 +289,7 @@ button.mat-menu-item {
     width: unset !important;
 }
 .booking .mat-tab-header {
-    width:12% !important;
+    width:30% !important;
     background: transparent;
     border: none;
     height: 33px !important;
@@ -312,7 +318,7 @@ button.mat-menu-item {
 }
 .bookingicon{
     color:#2c3e50  !important;
-    font-size: 27px !important;
+    font-size: 21px !important;
 }
 .booking .mat-tab-header{
     margin-top:0.5% !important;

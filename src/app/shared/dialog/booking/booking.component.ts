@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, TemplateRef, ViewChild } from '@angular/core';
 // import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormControl, Validators, FormControlName, FormBuilder, FormArray } from '@angular/forms';
 import {NgSelectModule, NgOption} from '@ng-select/ng-select';
@@ -7,14 +7,20 @@ import {map, startWith} from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import {DateAdapter} from '@angular/material/core';
 import { ActivatedRoute } from '@angular/router';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap';
+import {MatDialog} from '@angular/material/dialog';
 import { Time } from '@angular/common';
 import { getTime } from 'ngx-bootstrap/chronos/utils/date-getters';
 import { DatePipe } from '@angular/common';
 import {MomentDateAdapter} from '@angular/material-moment-adapter';
+
 import {MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material';
 
 import * as _moment from 'moment';
 import {default as _rollupMoment} from 'moment';
+import { RecurPopupComponent } from '../recur-popup/recur-popup.component';
+
 const moment = _rollupMoment || _moment;
 
 export const MY_FORMATS = {
@@ -53,6 +59,10 @@ export interface State {
 export interface Source {
   value: string;
 }
+export interface recurFrequency {
+  value: string;
+}
+
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
@@ -65,6 +75,7 @@ export interface Source {
 })
 export class BookingComponent implements OnInit {
   bookingForm: FormGroup;
+  recurForm: FormGroup;
   bookingDate = new FormControl(moment());
   toDay = new Date();
   selDate: any;
@@ -72,14 +83,16 @@ export class BookingComponent implements OnInit {
   finalTime:any;
   convertDate: any;
   //service:any;
+  modalRef: BsModalRef;
   service: any;
   customerHistory : boolean = false;
-  serviceTime:any;
+  serviceTime:any;  
   services: Service[] = [
     {name: 'Hair Cut'},
     {name: 'Bleech'},
     {name: 'Facial'}
   ];
+
   source: Source[] = [
     {value: 'Direct - Walkin'},
     {value: 'Facebook'},
@@ -99,16 +112,16 @@ export class BookingComponent implements OnInit {
     {value: 'Cancelled', viewValue: 'Cancelled'}
   ];
   startTime: startTime[] = [
-    {value: '12:00am'},
-    {value: '12:05am'},
-    {value: '12:10am'},
-    {value: '12:15am'},
-    {value: '12:20am'},
-    {value: '12:25am'},
-    {value: '12:30am'},
-    {value: '12:35am'},
-    {value: '12:40am'},
-    {value: '12:45am'},
+    {value: '12:00'},
+    {value: '12:05'},
+    {value: '12:10'},
+    {value: '12:15'},
+    {value: '12:20'},
+    {value: '12:25'},
+    {value: '12:30'},
+    {value: '12:35'},
+    {value: '12:40'},
+    {value: '12:45'},
   ];
   staffs: Staff[] = [
     {value: 'Aadhi', viewValue: 'Aadhi'},
@@ -118,6 +131,17 @@ export class BookingComponent implements OnInit {
     {value: 'Latha', viewValue: 'Latha'},
     {value: 'Karthi', viewValue: 'Karthi'},
     {value: 'Nisha', viewValue: 'Nisha'}
+  ];
+  recurFrequency: recurFrequency[] = [
+    {value: 'Doesn\'t repeat'},
+    {value: 'Daily'},
+    {value: 'Every 2 days'},
+    {value: 'Every 3 days'},
+    {value: 'Every 4 days'},
+    {value: 'Every 5 days'},
+    {value: 'Every 6 days'},
+    {value: 'Every 7 days'},
+    {value: 'Weekly'}
   ];
  // bookingService = new FormControl();
   //filteredService: Observable<Service[]>;
@@ -138,7 +162,8 @@ export class BookingComponent implements OnInit {
   //   );
     
   //    }
-  constructor(private formBuilder: FormBuilder,private active_route: ActivatedRoute,private datePipe : DatePipe) {    
+  constructor(private formBuilder: FormBuilder,private active_route: ActivatedRoute,private datePipe : DatePipe, 
+    private modalService: BsModalService, private dialog:MatDialog) {    
       this.filteredCustomer = this.customerDet.valueChanges
     .pipe(
       startWith(''),
@@ -147,7 +172,10 @@ export class BookingComponent implements OnInit {
     
      }
 
-  ngOnInit() {        
+  ngOnInit() {      
+    this.recurForm = new FormGroup({
+      recurFrequency: new FormControl(null)
+    });
     this.bookingForm = new FormGroup({
       customerName: new FormControl(null, Validators.required),
       bookingDate: new FormControl(null, Validators.required),    
@@ -156,14 +184,13 @@ export class BookingComponent implements OnInit {
       service: this.formBuilder.array([this.createService()]),      
       bookingNote: new FormControl(null),
     });
-    this.selDate = this.active_route.snapshot.params['Seldate'];  
-    this.finalTime = this.selDate.slice(11,-9);
-    this.serviceTime = this.finalTime ;
-    this.convertDate = this.datePipe.transform(this.selDate, 'MM-dd-yyyy');
-    console.log(this.convertDate);
-    this.bookingForm
+    this.selDate = this.active_route.snapshot.params['Seldate'];      
+    if (this.selDate) {
+      this.finalTime = this.selDate.slice(11,-9);
+      this.serviceTime = this.finalTime;
+    }    
     this.bookingForm.controls['bookingDate'].setValue(this.selDate);
-    this.bookingForm.get('bookingStatus').setValue('New');
+    this.bookingForm.get('bookingStatus').setValue('New');   
   }
 
   private _filterCustomer(value: string): Customer[] {
@@ -196,4 +223,17 @@ getDisabledValue() {
 
   return true; 
 }
+openRecur() {   
+//this.modalRef = this.modalService.show(recurringtemplate);
+  const dialogRef = this.dialog.open(RecurPopupComponent, {
+    width: '17%',
+    data: {},
+    position: {top: '9%', left:'48%'}
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+  });
+}
+
 }
