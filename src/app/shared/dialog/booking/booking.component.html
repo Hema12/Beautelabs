@@ -142,10 +142,24 @@
                             <div class="col-md-4 col-xl-3 col-lg-3 customerProfile">
                                 <img src="../../../../assets/images/profile.png" />                                
                             </div>
-                            <div class="col-md-9 col-xl-9 col-lg-9 profile pall-zero">
+                            <div class="col-md-9 col-xl-9 col-lg-9 profile">                                
                                 <h2>Jai Nishanth <mat-icon matSuffix class="ml-2">edit</mat-icon> </h2>
-                                <p><mat-icon matPrefix>phone</mat-icon> +91 9876545679 <span class="pl-5"><mat-icon>email</mat-icon>jainishanth17@gmail.com</span></p>
-                                <p><span><mat-icon class="viewbill" matPrefix>payment</mat-icon> Billing History</span><span class="pl-53"><mat-icon>person</mat-icon>Preferred Staff : Ramesh</span></p>
+                                <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                                    <div class="col-md-12 col-xl-12 col-lg-12 col-sm-12">
+                                        <mat-icon matPrefix>phone</mat-icon> +91 9876545679 
+                                    </div>
+                                    <div class="col-md-12 col-xl-12 col-lg-12 col-sm-12">
+                                        <mat-icon>email</mat-icon>jainishanth17@gmail.com
+                                    </div>
+                                </div>
+                                <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                                    <div class="col-md-12 col-xl-12 col-lg-12 col-sm-12">
+                                        <mat-icon matPrefix>payment</mat-icon> Billing History
+                                    </div>
+                                    <div class="col-md-12 col-xl-12 col-lg-12 col-sm-12">
+                                        <mat-icon>person</mat-icon>Preferred Staff : Ramesh@gmail.com
+                                    </div>
+                                </div>
                                 
                             </div>
                         </div>                      
@@ -199,6 +213,6 @@
             
         </mat-dialog-content>
         <mat-dialog-actions align="end" class="submit-button">
-            <button mat-button (click)="cancel()" class="mr-5 mb-5">Close</button>
+            <button mat-button  class="mr-5 mb-5">Close</button>
         </mat-dialog-actions>
     </ng-template>

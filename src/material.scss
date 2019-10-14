@@ -41,10 +41,11 @@
     // background: $primary-color-blue !important;
     padding:0% !important;
     align-items: normal !important;
+    height: 46px !important;
 }
-// .mat-toolbar-multiple-rows {
-//     min-height: 50px !important;
-// }
+.mat-toolbar-multiple-rows {
+    min-height: 46px !important;
+}
 .mat-drawer.mat-drawer-side {
     // min-width: 12%;
     // background: $primary-color-lightblack;
@@ -60,7 +61,7 @@
 }
 .mat-drawer-container {
    min-height:96vh !important;
-   margin-bottom: 1% !important;
+//    margin-bottom: 1% !important;
    background: #F7F7F8 !important
 }
 .mat-drawer-content {
@@ -75,7 +76,7 @@
 .mat-list-base .mat-list-item {
     // color:$primary-color-white !important;
     color:$primary-color-black;
-    height: 50px !important;
+    height: 36px !important;
 }
 .mat-list-item:hover {
     background: #293a54!important;
@@ -83,6 +84,7 @@
 }
 .mat-list-item-content .mat-icon {
     color:$primary-color-gray !important;
+    font-size: $secondary-font-size-md !important;
 }
 .mat-list-item-content .matToolTip {
     position: absolute !important;
@@ -90,13 +92,13 @@
 }
 .mat-list-text {
     color: $primary-color-gray !important;
-    font-size: $primary-font-size !important;
+    font-size: $primary-font-size-sm !important;
     letter-spacing: 0.01em !important;
 }
 .mat-toolbar img {
-    height: 180px !important;
-    margin-top: -54px !important;
-    margin-left: 0.8%;
+    height: 165px !important;
+    margin-top: -55px !important;
+    margin-left: 0.5%;
 }
 // .mat-list-item:hover a{
 //     color: $primary-color-white !important;
@@ -297,6 +299,7 @@ button.mat-menu-item {
 }
 .booking .mat-tab-body-wrapper {
     width:100% !important;
+    margin-top:0.8% !important;
 }
 .booking .mat-tab-label .mat-tab-label-content {
     color:#ffffff;

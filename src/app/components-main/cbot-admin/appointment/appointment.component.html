@@ -1,77 +1,60 @@
-<div fxLayout="column" fxLayoutAlign="start">
+<!-- <div fxLayout="column" fxLayoutAlign="start">
     <div fxLayout="row">
         <div fxFlex="23%" fxLayoutAlign="start">
-            <!-- <h2>Appointments</h2> -->
             <button mat-raised-button color="primary" [routerLink]="['/beautelabs/cbot-admin/bookingCreate']" style="height:35px;" class="mt-2">Add New Appointment</button>                           
         </div>
        
         <div fxFlex="76%" fxHide fxShow.gt-sm fxLayoutAlign="end">
         </div>
     </div>    
-</div>
+</div> -->
 <div fxLayout="column" class="booking mb-50">
     <mat-tab-group>
         <mat-tab>
             <ng-template mat-tab-label>
                 <mat-icon class="bookingicon">event_note</mat-icon>
             </ng-template>
-            <div fxLayout="row">
+            <!-- <div fxLayout="row">
                 <div fxFlex="68%" fxLayoutAlign="start" class="mb-10 mt-2">
-                    
-                    <!-- <button mat-raised-button color="primary" (click)="appointmentCreate()">Add New Appointment</button>  -->                    
                 </div>        
                 <div fxFlex="30%" fxLayoutAlign="end">
-                    <mat-form-field class="bookingstaff">
-                        <mat-label>Staff</mat-label>
-                        <mat-select>
-                            <mat-option value="today">All Staffs</mat-option>
-                            <mat-option value="today">Devi</mat-option>
-                            <mat-option value="last week">Ramya</mat-option>
-                            <mat-option value="last 15 days">Nithya</mat-option>
-                            <mat-option value="last month">Ashika</mat-option>
-                            <mat-option value="last month">Ravi</mat-option>
-                        </mat-select>
-                    </mat-form-field>
                 </div>
-            </div>
+            </div>  -->
             <div fxLayout="row">
-                 <!-- <div class='app-calendar'>
-                    <full-calendar
+                <button mat-raised-button color="primary" [routerLink]="['/beautelabs/cbot-admin/bookingCreate']" class="bookingbtn mt-2">Add New Appointment</button>    
+                <mat-form-field class="bookingstaff">
+                    <mat-label>Staff</mat-label>
+                    <mat-select>
+                        <mat-option value="today">All Staffs</mat-option>
+                        <mat-option value="today">Devi</mat-option>
+                        <mat-option value="last week">Ramya</mat-option>
+                        <mat-option value="last 15 days">Nithya</mat-option>
+                        <mat-option value="last month">Ashika</mat-option>
+                        <mat-option value="last month">Ravi</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div class='app-calendar'>
+                    <full-calendar color="success"
                         #calendar
                         defaultView="dayGridMonth"
                         [header]="{
-                        left: 'prev,next today',
+                        left: 'prev,today,next',
                         center: 'title',
-                        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
                         }"
+                        [resources]="resources"
+                        [events]="events"
+                        [nowIndicator]= "true"
+                        [resourceLabelText]="resourceText"
                         [plugins]="calendarPlugins"
                         [weekends]="calendarWeekends"
-                        [events]="calendarEvents"
+                        [events]="events"
+                        [allDaySlot] = "false"
+                        slotDuration='00:15:00'
+                        slotMinutes= '00:15:00'
                         (dateClick)="handleDateClick($event)">
                     </full-calendar>
-                </div>  -->
-                <div class='app-calendar'>
-                        <full-calendar color="success"
-                            #calendar
-                            defaultView="dayGridMonth"
-                            [header]="{
-                            left: 'prev,today,next',
-                            center: 'title',
-                            right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                            }"
-                            [resources]="resources"
-                            [events]="events"
-                            [nowIndicator]= "true"
-                            [resourceLabelText]="resourceText"
-                            [plugins]="calendarPlugins"
-                            [weekends]="calendarWeekends"
-                            [events]="events"
-                            [allDaySlot] = "false"
-                            slotDuration='00:15:00'
-                            slotMinutes= '00:15:00'
-                            (dateClick)="handleDateClick($event)">
-                        </full-calendar>
-                    </div>
+                </div>                
             </div>
         </mat-tab>
         <mat-tab>

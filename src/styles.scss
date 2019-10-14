@@ -103,7 +103,7 @@ body {
 }
 .notification .mat-icon {
     color:$primary-color-lightgrey !important;
-    font-size: $primary-font-size-xl !important;
+    font-size: $secondary-font-size-xl !important;
 }
 .container {
     width:90%;
@@ -141,8 +141,8 @@ body {
 }
 //Footer
 .footer {
-    background: $primary-color-footerbg;
-    position: fixed;
+    // background: $primary-color-footerbg;
+    // position: fixed;
     bottom: 0;
     width:100%;
     height: 40px;
@@ -258,7 +258,12 @@ th {
 .bookingstaff {
     position: absolute !important;
     right:15% !important;
-    top:1% !important;
+    margin-top:0.3% !important;
+}
+.bookingbtn {
+    height: 35px !important;
+    position: absolute !important;
+    margin-top: -0% !important;
 }
 .searchInput {
     width:40% !important;
@@ -599,7 +604,14 @@ th {
 }
 .fc-toolbar.fc-header-toolbar {
     margin-bottom: 0.5em !important;
-    margin-top:-14px !important;
+    // margin-top:-14px !important;
+    // margin-left: 16% !important;
+}
+.fc-dayGridMonth-button .bookingstaff {
+    top:1% !important;
+}
+.fc-dayGridMonth-button .bookingbtn {
+    top:0.5% !important;
 }
 .fc-time-grid .fc-slats td {
     height: 4em !important;
@@ -608,7 +620,7 @@ th {
     height: 10em !important;
 }
 .fc-scroller, .fc-day-grid-container {
-    height: 700px !important;
+    height: auto !important;
     overflow: hidden !important;
 }
 .fc-view-container *, .fc-view-container *:before, .fc-view-container *:after {
@@ -655,7 +667,7 @@ a:not([href]):not([tabindex]) {
 }
 .fc-next-button{
     position: absolute !important;
-    left:2344% !important;
+    left:2244% !important;
     // margin-top: -56% !important;
     background: #fff !important;
     border-color: #dee3e7 !important;
@@ -671,6 +683,7 @@ a:not([href]):not([tabindex]) {
     height: 35px !important;
     border: 1px solid #dee3e7 !important;
     width: 90px !important;
+    font-size: $secondary-font-size !important;
 }
 .fc-resourceTimeGridDay-button, .fc-dayGridMonth-button, .fc-timeGridWeek-button, .fc-timeGridDay-button{
     color: #1a263a !important;
@@ -683,7 +696,7 @@ a:not([href]):not([tabindex]) {
     background-color: #F1F1F1 !important;
 }
 .fc-center {
-    width: 283px !important;
+    width: 240px !important;
     background: #fff !important;   
     margin-left: -3% !important;
 }
@@ -696,7 +709,7 @@ a:not([href]):not([tabindex]) {
     padding: 0px 17px !important;
     height: 35px !important;
     font-family: 'Proxima Nova', sans-serif !important;
-    font-size: 13px !important;
+    font-size:$secondary-font-size !important;
     text-align: center !important;
 }
 .addicon {
@@ -709,12 +722,13 @@ a:not([href]):not([tabindex]) {
 .abspos {
     position: absolute !important;
 }
+
 //menu
 .menuicon {
     margin-top: 2vh;
     padding-left: 21px;
     color: #fff;
-    font-size: 28px;
+    font-size:$primary-font-size-xl;
     margin-bottom: 9%;
 }
 .menu-tooltip {
@@ -725,9 +739,9 @@ a:not([href]):not([tabindex]) {
     font-size: 14px !important;  
 }
 .menu-tooltip::before {
-     position: absolute;
-   right: 29px;
-   top: -10px;
+    position: absolute;
+    right: 29px;
+    top: -10px;
     width: 0;
     height: 0;
     border-style: solid;
@@ -747,7 +761,7 @@ a:not([href]):not([tabindex]) {
 }
 .inputlink {
     color:$primary-color-linkblue !important;
-    font-size: $primary-font-size-sm !important;
+    font-size: $secondary-font-size-sm !important;
     text-align: right;
     display: flex;
     cursor: pointer !important;
@@ -768,7 +782,8 @@ a:not([href]):not([tabindex]) {
     border:1px solid #ccc !important;
     top:-1px !important;
     color: $primary-color-darkblue !important;
-    line-height: 32px !important;
+    line-height: 29px !important;
+    font-size: $secondary-font-size !important;
 }
 .delbtn {
     line-height: 30px !important;
@@ -779,6 +794,9 @@ a:not([href]):not([tabindex]) {
 }
 .candidate-title {
     padding-left: 1% !important;
+}
+.fc-license-message {
+    display: none !important;
 }
 //Responsive Css
 //Header
@@ -850,7 +868,8 @@ a:not([href]):not([tabindex]) {
         height: 5vh;
     }
 }
-@media only screen and (min-width: 300px) and (max-width:768px) {
+//ipad
+@media only screen and (min-width: 521px) and (max-width:768px) {
     .grid-container {
     //    display: grid;
     //    grid-template-columns: auto;
@@ -861,27 +880,113 @@ a:not([href]):not([tabindex]) {
     // .cdk-overlay-pane {
     //     width:100% !important;
     // }
+    // .fc-toolbar.fc-header-toolbar {
+    //     margin-top:30px !important;
+    // }
+    .booking .mat-tab-header {
+        margin-top: 1.5% !important;
+        margin-left: 23% !important;
+    }
+    .fc-prev-button {
+        left:-100% !important;
+    }
+    .fc-next-button {
+        left:659% !important;
+    }
+    .fc-center {
+        margin-left: -36% !important;
+    }
+    .bookingstaff {
+        position: absolute !important;
+        right: 23% !important;
+        margin-top: 7.5% !important;
+        width: 23% !important;
+    }
+    .fc-today-button {
+        left:unset !important;
+    }
     .fc-toolbar.fc-header-toolbar {
-        margin-top:30px !important;
+        margin-top:7%;
+        margin-left: 6% !important;
+    }
+    .mat-drawer-container {
+        min-height: 83vh !important;
+    }
+    .booking .mat-tab-body-wrapper {
+        margin-top:2% !important;
+    }
+}
+
+//iphone S
+@media only screen and (min-width: 300px) and (max-width:520px) {
+    .grid-container {
+    //    display: grid;
+    //    grid-template-columns: auto;
+        }
+    .fc-view-container *, .fc-view-container *:before, .fc-view-container *:after {
+        font-size: $primary-font-size-xs !important;
+    }
+    .grid-item {
+        width:100% !important;
+    }
+    // .cdk-overlay-pane {
+    //     width:100% !important;
+    // }
+    // .fc-toolbar.fc-header-toolbar {
+    //     margin-top:30px !important;
+    // }
+    .fc-day-grid .fc-row {
+        height: 6em !important;
     }
     .booking .mat-tab-header {
         margin-top: 1.5% !important;
         margin-left: 23% !important;
     }
     .fc-prev-button {
-        left:10% !important;
+        left:-97% !important;
     }
     .fc-next-button {
-        left:785% !important;
+        left:480% !important;
     }
     .fc-center {
-        margin-left: -31% !important;
+       
+    }
+    .mat-raised-button {
+        padding:0px 5px !important;
+    }
+    .fc-center h2 {
+        margin-left: 12px !important;
     }
     .bookingstaff {
         position: absolute !important;
-        right: 23% !important;
-        top: 5.7% !important;
-        width: 23% !important;
+        right: 4% !important;
+        margin-top: 5.5% !important;
+        width: 35% !important;
+    }
+    .fc-today-button {
+        left:unset !important;
+        width:50px !important;
+    }
+    .fc-toolbar.fc-header-toolbar {
+        margin-top:13%;
+        margin-left: 10% !important;
+    }
+    .booking .mat-tab-header {
+        width:60% !important;
+        margin-top:21% !important;
+        margin-left: -8% !important;
+    }
+    .mat-drawer-container {
+        min-height: 83vh !important;
+    }
+    .booking .mat-tab-body-wrapper {
+        margin-top:-7% !important;
+    }
+    .bookingbtn {
+        margin-top:5% !important;
+    }
+    .booking .mat-tab-label {
+        height: 22px !important;
     }
 }
 @media only screen and (min-width: 769px) and (max-width:1400px) {
@@ -890,35 +995,32 @@ a:not([href]):not([tabindex]) {
     }
     .fc-toolbar.fc-header-toolbar {
         margin-top:1px !important;
+        margin-left: 25% !important;
     }
     .booking .mat-tab-header {
-        margin-top: 0.8% !important;
+        margin-top:4.5% !important;
         margin-left: 13% !important;
+        position: absolute !important;
     }
     .fc-prev-button {
         left:10% !important;
     }
     .fc-next-button {
-        left:918% !important;
+        left:790% !important;
     }
     .fc-center {
-        margin-left: -48% !important;
+        margin-left: -40% !important;
     }
     .fc-today-button {
-        left:112% !important;
+        left:110% !important;
     }
     .bookingstaff {
         position: absolute !important;
         right: 23% !important;
-        top: 1% !important;
-        width: 23% !important;
+        margin-top: 0.2% !important;
+        // width: 23% !important;
     }
-    .fc-dayGridMonth-view.bookingstaff {
-        position: absolute !important;
-        right: 23% !important;
-        top: 3% !important;
-        width: 23% !important;
-    }
+
     .fc-day-grid .fc-row {
         height: 9em !important;
     }
@@ -928,14 +1030,17 @@ a:not([href]):not([tabindex]) {
     .fc-time-grid .fc-slats td {
         height:1em !important;
     }
+    .booking .mat-tab-body-wrapper {
+        margin-top:5% !important;
+    }
 }
     @media only screen and (min-width: 1090x) and (max-width:2300px) {
         .grid-item {
             width:100% !important;
         }
-        .fc-toolbar.fc-header-toolbar {
-            margin-top:30px !important;
-        }
+        // .fc-toolbar.fc-header-toolbar {
+        //     margin-top:30px !important;
+        // }
         .booking .mat-tab-header {
             margin-top: 1.5% !important;
             margin-left: 23% !important;
