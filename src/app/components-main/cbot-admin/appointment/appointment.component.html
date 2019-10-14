@@ -21,7 +21,7 @@
                 </div>
             </div>  -->
             <div fxLayout="row">
-                <button mat-raised-button color="primary" [routerLink]="['/beautelabs/cbot-admin/bookingCreate']" class="bookingbtn mt-2">Add New Appointment</button>    
+                <button mat-raised-button color="primary" [routerLink]="['/beautelabs/cbot-admin/bookingCreate']" class="bookingbtn mt-2">Add Appointment</button>    
                 <mat-form-field class="bookingstaff">
                     <mat-label>Staff</mat-label>
                     <mat-select>
@@ -61,11 +61,11 @@
             <ng-template mat-tab-label>
                 <mat-icon class="bookingicon">list</mat-icon>
             </ng-template>
-            <div fxLayout="row">
-                <div fxFlex="63%" fxLayoutAlign="start" class="mb-10 mt-2">  
-                    <!-- <button mat-raised-button color="primary" [routerLink]="['/beautelabs/cbot-admin/bookingCreate']" style="height:35px;">Add New Appointment</button>                            -->
-                </div>        
-                <div fxFlex="12%" fxLayoutAlign="end" class="mt-sm">
+            <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12 mt-2 pall-zero">
+                <div class="col-md-4 col-sm-2 col-xl-4 col-lg-4">
+                    <button mat-raised-button color="primary" [routerLink]="['/beautelabs/cbot-admin/bookingCreate']" class="bookingbtn mt-2">Add Appointment</button>  
+                </div>
+                <div class="col-md-4 col-sm-4 col-xl-4 col-lg-4">
                     <mat-form-field>
                         <mat-label>Select</mat-label>
                         <mat-select>
@@ -76,10 +76,39 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
-                <div fxFlex="23%" fxLayoutAlign="end" class="mt-red10">
+                <div class="col-md-4 col-sm-4 col-xl-4 col-lg-4 mt-red14 smpage">
                     <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
                 </div>
             </div>
+            <!-- <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12 mb-red12">
+                <div class="col-md-5 col-sm-6 col-xl-6 col-lg-6 mt-red10">
+                    <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+                </div>                    
+            </div> -->
+            <!-- <div fxLayout="row" class="mb-red12">
+                <div fxFlex="20%" fxLayoutAlign="start">  
+                    <button mat-raised-button color="primary" [routerLink]="['/beautelabs/cbot-admin/bookingCreate']" class="bookingbtn mt-2">Add Appointment</button>  
+                </div>   
+                <div fxFlex="30%" fxLayoutAlign="end" class="mtop-5">
+                    <mat-form-field>
+                        <mat-label>Select</mat-label>
+                        <mat-select>
+                            <mat-option value="today">Today</mat-option>
+                            <mat-option value="last week">Last Week</mat-option>
+                            <mat-option value="last 15 days">Last 15 Days</mat-option>
+                            <mat-option value="last month">Last Month</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="50%" fxLayoutAlign="start" class="mt-red10">
+                        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+                </div>
+            </div> -->
+            <!-- <div fxLayout="row">
+                <div fxFlex="100%" fxLayoutAlign="start" class="mt-red10">
+                    <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+                </div>
+            </div> -->
             <div fxLayout="row">        
                 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>        
                     <ng-container matColumnDef="sno">

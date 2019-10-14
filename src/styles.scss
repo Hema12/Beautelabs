@@ -133,6 +133,12 @@ body {
 .mt-11 {
     margin-top:11% !important;
 }
+.mt-red7 {
+    margin-top:-7px !important;
+}
+.mt-red14 {
+    margin-top: -14px !important;
+}
 .mt-15 {
     margin-top:15%;
 }
@@ -290,6 +296,9 @@ th {
 .ml-2 {
     margin-left: 2% !important;
 }
+.ml-37 {
+    margin-left: 37% !important;
+}
 .ml-sm {
     margin-left: 1.5% !important;
 }
@@ -429,10 +438,13 @@ th {
     width: 24%;
     margin-left: 1%;
 }
+.col-md-2 {
+    flex:0 0 20%;
+}
 .col-md-4 {
-    flex: 0 0 24.1%;
-    width: 24.1%;
-    margin-left: 0.9%;
+    flex: 1 0 33%;
+    width: 33%;
+    //margin-left: 0.9%;
 }
 .modal-content {
     padding:2% 4% !important;
@@ -619,10 +631,10 @@ th {
 .fc-day-grid .fc-row {
     height: 10em !important;
 }
-.fc-scroller, .fc-day-grid-container {
-    height: auto !important;
-    overflow: hidden !important;
-}
+// .fc-scroller, .fc-day-grid-container {
+//     height: auto !important;
+//     overflow: hidden !important;
+// }
 .fc-view-container *, .fc-view-container *:before, .fc-view-container *:after {
     font-size: 11px !important;
 }
@@ -654,6 +666,7 @@ th {
 a:not([href]):not([tabindex]) {
     top:696px !important;
     left:0% !important;
+    margin-right: 0% !important;
 }
 .fc-time-grid .fc-event, .fc-time-grid .fc-bgevent {
     position: relative !important;
@@ -798,6 +811,12 @@ a:not([href]):not([tabindex]) {
 .fc-license-message {
     display: none !important;
 }
+.mat-select-content{ 
+    font-size: 11px !important;
+}
+.mb-red12 {
+    margin-bottom: -12px !important;
+}
 //Responsive Css
 //Header
 @media only screen and (min-width:620px) and (max-width: 800px) {
@@ -916,15 +935,44 @@ a:not([href]):not([tabindex]) {
         margin-top:2% !important;
     }
 }
+.fc-body .fc-scroller {
+    height: 600px !important;
+    overflow: scroll !important;
+}
 
 //iphone S
 @media only screen and (min-width: 300px) and (max-width:520px) {
+    .mat-paginator-container {
+        display: unset !important;
+    }
+    .mat-paginator-page-size {
+        width:30% !important;
+        float: left !important;
+    }
+    .mat-paginator-range-actions {
+        width:66% !important;
+        float: left !important;
+    }
+    .mtop-5 {
+        margin-top:5% !important;
+    }
+    .smpage{
+        flex: 0 0 100%;
+        width: 100%;
+    }
     .grid-container {
     //    display: grid;
     //    grid-template-columns: auto;
         }
+    .fc-time-grid .fc-slats td {
+        height: 2em !important;
+    }
     .fc-view-container *, .fc-view-container *:before, .fc-view-container *:after {
         font-size: $primary-font-size-xs !important;
+    }
+    .fc-scroller, .fc-day-grid-container {
+        height: 400px !important;
+        overflow: unset !important;
     }
     .grid-item {
         width:100% !important;
@@ -946,16 +994,29 @@ a:not([href]):not([tabindex]) {
         left:-97% !important;
     }
     .fc-next-button {
-        left:480% !important;
+        left:442% !important;
     }
     .fc-center {
-       
+        width: 136px !important;
+        position: absolute;
+        margin-left: 15% !important;
+    }
+    .fc-view-container {
+        margin-top:16% !important;
+    }
+    .mat-tab-body-content {
+        overflow-x: hidden !important;
     }
     .mat-raised-button {
         padding:0px 5px !important;
+        line-height: 30px !important;
     }
     .fc-center h2 {
-        margin-left: 12px !important;
+    }
+    .fc-right {
+        position: absolute !important;
+        top: 12% !important;
+        text-align: center !important;
     }
     .bookingstaff {
         position: absolute !important;
@@ -968,8 +1029,8 @@ a:not([href]):not([tabindex]) {
         width:50px !important;
     }
     .fc-toolbar.fc-header-toolbar {
-        margin-top:13%;
-        margin-left: 10% !important;
+        margin-top:17%;
+        margin-left: 14% !important;
     }
     .booking .mat-tab-header {
         width:60% !important;
@@ -984,6 +1045,8 @@ a:not([href]):not([tabindex]) {
     }
     .bookingbtn {
         margin-top:5% !important;
+        height: 30px !important;
+        font-size: $secondary-font-size !important;
     }
     .booking .mat-tab-label {
         height: 22px !important;
