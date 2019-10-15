@@ -35,4 +35,8 @@ export class HeaderComponent implements OnInit {
     target.style.backgroundColor = "#e51282";
     this.element = target;
   }
+  openDrawer() {
+    this.isExpanded != this.isExpanded;
+    this.sidenav.toggle();
+  }
 }

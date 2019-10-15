@@ -1,4 +1,4 @@
-<div fxLayout="column">
+<!-- <div fxLayout="column">
     <div fxLayout="row">
         <div fxLayoutAlign="start" fxFlex="85%">
             <h2 class="page-title">Add New Appointment</h2>
@@ -6,202 +6,206 @@
         <div fxFlex="15%" fxHide fxShow.gt-sm fxLayoutAlign="end">         
         </div>
     </div>
+</div> -->
+<div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pr-zero">
+    <div class="col-md-7 col-sm-12 col-lg-7 col-xl-7">
+        <h2 class="page-title">Add New Appointment</h2>
+    </div>
 </div>
-<div fxLayout="column">
-    <div fxLayout="row">
-        <div fxLayoutAlign="start" fxFlex="60%">
-            <mat-card class="full-width">
-                <mat-card-content>
-                    <form method="POST" [formGroup]="bookingForm"> 
-                        <div class="form-container">
-                            <div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 mb-2 mt-2 mb-0">
-                                <div class="col-sm-12 col-lg-3 col-xl-3">
-                                    <mat-form-field class="belowlinkinput">
-                                        <input matInput placeholder="Customer" aria-label="Customer" [matAutocomplete]="customer" [formControl]="customerDet">
-                                        <mat-autocomplete #customer="matAutocomplete">
-                                            <mat-option *ngFor="let customer of filteredCustomer | async" [value]="customer.name">
-                                            <span>{{customer.name}} | {{customer.mobile}}</span>
-                                            </mat-option>
-                                        </mat-autocomplete>
-                                    </mat-form-field>
-                                    <p class="inputlink" [routerLink]="['/beautelabs/cbot-admin/customerCreate']" routerLinkActive="active"><mat-icon>add</mat-icon> Add New Customer</p>
-                                </div>  
-                                <div class="col-sm-12 col-lg-3 col-xl-3">
-                                    <mat-form-field>
-                                        <input matInput [matDatepicker]="picker" required formControlName="bookingDate" (click)="picker.open()" placeholder="Date">
-                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                        <mat-datepicker #picker></mat-datepicker>
-                                    </mat-form-field>
-                                </div> 
-                                <div class="col-sm-12 col-lg-2 col-xl-2">
-                                    <mat-form-field>
-                                        <mat-label class="selplaceHolder">Status</mat-label>
-                                        <mat-select formControlName="bookingStatus">
-                                            <mat-option *ngFor="let statusList of status" [value]="statusList.value">
-                                            {{statusList.viewValue}}
-                                            </mat-option>
-                                        </mat-select>
-                                    </mat-form-field> 
-
-                                </div> 
-                                <div class="col-sm-12 col-lg-2 col-xl-2">
-                                    <mat-form-field>
-                                        <mat-label class="selplaceHolder">Source</mat-label>
-                                        <mat-select formControlName="bookingSource">
-                                            <mat-option *ngFor="let sourceList of source" [value]="sourceList.value">
-                                            {{sourceList.value}}
-                                            </mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-                                </div> 
-                                <div class="col-sm-12 col-lg-2 col-xl-2">
-                                    <button mat-raised-button class="recurbtn" (click)="openRecur()">Recurring <mat-icon matSuffix>autorenew</mat-icon></button>                                    
-                                    <!-- <button mat-raised-button class="recurbtn" [matMenuTriggerFor]="recurMenu">Recurring <mat-icon matSuffix>autorenew</mat-icon></button>
-                                    <mat-menu  #recurMenu=matMenu>                                                                                                                  
-                                        <form method="POST" [formGroup]="recurForm" class="recurSelectPopupForm">  
-                                            <mat-form-field class="mt-6">     
-                                                <mat-label>Frequency</mat-label>
-                                                <mat-select formControlName="recurFrequency">
-                                                    <mat-option *ngFor="let recurList of recurFrequency" [value]="recurList.value">
-                                                    {{recurList.value}}
-                                                    </mat-option>
-                                                </mat-select>     
-                                            </mat-form-field>                                           
-                                            <button mat-raised-button color="primary" class="ml-1">Submit</button> 
-                                        </form>                                         
-                                    </mat-menu>  -->
-                                        
-                                </div>  
-                            </div>     
-                            <hr class="horizontalline" />
-                            <h3 matDialogTitle class="candidate-title">Services</h3>
-                            <div formArrayName="service" *ngFor="let ser of bookingForm.controls.service['controls']; let i=index">                 
-                                <div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 mb-red15 mt-2" [formGroupName]="i">
-                                    <div class="col-sm-12 col-lg-4 col-xl-4">
-                                        <mat-form-field class="belowlinkinput selfield">
-                                            <mat-label class="selplaceHolder">Service</mat-label>
-                                            <mat-select formControlName="bookingService">
-                                                <mat-option *ngFor="let serviceList of services" [value]="serviceList.name">
-                                                {{serviceList.name}}
-                                                </mat-option>                                    
-                                            </mat-select>                                                
-                                        </mat-form-field>
-                                        <!-- <p class="inputlink" [routerLink]="['/beautelabs/cbot-admin/serviceCreate']" routerLinkActive="active"><mat-icon>add</mat-icon> Add New Service</p> -->
-                                    </div>
-                                    <div class="col-sm-12 col-lg-4 col-xl-4">
-                                        <mat-form-field class="belowlinkinput selfield">
-                                            <mat-label class="selplaceHolder">Staff</mat-label>
-                                            <mat-select formControlName="bookingStaff">
-                                                <mat-option *ngFor="let staffList of staffs" [value]="staffList.value">
-                                                {{staffList.viewValue}}
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>   
-                                    </div>
-                                    <div class="col-sm-12 col-lg-3 col-xl-3">
-                                        <!-- <ngx-timepicker-field [defaultTime]="serviceTime" formControlName="bookingStartTime"></ngx-timepicker-field> -->
-                                        <mat-form-field class="selfield">
-                                            <mat-label class="selplaceHolder">Start Time</mat-label>
-                                            <mat-select formControlName="bookingStartTime">
-                                                <mat-option *ngFor="let timeList of startTime" [value]="timeList.value">
-                                                {{timeList.value}}
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-1">
-                                        <button mat-icon-button (click)="Delete(i)" class="delbtn">
-                                            <mat-icon>delete</mat-icon>
-                                        </button> 
-                                    </div>
-                                </div>
-                            </div>  
-                            <button mat-raised-button color="primary" (click)="addService()" class="mb-2 mt-5 ml-sm"> Add Service </button>  
-                            <p class="inputlink ml-1" [routerLink]="['/beautelabs/cbot-admin/serviceCreate']" routerLinkActive="active"><mat-icon>add</mat-icon>New Service</p>                            
-                            <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
-                                <div class="col-md-12 col-lg-6 col-xl-6 col-sm-6">
-                                    <mat-form-field>
-                                        <textarea matInput formControlName="bookingNote" placeholder="Booking Notes"></textarea>
-                                    </mat-form-field>
-                                </div>
-                            </div>  
-                            <div class="col-md-12 tr">
-                                <button mat-raised-button color="warn">Clear</button> 
-                                <button mat-raised-button color="primary" (click)="create()" class="ml-1">Submit</button> 
-                            </div>
-                        </div>
-                    </form>
-                </mat-card-content>
-            </mat-card>
-        </div>
-        <div fxFlex="40%" fxLayoutAlign="end">      
-            <mat-card class="full-width">   
-                <div *ngIf="customerHistory">
-                    <mat-card-header class="profileHistory">
-                        <div class="row col-md-12 col-xl-12 col-lg-12 pall-zero">
-                            <div class="col-md-4 col-xl-3 col-lg-3 customerProfile">
-                                <img src="../../../../assets/images/profile.png" />                                
-                            </div>
-                            <div class="col-md-9 col-xl-9 col-lg-9 profile">                                
-                                <h2>Jai Nishanth <mat-icon matSuffix class="ml-2">edit</mat-icon> </h2>
-                                <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
-                                    <div class="col-md-12 col-xl-12 col-lg-12 col-sm-12">
-                                        <mat-icon matPrefix>phone</mat-icon> +91 9876545679 
-                                    </div>
-                                    <div class="col-md-12 col-xl-12 col-lg-12 col-sm-12">
-                                        <mat-icon>email</mat-icon>jainishanth17@gmail.com
-                                    </div>
-                                </div>
-                                <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
-                                    <div class="col-md-12 col-xl-12 col-lg-12 col-sm-12">
-                                        <mat-icon matPrefix>payment</mat-icon> Billing History
-                                    </div>
-                                    <div class="col-md-12 col-xl-12 col-lg-12 col-sm-12">
-                                        <mat-icon>person</mat-icon>Preferred Staff : Ramesh@gmail.com
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>                      
-                    </mat-card-header>
-                    <hr />
-                    <mat-card-content>
-                        <div class="row col-md-12 col-xl-12 col-lg-12 mt-2">
-                            <div class="col-md-12 col-xl-12 col-lg-3">
-                                <p class="mb-red20">Birthday : 07 Aug, 1991 
-                                    <mat-datepicker-toggle matSuffix [for]="dobpicker">
-                                    <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
-                                    </mat-datepicker-toggle>
-                                    <mat-datepicker #dobpicker disabled="false"></mat-datepicker>
-                                    <input matInput [matDatepicker]="dobpicker" disabled>
-                                </p>
-                                <!-- <mat-datepicker #dobpicker></mat-datepicker>
-                                <mat-datepicker-toggle [for]="dobpicker"></mat-datepicker-toggle>
-                                <input type="hidden" [matDatepicker]="dobpicker"> -->
-                                <p class="mb-red20">Anniversary : 07 Aug, 1991                                    
-                                    <mat-datepicker-toggle matSuffix [for]="annivpicker">
-                                    <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
-                                    </mat-datepicker-toggle>
-                                    <mat-datepicker #annivpicker disabled="false"></mat-datepicker>
-                                    <input matInput [matDatepicker]="annivpicker" disabled>
-                                </p> 
-                                <p>Membership ID: NA</p>
-                                <p>Loyalty points : NA</p>
-                                <p>Prepaid Card Value : NA</p>
-                                <p>Voucher : NA</p>
-                                <mat-form-field>
-                                    <mat-label>Remarks</mat-label> <mat-icon matSuffix>edit</mat-icon>
-                                    <textarea matInput></textarea> 
+<div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pr-zero">
+    <div class="col-md-7 col-sm-12 col-lg-7 col-xl-7 pr-zero">
+        <!-- <div fxLayoutAlign="start" fxFlex="60%"> -->
+        <mat-card class="full-width">
+            <mat-card-content>
+                <form method="POST" [formGroup]="bookingForm"> 
+                    <div class="form-container">
+                        <div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 mb-2 mt-2 mb-0">
+                            <div class="col-sm-12 col-lg-3 col-xl-3">
+                                <mat-form-field class="belowlinkinput">
+                                    <input matInput placeholder="Customer" aria-label="Customer" [matAutocomplete]="customer" [formControl]="customerDet">
+                                    <mat-autocomplete #customer="matAutocomplete">
+                                        <mat-option *ngFor="let customer of filteredCustomer | async" [value]="customer.name">
+                                        <span>{{customer.name}} | {{customer.mobile}}</span>
+                                        </mat-option>
+                                    </mat-autocomplete>
                                 </mat-form-field>
-                               
-                            </div>             
+                                <p class="inputlink" [routerLink]="['/beautelabs/cbot-admin/customerCreate']" routerLinkActive="active"><mat-icon>add</mat-icon> Add New Customer</p>
+                            </div>  
+                            <div class="col-sm-12 col-lg-3 col-xl-3">
+                                <mat-form-field>
+                                    <input matInput [matDatepicker]="picker" required formControlName="bookingDate" (click)="picker.open()" placeholder="Date">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                            </div> 
+                            <div class="col-sm-12 col-lg-2 col-xl-2">
+                                <mat-form-field>
+                                    <mat-label class="selplaceHolder">Status</mat-label>
+                                    <mat-select formControlName="bookingStatus">
+                                        <mat-option *ngFor="let statusList of status" [value]="statusList.value">
+                                        {{statusList.viewValue}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field> 
+
+                            </div> 
+                            <div class="col-sm-12 col-lg-2 col-xl-2">
+                                <mat-form-field>
+                                    <mat-label class="selplaceHolder">Source</mat-label>
+                                    <mat-select formControlName="bookingSource">
+                                        <mat-option *ngFor="let sourceList of source" [value]="sourceList.value">
+                                        {{sourceList.value}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div> 
+                            <div class="col-sm-12 col-lg-2 col-xl-2">
+                                <button mat-raised-button class="recurbtn" (click)="openRecur()">Recurring <mat-icon matSuffix>autorenew</mat-icon></button>                                    
+                                <!-- <button mat-raised-button class="recurbtn" [matMenuTriggerFor]="recurMenu">Recurring <mat-icon matSuffix>autorenew</mat-icon></button>
+                                <mat-menu  #recurMenu=matMenu>                                                                                                                  
+                                    <form method="POST" [formGroup]="recurForm" class="recurSelectPopupForm">  
+                                        <mat-form-field class="mt-6">     
+                                            <mat-label>Frequency</mat-label>
+                                            <mat-select formControlName="recurFrequency">
+                                                <mat-option *ngFor="let recurList of recurFrequency" [value]="recurList.value">
+                                                {{recurList.value}}
+                                                </mat-option>
+                                            </mat-select>     
+                                        </mat-form-field>                                           
+                                        <button mat-raised-button color="primary" class="ml-1">Submit</button> 
+                                    </form>                                         
+                                </mat-menu>  -->
+                                    
+                            </div>  
                         </div>     
-                    </mat-card-content>
-                    <mat-card-footer>                            
-                    </mat-card-footer>
-                </div>
-            </mat-card>   
-        </div>
+                        <hr class="horizontalline" />
+                        <h3 matDialogTitle class="candidate-title">Services</h3>
+                        <div formArrayName="service" *ngFor="let ser of bookingForm.controls.service['controls']; let i=index">                 
+                            <div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 mb-red15 mt-2" [formGroupName]="i">
+                                <div class="col-sm-12 col-lg-4 col-xl-4">
+                                    <mat-form-field class="belowlinkinput selfield">
+                                        <mat-label class="selplaceHolder">Service</mat-label>
+                                        <mat-select formControlName="bookingService">
+                                            <mat-option *ngFor="let serviceList of services" [value]="serviceList.name">
+                                            {{serviceList.name}}
+                                            </mat-option>                                    
+                                        </mat-select>                                                
+                                    </mat-form-field>
+                                    <!-- <p class="inputlink" [routerLink]="['/beautelabs/cbot-admin/serviceCreate']" routerLinkActive="active"><mat-icon>add</mat-icon> Add New Service</p> -->
+                                </div>
+                                <div class="col-sm-12 col-lg-4 col-xl-4">
+                                    <mat-form-field class="belowlinkinput selfield">
+                                        <mat-label class="selplaceHolder">Staff</mat-label>
+                                        <mat-select formControlName="bookingStaff">
+                                            <mat-option *ngFor="let staffList of staffs" [value]="staffList.value">
+                                            {{staffList.viewValue}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>   
+                                </div>
+                                <div class="col-sm-12 col-lg-3 col-xl-3">
+                                    <!-- <ngx-timepicker-field [defaultTime]="serviceTime" formControlName="bookingStartTime"></ngx-timepicker-field> -->
+                                    <mat-form-field class="selfield">
+                                        <mat-label class="selplaceHolder">Start Time</mat-label>
+                                        <mat-select formControlName="bookingStartTime">
+                                            <mat-option *ngFor="let timeList of startTime" [value]="timeList.value">
+                                            {{timeList.value}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-1">
+                                    <button mat-icon-button (click)="Delete(i)" class="delbtn">
+                                        <mat-icon>delete</mat-icon>
+                                    </button> 
+                                </div>
+                            </div>
+                        </div>  
+                        <button mat-raised-button color="primary" (click)="addService()" class="mb-2 mt-5 ml-sm"> Add Service </button>  
+                        <p class="inputlink ml-1" [routerLink]="['/beautelabs/cbot-admin/serviceCreate']" routerLinkActive="active"><mat-icon>add</mat-icon>New Service</p>                            
+                        <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                            <div class="col-md-12 col-lg-6 col-xl-6 col-sm-6">
+                                <mat-form-field>
+                                    <textarea matInput formControlName="bookingNote" placeholder="Booking Notes"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>  
+                        <div class="col-md-12 tr">
+                            <button mat-raised-button color="warn">Clear</button> 
+                            <button mat-raised-button color="primary" (click)="create()" class="ml-1">Submit</button> 
+                        </div>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-md-5 col-sm-12 col-lg-5 col-xl-5">      
+        <mat-card class="full-width">   
+            <div *ngIf="customerHistory">
+                <mat-card-header class="profileHistory">
+                    <div class="row col-md-12 col-xl-12 col-lg-12 pall-zero">
+                        <div class="col-md-4 col-xl-3 col-lg-3 customerProfile">
+                            <img src="../../../../assets/images/profile.png" />                                
+                        </div>
+                        <div class="col-md-9 col-xl-9 col-lg-9 profile">                                
+                            <h2>Jai Nishanth <mat-icon matSuffix class="ml-2">edit</mat-icon> </h2>
+                            <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                                <div class="col-md-12 col-xl-12 col-lg-12 col-sm-12">
+                                    <mat-icon matPrefix>phone</mat-icon> +91 9876545679 
+                                </div>
+                                <div class="col-md-12 col-xl-12 col-lg-12 col-sm-12">
+                                    <mat-icon>email</mat-icon>jainishanth17@gmail.com
+                                </div>
+                            </div>
+                            <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                                <div class="col-md-12 col-xl-12 col-lg-12 col-sm-12">
+                                    <mat-icon matPrefix>payment</mat-icon> Billing History
+                                </div>
+                                <div class="col-md-12 col-xl-12 col-lg-12 col-sm-12">
+                                    <mat-icon>person</mat-icon>Preferred Staff : Ramesh@gmail.com
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>                      
+                </mat-card-header>
+                <hr />
+                <mat-card-content>
+                    <div class="row col-md-12 col-xl-12 col-lg-12 mt-2">
+                        <div class="col-md-12 col-xl-12 col-lg-3">
+                            <p class="mb-red20">Birthday : 07 Aug, 1991 
+                                <mat-datepicker-toggle matSuffix [for]="dobpicker">
+                                <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #dobpicker disabled="false"></mat-datepicker>
+                                <input matInput [matDatepicker]="dobpicker" disabled>
+                            </p>
+                            <!-- <mat-datepicker #dobpicker></mat-datepicker>
+                            <mat-datepicker-toggle [for]="dobpicker"></mat-datepicker-toggle>
+                            <input type="hidden" [matDatepicker]="dobpicker"> -->
+                            <p class="mb-red20">Anniversary : 07 Aug, 1991                                    
+                                <mat-datepicker-toggle matSuffix [for]="annivpicker">
+                                <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #annivpicker disabled="false"></mat-datepicker>
+                                <input matInput [matDatepicker]="annivpicker" disabled>
+                            </p> 
+                            <p>Membership ID: NA</p>
+                            <p>Loyalty points : NA</p>
+                            <p>Prepaid Card Value : NA</p>
+                            <p>Voucher : NA</p>
+                            <mat-form-field>
+                                <mat-label>Remarks</mat-label> <mat-icon matSuffix>edit</mat-icon>
+                                <textarea matInput></textarea> 
+                            </mat-form-field>
+                            
+                        </div>             
+                    </div>     
+                </mat-card-content>
+                <mat-card-footer>                            
+                </mat-card-footer>
+            </div>
+        </mat-card>   
     </div>
 </div>
 

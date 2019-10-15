@@ -53,9 +53,9 @@
     width:auto !important;
     height: 100% !important;
 }
-// .mat-drawer-side {
-//     border-right: none !important;
-// }
+.mat-drawer {
+    background: #1A263A !important;
+}
 .mat-drawer-inner-container {
     overflow: hidden !important;
 }
@@ -65,6 +65,7 @@
    background: #F7F7F8 !important
 }
 .mat-drawer-content {
+    margin-top:-2% !important;
     // padding:0.5% 1% !important;
    // background: $primary-color-lightwhite !important;
 }
@@ -81,6 +82,9 @@
 .mat-list-item:hover {
     background: #293a54!important;
     // border-right: 5px solid #03a9f4;
+}
+.mat-list-item-content {
+    padding:0px 5px !important;
 }
 .mat-list-item-content .mat-icon {
     color:$primary-color-gray !important;
@@ -138,6 +142,12 @@ button.mat-menu-item {
     background: $primary-color-lightblue !important;
     color:$primary-color-white !important;
 }
+.mat-raised-button .mat-primary {
+    background-color: #3498db !important;
+    border-color:#3498db !important;
+    line-height: 32px !important;
+    padding: 0px 10px !important;
+}
 .mat-paginator-page-size-label {
     display: none !important;
 }
@@ -154,7 +164,7 @@ button.mat-menu-item {
     margin:0px 5px 0px 0px !important;
 }
 .mat-paginator-container {
-    min-height: 64px !important;
+    min-height: 40px !important;
 }
 .mat-card-footer {
     margin:0 -16px -14px -16px !important;
@@ -294,7 +304,7 @@ button.mat-menu-item {
     width:30% !important;
     background: transparent;
     border: none;
-    height: 33px !important;
+    height: 21px !important;
     display: unset !important;
 }
 .booking .mat-tab-body-wrapper {
@@ -361,4 +371,9 @@ textarea.mat-input-element {
 }
 .profileHistory .mat-card-header-text {
     margin:0px !important;
+}
+.addicon {
+    font-size: 17px !important;
+    vertical-align: sub !important;
+    font-weight: bold !important;
 }
