@@ -799,7 +799,7 @@ a:not([href]):not([tabindex]) {
 //menu
 .menuicon {
     margin-top: 2vh;
-    padding-left: 21px;
+    padding-left: 8px;
     color: #fff;
     font-size:$primary-font-size-xl;
     margin-bottom: 9%;
@@ -892,6 +892,39 @@ a:not([href]):not([tabindex]) {
 }
 .bookingstaff .mat-form-field-wrapper {
     padding-bottom: 0.25em !important;
+}
+.topmenu::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    color: #000;
+    transform: scaleX(0);
+    transition: transform 200ms ease-in;
+}
+.topmenu::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    color: #000;
+    transform: scaleX(0);
+    transition: transform 200ms ease-in;
+}
+td,th {
+    font-size: 11px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+tr.mat-row {
+    height: 35px !important;
 }
 //Responsive Css
 //Header
@@ -1015,6 +1048,7 @@ a:not([href]):not([tabindex]) {
     min-height: 400px !important;
     overflow-y: scroll !important;
     overflow-x: hidden !important;
+    height:660px !important;
 }
 .mt-red4 {
     margin-top:-4% !important;
@@ -1035,7 +1069,9 @@ a:not([href]):not([tabindex]) {
     .mtop-5 {
         margin-top:5% !important;
     }   
-   
+    .fc-body .fc-scroller {
+        height: 400px !important;
+    }
     .smpage{
         flex: 0 0 100%;
         width: 100%;
@@ -1048,7 +1084,7 @@ a:not([href]):not([tabindex]) {
         height: 2em !important;
     }
     .fc-view-container *, .fc-view-container *:before, .fc-view-container *:after {
-        font-size: $primary-font-size-xs !important;
+        font-size: $secondary-font-size-xs !important;
     }
     .fc-scroller, .fc-day-grid-container {
         height: 400px !important;
@@ -1161,9 +1197,9 @@ a:not([href]):not([tabindex]) {
     //     left:110% !important;
     // }
     .bookingstaff {
-        position: absolute !important;
-        right: 23% !important;
-        margin-top: 0.2% !important;
+        // position: absolute !important;
+        // right: 23% !important;
+        // margin-top: 0.2% !important;
         // width: 23% !important;
     }
 

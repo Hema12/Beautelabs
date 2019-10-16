@@ -65,7 +65,7 @@
    background: #F7F7F8 !important
 }
 .mat-drawer-content {
-    margin-top:-2% !important;
+    // margin-top:-2% !important;
     // padding:0.5% 1% !important;
    // background: $primary-color-lightwhite !important;
 }
@@ -126,12 +126,16 @@ tr.mat-header-row {
      color:$primary-color-lightblack !important;
 }
 .mat-menu-item {
-    height: 40px !important;
-    line-height: 40px !important;
+    height: 35px !important;
+    line-height: 35px !important;
+    padding:0px 4px !important;
 }
 button.mat-menu-item {
-    min-height: 5vh;
-    min-width: 170px !important;
+    min-height: 3vh;
+    min-width: 132px !important;
+}
+.mat-menu-item .mat-flat-button {
+    padding: 0px 4px !important;
 }
 // .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
 //     background: #3498DB !important;
@@ -212,9 +216,7 @@ button.mat-menu-item {
 .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
     display: none !important;
 }
-.mat-menu-panel {
-    border-radius: 10px !important;
-}
+
 .mat-menu-content:not(:empty) {
     padding-top: 0px !important;
     padding-bottom: 0px !important;
@@ -229,21 +231,22 @@ button.mat-menu-item {
 .mat-list-base {
     padding-top:0px !important;
 }
-.sidebarSubmenu {
-    position: absolute !important;
-    left: 8.7% !important;
-    border-radius: 0px !important;
-    top: -6% !important;
-}
-.sidebarSubmenu {
-    position: absolute !important;
-    left: 3.4% !important;
-    border-radius: 0px !important;
-    top: -6% !important;
-}
+// .sidebarSubmenu {
+//     position: absolute !important;
+//     left: 8.7% !important;
+//     border-radius: 0px !important;
+//     top: -6% !important;
+// }
+// .sidebarSubmenu {
+//     position: absolute !important;
+//     left: 3.4% !important;
+//     border-radius: 0px !important;
+//     top: -6% !important;
+// }
 .mat-menu-item .mat-icon {
     color: #272727 !important;
     margin-right: 0px !important;
+    font-size: 14px !important;
 }
 .customerForm .mat-form-field {
     width:90% !important;

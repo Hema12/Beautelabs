@@ -15,7 +15,9 @@ export class HeaderComponent implements OnInit {
 
   
 
-  constructor(private sidenav: SidenavService) { }
+  constructor(private sidenav: SidenavService) {
+
+   }
 
   ngOnInit() {
   }
@@ -39,4 +41,5 @@ export class HeaderComponent implements OnInit {
     this.isExpanded != this.isExpanded;
     this.sidenav.toggle();
   }
+ 
 }
