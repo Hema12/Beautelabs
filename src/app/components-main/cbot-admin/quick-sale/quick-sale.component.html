@@ -1,5 +1,5 @@
 
-<div fxLayout="column" fxLayoutAlign="start">
+<!-- <div fxLayout="column" fxLayoutAlign="start">
     <div fxLayout="row">
         <div fxFlex="83%" fxLayoutAlign="start">
             <h2>Sales</h2>
@@ -13,29 +13,31 @@
                 </nav>
         </div>
     </div>    
-</div>
-<div fxLayout="column">
-    <div fxLayout="row">
-        <div fxFlex="68%" fxLayoutAlign="start" class="mb-10 mt-2">
-            <button mat-raised-button color="primary" [routerLink]="['/beautelabs/cbot-admin/saleCreate']" style="height:35px;">Add New Sale</button> 
-        </div>        
-        <div fxFlex="12%">
-            <mat-form-field class="mt-6">
-                <mat-label>Select</mat-label>
-                <mat-select>
-                    <mat-option value="today">Today</mat-option>
-                    <mat-option value="last week">Last Week</mat-option>
-                    <mat-option value="last 15 days">Last 15 Days</mat-option>
-                    <mat-option value="last month">Last Month</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <div fxFlex="18%" fxLayoutAlign="end">
-            <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
-        </div>
+</div> -->
+<div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mr-zero ml-zero pall-zero">        
+    <div class="col-md-2 col-xl-1 col-lg-1 col-sm-2 topwidth">
+        <h2 class="page-title">Sales</h2>
+    </div>
+    <div class="col-md-2 col-xl-1 col-lg-1 col-sm-2 topwidth">
+            <button mat-raised-button [routerLink]="['/beautelabs/cbot-admin/saleCreate']" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button>  
+    </div>
+    <div class="col-md-2 col-xl-3 col-lg-3 col-sm-2 topwidth">
+        <mat-form-field class="bookingstaff">
+            <mat-label>Select</mat-label>
+            <mat-select>
+                <mat-option value="today">All Staffs</mat-option>
+                <mat-option value="today">Devi</mat-option>
+                <mat-option value="last week">Ramya</mat-option>
+                <mat-option value="last 15 days">Nithya</mat-option>
+                <mat-option value="last month">Ashika</mat-option>
+                <mat-option value="last month">Ravi</mat-option>
+            </mat-select>
+        </mat-form-field> 
     </div>
 </div>
-<div fxLayout="row">
+
+
+<div class="row col-md-12 col-sm-12 col-xs-12 col-xl-12 col-lg-12 pall-zero mall-zero newCard">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
     
     <ng-container matColumnDef="sno">
@@ -49,7 +51,7 @@
     </ng-container>                
     
     <ng-container matColumnDef="mobile">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Mobile Number </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Mobile </th>
         <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
     </ng-container>
 
@@ -66,18 +68,16 @@
     <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let element">
-            <button mat-flat-button [matMenuTriggerFor]="menu" color="primary">Action</button>
-            <mat-menu #menu="matMenu">
-                <button mat-menu-item>
-                        <mat-icon>remove_red_eye</mat-icon> View                        
-                </button>                 
-            </mat-menu>
+            <mat-icon color="primary">remove_red_eye</mat-icon>                                    
         </td>
     </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 </div>
+<div class="row col-md-12 col-sm-12 col-xs-12 col-xl-12 col-lg-12 pall-zero mall-zero">
+        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>  
+    </div>
 
 
 

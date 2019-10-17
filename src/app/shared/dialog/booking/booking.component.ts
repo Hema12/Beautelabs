@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject, TemplateRef, ViewChild } from '@angular/core';
-// import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Component, OnInit, Inject, TemplateRef, ViewChild, Input } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormControl, Validators, FormControlName, FormBuilder, FormArray } from '@angular/forms';
 import {NgSelectModule, NgOption} from '@ng-select/ng-select';
 import { Observable } from 'rxjs';
@@ -9,7 +9,6 @@ import {DateAdapter} from '@angular/material/core';
 import { ActivatedRoute } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap';
-import {MatDialog} from '@angular/material/dialog';
 import { Time } from '@angular/common';
 import { getTime } from 'ngx-bootstrap/chronos/utils/date-getters';
 import { DatePipe } from '@angular/common';
@@ -20,6 +19,7 @@ import {MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material';
 import * as _moment from 'moment';
 import {default as _rollupMoment} from 'moment';
 import { RecurPopupComponent } from '../recur-popup/recur-popup.component';
+import { filter } from 'minimatch';
 
 const moment = _rollupMoment || _moment;
 
@@ -28,7 +28,7 @@ export const MY_FORMATS = {
     dateInput: 'LL',
   },
   display: {
-    dateInput: 'DD-MMM-YYYY',
+    dateInput: 'DD MMM-YYYY',
     monthYearLabel: 'MMM YYYY',
     dateA11yLabel: 'LL',
     monthYearA11yLabel: 'MMMM YYYY',
@@ -74,6 +74,9 @@ export interface recurFrequency {
   ],
 })
 export class BookingComponent implements OnInit {
+  selfreq: string;
+  showRecur: boolean = true;
+  showFreq: boolean = false;
   bookingForm: FormGroup;
   recurForm: FormGroup;
   bookingDate = new FormControl(moment());
@@ -226,13 +229,16 @@ getDisabledValue() {
 openRecur() {   
 //this.modalRef = this.modalService.show(recurringtemplate);
   const dialogRef = this.dialog.open(RecurPopupComponent, {
-    width: '17%',
+    //width: '50%',
+    width:'col-md-4',
     data: {},
-    position: {top: '9%', left:'48%'}
+    //position: {top: '9%', left:'48%'}
   });
 
   dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
+   this.showRecur = false;
+    this.selfreq = result;
+    this.showFreq = true;    
   });
 }
 

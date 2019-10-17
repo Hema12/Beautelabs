@@ -1,4 +1,41 @@
 <div class="login-bg">
+    <div class="row col-sm-12 col-md-12 col-xl-12 col-lg-12" style="height: 100vh;margin:0px;">        
+        <mat-card class="loginpage">
+            <div class="col-md-6 col-sm-6 col-xl-6 col-lg-6">
+                <mat-card-header>
+                    <img src="../../../../assets/images/logo.png" />                                               
+                </mat-card-header>
+                <div class="loginpage-content">
+                    <span fxHide fxShow.gt-sm> Welcome to <br />Salon <br />Management Software</span>
+                </div> 
+            </div>
+            <div class="col-md-6 col-sm-6 col-xl-6 col-lg-6 borderleft">
+                <mat-card-content>
+                    <div class="loginpage-title">
+                        Login
+                    </div>
+                    
+                    <form class="mt-15">
+                        <p>
+                            <mat-form-field>
+                                <input matInput placeholder="UserName" />
+                            </mat-form-field>
+                        </p>
+                        <p>
+                            <mat-form-field>
+                                <input matInput type="password" placeholder="Password" />
+                            </mat-form-field>
+                        </p>
+                        <mat-card-actions align="start">
+                            <button mat-raised-button color="primary" (click)="validate()">Submit</button> 
+                        </mat-card-actions>
+                    </form>
+                </mat-card-content>
+            </div>
+        </mat-card>
+    </div>
+</div>        
+<!-- <div class="login-bg">
         <div fxLayout="column">
             <div fxLayout="row" fxLayoutAlign="center center" style="height: 100vh;">
                 <div fxFlex="55%" class="border">
@@ -39,4 +76,4 @@
             </div>        
         </div> 
         </div> 
-        
+         -->

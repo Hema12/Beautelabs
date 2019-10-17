@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, HostListener } from '@angular/core';
 import { SidenavComponent } from '../sidenav/sidenav.component';
 import { MatSidenav } from '@angular/material';
 import { SidenavService } from '../../services/sidenav.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -13,13 +14,21 @@ export class HeaderComponent implements OnInit {
   isExpanded = false;
   element: HTMLElement;
 
-  
+  screenWidth: number;
+  private screenWidth$ = new BehaviorSubject<number>(window.innerWidth);
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.screenWidth$.next(event.target.innerWidth);
+  }
 
   constructor(private sidenav: SidenavService) {
 
    }
 
   ngOnInit() {
+    this.screenWidth$.subscribe(width => {
+      this.screenWidth = width;
+    });
   }
   // toggleRightSidenav() {
   //   this.toggleActive = !this.toggleActive;
@@ -39,7 +48,7 @@ export class HeaderComponent implements OnInit {
   }
   openDrawer() {
     this.isExpanded != this.isExpanded;
-    this.sidenav.toggle();
+    //this.sidenav.toggle();
   }
  
 }

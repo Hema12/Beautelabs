@@ -10,9 +10,10 @@ import { EventInput } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGrigPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import resourceTimeGrid from '@fullcalendar/resource-timegrid';
+import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
 import { Router } from '@angular/router';
 import { DateTime } from 'luxon';
+import moment from 'moment';
 export interface PeriodicElement {
   name: string;
   sno: number;
@@ -64,13 +65,23 @@ export class AppointmentComponent implements OnInit {
   name: string;
   @ViewChild(FullCalendarComponent, {static: true}) calendarComponent: FullCalendarComponent;  
   calendarVisible = true;
-  calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin, resourceTimeGrid];
+  calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin, resourceTimeGridPlugin];
   calendarWeekends = true;
-  resourceText: string;
-  resources: any;
-  events: any;
   todayDate = new Date();
   slotDuration: any; 
+  resources: any[] = [
+    {id:'1',title:'Devi'},
+    {id:'2',title:'Ramya'},
+    {id:'3',title:'Nithya'},
+    {id:'4',title:'Ashika'},
+    {id:'5',title:'Ravi'},
+  ];  
+  events: any = [
+    { title: 'Hair Cut - Devi - 10:00 AM', start: new Date(), backgroundColor:'#f00'},
+    { title: 'Bleech - Devi - 10:45 AM', start: new Date(), backgroundColor:'#9fb3d4' },
+    { title: 'Facial - Nithya - 11:30 AM', start: new Date('2019-10-17'), backgroundColor:'#407d5d' },
+    { title: 'Hair Coloring - Abhi - 03:00 PM', start: new Date('2019-10-16'), backgroundColor:'#34cf7d' }
+  ]; 
   toggleWeekends() {
     this.calendarWeekends = !this.calendarWeekends;
   }
@@ -112,14 +123,12 @@ export class AppointmentComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     console.log(this.todayDate);
-    this.initFunction();
-    this.calicon="event_note";
+    //this.initFunction();
+    this.calicon="list";
     this.calString = "Calendar";
     this.selIcon = "event";    
 }
-toggle() { 
-  console.log(this.calicon);
-  
+caltoggle() { 
   if(this.calicon == "event_note") { 
     this.calicon = "list";
     this.calString = "List";
@@ -130,22 +139,19 @@ toggle() {
     this.calicon = "event_note";
   }
 }
-initFunction() {
-  this.resourceText = "Timings";
-  this.slotDuration = "00:15:00";
-  this.resources = [
-    {id:'1',title:'Devi'},
-    {id:'2',title:'Ramya'},
-    {id:'3',title:'Nithya'},
-    {id:'4',title:'Ashika'},
-    {id:'5',title:'Ravi'},
-  ];  
-  this.events = [
-    { title: 'Hair Cut - Devi - 10:00 AM', start: new Date(), backgroundColor:'#f00'},
-    { title: 'Bleech - Devi - 10:45 AM', start: new Date(), backgroundColor:'#9fb3d4' },
-    { title: 'Facial - Nithya - 11:30 AM', start: new Date('2019-10-06'), backgroundColor:'#407d5d' },
-    { title: 'Hair Coloring - Abhi - 03:00 PM', start: new Date('2019-10-04'), backgroundColor:'#34cf7d' }
-  ]; 
-  resources:'Resouces'
-}
+// initFunction() {
+//   this.resources = [
+//     {id:'1',title:'Devi'},
+//     {id:'2',title:'Ramya'},
+//     {id:'3',title:'Nithya'},
+//     {id:'4',title:'Ashika'},
+//     {id:'5',title:'Ravi'},
+//   ];  
+//   this.events = [
+//     { title: 'Hair Cut - Devi - 10:00 AM', start: new Date(), backgroundColor:'#f00'},
+//     { title: 'Bleech - Devi - 10:45 AM', start: new Date(), backgroundColor:'#9fb3d4' },
+//     { title: 'Facial - Nithya - 11:30 AM', start: new Date('2019-10-06'), backgroundColor:'#407d5d' },
+//     { title: 'Hair Coloring - Abhi - 03:00 PM', start: new Date('2019-10-04'), backgroundColor:'#34cf7d' }
+//   ]; 
+// }
 }

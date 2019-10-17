@@ -1,7 +1,7 @@
 <form method="POST" [formGroup]="recurForm" class="recurPopupForm">                                             
     <mat-form-field class="mt-6">
         <mat-label>Frequency</mat-label>
-        <mat-select formControlName="recurFrequency" (click)="getFrequency($event.value)">
+        <mat-select formControlName="recurFrequency" (click)="getFrequency($event.value)" #selfreq>
             <mat-option *ngFor="let recurList of recurFrequency" [value]="recurList.value">
             {{recurList.value}}
             </mat-option>

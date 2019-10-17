@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { FormGroup, FormControl } from '@angular/forms';
 
 
@@ -16,6 +16,7 @@ export interface recurEndTime {
   styleUrls: ['./recur-popup.component.scss']
 })
 export class RecurPopupComponent implements OnInit {
+  @ViewChild(MatDialog, {static: true}) selfreq: MatDialog;
   recurForm: FormGroup;
   selFrequency: boolean = false;
   selFrequencyValue: string;
@@ -60,7 +61,7 @@ export class RecurPopupComponent implements OnInit {
   getFrequencyEnd(val) {
     this.selFrequencyValue = val;    
   }
-  submit() {
-    this.dialogRef.close();
+  submit() {    
+    this.dialogRef.close(`${this.recurForm.value.recurFrequency}`);
   }
 }

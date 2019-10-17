@@ -1,9 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
-/* You can add global styles to this file, and also import other style files */
+/* Global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
-
 @import "material.scss";
-
 @import "app/theme/theme.scss";
 @import '@fullcalendar/core/main.css';
 @import '@fullcalendar/daygrid/main.css';
@@ -13,6 +10,7 @@ body {
     margin:0px !important;
     font-family: $primary-font-family !important;
     background: $primary-color-white !important;
+    overflow-y: hidden !important;
 }
 * outline {
     background: none !important;
@@ -28,11 +26,7 @@ body {
     transform: translate(-50%,-50%);
  }
 .login-bg {
-    // background-image: url('assets/images/login-bg.jpg');
-   // background-image: linear-gradient(-90deg,#21e2c0,#37B9E9); // blue and green
     background-image:linear-gradient(to right,#0178bc 0,#00bdda 100%);
-    //background-image: linear-gradient(-90deg, #123164, #37B9E9); // dark and light blue 
-    // background:#f6f6f6;
 }
 .loginpage-title {
     font-size: $primary-font-size-xxl;
@@ -41,8 +35,7 @@ body {
     line-height:$primary-line-height-xxl;
 }
 .loginpage {
-    min-height: 45vh !important;
-    padding: 4% !important;    
+    margin:auto !important;
 }
 .borderleft {
     border-left: 1px solid #23dfc424 !important;
@@ -53,16 +46,19 @@ body {
     font-family: $primary-font-family;
     padding: 8% 10%;
     line-height:$primary-line-height-xxl;
-    // text-align: center;
     color: $primary-color-fbblue;
 }
-
+.borderrgt {
+    border-right: 1px solid rgba(0, 0, 0,0.05);
+}
+.borderbtm {
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+}
 //header
 .header {
-    //  height: 5vh;
 }
 .logo {
-    // background: #fff;
     background: $primary-color-lightwhite;
     padding: 0px !important;
     margin: 0px !important;
@@ -75,13 +71,11 @@ body {
     font-size: 1.3em;
 }
 .logo img {
-    // height: 40px;
     height: 90%;
     margin: 2%;
 }
 
 .menutoggle {
-    // padding: 4% !important;
     padding:2% !important;
 }
 
@@ -99,7 +93,9 @@ body {
     padding-top:0.6%;
 }
 .notification button {
-    width:4%; 
+    width: 1%;
+    padding: 0px 4px !important;
+    min-width: 50px !important;
 }
 .notification .mat-icon {
     color:$primary-color-lightgrey !important;
@@ -109,23 +105,18 @@ body {
     width:90%;
     margin:1% 4%;
 }
-.staff {
-    // height: 200px;
-}
 .staff img {
-    // height: 110px;
     width:100%;
 }
 .staff p {
-    font-size: $primary-font-size;
-    margin-bottom: 5%;
+    font-size: $primary-font-size-sm;
+    margin-bottom: 1%;
 }
 .highlight {
     background: #949494;
 }
 .rgt {
     text-align: right !important;
-    // margin-right: 10px !important;
 }
 .mb-0 {
     margin-bottom: 0px !important;
@@ -151,10 +142,11 @@ body {
 .mt-sm {
     margin-top: 0.5%;
 }
+.mt-md {
+    margin-top: 1% !important;
+}
 //Footer
 .footer {
-    // background: $primary-color-footerbg;
-    // position: fixed;
     bottom: 0;
     width:100%;
     height: 40px;
@@ -168,7 +160,7 @@ body {
     font-size: 13px;
 }
 .main-content {
-    padding:0% 1%;
+    padding:0.4% 1%;
 }
 //Grid List
 .grid-container {
@@ -257,20 +249,10 @@ th {
 }
 //active menu
 .active {
-    //background: #ece9e9!important;
-    //border-right: 5px solid #03a9f4;
     background: #34496d !important;
 }
-// .active a{
-//     color:$primary-color-lightwhite !important;
-// }
-// .active .mat-icon{
-//     color:$primary-color-lightwhite !important;
-// }
 .bookingstaff {
-   // position: absolute !important;
-   // right:15% !important;
-  //  margin-top:0.3% !important;
+    margin-top:0.6%;
 }
 .bookingbtn {
     height: 30px !important;
@@ -327,7 +309,6 @@ th {
     padding-top: 22% !important;
 }
 .radioLabel {
-    // margin-top: 3%;
     margin-bottom: 0px !important;
     font-weight: 400;
     font-family: roboto;
@@ -344,20 +325,29 @@ th {
     border-bottom: 1px solid #202427;   
 }
 .horizontalline {
-    margin-top: 1px !important;
+    margin-top: 3px !important;
     margin-bottom: 10px !important;
     border: 0 !important;
-    border-top: 1px solid #8e7e7e !important;
+    border-top:1px solid rgba(197, 214, 222, 0.7) !important
 }
 .profile .mat-icon {
-    font-size: 16px !important;
-    vertical-align: sub !important;
+    font-size:$primary-font-size-md !important;
+//    vertical-align: sub !important;
+}
+.profileHistory button {
+    height: 20px !important;
+}
+.profileHistory .mat-icon {
+    font-size: $primary-font-size !important;
 }
 .mt-red10 {
     margin-top:-10px !important;
 }
 .pall-zero {
     padding:0px !important;
+}
+.mall-zero {
+    margin:0px !important;
 }
 .ml-zero {
     margin-left:0px !important;
@@ -466,34 +456,42 @@ th {
 .timepicker__header {
     background-color: #f44336 !important;
 }
-.col-md-3 {
-    flex:0 0 24%;
-    width: 24%;
-    margin-left: 1%;
-}
-.col-md-2 {
-    flex:0 0 20%;
-}
+// .col-md-3 {
+//     flex:0 0 24%;
+//     width: 24%;
+//     margin-left: 1%;
+// }
+
 .col-md-4 {
     flex: 1 0 33%;
     width: 33%;
-    //margin-left: 0.9%;
-}
-.col-md-6 {
-    flex: 0 0 50%;
-    width: 50%;
-    //margin-left: 0.9%;
 }
 .modal-content {
     padding:2% 4% !important;
 }
+.fc-resourceTimeGridDay-view .fc-row {
+    padding:4px !important;
+}
 .dialog-title {
     border-bottom: 1px solid #ff3c01;
     width: fit-content;
-    /* padding-bottom: 2%; */
     margin-bottom: 6%;
 }
-
+.topwidth {
+    width:20% !important;
+}
+.topwidth .mat-form-field {
+    width:120px !important;
+}
+.topwidthcustomer {
+    width: 25% !important;
+}
+.topwidthcustomerField {
+    width:50% !important;
+}
+.topwidthcustomerField .mat-form-field{
+   // width: 150px !important;
+}
 .cdk-overlay-container {
     z-index: 1051 !important;
 }
@@ -527,17 +525,20 @@ th {
 .mb-1 {
     margin-bottom: 1%;
 }
+.mb-11 {
+    margin-bottom: 11px !important;
+}
 .addon .mat-card-header-text {
     margin: 0px !important;
 }
 .page-title {
     font-family: $primary-font-family-common !important;
     font-weight: $primary-font-weight !important;
-    font-size: $secondary-font-size-xl !important;
+    font-size: $primary-font-size-lg !important;
     // padding-left: 1%;
     width:100%;
     color:$primary-color-darkblue !important;
-    margin:5px 0px 5px 3px !important;
+    // margin:5px 0px 5px 3px !important;
 }
 .customerProfile img {
     height: 95px !important;
@@ -608,7 +609,6 @@ th {
     padding:0px;
     position: absolute;
     bottom: 0px;
-    // background: #1ec588;
     background: #57707b;
     width: 100%;
     margin:0 0px 0px -16px !important;
@@ -653,7 +653,7 @@ th {
     background: $primary-color-white !important;
 }
 .fc-button {
-    padding:0.2em 0.15em !important;
+    padding:0.2em 0.3em !important;
     background: #fff !important;
     color: #000 !important;
     opacity: 1 !important;
@@ -669,11 +669,18 @@ th {
     opacity: 1;
     border:1px solid #ddd !important;
     color: #000;
+    height: 29px;
+    line-height: 29px;
+    border-radius: 2px;
+}
+.fc-right .fc-button {
+    width:50px !important;
+}
+.fc-today-button {
+    width:45px !important;
 }
 .fc-toolbar.fc-header-toolbar {
     margin-bottom: 0.5em !important;
-    // margin-top:-14px !important;
-    // margin-left: 16% !important;
 }
 .fc-dayGridMonth-button .bookingstaff {
     top:1% !important;
@@ -687,10 +694,6 @@ th {
 .fc-day-grid .fc-row {
     height: 10em !important;
 }
-// .fc-scroller, .fc-day-grid-container {
-//     height: auto !important;
-//     overflow: hidden !important;
-// }
 .fc-view-container *, .fc-view-container *:before, .fc-view-container *:after {
     font-size: 11px !important;
 }
@@ -727,33 +730,6 @@ a:not([href]):not([tabindex]) {
 .fc-time-grid .fc-event, .fc-time-grid .fc-bgevent {
     position: relative !important;
 }
-// .fc-prev-button {
-//     left: 1410% !important;
-//     // margin-top: -55% !important;
-//     background: #fff !important;
-//     border-color: #dee3e7 !important;
-//     color: #000;
-// }
-// .fc-next-button{
-//     position: absolute !important;
-//     left:2244% !important;
-//     // margin-top: -56% !important;
-//     background: #fff !important;
-//     border-color: #dee3e7 !important;
-//     color: #000;
-// }
-// .fc-today-button {
-//     position: absolute !important;
-//     left: 1511% !important;
-//     // top: -181% !important;
-//     background: #fff !important;
-//     opacity: 1 !important;
-//     color: #1a263a !important;
-//     height: 29px !important;
-//     border: 1px solid #dee3e7 !important;
-//     width: 90px !important;
-//     font-size: $secondary-font-size !important;
-// }
 .fc-resourceTimeGridDay-button, .fc-dayGridMonth-button, .fc-timeGridWeek-button, .fc-timeGridDay-button{
     color: #1a263a !important;
     border-radius: 0 !important;
@@ -764,24 +740,6 @@ a:not([href]):not([tabindex]) {
     color: #232323 !important;
     background-color: #F1F1F1 !important;
 }
-// .fc-center {
-//     width: 195px !important;
-//     background: #fff !important;   
-//     margin-left: -3% !important;
-// }
-// .fc-center h2 {
-//     margin: -1px !important;
-//     // margin-top: -23px !important;
-//     background: #fff !important;
-//     border: 1px solid #dee3e7 !important;
-//     margin-left: -1px !important;
-//     padding: 0px !important;
-//     height: 29px !important;
-//     font-family: 'Proxima Nova', sans-serif !important;
-//     font-size:$secondary-font-size-sm !important;
-//     text-align: center !important;
-//     line-height: 29px !important;
-// }
 .fc-button .fc-icon {
     font-size: 1.2em !important;
 }
@@ -807,9 +765,10 @@ a:not([href]):not([tabindex]) {
 .menu-tooltip {
     background: $primary-color-darkblue !important;
     color:$primary-color-white !important;
-    margin-left: 25px !important;
+    margin-left: 15px !important;
     height: 30px !important;
-    font-size: 14px !important;  
+    font-size: 12px !important;      
+   
 }
 .menu-tooltip::before {
     position: absolute;
@@ -838,6 +797,7 @@ a:not([href]):not([tabindex]) {
     text-align: right;
     display: flex;
     cursor: pointer !important;
+    margin:0px !important;
 }
 .belowlinkinput {
     margin-bottom: -10px !important;
@@ -849,24 +809,30 @@ a:not([href]):not([tabindex]) {
     font-size: 18px !important;
 }
 .full-width {
-    width:99% !important;
+    width:100% !important;
 }
 .recurbtn {
     border:1px solid #ccc !important;
     top:-1px !important;
     color: $primary-color-darkblue !important;
-    line-height: 29px !important;
-    font-size: $secondary-font-size !important;
+    font-size: $secondary-font-size-sm !important;
+    line-height: 27px !important;
+    padding: 0px 4px !important;
 }
 .delbtn {
-    line-height: 30px !important;
-    height: 34px !important;
+    line-height:40px !important;
+    height:40px !important;
 }
 .delbtn .mat-icon {
-    font-size: 20px !important;
+    font-size: 19px !important;
 }
-.candidate-title {
+.customer-title {
     padding-left: 1% !important;
+    font-family: $secondary-font-family !important;
+    background: $primary-color-lightwhite;
+    padding: 0.2em;
+    font-size: $primary-font-size !important;
+    font-weight:$primary-font-weight-600 !important;
 }
 .fc-license-message {
     display: none !important;
@@ -928,6 +894,40 @@ tr.mat-row {
 }
 //Responsive Css
 //Header
+@media (min-width: 1200px)
+{
+    .col-lg-3 {
+        max-width: 24% !important;
+        flex: 0 0 24% !important;
+        margin-left: 1% !important;
+    }
+}
+@media only screen and (min-width: 992px) and(max-width:1000px) {
+    .col-lg-3 {
+        flex:0 0 64% !important;
+        max-width: 64% !important;
+    }
+}
+@media only screen and (min-width:710px) and (max-width: 890px) {
+    .newCard {
+        height: 66vh !important;
+    }
+    .col-md-3 {
+        flex:0 0 32%;
+        max-width: 32%;
+        margin-left: 1%;
+    }
+}
+@media only screen and (min-width:660px) and (max-width: 710px) {
+    .newCard {
+        height: 66vh !important;
+    }
+    .col-md-3 {
+        flex:0 0 45%;
+        max-width: 45%;
+        margin-left: 1%;
+    }
+}
 @media only screen and (min-width:620px) and (max-width: 800px) {
     .logo {
         min-width: 22% !important;
@@ -935,15 +935,18 @@ tr.mat-row {
     .logo img {
         height: 35px !important;
     }
-    .col-md-3 {
-        flex:0 0 100%;
-        width: 100%;
-        margin-left: 0%;
-    }
+    // .col-md-3 {
+    //     flex:0 0 33%;
+    //     width: 33%;
+    //     margin-left: 1%;
+    // }
     .col-md-6 {
         width:100%;
         flex:0 0 100%;
         margin-left: 0px;
+    }
+    .topwidthcustomerField .mat-form-field{ 
+        width:200px !important;
     }
     .pl-0 {
         padding-left: 13px !important;
@@ -956,7 +959,6 @@ tr.mat-row {
         width:32%;
         flex: 0 0 32%;
         margin-left: 1%;
-        margin-top:2%;
     }
     .staff.mat-card-header {
         display: contents !important;
@@ -996,50 +998,29 @@ tr.mat-row {
         height: 5vh;
     }
 }
+// @media only screen and (min-width:680px) and (max-width:800px) {
+//     .mat-drawer-container {
+//         margin-top:6.5% !important;
+//     }
+//     .mat-drawer.mat-drawer-side {
+//         top:11% !important;
+//     }
+// }
 //ipad
 @media only screen and (min-width: 521px) and (max-width:768px) {
-    .grid-container {
-    //    display: grid;
-    //    grid-template-columns: auto;
-        }
     .grid-item {
         width:100% !important;
     }
-    // .cdk-overlay-pane {
-    //     width:100% !important;
-    // }
-    // .fc-toolbar.fc-header-toolbar {
-    //     margin-top:30px !important;
-    // }
+    .newCard {
+        height: 64vh !important;
+    }
     .booking .mat-tab-header {
         margin-top: 1.5% !important;
         margin-left: 23% !important;
     }
-    // .fc-prev-button {
-    //     left:-100% !important;
+    // .mat-drawer-container {
+    //     min-height: 83vh !important;
     // }
-    // .fc-next-button {
-    //     left:659% !important;
-    // }
-    // .fc-center {
-    //     margin-left: -36% !important;
-    // }
-    .bookingstaff {
-        position: absolute !important;
-        right: 23% !important;
-        margin-top: 7.5% !important;
-        width: 23% !important;
-    }
-    // .fc-today-button {
-    //     left:unset !important;
-    // }
-    // .fc-toolbar.fc-header-toolbar {
-    //     margin-top:7%;
-    //     margin-left: 6% !important;
-    // }
-    .mat-drawer-container {
-        min-height: 83vh !important;
-    }
     .booking .mat-tab-body-wrapper {
         margin-top:2% !important;
     }
@@ -1053,13 +1034,46 @@ tr.mat-row {
 .mt-red4 {
     margin-top:-4% !important;
 }
+
+// @media only screen and (min-width: 300px) and (max-width:360px) {
+//     .mat-drawer-container {
+//         min-height: 83vh !important;
+//         margin-top:12.5% !important;
+//     }
+// }
+// @media screen and (min-width: 1200px) and (max-width:1500px) {
+//     .mat-drawer-container {
+//         margin-top:3.8% !important
+//     }
+// }
+// @media only screen and (min-width: 1500px) {
+//     .mat-drawer-container {
+//         margin-top:2.5% !important
+//     }
+// }
 //iphone S
 @media only screen and (min-width: 300px) and (max-width:520px) {
+    // .mat-drawer.mat-drawer-side {
+    //     top:6% !important
+    // }
+    .newCard {
+        height: 80vh !important;
+    }
+    .col-md-2 {
+        flex:0 0 20% !important;
+    }
+    .loginpage-content {
+        font-size: $primary-font-size-sm;
+        font-family: $primary-font-family;
+        padding: 8% 10%;
+        line-height:$primary-line-height-sm;
+        color: $primary-color-fbblue;
+    }
     .mat-paginator-container {
         display: unset !important;
     }
     .mat-paginator-page-size {
-        width:30% !important;
+        //width:30% !important;
         float: left !important;
     }
     .mat-paginator-range-actions {
@@ -1076,10 +1090,6 @@ tr.mat-row {
         flex: 0 0 100%;
         width: 100%;
     }
-    .grid-container {
-    //    display: grid;
-    //    grid-template-columns: auto;
-        }
     .fc-time-grid .fc-slats td {
         height: 2em !important;
     }
@@ -1093,12 +1103,6 @@ tr.mat-row {
     .grid-item {
         width:100% !important;
     }
-    // .cdk-overlay-pane {
-    //     width:100% !important;
-    // }
-    // .fc-toolbar.fc-header-toolbar {
-    //     margin-top:30px !important;
-    // }
     .fc-day-grid .fc-row {
         height: 6em !important;
     }
@@ -1108,62 +1112,27 @@ tr.mat-row {
         position: fixed !important;
         z-index: 100000 !important;
     }
-    // .fc-prev-button {
-    //     left:-97% !important;
-    // }
-    // .fc-next-button {
-    //     left:620% !important;
-    // }
-    // .fc-center {
-    //     width: 107px !important;
-    //     position: absolute;
-    //     margin-left: 12% !important;
-    // }
     .fc-view-container {
         margin-top:2% !important;
     }
-    // .mat-tab-body-content {
-    //     overflow-x: hidden !important;
-    // }
     .mat-raised-button {
         padding:0px 5px !important;
         line-height: 30px !important;
     }
-    // .fc-center h2 {
-    // }
-    // .fc-right {
-    //     // position: absolute !important;
-    //     // top: 12% !important;
-    //     text-align: center !important;
-    // }
-    .bookingstaff {
-      //  position: absolute !important;
-        // right: 4% !important;
-        // margin-top: 5.5% !important;
-        // width: 100% !important;
-    }
-    // .fc-today-button {
-    //     left:unset !important;
-    //     width:40px !important;
-    // }
-    // .fc-toolbar.fc-header-toolbar {
-    //   //  margin-top:4%;
-    //     margin-left: 6% !important;
-    // }
     .booking .mat-tab-header {
         width:60% !important;
         margin-top:0% !important;
         margin-left: 19% !important;
         border-top:none !important;
     }
-    .mat-drawer-container {
-        min-height: 83vh !important;
-    }
+    // .mat-drawer-container {
+    //     min-height: 83vh !important;
+    //     margin-top:11.5% !important;
+    // }
     .booking .mat-tab-body-wrapper {
         margin-top:-7% !important;
     }
     .bookingbtn {
-      //  margin-top:5% !important;
         height: 30px !important;
         font-size: $secondary-font-size !important;
     }
@@ -1175,34 +1144,11 @@ tr.mat-row {
     .grid-item {
         width:100% !important;
     }
-    // .fc-toolbar.fc-header-toolbar {
-    //     margin-top:1px !important;
-    //     margin-left: 25% !important;
-    // }
     .booking .mat-tab-header {
         margin-top:4.5% !important;
         margin-left: 2% !important;
         position: absolute !important;
     }
-    // .fc-prev-button {
-    //     left:10% !important;
-    // }
-    // .fc-next-button {
-    //     left:1090% !important;
-    // }
-    // .fc-center {
-    //     margin-left: -52% !important;
-    // }
-    // .fc-today-button {
-    //     left:110% !important;
-    // }
-    .bookingstaff {
-        // position: absolute !important;
-        // right: 23% !important;
-        // margin-top: 0.2% !important;
-        // width: 23% !important;
-    }
-
     .fc-day-grid .fc-row {
         height: 9em !important;
     }
@@ -1216,27 +1162,25 @@ tr.mat-row {
         margin-top:5% !important;
     }
 }
-    @media only screen and (min-width: 1090x) and (max-width:2300px) {
-        .grid-item {
-            width:100% !important;
-        }
-        // .fc-toolbar.fc-header-toolbar {
-        //     margin-top:30px !important;
-        // }
-        .booking .mat-tab-header {
-            margin-top: 1.5% !important;
-            margin-left: 23% !important;
-        }
-        // .fc-prev-button {
-        //     left:10% !important;
-        // }
-        // .fc-next-button {
-        //     left:989% !important;
-        // }
-        // .fc-center {
-        //     margin-left: -48% !important;
-        // }
-        // .fc-today-button {
-        //     left:112% !important;
-        // }
+@media only screen and (min-width: 1090x) and (max-width:2300px) {
+    .grid-item {
+        width:100% !important;
     }
+    .booking .mat-tab-header {
+        margin-top: 1.5% !important;
+        margin-left: 23% !important;
+    }
+}
+  .flex {
+    flex: 1 1 auto;
+ }    
+ 
+ .scrollable {
+     overflow: auto;
+     box-sizing: border-box;
+     position: absolute;
+     right: 0;
+     top: 0;
+     width: 100%;
+     height: 100%;
+ }

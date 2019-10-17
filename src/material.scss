@@ -25,6 +25,9 @@
     width: 100% !important;
     border:1px solid #e6e9ed !important;
 }
+.mat-table .mat-icon {
+    font-size: $secondary-font-size-xl !important;
+}
 .staffcategory th.mat-header-cell {
     width:20% !important;
 }
@@ -32,56 +35,41 @@
     background: $primary-color-white !important;
     border-bottom:1px solid #dee3e7 !important;
 }
+.mat-icon.mat-primary {
+    color:$primary-color-darkblue !important;
+}
 .mat-toolbar.mat-primary {
     background: $primary-color-lightblack !important;
     background: $primary-color-lightblue !important;
     box-shadow: 2px 0px 2px 0px #505456 !important;    
 }
 .mat-toolbar-row, .mat-toolbar-single-row {
-    // background: $primary-color-blue !important;
     padding:0% !important;
     align-items: normal !important;
     height: 46px !important;
 }
 .mat-toolbar-multiple-rows {
     min-height: 46px !important;
+    z-index: 2 !important;
 }
-.mat-drawer.mat-drawer-side {
-    // min-width: 12%;
-    // background: $primary-color-lightblack;
-    background: $primary-color-darkblue;
-    width:auto !important;
-    height: 100% !important;
-}
+
 .mat-drawer {
     background: #1A263A !important;
 }
-.mat-drawer-inner-container {
-    overflow: hidden !important;
-}
-.mat-drawer-container {
-   min-height:96vh !important;
-//    margin-bottom: 1% !important;
-   background: #F7F7F8 !important
-}
+
 .mat-drawer-content {
-    // margin-top:-2% !important;
-    // padding:0.5% 1% !important;
-   // background: $primary-color-lightwhite !important;
+    min-height: 93vh !important; 
 }
 .mat-nav-list a {
-    // color:$primary-color-white !important;
     color:$primary-color-black !important;
     font-size: $primary-font-size;
 }
 .mat-list-base .mat-list-item {
-    // color:$primary-color-white !important;
     color:$primary-color-black;
     height: 36px !important;
 }
 .mat-list-item:hover {
     background: #293a54!important;
-    // border-right: 5px solid #03a9f4;
 }
 .mat-list-item-content {
     padding:0px 5px !important;
@@ -104,26 +92,21 @@
     margin-top: -55px !important;
     margin-left: 0.5%;
 }
-// .mat-list-item:hover a{
-//     color: $primary-color-white !important;
-// }
-// .mat-list-item:hover mat-icon{
-//     color: $primary-color-white !important;
-// }
+
 //paginator
 .mat-paginator {
     width:100% !important;
     background: transparent !important;
 }
 tr.mat-header-row {
-    background: #f5f4f4 !important;
-    height: 50px !important;
+    background:$primary-color-darkblue !important;
+    height: 25px !important;    
 }
 .mat-header-cell {
-    font-size: 13px !important;
+    font-size: $secondary-font-size !important;
     letter-spacing: 0.5px !important;
     // font-weight: 500 !important;
-     color:$primary-color-lightblack !important;
+    color:$primary-color-white !important;
 }
 .mat-menu-item {
     height: 35px !important;
@@ -137,27 +120,24 @@ button.mat-menu-item {
 .mat-menu-item .mat-flat-button {
     padding: 0px 4px !important;
 }
-// .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
-//     background: #3498DB !important;
-//     border: 1px solid #2e6da4 !important;
-// }
+
 .mat-flat-button.mat-success, .mat-raised-button.mat-success, .mat-fab.mat-success, .mat-mini-fab.mat-success
 {
     background: $primary-color-lightblue !important;
     color:$primary-color-white !important;
 }
+.mat-raised-button {
+    line-height: 30px !important;
+}
 .mat-raised-button .mat-primary {
     background-color: #3498db !important;
     border-color:#3498db !important;
-    line-height: 32px !important;
     padding: 0px 10px !important;
 }
 .mat-paginator-page-size-label {
     display: none !important;
 }
-.mat-paginator-page-size-select {
-    //  width:35px !important;
-}
+
 .mat-paginator.mat-select {
     text-align: center !important;
 }
@@ -170,15 +150,27 @@ button.mat-menu-item {
 .mat-paginator-container {
     min-height: 40px !important;
 }
+.mat-card {
+    padding:11px 2px !important;          
+}
+.newCard
+{    
+    overflow-y: scroll !important; 
+    overflow-x: hidden;
+}
 .mat-card-footer {
-    margin:0 -16px -14px -16px !important;
+   margin:0 -16px -14px -16px !important;
 }
 .staff .mat-card-header {
     position: absolute !important;
     right: 10px !important;    
 }
-.staff .mat-card-footer {
-    // margin:-28px -16px -14px -16px !important
+.mat-card-content {
+    margin-bottom: 5px !important;
+}
+
+.mat-card-footer .mat-icon {
+    font-size: 20px !important;
 }
 .mat-flat-button.mat-success, .mat-raised-button.mat-success, .mat-fab.mat-success, .mat-mini-fab.mat-success {
     background: #8bc34a !important;
@@ -207,8 +199,6 @@ button.mat-menu-item {
     flex-direction: row !important;
 }
 .mat-tab-label-active {
-    // border-left: 3px solid $primary-color-blue !important;
-   // background: #1a495f;
     background: #fff;  
     opacity: 1 !important;
     border-left: 3px solid #03a9f4;
@@ -231,26 +221,10 @@ button.mat-menu-item {
 .mat-list-base {
     padding-top:0px !important;
 }
-// .sidebarSubmenu {
-//     position: absolute !important;
-//     left: 8.7% !important;
-//     border-radius: 0px !important;
-//     top: -6% !important;
-// }
-// .sidebarSubmenu {
-//     position: absolute !important;
-//     left: 3.4% !important;
-//     border-radius: 0px !important;
-//     top: -6% !important;
-// }
 .mat-menu-item .mat-icon {
     color: #272727 !important;
     margin-right: 0px !important;
     font-size: 14px !important;
-}
-.customerForm .mat-form-field {
-    width:90% !important;
-    line-height: 2.125 !important;
 }
 .breadcrumb {
     background: unset !important;    
@@ -339,19 +313,18 @@ button.mat-menu-item {
 .booking .mat-tab-header{
     margin-top:0.5% !important;
     margin-left:10% !important;
-    // position: absolute !important
 }
 .mb-50 {
     margin-top:-50px !important;
 }
 .mat-form-field-flex {
-    border:1px solid #dee3e7 !important;
     padding-left: 3px !important;
-    border-radius: 3px !important
+    border-radius: 3px !important;
+    border:1px solid rgba(197, 214, 222, .7) !important;
+    border-color:#ccc !important;
 }
 .mat-form-field-appearance-legacy .mat-form-field-infix {
     padding:0.5em 0 !important;
- //   margin-top:4px !important;
 }
 .mat-form-field-appearance-legacy .mat-form-field-underline {
     background: none !important;
@@ -379,4 +352,33 @@ textarea.mat-input-element {
     font-size: 17px !important;
     vertical-align: sub !important;
     font-weight: bold !important;
+}
+
+//calendar
+.mat-calendar-header {
+ padding: 0px !important;   
+ background: #efefef !important;
+}
+.mat-calendar-controls {
+    margin:0% !important;
+}
+.mat-datepicker-content .mat-calendar {
+    width: 280px !important;
+    height: 300px !important;
+}
+.mat-form-field-appearance-legacy .mat-form-field-label {
+    font-size: $secondary-font-size !important;
+    //top:1.7em !important;
+    line-height: 23px !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    color:$primary-color-darkblue !important
+}
+// .mat-drawer-backdrop.mat-drawer-shown {
+//     background-color: rgba(0, 0, 0, 0.3) !important;
+// }
+.mat-select-value-text {
+    font-size: $secondary-font-size !important;
+}
+.mat-form-field-label-wrapper {
+    top: -0.94375em !important;
 }
