@@ -966,6 +966,9 @@ a:not([href]):not([tabindex]) {
     transform: scaleX(0);
     transition: transform 200ms ease-in;
 }
+table {
+    overflow-x: scroll !important;
+}
 td,th {
     font-size: $secondary-font-size !important;
     white-space: nowrap !important;
@@ -981,6 +984,15 @@ tr.mat-row {
 //     overflow-x: hidden !important;
 //     height:660px !important;
 // }
+// .fc-body .fc-scroller{
+   
+//  }
+ .fc-scroller .fc-day-grid-container {
+    height: 350px  !important;
+ }
+ .fc-scroller .fc-time-grid-container {
+    height: 492px  !important;
+}
 .mt-red4 {
     margin-top:-4% !important;
 }
@@ -1220,9 +1232,9 @@ tr.mat-row {
     .mtop-5 {
         margin-top:5% !important;
     }   
-    .fc-body .fc-scroller {
-        height: 400px !important;
-    }
+    // .fc-body .fc-scroller {
+    //     height: 400px !important;
+    // }
     .smpage{
         flex: 0 0 100%;
         width: 100%;
@@ -1233,10 +1245,10 @@ tr.mat-row {
     .fc-view-container *, .fc-view-container *:before, .fc-view-container *:after {
         font-size: $secondary-font-size-xs !important;
     }
-    .fc-scroller, .fc-day-grid-container {
-        height: 400px !important;
-        overflow: unset !important;
-    }
+    // .fc-scroller, .fc-day-grid-container {
+    //     height: 400px !important;
+    //     overflow: unset !important;
+    // }
     .grid-item {
         width:100% !important;
     }
