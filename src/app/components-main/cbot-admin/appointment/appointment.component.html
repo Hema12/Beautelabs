@@ -1,226 +1,162 @@
-<div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mr-zero ml-zero pall-zero">        
-    <!-- <mat-tab-group headerPosition="below">
-        <mat-tab style="overflow-x:hidden !important;">
-            <ng-template mat-tab-label>
-                <mat-icon class="bookingicon">event_note</mat-icon>
-            </ng-template>
-                <button mat-raised-button [routerLink]="['/beautelabs/cbot-admin/bookingCreate']" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button>    
-                <mat-form-field class="bookingstaff">
-                    <mat-label>Staff</mat-label>
-                    <mat-select>
-                        <mat-option value="today">All Staffs</mat-option>
-                        <mat-option value="today">Devi</mat-option>
-                        <mat-option value="last week">Ramya</mat-option>
-                        <mat-option value="last 15 days">Nithya</mat-option>
-                        <mat-option value="last month">Ashika</mat-option>
-                        <mat-option value="last month">Ravi</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <div class='app-calendar'>
-                    <full-calendar color="success"
-                        #calendar
-                        defaultView="dayGridMonth"
-                        [header]="{
-                        left: 'prev,today,next',
-                        center: 'title',
-                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                        }"
-                        [resources]="resources"
-                        [events]="events"
-                        [nowIndicator]= "true"
-                        [resourceLabelText]="resourceText"
-                        [plugins]="calendarPlugins"
-                        [weekends]="calendarWeekends"
-                        [allDaySlot] = "false"
-                        slotDuration='00:15:00'
-                        slotMinutes= '00:15:00'
-                        (dateClick)="handleDateClick($event)">
-                    </full-calendar>
-                </div>                
-        </mat-tab>
-        <mat-tab>
-            <ng-template mat-tab-label>
-                <mat-icon class="bookingicon">list</mat-icon>
-            </ng-template>
-            <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12 mt-4 pall-zero">
-                <div class="col-md-4 col-sm-2 col-xl-4 col-lg-4">
-                    <button mat-raised-button  [routerLink]="['/beautelabs/cbot-admin/bookingCreate']" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button>  
-                </div>
-                <div class="col-md-4 col-sm-4 col-xl-4 col-lg-4 mtop-7">
-                    <mat-form-field>
-                        <mat-label>Select</mat-label>
-                        <mat-select>
-                            <mat-option value="today">Today</mat-option>
-                            <mat-option value="last week">Last Week</mat-option>
-                            <mat-option value="last 15 days">Last 15 Days</mat-option>
-                            <mat-option value="last month">Last Month</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xl-4 col-lg-4 mt-red7 smpage">
-                    <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
-                </div> 
-            </div>
-          
-            <div fxLayout="row">        
-                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>        
-                    <ng-container matColumnDef="sno">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
-                        <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
-                    </ng-container>
-                    
-                    <ng-container matColumnDef="name">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer </th>
-                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                    </ng-container>                
-                    
-                    <ng-container matColumnDef="mobile">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Mobile </th>
-                        <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
-                    </ng-container>
-                
-                    <ng-container matColumnDef="serviceName">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Service </th>
-                        <td mat-cell *matCellDef="let element"> {{element.serviceName}} </td>
-                    </ng-container>
-                    <ng-container matColumnDef="staffName">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Staff </th>
-                        <td mat-cell *matCellDef="let element"> {{element.staffName}} </td>
-                    </ng-container>
-                    <ng-container matColumnDef="startTime">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Time </th>
-                        <td mat-cell *matCellDef="let element"> {{element.startTime}} </td>
-                    </ng-container>
-                    <ng-container matColumnDef="serviceDuration">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Duration </th>
-                        <td mat-cell *matCellDef="let element"> {{element.serviceDuration}} </td>
-                    </ng-container>
-                    <ng-container matColumnDef="servicePrice">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
-                        <td mat-cell *matCellDef="let element"> {{element.servicePrice}} </td>
-                    </ng-container>
-                    <ng-container matColumnDef="status">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-                        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
-                    </ng-container>
-                    <ng-container matColumnDef="source">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Source </th>
-                        <td mat-cell *matCellDef="let element"> {{element.source}} </td>
-                    </ng-container>
-                    
-                    <ng-container matColumnDef="action">
-                        <th mat-header-cell *matHeaderCellDef>Action</th>
-                        <td mat-cell *matCellDef="let element">
-                            <button mat-flat-button [matMenuTriggerFor]="menu" color="primary">Action</button>
-                            <mat-menu #menu="matMenu">
-                                <button mat-menu-item>
-                                        <mat-icon>edit</mat-icon>
-                                        <span>Add Service</span>
-                                </button>                    
-                            </mat-menu>
-                        </td>
-                    </ng-container>
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                </table>
-            </div>
-        </mat-tab>
-    </mat-tab-group> -->
-        <div class="col-md-2 col-xl-1 col-lg-1 col-sm-2 topwidth">
-            <button mat-raised-button [routerLink]="['/beautelabs/cbot-admin/bookingCreate']" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button>  
-        </div>
-        <div class="col-md-2 col-xl-1 col-lg-1 col-sm-2 topwidth">
-            <button mat-button (click)="caltoggle()"><mat-icon>{{calicon}}</mat-icon>    </button>
-        </div>
-        <div class="col-md-2 col-xl-3 col-lg-3 col-sm-2 topwidth">
-            <mat-form-field class="bookingstaff">
-                <mat-label>Staff</mat-label>
-                <mat-select>
-                    <mat-option value="today">All Staffs</mat-option>
-                    <mat-option value="today">Devi</mat-option>
-                    <mat-option value="last week">Ramya</mat-option>
-                    <mat-option value="last 15 days">Nithya</mat-option>
-                    <mat-option value="last month">Ashika</mat-option>
-                    <mat-option value="last month">Ravi</mat-option>
-                </mat-select>
-            </mat-form-field> 
-            </div>
+<div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mr-zero ml-zero pall-zero">            
+    <div class="col-md-2 col-xl-1 col-lg-1 col-sm-2 topwidth pall-zero">
+        <button mat-raised-button [routerLink]="['/beautelabs/cbot-admin/bookingCreate']" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button>  
     </div>
-    <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mr-zero ml-zero pall-zwro">  
-        <div class='app-calendar' *ngIf="selIcon=='event'">               
-            <full-calendar color="success" #calendar
-                defaultView="resourceTimeGridDay"
-                [header]="{
-                left: 'prev,today,next',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,resourceTimeGridDay'
-                }"
-                [resources]="resources"
-                [events]="events"
-                [nowIndicator]= "true"
-                [resourceLabelText]="resourceText"
-                [plugins]="calendarPlugins"
-                [weekends]="calendarWeekends"
-                [allDaySlot] = "false"
-                slotDuration='00:15:00'
-                slotMinutes= '00:15:00'
-                (dateClick)="handleDateClick($event)">
-            </full-calendar>
-        </div>    
-        <div *ngIf="selIcon=='list'" class="full-width">
-            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
-                <ng-container matColumnDef="sno">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
-                    <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
-                </ng-container>
-                
-                <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer </th>
-                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                </ng-container>                
-                
-                <ng-container matColumnDef="mobile">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Mobile </th>
-                    <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
-                </ng-container>
+    <div class="col-md-2 col-xl-1 col-lg-1 col-sm-2 topwidth">
+        <button mat-button (click)="caltoggle()"><mat-icon>{{calicon}}</mat-icon>    </button>
+    </div>
+    <div class="col-md-2 col-xl-3 col-lg-3 col-sm-2 topwidth">
+        <mat-form-field class="bookingstaff">
+            <mat-label>Staff</mat-label>
+            <mat-select>
+                <mat-option value="today">All Staffs</mat-option>
+                <mat-option value="today">Devi</mat-option>
+                <mat-option value="last week">Ramya</mat-option>
+                <mat-option value="last 15 days">Nithya</mat-option>
+                <mat-option value="last month">Ashika</mat-option>
+                <mat-option value="last month">Ravi</mat-option>
+            </mat-select>
+        </mat-form-field> 
+    </div>
+</div>
+<div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mr-zero ml-zero pall-zero">  
+    <div class='app-calendar' *ngIf="selIcon=='event'">               
+        <full-calendar color="success" #calendar
+            defaultView="dayGridMonth"
+            [header]="{
+            left: 'prev,today,next',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,resourceTimeGridDay'
+            }"
+            [resources]="resources"
+            [events]="events"
+            [nowIndicator]= "true"
+            [plugins]="calendarPlugins"
+            [weekends]="true"
+            [allDaySlot] = "false"
+            slotDuration='00:15:00'
+            slotMinutes= '00:15:00'
+            [showNonCurrentDates] = "true"
+            (eventClick)="eventClick($event)"
+            (dateClick)="handleDateClick($event)">
+        </full-calendar>
+    </div>    
+    <div *ngIf="selIcon=='list'" class="full-width mt-2">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+            <ng-container matColumnDef="sno">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+            </ng-container>
             
-                <ng-container matColumnDef="serviceName">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Service </th>
-                    <td mat-cell *matCellDef="let element"> {{element.serviceName}} </td>
-                </ng-container>
-                <ng-container matColumnDef="staffName">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Staff </th>
-                    <td mat-cell *matCellDef="let element"> {{element.staffName}} </td>
-                </ng-container>
-                <ng-container matColumnDef="startTime">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Time </th>
-                    <td mat-cell *matCellDef="let element"> {{element.startTime}} </td>
-                </ng-container>
-                <ng-container matColumnDef="serviceDuration">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Duration </th>
-                    <td mat-cell *matCellDef="let element"> {{element.serviceDuration}} </td>
-                </ng-container>
-                <ng-container matColumnDef="servicePrice">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
-                    <td mat-cell *matCellDef="let element"> {{element.servicePrice}} </td>
-                </ng-container>
-                <ng-container matColumnDef="status">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-                    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
-                </ng-container>
-                <ng-container matColumnDef="source">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Source </th>
-                    <td mat-cell *matCellDef="let element"> {{element.source}} </td>
-                </ng-container>
-                
-                <ng-container matColumnDef="action">
-                    <th mat-header-cell *matHeaderCellDef>Action</th>
-                    <td mat-cell *matCellDef="let element">
-                        <mat-icon color="primary">edit</mat-icon>
-                    </td>
-                </ng-container>
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>  
-        </div>     
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>                
+            
+            <ng-container matColumnDef="mobile">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Mobile </th>
+                <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="serviceName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Service </th>
+                <td mat-cell *matCellDef="let element"> {{element.serviceName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="staffName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Staff </th>
+                <td mat-cell *matCellDef="let element"> {{element.staffName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="startTime">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Time </th>
+                <td mat-cell *matCellDef="let element"> {{element.startTime}} </td>
+            </ng-container>
+            <ng-container matColumnDef="serviceDuration">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Duration </th>
+                <td mat-cell *matCellDef="let element"> {{element.serviceDuration}} </td>
+            </ng-container>
+            <ng-container matColumnDef="servicePrice">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+                <td mat-cell *matCellDef="let element"> {{element.servicePrice}} </td>
+            </ng-container>
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+            </ng-container>
+            <ng-container matColumnDef="source">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Source </th>
+                <td mat-cell *matCellDef="let element"> {{element.source}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef>Action</th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-icon color="primary">edit</mat-icon>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>  
+    </div>     
+</div>
+
+<div class="modal bookingmodel" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+    <div class="modal-dialog">            
+        <div class="modal-content">   
+            <div class="modal-header">
+                <h5 class="modal-title"> 
+                    Meera
+                    <span class="pl-15"> 9632587412</span>
+                    <span class="fr"> meera4512@gmail.com </span>
+                </h5>
+            </div>
+            <!-- <button type="button" class="close" data-dismiss="modal" (click) = "hide()">&times;</button> -->        
+            <div class="modal-body">                
+                <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12 pall-zero mall-zero">
+                    <h4>Services</h4>
+                    <table class="full-width table table-bordered wraptbl">
+                        <tr>
+                            <th>Service</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Staff</th>                    
+                        </tr>
+                        <tr>
+                            <td>{{serviceTitle}}</td>
+                            <td>{{startTime}}</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12 pall-zero mall-zero">
+                    <div class="col-md-3 col-xl-4 col-lg-4 col-sm-12 pall-zero">
+                        <h4>Source : Walk-in</h4>
+                    </div>
+                    <div class="col-md-3 col-xl-4 col-lg-4 col-sm-12 pall-zero">
+                        <h4>Booked By : User</h4>
+                    </div>
+                    <div class="col-md-4 col-xl-4 col-lg-4 col-sm-12 pall-zero">
+                        <h4>Booked Time : 10:00AM</h4>
+                    </div>
+
+                </div>      
+                <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12 pall-zero mall-zero">
+                    <h4>Booking Notes :</h4>
+                </div>          
+                <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12 pall-zero mall-zero">
+                    <h4>Booking Status : Arrived</h4>
+                </div>   
+            </div>
+        
+        <!-- Modal footer -->
+            <div class="modal-footer">
+                <button mat-raised-button class="bookingbtn">Start Bill</button>  
+                <button mat-raised-button class="bookingcancelbtn ml-2">Cancel Appointment</button>  
+                <button mat-raised-button class="bookingcancelbtn ml-2" data-dismiss="modal" (click)="hide()">Close</button>
+            </div>
+        
+        </div>
     </div>
+</div>
+
+    

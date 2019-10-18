@@ -129,6 +129,10 @@ const routes: Routes = [
         loadChildren: () => import('../../shared/dialog/booking/booking.module').then(m => m.BookingModule),
       },
       {
+        path: 'billingActivity',
+        loadChildren: () => import('../../shared/dialog/billing-activity/billing-activity.module').then(m => m.BillingActivityModule),
+      },
+      {
         path: 'customerCreate',
         loadChildren: () => import('../../shared/dialog/customer/customer.module').then(m => m.CustomerModule),
       },

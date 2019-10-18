@@ -12,8 +12,9 @@ import timeGrigPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
 import { Router } from '@angular/router';
-import { DateTime } from 'luxon';
+import { DateTime, Info } from 'luxon';
 import moment from 'moment';
+import { RecurPopupComponent } from 'src/app/shared/dialog/recur-popup/recur-popup.component';
 export interface PeriodicElement {
   name: string;
   sno: number;
@@ -62,7 +63,17 @@ export class AppointmentComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   animal: string;
-  name: string;
+  customerName: string;  
+  customerMobile: string;
+  customerEmail: string;
+  serviceTitle: string;
+  startTime:string;
+  endTime:string;
+  staffName: string;
+  source: string;
+  bookedTime:string;
+  resourceName: string;
+  showModal: boolean;
   @ViewChild(FullCalendarComponent, {static: true}) calendarComponent: FullCalendarComponent;  
   calendarVisible = true;
   calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin, resourceTimeGridPlugin];
@@ -76,20 +87,44 @@ export class AppointmentComponent implements OnInit {
     {id:'4',title:'Ashika'},
     {id:'5',title:'Ravi'},
   ];  
+  // events: any = [
+  //   { title: 'Hair Cut', customerName:'Nisha', customerMobile:'9632574512', customerEmail:'nisha23@gmail.com', resourceId:'1', startTime: new Date(), staffName:'Devi', source:'Walk-in', bookedTime:'10:00AM', backgroundColor:'#f00'},
+  //   { title: 'Bleech',  customerName:'Zenath', customerMobile:'9632574512', customerEmail:'nisha23@gmail.com', resourceId:'2',startTime: new Date(), staffName:'Ramya',  source:'Facebooj', bookedTime:'09:30AM', backgroundColor:'#9fb3d4' },
+  //   { title: 'Facial',  customerName:'Meera', customerMobile:'9632574512', customerEmail:'nisha23@gmail.com', resourceId:'1', startTime: new Date('2019-10-17'), staffName:'Devi',  source:'Phone', bookedTime:'10:10AM', backgroundColor:'#407d5d' },
+  //   { title: 'Hair Coloring',  customerName:'Nisha', customerMobile:'9632574512', customerEmail:'nisha23@gmail.com', resourceId:'3', startTime: new Date('2019-10-16'), staffName:'Nithya',  source:'Walk-in', bookedTime:'04:20PM', backgroundColor:'#34cf7d' }
+  // ]; 
   events: any = [
-    { title: 'Hair Cut - Devi - 10:00 AM', start: new Date(), backgroundColor:'#f00'},
-    { title: 'Bleech - Devi - 10:45 AM', start: new Date(), backgroundColor:'#9fb3d4' },
-    { title: 'Facial - Nithya - 11:30 AM', start: new Date('2019-10-17'), backgroundColor:'#407d5d' },
-    { title: 'Hair Coloring - Abhi - 03:00 PM', start: new Date('2019-10-16'), backgroundColor:'#34cf7d' }
+    { title: 'Hair Cut', resourceId:'1', start: new Date(),  backgroundColor:'#f00'},
+    { title: 'Bleech',  resourceId:'2',start: new Date(), backgroundColor:'#9fb3d4' },
+    { title: 'Facial',  resourceId:'1', start: new Date('2019-10-17'),backgroundColor:'#407d5d' },
+    { title: 'Hair Coloring', resourceId:'3', start: new Date('2019-10-16'),  backgroundColor:'#34cf7d' }
   ]; 
+  eventClick(model:any) {
+     this.serviceTitle = model.event.title;
+     this.startTime = model.event.start;    
+    // this.endTime = model.event.end;
+    // this.resourceName = model.event.resourceId.title;
+    // this.customerName = model.event.customerName;
+    // this.customerEmail = model.event.customerEmail;
+    // this.customerMobile = model.event.customerMobile;
+    // this.staffName = model.event.staffName;
+    // this.source = model.event.source;
+    // this.bookedTime = model.event.bookedTime;
+     this.showModal = true;    
+  }
+  hide()
+  {
+    this.showModal = false;
+  }
+      
+  clickEvent(val) {
+    console.log(val);
+  }
+ 
   toggleWeekends() {
     this.calendarWeekends = !this.calendarWeekends;
   }
 
-  // gotoPast() {
-  //   let calendarApi = this.calendarComponent.getApi();
-  //   calendarApi.gotoDate('2000-01-01'); // call a method on the Calendar object
-  // }
 
   handleDateClick(arg) {
     this.router.navigate(['/beautelabs/cbot-admin/bookingCreate', { Seldate: arg.dateStr }]);

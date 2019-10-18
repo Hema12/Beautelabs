@@ -182,10 +182,10 @@ export class ProductsComponent implements OnInit {
   productSubCategoryCreate(subcategorycreatetemplate: TemplateRef<any>) {
     this.modalRef = this.modalService.show(subcategorycreatetemplate);
   }
-  openViewModal(viewtemplate: TemplateRef<any>, Value) {   
-    this.View = this.productList.filteredData.find(obj => obj.name === Value.name);
-    this.modalRef = this.modalService.show(viewtemplate);
- }
+//   openViewModal(viewtemplate: TemplateRef<any>, Value) {   
+//     this.View = this.productList.filteredData.find(obj => obj.name === Value.name);
+//     this.modalRef = this.modalService.show(viewtemplate);
+//  }
  cancel() {
   this.modalRef.hide();
 }

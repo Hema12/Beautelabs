@@ -9,17 +9,17 @@
 </div> -->
 <div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pall-zero">
     <div class="col-md-7 col-sm-12 col-lg-7 col-xl-7">
-        <h2 class="page-title">Add New Appointment </h2>
+        <h2 class="page-title">New Appointment </h2>
     </div>
 </div>
-<div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pr-zero">
+<div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pall-zero mall-zero">
     <mat-card class="full-width newCard">
         <mat-card-content>
-            <div class="col-md-7 col-sm-12 col-lg-7 col-xl-7 pall-zero mall-zero borderrgt">
+            <div class="col-md-12 col-sm-12 col-lg-7 col-xl-7 pall-zero mall-zero borderrgt">
                 <form method="POST" [formGroup]="bookingForm"> 
                     <div class="form-container">              
                         <div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pr-zero">          
-                            <div class="col-sm-12 col-lg-3 col-xl-3">
+                            <div class="col-sm-12 col-lg-3 col-xl-3 col-md-3">
                                 <mat-form-field class="belowlinkinput">
                                     <input matInput placeholder="Customer" aria-label="Customer" [matAutocomplete]="customer" [formControl]="customerDet">
                                     <mat-autocomplete #customer="matAutocomplete">
@@ -28,16 +28,16 @@
                                         </mat-option>
                                     </mat-autocomplete>
                                 </mat-form-field>
-                                <p class="inputlink" [routerLink]="['/beautelabs/cbot-admin/customerCreate']" routerLinkActive="active"><mat-icon>add</mat-icon> Add New Customer</p>
+                                <p class="inputlink" [routerLink]="['/beautelabs/cbot-admin/customerCreate']" routerLinkActive="active"><mat-icon>add</mat-icon> New Customer</p>
                             </div>  
-                            <div class="col-sm-12 col-lg-3 col-xl-3">
+                            <div class="col-sm-12 col-lg-3 col-xl-3 col-md-3">
                                 <mat-form-field>
-                                    <input matInput [matDatepicker]="picker" required formControlName="bookingDate" (click)="picker.open()" placeholder="Date">
+                                    <input matInput [matDatepicker]="picker" formControlName="bookingDate" (click)="picker.open()" placeholder="Date">
                                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                     <mat-datepicker #picker></mat-datepicker>
                                 </mat-form-field>
                             </div> 
-                            <div class="col-sm-12 col-lg-2 col-xl-2">
+                            <div class="col-sm-12 col-lg-2 col-xl-2 col-md-3">
                                 <mat-form-field>
                                     <mat-label class="selplaceHolder">Status</mat-label>
                                     <mat-select formControlName="bookingStatus">
@@ -48,7 +48,7 @@
                                 </mat-form-field> 
 
                             </div> 
-                            <div class="col-sm-12 col-lg-2 col-xl-2">
+                            <div class="col-sm-12 col-lg-2 col-xl-2 col-md-3">
                                 <mat-form-field>
                                     <mat-label class="selplaceHolder">Source</mat-label>
                                     <mat-select formControlName="bookingSource">
@@ -58,18 +58,18 @@
                                     </mat-select>
                                 </mat-form-field>
                             </div> 
-                            <div class="col-sm-12 col-lg-2 col-xl-2">
+                            <div class="col-sm-12 col-lg-2 col-xl-2 col-md-3">
                                 <button mat-raised-button class="recurbtn" (click)="openRecur()" *ngIf="showRecur">Recurring <mat-icon matSuffix>autorenew</mat-icon></button>     
                                 <button mat-raised-button class="recurbtn" (click)="openRecur()" *ngIf="showFreq">{{selfreq}} <mat-icon matSuffix>autorenew</mat-icon></button>                                                            
                                     
                             </div>  
                         </div>
-                        <!-- <hr class="horizontalline" /> -->
+                        <hr class="horizontalline" /> 
                         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                             <h3 matDialogTitle>Services</h3>
                         </div>
                         <div formArrayName="service" *ngFor="let ser of bookingForm.controls.service['controls']; let i=index">                 
-                            <div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 mb-red15 mt-2" [formGroupName]="i">
+                            <div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 mb-red15 mt-2 pall-zero mall-zero" [formGroupName]="i">
                                 <div class="col-sm-12 col-lg-3 col-xl-4 col-md-2">
                                     <mat-form-field class="belowlinkinput selfield">
                                         <mat-label class="selplaceHolder">Service</mat-label>
@@ -102,7 +102,7 @@
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-2 col-lg-2 col-xl-3 col-sm-12">
+                                <div class="col-md-1 col-lg-2 col-xl-1 col-sm-12">
                                     <button mat-icon-button (click)="Delete(i)" class="delbtn">
                                         <mat-icon>delete</mat-icon>
                                     </button> 
@@ -129,9 +129,9 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-5 col-sm-12 col-lg-5 col-xl-5 pr-zero profileHistory" *ngIf="customerHistory">      
+            <div class="col-md-12 col-sm-12 col-lg-5 col-xl-5 pr-zero profileHistory" *ngIf="customerHistory">      
                 <div class="row col-md-12 col-xl-12 col-lg-12 pall-zero">
-                    <div class="col-md-4 col-xl-3 col-lg-3 customerProfile">
+                    <div class="col-md-4 col-xl-4 col-lg-4 customerProfile">
                         <img src="../../../../assets/images/profile.png" />                                
                     </div>
                     <div class="col-md-9 col-xl-9 col-lg-9 profile pall-zero">                                
@@ -146,7 +146,7 @@
                         </div>
                         <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
                             <div class="col-md-12 col-xl-12 col-lg-12 col-sm-12">
-                                <mat-icon matPrefix>payment</mat-icon> Billing History
+                                <mat-icon matPrefix>payment</mat-icon> <span (click)="billingHistory()"> Billing History</span>
                             </div>
                             <div class="col-md-12 col-xl-12 col-lg-12 col-sm-12">
                                 <mat-icon>person</mat-icon>Preferred Staff : Ramesh@gmail.com
@@ -157,7 +157,7 @@
                 </div>                      
                 <hr />
                 <div class="row col-md-12 col-xl-12 col-lg-12 mt-2 pall-zero">
-                    <div class="col-md-12 col-xl-12 col-lg-3">
+                    <div class="col-md-12 col-xl-12 col-lg-8">
                         <p class="mb-0">Birthday : 07 Aug, 1991 <span>
                             <mat-datepicker-toggle matSuffix [for]="dobpicker">
                             <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>

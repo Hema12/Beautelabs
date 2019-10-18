@@ -8,7 +8,7 @@
 
 body {
     margin:0px !important;
-    font-family: $primary-font-family !important;
+    font-family: $primary-font-family-common !important;
     background: $primary-color-white !important;
     overflow-y: hidden !important;
 }
@@ -160,7 +160,7 @@ body {
     font-size: 13px;
 }
 .main-content {
-    padding:0.4% 1%;
+    padding:0.8% 1% 0.4% 1%;
 }
 //Grid List
 .grid-container {
@@ -198,6 +198,9 @@ th {
 }
 .pl-0 {
     padding-left: 0px !important;
+}
+.pl-15 {
+    padding-left: 15% !important;
 }
 .pr-5 {
     padding-right: 5px !important;
@@ -263,6 +266,15 @@ th {
     line-height: 32px !important;
     padding:0px 10px !important;
 }
+.bookingcancelbtn {
+    height: 30px !important;
+    margin-top: -0% !important;
+    background-color: #F44336 !important;
+    border-color:#F44336 !important;
+    color:#fff !important;
+    line-height: 32px !important;
+    padding:0px 10px !important;
+}
 .bookingbtn .mat-icon {
     font-size: 17px !important;
     font-weight: bold !important;
@@ -320,9 +332,23 @@ th {
 .tr {
     text-align: right;
 }
+.billTitle {
+    border-bottom: 1px solid #efefef;
+    line-height: 40px;
+}
+.cdk-overlay-pane {
+    max-width: 95vw !important;
+}
+.mat-dialog-container {
+    padding:4px !important;
+}
 //border-bottom
 .border-btm {
     border-bottom: 1px solid #202427;   
+}
+.rbtm {
+     right:2% !important;
+     bottom:0% !important;
 }
 .horizontalline {
     margin-top: 3px !important;
@@ -466,8 +492,26 @@ th {
     flex: 1 0 33%;
     width: 33%;
 }
+.modal-header {
+    min-height: 16.428571429px;
+    padding: 8px 15px;
+    border-bottom: 1px solid #e5e5e5;
+    background: #222;
+}
 .modal-content {
     padding:2% 4% !important;
+}
+.modal-title {
+    width: 100%;
+    font-size: $primary-font-size !important;
+    color:$primary-color-white !important;
+    margin:0% !important;
+}
+.modal-footer {
+    padding: 8px 15px 8px;
+    margin-top: 0px !important; 
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
 }
 .fc-resourceTimeGridDay-view .fc-row {
     padding:4px !important;
@@ -492,6 +536,10 @@ th {
 .topwidthcustomerField .mat-form-field{
    // width: 150px !important;
 }
+.topwidth .mat-form-field-underline {
+    display: none !important;
+  }
+
 .cdk-overlay-container {
     z-index: 1051 !important;
 }
@@ -505,12 +553,25 @@ th {
 .redcolor {
     color:#f44336;
 }
+.modal{background: rgba(0,0,0, .5) !important; }
+.modal-dialog {
+    right: auto;
+    left: auto;
+    max-width: 600px;
+    //top: 25%;
+}
 .modaldialog-title {
     border-bottom: 1px solid #ececec;
     padding: 0% 0 1% 0;
 }
+.bookingmodel .modal-content {
+    padding: 0% !important;
+}
 .delbutton {
     padding-top:25% !important;
+}
+.wraptbl th,td {
+    white-space: unset !important;
 }
 //Customer Create Form
 .customerForm {
@@ -535,7 +596,7 @@ th {
     font-family: $primary-font-family-common !important;
     font-weight: $primary-font-weight !important;
     font-size: $primary-font-size-lg !important;
-    // padding-left: 1%;
+    margin:0px !important;
     width:100%;
     color:$primary-color-darkblue !important;
     // margin:5px 0px 5px 3px !important;
@@ -641,6 +702,16 @@ th {
     bottom: 20px;
     width: 85%;
 }
+.mat-dialog-content {
+    font-family: $primary-font-family-table !important;
+}
+.mat-dialog-content  table th,td {
+    font-size: $primary-font-size !important;
+}
+.serviceDet th,td {
+    font-size: $primary-font-size !important;
+    font-family: $secondary-font-family !important;
+}
 .rightsidemodal.mat-drawer.mat-drawer-side {
     height: 75vh !important;
     border:1px solid #e2e2e2;
@@ -674,7 +745,7 @@ th {
     border-radius: 2px;
 }
 .fc-right .fc-button {
-    width:50px !important;
+    width:48px !important;
 }
 .fc-today-button {
     width:45px !important;
@@ -700,9 +771,21 @@ th {
 .fc-icon:hover{
     color:#1a5fd2;
 }
-.fc-head {
-    background: #2c3e500d !important;
+// .fc-head {
+//     background: #2c3e500d !important;
+// }
+.fc-unthemed td.fc-today {
+    background: $primary-color-lightwhite;
 }
+.fc-body {
+    background-color: $primary-color-white !important;
+}
+// .fc th, .fc td {
+//     border-style: dotted;
+//     border-width: 1px;
+//     padding: 0;
+//     vertical-align: top;
+// }
 .fc-day-header {
     height: 45px !important;
     line-height: 45px !important;
@@ -737,8 +820,8 @@ a:not([href]):not([tabindex]) {
     border: 1px solid #bdbdbd !important;
 }
 .fc-button-active {
-    color: #232323 !important;
-    background-color: #F1F1F1 !important;
+    color:$primary-color-white !important;
+    background: $primary-color-darkblue !important;
 }
 .fc-button .fc-icon {
     font-size: 1.2em !important;
@@ -797,7 +880,7 @@ a:not([href]):not([tabindex]) {
     text-align: right;
     display: flex;
     cursor: pointer !important;
-    margin:0px !important;
+    margin:3px 0px 0px -7px !important;
 }
 .belowlinkinput {
     margin-bottom: -10px !important;
@@ -884,24 +967,44 @@ a:not([href]):not([tabindex]) {
     transition: transform 200ms ease-in;
 }
 td,th {
-    font-size: 11px !important;
+    font-size: $secondary-font-size !important;
     white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
+    // overflow: hidden !important;
+    // text-overflow: ellipsis !important;
 }
 tr.mat-row {
     height: 35px !important;
 }
+// .fc-body .fc-scroller {
+//     min-height: 400px !important;
+//     overflow-y: scroll !important;
+//     overflow-x: hidden !important;
+//     height:660px !important;
+// }
+.mt-red4 {
+    margin-top:-4% !important;
+}
 //Responsive Css
 //Header
-@media (min-width: 1200px)
+@media only screen and (min-width: 1020px) and (max-width:1299px)
 {
-    .col-lg-3 {
-        max-width: 24% !important;
-        flex: 0 0 24% !important;
-        margin-left: 1% !important;
+    .newCard {
+        height: 80vh !important;
     }
+    // .col-lg-3 {
+    //     max-width: 24% !important;
+    //     flex: 0 0 24% !important;
+    //     margin-left: 1% !important;
+    // }
 }
+// @media (min-width: 1300px)
+// {
+//     .col-lg-3 {
+//         max-width: 50% !important;
+//         flex: 0 0 50% !important;
+//         margin-left: 1% !important;
+//     }
+// }
 @media only screen and (min-width: 992px) and(max-width:1000px) {
     .col-lg-3 {
         flex:0 0 64% !important;
@@ -988,9 +1091,27 @@ tr.mat-row {
           height: 7vh;
       }
   }
-  @media only screen and (min-width: 300px) and (max-width: 409px) {
+  @media only screen and (min-width: 300px) and (max-width:319px) {
     .header {
         height: 7vh;
+    }
+    .col-md-2 {
+        flex:0 0 15% !important;
+    }
+}
+@media only screen and (min-width: 568px) and (max-width:738px) {
+    .col-md-3 {
+        flex: 0 0 49% !important;
+        max-width: 49% !important;
+        
+    }
+    .col-md-2 {
+        flex: 0 0 30% !important;
+        max-width: 30% !important;        
+    }
+    .col-md-1 {
+        flex: 0 0 8% !important;
+        max-width: 8% !important;        
     }
 }
 @media only screen and (min-width: 411px) and (max-width:1200px) {
@@ -1024,17 +1145,30 @@ tr.mat-row {
     .booking .mat-tab-body-wrapper {
         margin-top:2% !important;
     }
-}
-.fc-body .fc-scroller {
-    min-height: 400px !important;
-    overflow-y: scroll !important;
-    overflow-x: hidden !important;
-    height:660px !important;
-}
-.mt-red4 {
-    margin-top:-4% !important;
+    .col-md-2 {
+        flex: 1 0 30%;
+        max-width: 30%;
+    }
 }
 
+@media only screen and (min-width: 1500px) { 
+    .newCard {
+        height: 90vh !important;
+        overflow-y: hidden !important;
+    }
+    
+    .fc-dayGridMonth-view .fc-dayGrid-view {
+        overflow-y: scroll !important;
+        min-height: 600px !important;
+    }
+    .fc-timeGridWeek-view .fc-timeGrid-view {
+        overflow-y: scroll !important;
+        min-height: 600px !important;
+    }
+    .modal-dialog {
+        padding-top:14% !important;
+    }
+}
 // @media only screen and (min-width: 300px) and (max-width:360px) {
 //     .mat-drawer-container {
 //         min-height: 83vh !important;
@@ -1057,10 +1191,13 @@ tr.mat-row {
     //     top:6% !important
     // }
     .newCard {
-        height: 80vh !important;
+        height: 89vh !important;
     }
     .col-md-2 {
         flex:0 0 20% !important;
+    }
+    .col-md-1 {
+        flex:0 0 8% !important;
     }
     .loginpage-content {
         font-size: $primary-font-size-sm;
@@ -1150,16 +1287,36 @@ tr.mat-row {
         position: absolute !important;
     }
     .fc-day-grid .fc-row {
-        height: 9em !important;
+        height: 8em !important;
     }
-    .fc-scroller, .fc-day-grid-container {
-        height: auto !important;
-    }
+    // .fc-scroller, .fc-day-grid-container {
+    //     height: auto !important;
+    // }
     .fc-time-grid .fc-slats td {
         height:1em !important;
     }
     .booking .mat-tab-body-wrapper {
         margin-top:5% !important;
+    }
+    .fc-body .fc-scroller {
+        overflow-y: scroll !important;        
+        overflow-x: hidden !important;
+    }
+    .fc-dayGridMonth-view {
+        overflow-y: hidden !important;
+        height: 488px !important;
+    }
+    // .fc-dayGridMonth-view{
+    //     overflow-y: scroll !important;
+    //     height: 514px !important;
+    // }
+    .fc-time-grid-container {
+        overflow-y: scroll !important;
+        height: 514px !important;
+    }
+    .fc-resourceTimeGridDay-view .fc-timeGrid-view {
+        overflow-y: scroll !important;
+        height: 514px !important;
     }
 }
 @media only screen and (min-width: 1090x) and (max-width:2300px) {

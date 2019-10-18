@@ -20,6 +20,7 @@ import * as _moment from 'moment';
 import {default as _rollupMoment} from 'moment';
 import { RecurPopupComponent } from '../recur-popup/recur-popup.component';
 import { filter } from 'minimatch';
+import { BillingActivityComponent } from '../billing-activity/billing-activity.component';
 
 const moment = _rollupMoment || _moment;
 
@@ -59,9 +60,7 @@ export interface State {
 export interface Source {
   value: string;
 }
-export interface recurFrequency {
-  value: string;
-}
+
 
 @Component({
   selector: 'app-booking',
@@ -78,7 +77,6 @@ export class BookingComponent implements OnInit {
   showRecur: boolean = true;
   showFreq: boolean = false;
   bookingForm: FormGroup;
-  recurForm: FormGroup;
   bookingDate = new FormControl(moment());
   toDay = new Date();
   selDate: any;
@@ -135,17 +133,7 @@ export class BookingComponent implements OnInit {
     {value: 'Karthi', viewValue: 'Karthi'},
     {value: 'Nisha', viewValue: 'Nisha'}
   ];
-  recurFrequency: recurFrequency[] = [
-    {value: 'Doesn\'t repeat'},
-    {value: 'Daily'},
-    {value: 'Every 2 days'},
-    {value: 'Every 3 days'},
-    {value: 'Every 4 days'},
-    {value: 'Every 5 days'},
-    {value: 'Every 6 days'},
-    {value: 'Every 7 days'},
-    {value: 'Weekly'}
-  ];
+
  // bookingService = new FormControl();
   //filteredService: Observable<Service[]>;
   customerDet = new FormControl();
@@ -176,12 +164,10 @@ export class BookingComponent implements OnInit {
      }
 
   ngOnInit() {      
-    this.recurForm = new FormGroup({
-      recurFrequency: new FormControl(null)
-    });
+  
     this.bookingForm = new FormGroup({
-      customerName: new FormControl(null, Validators.required),
-      bookingDate: new FormControl(null, Validators.required),    
+      customerName: new FormControl(null),
+      bookingDate: new FormControl(null),    
       bookingStatus: new FormControl(null),
       bookingSource: new FormControl(null),
       service: this.formBuilder.array([this.createService()]),      
@@ -198,7 +184,6 @@ export class BookingComponent implements OnInit {
 
   private _filterCustomer(value: string): Customer[] {
     const filterValue = value;       
-    console.log(filterValue);
     this.customerHistory = true;
     return this.customer.filter(customername => customername.name.toLowerCase().indexOf(filterValue) === 0 || customername.mobile.indexOf(filterValue) === 0);
   }
@@ -227,13 +212,9 @@ getDisabledValue() {
   return true; 
 }
 openRecur() {   
-//this.modalRef = this.modalService.show(recurringtemplate);
   const dialogRef = this.dialog.open(RecurPopupComponent, {
-    //width: '50%',
-    width:'col-md-4',
-    data: {},
-    //position: {top: '9%', left:'48%'}
-  });
+    width:'col-md-4'
+    });
 
   dialogRef.afterClosed().subscribe(result => {
    this.showRecur = false;
@@ -242,4 +223,15 @@ openRecur() {
   });
 }
 
+billingHistory() {   
+    const dialogRef = this.dialog.open(BillingActivityComponent, {      
+      width:'95%',
+      height: '90%',
+      
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+    
+    });
+  }
 }
