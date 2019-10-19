@@ -79,7 +79,6 @@ export class AppointmentComponent implements OnInit {
   calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin, resourceTimeGridPlugin];
   calendarWeekends = true;
   todayDate = new Date();
-  slotDuration: any; 
   resources: any[] = [
     {id:'1',title:'Devi'},
     {id:'2',title:'Ramya'},
@@ -87,7 +86,7 @@ export class AppointmentComponent implements OnInit {
     {id:'4',title:'Ashika'},
     {id:'5',title:'Ravi'},
   ];  
-  businessHours: [ // specify an array instead
+  businessHours: [ 
     {
       daysOfWeek: [ 1, 2, 3 ], // Monday, Tuesday, Wednesday
       startTime: '08:00', // 8am
@@ -150,20 +149,7 @@ export class AppointmentComponent implements OnInit {
   }
  
    constructor(private modalService: BsModalService, public dialog: MatDialog, public router: Router) { }
-  // constructor(private modalService: BsModalService) { }
 
-  // appointmentCreate(): void {
-  //   const dialogRef = this.dialog.open(BookingComponent, {
-  //     width: '50%',
-  //     data: { }
-  //     // data: {name: 'sfd', animal: 'dsfd'}
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-      
-  //     this.modalRef.hide();
-  //   });
-  // }
 
 
   ngOnInit() {
@@ -186,19 +172,4 @@ caltoggle() {
     this.calicon = "event_note";
   }
 }
-// initFunction() {
-//   this.resources = [
-//     {id:'1',title:'Devi'},
-//     {id:'2',title:'Ramya'},
-//     {id:'3',title:'Nithya'},
-//     {id:'4',title:'Ashika'},
-//     {id:'5',title:'Ravi'},
-//   ];  
-//   this.events = [
-//     { title: 'Hair Cut - Devi - 10:00 AM', start: new Date(), backgroundColor:'#f00'},
-//     { title: 'Bleech - Devi - 10:45 AM', start: new Date(), backgroundColor:'#9fb3d4' },
-//     { title: 'Facial - Nithya - 11:30 AM', start: new Date('2019-10-06'), backgroundColor:'#407d5d' },
-//     { title: 'Hair Coloring - Abhi - 03:00 PM', start: new Date('2019-10-04'), backgroundColor:'#34cf7d' }
-//   ]; 
-// }
 }

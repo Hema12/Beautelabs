@@ -70,7 +70,7 @@
                         </div>
                         <div formArrayName="service" *ngFor="let ser of bookingForm.controls.service['controls']; let i=index">                 
                             <div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 mb-red15 mt-2 pall-zero mall-zero" [formGroupName]="i">
-                                <div class="col-sm-12 col-lg-3 col-xl-4 col-md-2">
+                                <div class="col-sm-12 col-lg-3 col-xl-4 col-md-2 serField">
                                     <mat-form-field class="belowlinkinput selfield">
                                         <mat-label class="selplaceHolder">Service</mat-label>
                                         <mat-select formControlName="bookingService">
@@ -81,7 +81,7 @@
                                     </mat-form-field>
                                     <!-- <p class="inputlink" [routerLink]="['/beautelabs/cbot-admin/serviceCreate']" routerLinkActive="active"><mat-icon>add</mat-icon> Add New Service</p> -->
                                 </div>
-                                <div class="col-sm-12 col-lg-3 col-xl-4 col-md-2">
+                                <div class="col-sm-12 col-lg-3 col-xl-4 col-md-2 serField">
                                     <mat-form-field class="belowlinkinput selfield">
                                         <mat-label class="selplaceHolder">Staff</mat-label>
                                         <mat-select formControlName="bookingStaff">
@@ -91,7 +91,7 @@
                                         </mat-select>
                                     </mat-form-field>   
                                 </div>
-                                <div class="col-sm-12 col-lg-3 col-xl-3 col-md-2">
+                                <div class="col-sm-12 col-lg-3 col-xl-3 col-md-2 serField">
                                     <!-- <ngx-timepicker-field [defaultTime]="serviceTime" formControlName="bookingStartTime"></ngx-timepicker-field> -->
                                     <mat-form-field class="selfield">
                                         <mat-label class="selplaceHolder">Start Time</mat-label>
@@ -102,7 +102,7 @@
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-1 col-lg-2 col-xl-1 col-sm-12">
+                                <div class="col-md-1 col-lg-2 col-xl-1 col-sm-12 serField">
                                     <button mat-icon-button (click)="Delete(i)" class="delbtn">
                                         <mat-icon>delete</mat-icon>
                                     </button> 

@@ -754,6 +754,9 @@ th {
 .fc-today-button {
     width:45px !important;
 }
+// .fc-past {
+//     background: #fafafa !important;
+// }
 .fc-toolbar.fc-header-toolbar {
     margin-bottom: 0.5em !important;
 }
@@ -1157,8 +1160,8 @@ tr.mat-row {
         
     }
     .col-md-2 {
-        flex: 0 0 30% !important;
-        max-width: 30% !important;        
+        flex: 0 0 30%;
+        max-width: 30%;        
     }
     .col-md-1 {
         flex: 0 0 8% !important;
@@ -1193,6 +1196,9 @@ tr.mat-row {
     .grid-item {
         width:100% !important;
     }
+    .topwidth {
+        width: 20% !important;
+    }
     .newCard {
         height: 64vh !important;
     }
@@ -1213,7 +1219,7 @@ tr.mat-row {
         margin-top:2% !important;
     }
     .col-md-2 {
-        flex: 1 0 30%;
+        flex: 0 0 30%;
         max-width: 30%;
     }
     .fc-day-grid-container  {
@@ -1293,9 +1299,14 @@ tr.mat-row {
         height: 89vh !important;
     }
     .col-md-2 {
-        //flex:0 0 20% !important;
-        flex: 0 0 77% !important;
-        max-width: 77% !important;
+        // flex:0 0 20%;
+        // max-width: 20%;
+        // flex: 0 0 77% !important;
+        // max-width: 77% !important;
+    }
+    .serField {
+        flex: 0 0 75% !important;
+        max-width: 75% !important;
     }
     .col-md-4 {
         flex: 0 0 14% !important;
