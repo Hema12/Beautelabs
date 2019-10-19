@@ -35,11 +35,14 @@
             [weekends]="true"
             [allDaySlot] = "false"
             slotDuration='00:15:00'
+            [businessHours] ="businessHours"
             slotMinutes= '00:15:00'
             [showNonCurrentDates] = "true"
-            (eventClick)="eventClick($event)"
+            (eventClick)="eventClick($event)"           
             (dateClick)="handleDateClick($event)">
         </full-calendar>
+
+        <!-- [filterResourcesWithEvents] = true  show only resources who have booking-->   
     </div>    
     <div *ngIf="selIcon=='list'" class="full-width mt-2">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>

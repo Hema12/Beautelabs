@@ -294,6 +294,7 @@ th {
     width: 400px;
 }
 .recurPopupForm {
+    padding: 10px !important;
     margin-top: 5% !important;
 }
 .recurSelectPopupForm {
@@ -355,6 +356,9 @@ th {
     margin-bottom: 10px !important;
     border: 0 !important;
     border-top:1px solid rgba(197, 214, 222, 0.7) !important
+}
+.profile {
+    left:4%;
 }
 .profile .mat-icon {
     font-size:$primary-font-size-md !important;
@@ -602,7 +606,7 @@ th {
     // margin:5px 0px 5px 3px !important;
 }
 .customerProfile img {
-    height: 95px !important;
+    height: 95px !important;    
 }
 .customer img {
     width:170px;
@@ -775,7 +779,7 @@ th {
 //     background: #2c3e500d !important;
 // }
 .fc-unthemed td.fc-today {
-    background: $primary-color-lightwhite;
+    background: #cff5e363;
 }
 .fc-body {
     background-color: $primary-color-white !important;
@@ -903,8 +907,8 @@ a:not([href]):not([tabindex]) {
     padding: 0px 4px !important;
 }
 .delbtn {
-    line-height:40px !important;
-    height:40px !important;
+    line-height:30px !important;
+    height:30px !important;
 }
 .delbtn .mat-icon {
     font-size: 19px !important;
@@ -1017,11 +1021,42 @@ tr.mat-row {
 //         margin-left: 1% !important;
 //     }
 // }
+
+@media only screen and (min-width: 810px)  and (max-width:825px){
+    .col-md-2 {
+        max-width:30%;
+        flex: 0 0 30%;
+    }
+    .col-md-4 {
+        max-width:18%;
+        flex: 0 0 18%;
+    }
+}
+@media only screen and (min-width: 992px) {
+    .col-lg-7 {
+        -ms-flex: 0 0 100%;
+         flex: 0 0 100%; 
+         max-width: 100%; 
+    }
+    .col-lg-5 {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%; 
+        max-width: 100%; 
+    }
+    .col-md-4 {
+        max-width:16%;
+        flex:0 0 16%;
+    }
+    .profile{
+        left: 4% !important;
+    }
+}
 @media only screen and (min-width: 992px) and(max-width:1000px) {
     .col-lg-3 {
         flex:0 0 64% !important;
         max-width: 64% !important;
     }
+    
 }
 @media only screen and (min-width:710px) and (max-width: 890px) {
     .newCard {
@@ -1071,9 +1106,13 @@ tr.mat-row {
         display: none !important;
     }
     .col-md-4 {
-        width:32%;
-        flex: 0 0 32%;
+        max-width:22%;
+        flex: 0 0 22%;
         margin-left: 1%;
+    }
+    .col-md-8 {
+        max-width:66%;
+        flex: 0 0 66%;
     }
     .staff.mat-card-header {
         display: contents !important;
@@ -1139,17 +1178,33 @@ tr.mat-row {
 //         top:11% !important;
 //     }
 // }
+@media only screen and (min-width: 640px) and (max-width:650px) {
+    .fc-day-grid-container  {
+        height: 660px  !important;
+        overflow-y: scroll !important;
+     }
+     .fc-time-grid-container {
+        height: 765px  !important;
+        overflow-y: scroll !important;
+    }
+}
 //ipad
-@media only screen and (min-width: 521px) and (max-width:768px) {
+@media only screen and (min-width: 570px) and (max-width:768px) {
     .grid-item {
         width:100% !important;
     }
     .newCard {
         height: 64vh !important;
     }
+    textarea.mat-input-element {
+        min-height: 10vh !important;
+    }
     .booking .mat-tab-header {
         margin-top: 1.5% !important;
         margin-left: 23% !important;
+    }
+    .profile {
+        left: 0% !important;
     }
     // .mat-drawer-container {
     //     min-height: 83vh !important;
@@ -1160,6 +1215,14 @@ tr.mat-row {
     .col-md-2 {
         flex: 1 0 30%;
         max-width: 30%;
+    }
+    .fc-day-grid-container  {
+        height: 660px  !important;
+        overflow-y: hidden !important;
+     }
+     .fc-time-grid-container {
+        height: 765px  !important;
+        overflow-y: scroll !important;
     }
 }
 
@@ -1180,6 +1243,27 @@ tr.mat-row {
     .modal-dialog {
         padding-top:14% !important;
     }
+    .fc-day-grid-container  {
+        height: 660px  !important;
+        overflow-y: hidden !important;
+     }
+     .fc-time-grid-container {
+        height: 765px  !important;
+        overflow-y: scroll !important;
+    }
+}
+@media screen and (min-width: 1200px) and (max-width:1500px) {  
+    .fc-day-grid-container  {
+        height: 945px  !important;
+        overflow-y: hidden !important;
+     }
+     .fc-time-grid-container {
+        height: 765px  !important;
+        overflow-y: scroll !important;
+    }
+    textarea.mat-input-element {
+        min-height: 10vh !important;
+    }
 }
 // @media only screen and (min-width: 300px) and (max-width:360px) {
 //     .mat-drawer-container {
@@ -1198,18 +1282,35 @@ tr.mat-row {
 //     }
 // }
 //iphone S
-@media only screen and (min-width: 300px) and (max-width:520px) {
+@media only screen and (min-width: 300px) and (max-width:570px) {
     // .mat-drawer.mat-drawer-side {
     //     top:6% !important
     // }
+    textarea.mat-input-element {
+        min-height: 10vh !important;
+    }
     .newCard {
         height: 89vh !important;
     }
     .col-md-2 {
-        flex:0 0 20% !important;
+        //flex:0 0 20% !important;
+        flex: 0 0 77% !important;
+        max-width: 77% !important;
     }
+    .col-md-4 {
+        flex: 0 0 14% !important;
+        max-width: 14% !important;
+    }
+    .col-md-8 
+    {            
+        flex: 0 0 84% !important;
+        max-width: 84% !important;
+          }    
     .col-md-1 {
         flex:0 0 8% !important;
+    }
+    .profile {
+        left:19%;
     }
     .loginpage-content {
         font-size: $primary-font-size-sm;
@@ -1243,7 +1344,12 @@ tr.mat-row {
         height: 2em !important;
     }
     .fc-view-container *, .fc-view-container *:before, .fc-view-container *:after {
-        font-size: $secondary-font-size-xs !important;
+        font-size: $primary-font-size-xs !important;
+       
+    }
+    .fc-day-header {    
+        text-overflow: ellipsis !important;
+        overflow: hidden !important;
     }
     // .fc-scroller, .fc-day-grid-container {
     //     height: 400px !important;
@@ -1254,6 +1360,14 @@ tr.mat-row {
     }
     .fc-day-grid .fc-row {
         height: 6em !important;
+    }
+    .fc-day-grid-container  {
+        height: 350px  !important;
+        overflow-y: hidden !important;
+     }
+     .fc-time-grid-container {
+        height: 492px  !important;
+        overflow-y: scroll !important;
     }
     .booking .mat-tab-header {
         margin-top: 1.5% !important;
@@ -1288,8 +1402,26 @@ tr.mat-row {
     .booking .mat-tab-label {
         height: 22px !important;
     }
+    .fc-center h2 {
+        min-width: 100px !important;
+    }
+    .fc-today-button {
+        width:40px !important;
+    }
+    .fc-left .fc-button {
+        padding: 0.5em 0.3em !important;
+        font-size: 11px !important;
+    }
+    .fc-right .fc-button {
+        width: 41px !important;
+        font-size: 12px;
+        padding: 0.37em 0em !important;
+    }  
+    .fc-day-header .fc-widget-header span {
+        white-space: normal !important;
+    }
 }
-@media only screen and (min-width: 769px) and (max-width:1400px) {
+@media only screen and (min-width: 620px) and (max-width:1400px) {
     .grid-item {
         width:100% !important;
     }
@@ -1324,7 +1456,7 @@ tr.mat-row {
     // }
     .fc-time-grid-container {
         overflow-y: scroll !important;
-        height: 514px !important;
+        height: 492px !important;
     }
     .fc-resourceTimeGridDay-view .fc-timeGrid-view {
         overflow-y: scroll !important;

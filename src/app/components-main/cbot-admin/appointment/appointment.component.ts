@@ -73,7 +73,7 @@ export class AppointmentComponent implements OnInit {
   source: string;
   bookedTime:string;
   resourceName: string;
-  showModal: boolean;
+  showModal: boolean;  
   @ViewChild(FullCalendarComponent, {static: true}) calendarComponent: FullCalendarComponent;  
   calendarVisible = true;
   calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin, resourceTimeGridPlugin];
@@ -87,6 +87,18 @@ export class AppointmentComponent implements OnInit {
     {id:'4',title:'Ashika'},
     {id:'5',title:'Ravi'},
   ];  
+  businessHours: [ // specify an array instead
+    {
+      daysOfWeek: [ 1, 2, 3 ], // Monday, Tuesday, Wednesday
+      startTime: '08:00', // 8am
+      endTime: '18:00' // 6pm
+    },
+    {
+      daysOfWeek: [ 4, 5 ], // Thursday, Friday
+      startTime: '10:00', // 10am
+      endTime: '16:00' // 4pm
+    }
+  ]
   // events: any = [
   //   { title: 'Hair Cut', customerName:'Nisha', customerMobile:'9632574512', customerEmail:'nisha23@gmail.com', resourceId:'1', startTime: new Date(), staffName:'Devi', source:'Walk-in', bookedTime:'10:00AM', backgroundColor:'#f00'},
   //   { title: 'Bleech',  customerName:'Zenath', customerMobile:'9632574512', customerEmail:'nisha23@gmail.com', resourceId:'2',startTime: new Date(), staffName:'Ramya',  source:'Facebooj', bookedTime:'09:30AM', backgroundColor:'#9fb3d4' },

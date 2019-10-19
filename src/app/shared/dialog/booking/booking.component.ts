@@ -213,7 +213,7 @@ getDisabledValue() {
 }
 openRecur() {   
   const dialogRef = this.dialog.open(RecurPopupComponent, {
-    width:'col-md-4'
+    width:'col-md-5'
     });
 
   dialogRef.afterClosed().subscribe(result => {
