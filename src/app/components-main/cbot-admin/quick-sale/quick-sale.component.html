@@ -25,12 +25,11 @@
         <mat-form-field class="bookingstaff">
             <mat-label>Select</mat-label>
             <mat-select>
-                <mat-option value="today">All Staffs</mat-option>
-                <mat-option value="today">Devi</mat-option>
-                <mat-option value="last week">Ramya</mat-option>
-                <mat-option value="last 15 days">Nithya</mat-option>
-                <mat-option value="last month">Ashika</mat-option>
-                <mat-option value="last month">Ravi</mat-option>
+                <mat-option value="all">All</mat-option>
+                <mat-option value="today">Today</mat-option>
+                <mat-option value="last week">Last Week</mat-option>
+                <mat-option value="last 15 days">Last 15 Days</mat-option>
+                <mat-option value="last month">Last Month</mat-option>
             </mat-select>
         </mat-form-field> 
     </div>
@@ -73,11 +72,17 @@
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+     
     </table>
+    <mat-toolbar class="bg-light">
+            <mat-toolbar-row>
+              <span class="example-spacer"></span>
+              <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator> 
+            </mat-toolbar-row>
+          </mat-toolbar>
 </div>
-<div class="row col-md-12 col-sm-12 col-xs-12 col-xl-12 col-lg-12 pall-zero mall-zero">
-        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>  
-    </div>
+
 
 
 

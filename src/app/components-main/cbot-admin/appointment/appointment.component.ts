@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 import { DateTime, Info } from 'luxon';
 import moment from 'moment';
 import { RecurPopupComponent } from 'src/app/shared/dialog/recur-popup/recur-popup.component';
+
 export interface PeriodicElement {
   name: string;
   sno: number;
@@ -86,7 +87,7 @@ export class AppointmentComponent implements OnInit {
     {id:'4',title:'Ashika'},
     {id:'5',title:'Ravi'},
   ];  
-  businessHours: [ 
+  businessHours: [ // specify an array instead
     {
       daysOfWeek: [ 1, 2, 3 ], // Monday, Tuesday, Wednesday
       startTime: '08:00', // 8am
@@ -138,7 +139,11 @@ export class AppointmentComponent implements OnInit {
 
 
   handleDateClick(arg) {
-    this.router.navigate(['/beautelabs/cbot-admin/bookingCreate', { Seldate: arg.dateStr }]);
+    if(arg.date >= this.todayDate) {    
+      this.router.navigate(['/beautelabs/cbot-admin/bookingCreate', { Seldate: arg.dateStr }]);
+    } else {
+      Swal.fire('Select valid date');
+    }
 
   }
   applyFilter(filterValue: string) {

@@ -1,11 +1,11 @@
 <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mr-zero ml-zero pall-zero">            
-    <div class="col-md-2 col-xl-1 col-lg-1 col-sm-2 topwidth pall-zero">
+    <div class="col-xl-1 col-lg-1 col-sm-2 topwidth pall-zero">
         <button mat-raised-button [routerLink]="['/beautelabs/cbot-admin/bookingCreate']" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button>  
     </div>
-    <div class="col-md-2 col-xl-1 col-lg-1 col-sm-2 topwidth">
+    <div class="col-xl-1 col-lg-1 col-sm-2 topwidth">
         <button mat-button (click)="caltoggle()"><mat-icon>{{calicon}}</mat-icon>    </button>
     </div>
-    <div class="col-md-2 col-xl-3 col-lg-3 col-sm-2 topwidth">
+    <div class="col-xl-3 col-lg-3 col-sm-2 topwidth">
         <mat-form-field class="bookingstaff">
             <mat-label>Staff</mat-label>
             <mat-select>
@@ -44,7 +44,7 @@
 
         <!-- [filterResourcesWithEvents] = true  show only resources who have booking-->   
     </div>    
-    <div *ngIf="selIcon=='list'" class="full-width mt-2">
+    <div *ngIf="selIcon=='list'" class="full-width mt-2 scrollDiv newCard">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
             <ng-container matColumnDef="sno">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
@@ -96,7 +96,7 @@
                     <mat-icon color="primary">edit</mat-icon>
                 </td>
             </ng-container>
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>  
     </div>     

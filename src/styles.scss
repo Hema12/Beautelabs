@@ -215,7 +215,7 @@ th {
     text-align: center;
     font-family: $primary-font-family-common;
     background: #f0f5f7;
-    padding: 6% 3% 3% 3%;
+    padding: 1% 3% 1% 3%;
 }
 .notify-content {
     padding:0%;
@@ -230,6 +230,9 @@ th {
 .notify-content:hover {
     background: #f1f1f1;
 }
+.bg-light {
+    background: $primary-color-lightwhite !important;
+}
 .notify-detail:before {
     content:"";
     position: absolute;
@@ -239,7 +242,7 @@ th {
     height: 0;
     border-style: solid;
     border-width: 0 10px 10px 10px;
-    border-color: transparent transparent $primary-color-white transparent;
+    border-color: transparent transparent $primary-color-darkblue transparent;
     z-index:9999;
 }
 .sidenav-item .mat-icon  {
@@ -334,8 +337,13 @@ th {
     text-align: right;
 }
 .billTitle {
-    border-bottom: 1px solid #efefef;
+    //border-bottom: 1px solid #efefef;
     line-height: 40px;
+    width:96%;
+    margin-bottom: 0px !important;
+}
+.closeicon {
+    display: unset !important;
 }
 .cdk-overlay-pane {
     max-width: 95vw !important;
@@ -754,9 +762,11 @@ th {
 .fc-today-button {
     width:45px !important;
 }
-// .fc-past {
-//     background: #fafafa !important;
-// }
+.fc-past {
+    background: #fafafa;
+    background-size: 5px 5px;
+    background-image: linear-gradient(45deg, transparent 46%, rgba(16, 25, 40, 0.2) 49%, rgba(16, 25, 40, 0.2) 51%, transparent 55%);
+}
 .fc-toolbar.fc-header-toolbar {
     margin-bottom: 0.5em !important;
 }
@@ -1003,6 +1013,14 @@ tr.mat-row {
 .mt-red4 {
     margin-top:-4% !important;
 }
+.scrollDiv {
+    overflow: scroll !important;
+}
+.col-lg-11 {
+    flex:0 0 91%;
+    max-width: 91%;
+}
+
 //Responsive Css
 //Header
 @media only screen and (min-width: 1020px) and (max-width:1299px)
@@ -1234,7 +1252,7 @@ tr.mat-row {
 
 @media only screen and (min-width: 1500px) { 
     .newCard {
-        height: 90vh !important;
+        height: 50vh !important;
         overflow-y: hidden !important;
     }
     
@@ -1292,11 +1310,14 @@ tr.mat-row {
     // .mat-drawer.mat-drawer-side {
     //     top:6% !important
     // }
+    .billTitle { 
+        width:91%;
+    }
     textarea.mat-input-element {
         min-height: 10vh !important;
     }
     .newCard {
-        height: 89vh !important;
+        height: 78vh !important;
     }
     .col-md-2 {
         // flex:0 0 20%;

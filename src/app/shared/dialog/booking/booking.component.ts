@@ -133,7 +133,7 @@ export class BookingComponent implements OnInit {
     {value: 'Karthi', viewValue: 'Karthi'},
     {value: 'Nisha', viewValue: 'Nisha'}
   ];
-
+  minDate = new Date();
  // bookingService = new FormControl();
   //filteredService: Observable<Service[]>;
   customerDet = new FormControl();
