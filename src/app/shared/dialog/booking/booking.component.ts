@@ -21,6 +21,7 @@ import {default as _rollupMoment} from 'moment';
 import { RecurPopupComponent } from '../recur-popup/recur-popup.component';
 import { filter } from 'minimatch';
 import { BillingActivityComponent } from '../billing-activity/billing-activity.component';
+import { ServiceComponent } from '../service/service.component';
 
 const moment = _rollupMoment || _moment;
 
@@ -232,6 +233,15 @@ billingHistory() {
   
     dialogRef.afterClosed().subscribe(result => {
     
+    });
+  }
+
+  serviceCreate(): void {
+    const dialogRef = this.dialog.open(ServiceComponent, {
+      width: 'col-md-7',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
     });
   }
 }

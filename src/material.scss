@@ -29,6 +29,9 @@
     white-space: pre !important;
     overflow: hidden !important;
 }
+td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type, th.mat-header-cell:last-of-type {
+    padding:4px !important;
+}
 .mat-table .mat-icon {
     font-size: $secondary-font-size-xl !important;
 }
@@ -59,6 +62,7 @@
 
 .mat-drawer {
     background: #1A263A !important;
+    min-width: 2% !important;
 }
 
 .mat-drawer-content {
@@ -83,10 +87,10 @@
     color:$primary-color-gray !important;
     font-size: $secondary-font-size-md !important;
 }
-.mat-list-item-content .matToolTip {
-    position: absolute !important;
-    left:50% !important;
-}
+// .mat-list-item-content .matToolTip {
+//     position: absolute !important;
+//     left:50% !important;
+// }
 .mat-list-text {
     color: $primary-color-gray !important;
     font-size: $primary-font-size-sm !important;
@@ -125,18 +129,25 @@ button.mat-menu-item {
 .mat-menu-item .mat-flat-button {
     padding: 0px 4px !important;
 }
-
+.mat-button {
+    outline: 0 !important;
+}
 .mat-flat-button.mat-success, .mat-raised-button.mat-success, .mat-fab.mat-success, .mat-mini-fab.mat-success
 {
-    background: $primary-color-lightblue !important;
+    background: $primary-color-darkblue !important;
     color:$primary-color-white !important;
+    outline: 0 !important;
 }
 .mat-raised-button {
     line-height: 30px !important;
+    font-size: $primary-font-size-sm !important;
+    padding:0px 6px !important;
+}
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+    background: $primary-color-darkblue !important;
 }
 .mat-raised-button .mat-primary {
-    background-color: #3498db !important;
-    border-color:#3498db !important;
+    background-color: $primary-color-darkblue !important;
     padding: 0px 10px !important;
 }
 .mat-paginator-page-size-label {
@@ -381,9 +392,12 @@ button.mat-menu-item {
 // .mat-drawer-backdrop.mat-drawer-shown {
 //     background-color: rgba(0, 0, 0, 0.3) !important;
 // }
+// .mat-drawer-backdrop.mat-drawer-shown {
+//     display:none !important;
+// }
 .mat-select-value-text {
     font-size: $secondary-font-size !important;
 }
 .mat-form-field-label-wrapper {
-    top: -0.94375em !important;
+    top: -1.04375em !important;
 }

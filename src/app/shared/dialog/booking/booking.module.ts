@@ -6,6 +6,7 @@ import { BookingComponent } from './booking.component';
 import { SharedModule } from '../../module/module.module';
 import { RecurPopupModule } from '../recur-popup/recur-popup.module';
 import { BillingActivityModule } from '../billing-activity/billing-activity.module';
+import { ServiceModule } from '../service/service.module';
 
 @NgModule({
   declarations: [BookingComponent],
@@ -14,7 +15,8 @@ import { BillingActivityModule } from '../billing-activity/billing-activity.modu
     BookingRoutingModule,
     SharedModule,
     RecurPopupModule,
-    BillingActivityModule
+    BillingActivityModule,
+    ServiceModule
   ],
   exports: [
     BookingComponent

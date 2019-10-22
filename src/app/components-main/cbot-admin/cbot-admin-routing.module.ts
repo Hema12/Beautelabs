@@ -149,6 +149,10 @@ const routes: Routes = [
         loadChildren: () => import('../../shared/dialog/sale/sale.module').then(m => m.SaleModule),
       },
       {
+        path:'serviceCreate',
+        loadChildren:() => import('../../shared/dialog/service/service.module').then(m=>m.ServiceModule),
+      },
+      {
         path: 'purchaseOrderCreate',
         loadChildren: () => import('../../shared/dialog/purchase/purchase-order-create/purchase-order-create.module').then(m => m.PurchaseOrderCreateModule),
       },

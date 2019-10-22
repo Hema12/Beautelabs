@@ -190,7 +190,7 @@
                         <!-- <div formArrayName="addonCustomer" *ngFor="let ser of customerForm.controls['addonCustomer'].controls; let i = index;"> -->
                             <div formArrayName="addonCustomer" *ngFor="let ser of customerForm.controls.addonCustomer['controls']; let i=index">
                             <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12" [formGroupName]="i">
-                                <div class="col-md-4 col-xl-4 col-lg-4 col-sm-4">                   
+                                <div class="col-md-8 col-lg-3 col-xl-3 col-sm-12">                   
                                     <mat-form-field>
                                         <input matInput placeholder="Customer" aria-label="Customer" [matAutocomplete]="customer" [formControl]="customerDet">
                                         <mat-autocomplete #customer="matAutocomplete">
@@ -200,7 +200,7 @@
                                         </mat-autocomplete>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-2 col-sm-2 col-xl-1 col-lg-1">
+                                <div class="col-md-1 col-sm-2 col-xl-1 col-lg-1">
                                     <button mat-icon-button (click)="Delete(i)" class="delbtn">
                                         <mat-icon>delete</mat-icon>
                                     </button> 

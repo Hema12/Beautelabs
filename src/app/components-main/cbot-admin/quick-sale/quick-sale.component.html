@@ -15,7 +15,7 @@
     </div>    
 </div> -->
 <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mr-zero ml-zero pall-zero">        
-    <div class="col-md-2 col-xl-1 col-lg-1 col-sm-2 topwidth">
+    <div class="col-md-2 col-xl-1 col-lg-1 col-sm-2 topwidth pall-zero">
         <h2 class="page-title">Sales</h2>
     </div>
     <div class="col-md-2 col-xl-1 col-lg-1 col-sm-2 topwidth">
@@ -36,7 +36,7 @@
 </div>
 
 
-<div class="row col-md-12 col-sm-12 col-xs-12 col-xl-12 col-lg-12 pall-zero mall-zero newCard">
+<div class="row col-md-12 col-sm-12 col-xs-12 col-xl-12 col-lg-12 pall-zero mall-zero newCardTable scrollDiv">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
     
     <ng-container matColumnDef="sno">
@@ -65,8 +65,8 @@
     </ng-container>   
 
     <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef>Action</th>
-        <td mat-cell *matCellDef="let element">
+        <th mat-header-cell *matHeaderCellDef style="width:40px">Action</th>
+        <td mat-cell *matCellDef="let element" style="width:40px">
             <mat-icon color="primary">remove_red_eye</mat-icon>                                    
         </td>
     </ng-container>

@@ -74,7 +74,7 @@
                 <td mat-cell *matCellDef="let element"> {{element.startTime}} </td>
             </ng-container>
             <ng-container matColumnDef="serviceDuration">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Duration </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Duration (Hrs) </th>
                 <td mat-cell *matCellDef="let element"> {{element.serviceDuration}} </td>
             </ng-container>
             <ng-container matColumnDef="servicePrice">
@@ -93,12 +93,19 @@
             <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef>Action</th>
                 <td mat-cell *matCellDef="let element">
-                    <mat-icon color="primary">edit</mat-icon>
+                    <mat-icon color="primary" matTooltip="Edit">edit</mat-icon>
+                    <mat-icon color="primary" matTooltip="Proceed Billing">receipt</mat-icon>
                 </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>  
+        <mat-toolbar class="bg-light">
+            <mat-toolbar-row>
+                <span class="example-spacer"></span>
+                <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator> 
+            </mat-toolbar-row>
+        </mat-toolbar>
     </div>     
 </div>
 

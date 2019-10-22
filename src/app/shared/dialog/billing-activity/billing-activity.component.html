@@ -57,7 +57,30 @@
                 <h4>Service</h4>
             </div>
             <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12">
-                <table class="full-width table table-bordered wraptbl serviceDet">
+                    <table mat-table [dataSource]="serviceList" class="mat-elevation-z8" matSort>
+                            <ng-container matColumnDef="sno">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                                <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+                            </ng-container>
+                            
+                            <ng-container matColumnDef="serviceName">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Service </th>
+                                <td mat-cell *matCellDef="let element"> {{element.serviceName}} </td>
+                            </ng-container>                
+                            
+                            <ng-container matColumnDef="staffName">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Staff </th>
+                                <td mat-cell *matCellDef="let element"> {{element.staffName}} </td>
+                            </ng-container>
+                    
+                            <ng-container matColumnDef="billTotal">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Total </th>
+                                <td mat-cell *matCellDef="let element"> {{element.billTotal}} </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedServiceColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedServiceColumns;"></tr>
+                        </table>      
+                <!-- <table class="full-width table table-bordered wraptbl serviceDet">
                     <tr>
                         <th>Service</th>
                         <th>Staff</th>
@@ -78,7 +101,7 @@
                         <td>Nisha</td>
                         <td>425</td>
                     </tr>
-                </table>
+                </table> -->
             </div>
             <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12">
                 <h4>Feedback</h4>

@@ -58,7 +58,7 @@
     <button mat-icon-button fxShow="true">
       <mat-icon class="topmenu" (click)="isExpanded = !isExpanded" fxHide fxShow.gt-sm>menu_open</mat-icon>
       <!-- <mat-icon class="topmenu" (click)="openDrawer" fxHide.gt-sm>menu</mat-icon> -->
-      <mat-icon aria-label="Menu" (click)="sidenav.toggle()" fxHide.gt-sm>menu</mat-icon>
+      <mat-icon aria-label="Menu" (click)="sidenav.toggle()" fxHide.gt-sm class="menuchange">menu</mat-icon>
     </button>               
     <img src="../../../../assets/images/beauty-labs1.png" /> 
     <div fxFlex fxLayout fxLayoutAlign="end" class="notification">
@@ -136,8 +136,8 @@
     </div> 
   </mat-toolbar-row>
 </mat-toolbar>
-<mat-sidenav-container  fixedInViewport="true" class="example-container mat-typography" autosize>
-  <mat-sidenav #sidenav mode="side" disableClose="true" [opened]="screenWidth> 640" color="primary">         
+<mat-sidenav-container  fixedInViewport="true" class="example-container mat-typography" autosize [hasBackdrop]="false">
+  <mat-sidenav #sidenav mode="over" position="start" role="directory" disableClose="true" [opened]="screenWidth> 940" color="primary">         
       <!-- mobile devices -->
       <mat-nav-list fxHide.gt-sm>
           <mat-list-item>

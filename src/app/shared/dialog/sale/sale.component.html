@@ -1,12 +1,9 @@
-<div fxLayout="column">
+<!-- <div fxLayout="column">
     <div fxLayout="row">
         <div fxLayoutAlign="start" fxFlex="85%">
             <h2 class="page-title">Add Quick Sale</h2>
         </div>
         <div fxFlex="15%" fxHide fxShow.gt-sm fxLayoutAlign="end">
-            <!-- <p>
-                <a [routerLink]="['cbot-admin/dashboard']"><mat-icon>home</mat-icon></a> / <span [routerLink]="['cbot-admin/custoemer']">Customers</span> / <span>Create</span>
-            </p>  -->
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#" [routerLink]="['/beautelabs/cbot-admin/dashboard']"><mat-icon>home</mat-icon></a></li>
@@ -16,196 +13,233 @@
                 </nav>
         </div>
     </div>
+</div> -->
+<div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pall-zero">
+    <div class="col-md-7 col-sm-12 col-lg-7 col-xl-7">
+        <h2 class="page-title">Quick Sale </h2>
+    </div>
 </div>
-<mat-card>
-    <mat-card-content>
-        <form method="POST" [formGroup]="saleForm"> 
-                <div class="form-container">
-                    <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
-                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                            <mat-form-field>
-                                <input matInput placeholder="Customer" aria-label="Customer" [matAutocomplete]="customer" [formControl]="saleCustomerDet">
-                                <mat-autocomplete #customer="matAutocomplete">
-                                    <mat-option *ngFor="let customer of filteredCustomer | async" [value]="customer.name">
-                                    <span>{{customer.name}} | {{customer.mobile}}</span>
-                                    </mat-option>
-                                </mat-autocomplete>
-                            </mat-form-field>
-                        </div>  
-                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                            <mat-form-field>
-                                <input matInput [matDatepicker]="picker" required formControlName="bookingDate" (click)="picker.open()" placeholder="Date">
-                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                <mat-datepicker #picker></mat-datepicker>
-                                <mat-error *ngIf="saleForm.controls['bookingDate'].errors || !saleForm.controls['bookingDate'].dirty">
-                                    <span *ngIf="saleForm.controls['bookingDate'].errors.required">Date is required </span>
-                                </mat-error>
-                            </mat-form-field>
-                        </div>  
-                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                            <mat-form-field>
-                                <mat-label>Status</mat-label>
-                                <mat-select formControlName="bookingStatus">
-                                    <mat-option *ngFor="let statusList of status" [value]="statusList.value">
-                                    {{statusList.viewValue}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                    </div>        
-                    <h6 matDialogTitle class="candidate-title">Services</h6>
-                    <!-- <div formArrayName="service" *ngFor="let ser of saleForm.controls['service'].controls; let i = index;"> -->
-                        <div formArrayName="service" *ngFor="let ser of saleForm.controls.service['controls']; let i=index">
-                        <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12" [formGroupName]="i">
-                            <div class="col-md-12 col-lg-2 col-xl-2 col-sm-12">                   
+<div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pall-zero mall-zero">
+    <mat-card class="full-width newCard">
+        <mat-card-content>
+            <form method="POST" [formGroup]="saleForm"> 
+                    <div class="form-container">
+                        <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
                                 <mat-form-field>
-                                    <mat-label>Service</mat-label>
-                                    <mat-select formControlName="bookingService">
-                                        <mat-option *ngFor="let serviceList of services" [value]="serviceList.name">
-                                        {{serviceList.name}}
+                                    <input matInput placeholder="Customer" required aria-label="Customer" [matAutocomplete]="customer" [formControl]="saleCustomerDet">
+                                    <mat-autocomplete #customer="matAutocomplete">
+                                        <mat-option *ngFor="let customer of filteredCustomer | async" [value]="customer.name">
+                                        <span>{{customer.name}} | {{customer.mobile}}</span>
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </div>  
+                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                                <mat-form-field>
+                                    <input matInput [matDatepicker]="picker" required formControlName="bookingDate" (click)="picker.open()" placeholder="Date">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                    <!-- <mat-error *ngIf="saleForm.controls['bookingDate'].errors || !saleForm.controls['bookingDate'].dirty">
+                                        <span *ngIf="saleForm.controls['bookingDate'].errors.required">Date is required </span>
+                                    </mat-error> -->
+                                </mat-form-field>
+                            </div>  
+                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>Status</mat-label>
+                                    <mat-select formControlName="bookingStatus">
+                                        <mat-option *ngFor="let statusList of status" [value]="statusList.value">
+                                        {{statusList.viewValue}}
                                         </mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
-                            <div class="col-md-12 col-lg-2 col-xl-2 col-sm-12">
-                                <mat-form-field>
-                                    <mat-label>Staff</mat-label>
-                                    <mat-select formControlName="bookingStaff">
-                                        <mat-option *ngFor="let staffList of staffs" [value]="staffList.value">
-                                        {{staffList.viewValue}}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>                    
-                            </div>
-                            <div class="col-md-12 col-lg-1 col-xl-1 col-sm-12">
-                                <mat-form-field>
-                                    <mat-label>Qty</mat-label>
-                                    <input matInput formControlName="serviceQty" />
-                                </mat-form-field>     
-                            </div>
-                            <div class="col-md-12 col-lg-2 col-xl-2 col-sm-12">
-                                <mat-form-field>
-                                    <mat-label>Price</mat-label>
-                                    <input matInput formControlName="servicePrice" />
-                                </mat-form-field>     
-                            </div>
-                            <div class="col-md-12 col-lg-2 col-xl-2 col-sm-12">
-                                <mat-form-field>
-                                    <mat-label>Disc(%)</mat-label>
-                                    <input matInput formControlName="serviceDisc" />
-                                </mat-form-field>     
-                            </div>
-                            <div class="col-md-12 col-lg-2 col-xl-2 col-sm-12">
-                                <mat-form-field>
-                                    <mat-label>Total</mat-label>
-                                    <input matInput formControlName="serviceTotalPrice" />
-                                </mat-form-field>     
-                            </div>
-                            <div class="col-md-12 col-lg-1 col-xl-1 col-sm-12">
-                                <button mat-icon-button (click)="DeleteService(i)" color="primary">
-                                    <mat-icon>delete</mat-icon>
-                                </button> 
-                            </div>
+                        </div>     
+                        <hr class="horizontalline" />
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            <h3 matDialogTitle>Services</h3>
                         </div>
-                    </div>  
-                    <div class="productdetail">
-                        <h6 matDialogTitle class="candidate-title">Products</h6>
-                        <!-- <div formArrayName="product" *ngFor="let pro of saleForm.controls['product'].controls; let j = index;"> -->
-                            <div formArrayName="product" *ngFor="let ser of saleForm.controls.product['controls']; let j=index">
-                            <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12" [formGroupName]="j">
+                        <!-- <div formArrayName="service" *ngFor="let ser of saleForm.controls['service'].controls; let i = index;"> -->
+                            <div formArrayName="service" *ngFor="let ser of saleForm.controls.service['controls']; let i=index">
+                            <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12" [formGroupName]="i">
                                 <div class="col-md-12 col-lg-2 col-xl-2 col-sm-12">                   
                                     <mat-form-field>
-                                        <mat-label>Product</mat-label>
+                                        <mat-label>Service</mat-label>
                                         <mat-select formControlName="bookingService">
-                                            <mat-option *ngFor="let productList of products" [value]="productList.name">
-                                            {{productList.name}}
+                                            <mat-option *ngFor="let serviceList of services" [value]="serviceList.name">
+                                            {{serviceList.name}}
                                             </mat-option>
                                         </mat-select>
                                     </mat-form-field>
-                                </div>                             
+                                </div>
+                                <div class="col-md-12 col-lg-2 col-xl-2 col-sm-12">
+                                    <mat-form-field>
+                                        <mat-label>Staff</mat-label>
+                                        <mat-select formControlName="bookingStaff">
+                                            <mat-option *ngFor="let staffList of staffs" [value]="staffList.value">
+                                            {{staffList.viewValue}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>                    
+                                </div>
                                 <div class="col-md-12 col-lg-1 col-xl-1 col-sm-12">
-                                    <button mat-icon-button (click)="DeleteProduct(j)" color="primary">
+                                    <mat-form-field>
+                                        <mat-label>Qty</mat-label>
+                                        <input matInput formControlName="serviceQty" />
+                                    </mat-form-field>     
+                                </div>
+                                <div class="col-md-12 col-lg-2 col-xl-2 col-sm-12">
+                                    <mat-form-field>
+                                        <mat-label>Price</mat-label>
+                                        <input matInput formControlName="servicePrice" />
+                                    </mat-form-field>     
+                                </div>
+                                <div class="col-md-12 col-lg-2 col-xl-2 col-sm-12">
+                                    <mat-form-field>
+                                        <mat-label>Disc(%)</mat-label>
+                                        <input matInput formControlName="serviceDisc" />
+                                    </mat-form-field>     
+                                </div>
+                                <div class="col-md-12 col-lg-2 col-xl-2 col-sm-12">
+                                    <mat-form-field>
+                                        <mat-label>Total</mat-label>
+                                        <input matInput formControlName="serviceTotalPrice" />
+                                    </mat-form-field>     
+                                </div>
+                                <div class="col-md-12 col-lg-1 col-xl-1 col-sm-12">
+                                    <button mat-icon-button (click)="DeleteService(i)" color="primary">
                                         <mat-icon>delete</mat-icon>
                                     </button> 
                                 </div>
                             </div>
+                        </div>  
+                        <hr class="horizontalline" />
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            <h3 matDialogTitle>Products</h3>
                         </div>
-                    </div>
-                    <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
-                        <button mat-raised-button color="primary" (click)="addService()" class="mb-5"><mat-icon>add</mat-icon> Add Service </button>
-                        <button mat-raised-button color="primary" (click)="addProduct()" class="mb-5 ml-1"><mat-icon>add</mat-icon> Add Product </button>
-                        <button mat-raised-button color="primary" (click)="addPackage()" class="mb-5 ml-1"><mat-icon>add</mat-icon> Add Package </button>
-                        <button mat-raised-button color="primary" (click)="addVoucher()" class="mb-5 ml-1"><mat-icon>add</mat-icon> Add Voucher </button>
-                        <button mat-raised-button color="primary" (click)="addPrepaid()" class="mb-5 ml-1"><mat-icon>add</mat-icon> Prepaid </button>
-                    </div>
-                    <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
-                        <div class="col-md-12 col-lg-6 col-xl-6 col-sm-12">
-                            <mat-form-field>
-                                <textarea matInput formControlName="bookingNote" placeholder="Booking Notes"></textarea>
-                            </mat-form-field>
-                        </div> 
-                    </div>                    
-                    <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
-                        <div class="col-md-6 col-lg-8 col-xl-8 col-sm-12 pl-0">
-                            <div class="col-md-6 col-lg-12 col-xl-12 col-sm-12 mb-2">
-                                <h6 class="candidate-title mat-dialog-title">Mode of Payment</h6>
-                                <mat-radio-group formControlName="paymentMode" color="primary" (change)="ModeOfPay($event.value)" >
-                                    <mat-radio-button [value]="'Bank'">Bank</mat-radio-button>
-                                    <mat-radio-button [value]="'Cash'" class="ml-2">Cash</mat-radio-button>
-                                </mat-radio-group> 
-                            </div>
-                            <div class="col-md-6 col-lg-12 col-xl-12 col-sm-12" *ngIf="Type === 'Bank'">
-                                <mat-radio-group formControlName="paymentMode" color="primary">
-                                    <mat-radio-button  [value]="1">Net Banking</mat-radio-button>
-                                    <mat-radio-button [value]="2" class="ml-2">NEFT</mat-radio-button>
-                                    <mat-radio-button [value]="2" class="ml-2">IMPS</mat-radio-button>
-                                </mat-radio-group>                             
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-4 col-sm-12">
-                            <div class="col-md-6 col-lg-12 col-xl-12 col-sm-12">
-                                <table>
-                                    <tr>
-                                        <td class="col-md-3 col-lg-3 col-xl-3">Sub Total</td>
-                                        <td class="col-md-3 col-lg-3 col-xl-3">₹ 35000.00</td>                                
-                                    </tr>
-                                    <tr>
-                                        <td class="col-md-3 col-lg-3 col-xl-3">CGST</td>
-                                        <td class="col-md-3 col-lg-3 col-xl-3">₹ 35.00</td>                                
-                                    </tr>
-                                    <tr>
-                                        <td class="col-md-3 col-lg-3 col-xl-3">SGST</td>
-                                        <td class="col-md-3 col-lg-3 col-xl-3">₹ 35.00</td>                                
-                                    </tr>
-                                    <tr>
-                                        <td class="col-md-3 col-lg-3 col-xl-3">Grand Total</td>
-                                        <td class="col-md-3 col-lg-3 col-xl-3">₹ 3500.00</td>                                
-                                    </tr>
-                                    <tr>
-                                        <td class="col-md-3 col-lg-3 col-xl-3">Change</td>
-                                        <td class="col-md-3 col-lg-3 col-xl-3">₹ 0</td>                                
-                                    </tr>
-                                </table>
-                                <!-- <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                                    <mat-form-field>
-                                        <mat-label>Sub Total</mat-label>
-                                        <input matInput formControlName="subTotal" />
-                                    </mat-form-field>  
+                        <div class="productdetail">
+                            <!-- <div formArrayName="product" *ngFor="let pro of saleForm.controls['product'].controls; let j = index;"> -->
+                                <div formArrayName="product" *ngFor="let ser of saleForm.controls.product['controls']; let j=index">
+                                <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12" [formGroupName]="j">
+                                    <div class="col-md-12 col-lg-2 col-xl-2 col-sm-12">                   
+                                        <mat-form-field>
+                                            <mat-label>Product</mat-label>
+                                            <mat-select formControlName="bookingService">
+                                                <mat-option *ngFor="let productList of products" [value]="productList.name">
+                                                {{productList.name}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>      
+                                    <div class="col-md-12 col-lg-2 col-xl-2 col-sm-12">                   
+                                        <mat-form-field>
+                                            <mat-label>Qty</mat-label>
+                                            <input matInput formControlName="productQty" />
+                                        </mat-form-field>  
+                                    </div>      
+                                    <div class="col-md-12 col-lg-2 col-xl-2 col-sm-12">                   
+                                        <mat-form-field>
+                                            <mat-label>Price</mat-label>
+                                            <input matInput formControlName="productprice" />
+                                        </mat-form-field>  
+                                    </div>  
+                                    <div class="col-md-12 col-lg-2 col-xl-2 col-sm-12">                   
+                                        <mat-form-field>
+                                            <mat-label>Disc (%)</mat-label>
+                                            <input matInput formControlName="productDisc" />
+                                        </mat-form-field>  
+                                    </div>        
+                                    <div class="col-md-12 col-lg-2 col-xl-2 col-sm-12">
+                                        <mat-form-field>
+                                            <mat-label>Total</mat-label>
+                                            <input matInput formControlName="productTotalPrice" />
+                                        </mat-form-field>                           
+                                    </div>
+                                    <div class="col-md-12 col-lg-1 col-xl-1 col-sm-12">
+                                        <button mat-icon-button (click)="DeleteProduct(j)" color="primary">
+                                            <mat-icon>delete</mat-icon>
+                                        </button> 
+                                    </div>
                                 </div>
-                                <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                                    <mat-form-field>
-                                        <input matInput formControlName="subTotal" />
-                                    </mat-form-field>  
-                                </div> -->
                             </div>
                         </div>
+                        <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                            <button mat-raised-button color="primary" (click)="addService()" class="mb-2 bookingbtn"><mat-icon>add</mat-icon> Add Service </button>
+                            <button mat-raised-button color="primary" (click)="addProduct()" class="mb-2 ml-1 bookingbtn"><mat-icon>add</mat-icon> Add Product </button>
+                            <button mat-raised-button color="primary" (click)="addPackage()" class="mb-2 ml-1 bookingbtn"><mat-icon>add</mat-icon> Add Package </button>
+                            <button mat-raised-button color="primary" (click)="addVoucher()" class="mb-2 ml-1 bookingbtn"><mat-icon>add</mat-icon> Add Voucher </button>
+                            <button mat-raised-button color="primary" (click)="addPrepaid()" class="mb-2 ml-1 bookingbtn"><mat-icon>add</mat-icon> Prepaid </button>
+                        </div>
+                        <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                            <div class="col-md-12 col-lg-6 col-xl-6 col-sm-12">
+                                <mat-form-field>
+                                    <textarea matInput formControlName="bookingNote" placeholder="Booking Notes"></textarea>
+                                </mat-form-field>
+                            </div> 
+                        </div>                    
+                        <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                            <div class="col-md-6 col-lg-8 col-xl-8 col-sm-12 pl-0">
+                                <div class="col-md-6 col-lg-12 col-xl-12 col-sm-12 mb-2">
+                                    <h6 class="candidate-title mat-dialog-title">Mode of Payment</h6>
+                                    <mat-radio-group formControlName="paymentMode" color="primary" (change)="ModeOfPay($event.value)" >
+                                        <mat-radio-button [value]="'Bank'">Bank</mat-radio-button>
+                                        <mat-radio-button [value]="'Cash'" class="ml-2">Cash</mat-radio-button>
+                                    </mat-radio-group> 
+                                </div>
+                                <div class="col-md-6 col-lg-12 col-xl-12 col-sm-12" *ngIf="Type === 'Bank'">
+                                    <mat-radio-group formControlName="paymentMode" color="primary">
+                                        <mat-radio-button  [value]="1">Net Banking</mat-radio-button>
+                                        <mat-radio-button [value]="2" class="ml-2">NEFT</mat-radio-button>
+                                        <mat-radio-button [value]="2" class="ml-2">IMPS</mat-radio-button>
+                                    </mat-radio-group>                             
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-4 col-sm-12">
+                                <div class="col-md-6 col-lg-12 col-xl-12 col-sm-12">
+                                    <table>
+                                        <tr>
+                                            <td class="col-md-3 col-lg-3 col-xl-3">Sub Total</td>
+                                            <td class="col-md-3 col-lg-3 col-xl-3">₹ 35000.00</td>                                
+                                        </tr>
+                                        <tr>
+                                            <td class="col-md-3 col-lg-3 col-xl-3">CGST</td>
+                                            <td class="col-md-3 col-lg-3 col-xl-3">₹ 35.00</td>                                
+                                        </tr>
+                                        <tr>
+                                            <td class="col-md-3 col-lg-3 col-xl-3">SGST</td>
+                                            <td class="col-md-3 col-lg-3 col-xl-3">₹ 35.00</td>                                
+                                        </tr>
+                                        <tr>
+                                            <td class="col-md-3 col-lg-3 col-xl-3">Grand Total</td>
+                                            <td class="col-md-3 col-lg-3 col-xl-3">₹ 3500.00</td>                                
+                                        </tr>
+                                        <tr>
+                                            <td class="col-md-3 col-lg-3 col-xl-3">Change</td>
+                                            <td class="col-md-3 col-lg-3 col-xl-3">₹ 0</td>                                
+                                        </tr>
+                                    </table>
+                                    <!-- <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                                        <mat-form-field>
+                                            <mat-label>Sub Total</mat-label>
+                                            <input matInput formControlName="subTotal" />
+                                        </mat-form-field>  
+                                    </div>
+                                    <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                                        <mat-form-field>
+                                            <input matInput formControlName="subTotal" />
+                                        </mat-form-field>  
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 tr">
+                            <button mat-raised-button color="warn">Clear</button> 
+                            <button mat-raised-button color="primary" class="ml-1">Submit</button> 
+                        </div>
                     </div>
-                    <div class="col-md-12 tr">
-                        <button mat-raised-button color="warn">Clear</button> 
-                        <button mat-raised-button color="primary" class="ml-1">Submit</button> 
-                    </div>
-                </div>
-        </form>
-    </mat-card-content>
-</mat-card>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
    

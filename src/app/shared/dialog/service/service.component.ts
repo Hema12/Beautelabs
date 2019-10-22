@@ -71,10 +71,9 @@ export class ServiceComponent implements OnInit {
     return false;
   }
  
-  cloesModal() {
+  close() {
     this.dialogRef.close();
   }
- 
   private _filterProducts(value: string): Products[] {
     const filterValue = value;       
      
