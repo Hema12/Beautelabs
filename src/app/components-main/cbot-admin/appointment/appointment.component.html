@@ -1,8 +1,8 @@
 <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mr-zero ml-zero pall-zero">            
-    <div class="col-xl-1 col-lg-1 col-sm-2 topwidth pall-zero">
+    <div class="col-xl-1 col-sm-2 topwidth pall-zero">
         <button mat-raised-button [routerLink]="['/beautelabs/cbot-admin/bookingCreate']" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button>  
     </div>
-    <div class="col-xl-1 col-lg-1 col-sm-2 topwidth">
+    <div class="col-xl-1 col-sm-2 topwidth">
         <button mat-button (click)="caltoggle()"><mat-icon>{{calicon}}</mat-icon>    </button>
     </div>
     <div class="col-xl-3 col-lg-3 col-sm-2 topwidth">
@@ -53,7 +53,7 @@
             
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                <td mat-cell *matCellDef="let element" matTooltip="{{element.name}}"> {{ (element.name.length>10)? (element.name | slice:0:10)+'..':(element.name) }}</td>
             </ng-container>                
             
             <ng-container matColumnDef="mobile">
@@ -63,7 +63,7 @@
         
             <ng-container matColumnDef="serviceName">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Service </th>
-                <td mat-cell *matCellDef="let element"> {{element.serviceName}} </td>
+                <td mat-cell *matCellDef="let element" matTooltip="{{element.serviceName}}"> {{ (element.serviceName.length>10)? (element.serviceName | slice:0:10)+'..':(element.serviceName) }} </td>
             </ng-container>
             <ng-container matColumnDef="staffName">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Staff </th>
@@ -78,7 +78,7 @@
                 <td mat-cell *matCellDef="let element"> {{element.serviceDuration}} </td>
             </ng-container>
             <ng-container matColumnDef="servicePrice">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Price (₹) </th>
                 <td mat-cell *matCellDef="let element"> {{element.servicePrice}} </td>
             </ng-container>
             <ng-container matColumnDef="status">
@@ -114,9 +114,9 @@
         <div class="modal-content">   
             <div class="modal-header">
                 <h5 class="modal-title"> 
-                    Meera
-                    <span class="pl-15"> 9632587412</span>
-                    <span class="fr"> meera4512@gmail.com </span>
+                    Meera (9632587412)
+                    <span class="pl-7">  meera4512@gmail.com </span>
+                    <span class="fr"> <mat-icon (click)="hide()" class="warn">close</mat-icon> </span>
                 </h5>
             </div>
             <!-- <button type="button" class="close" data-dismiss="modal" (click) = "hide()">&times;</button> -->        
@@ -145,7 +145,7 @@
                     <div class="col-md-3 col-xl-4 col-lg-4 col-sm-12 pall-zero">
                         <h4>Booked By : User</h4>
                     </div>
-                    <div class="col-md-4 col-xl-4 col-lg-4 col-sm-12 pall-zero">
+                    <div class="col-md-5 col-xl-4 col-lg-4 col-sm-12 pall-zero">
                         <h4>Booked Time : 10:00AM</h4>
                     </div>
 
@@ -154,15 +154,23 @@
                     <h4>Booking Notes :</h4>
                 </div>          
                 <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12 pall-zero mall-zero">
-                    <h4>Booking Status : Arrived</h4>
+                    <h4 class="bookingStatus">Booking Status </h4>
+                    <mat-form-field>
+                            <mat-select [value]="bookingStatus">
+                                <mat-option *ngFor="let statusList of status" [value]="statusList.value">
+                                {{statusList.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>                     
                 </div>   
             </div>
         
         <!-- Modal footer -->
-            <div class="modal-footer">
-                <button mat-raised-button class="bookingbtn">Start Bill</button>  
-                <button mat-raised-button class="bookingcancelbtn ml-2">Cancel Appointment</button>  
-                <button mat-raised-button class="bookingcancelbtn ml-2" data-dismiss="modal" (click)="hide()">Close</button>
+            <div class="modal-footer billFooter">
+                <button mat-raised-button class="bookingcancelbtn ml-2" (click)="cancelBooking(eventId)">Cancel Appointment</button>  
+                <button mat-raised-button class="startBillbtn ml-2">Start Bill</button>  
+                <button mat-raised-button class="startBillbtn ml-2">Edit</button>
+                <!-- <button mat-raised-button class="bookingcancelbtn ml-2" data-dismiss="modal" (click)="hide()">Close</button> -->
             </div>
         
         </div>

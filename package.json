@@ -32,6 +32,7 @@
     "@types/moment": "^2.13.0",
     "angular-material-source": "github:angular/material",
     "fullcalendar": "^3.10.1",
+    "mat-select-autocomplete": "^1.3.0",
     "mdbootstrap": "^4.8.10",
     "moment": "^2.24.0",
     "ng2-charts": "^2.3.0",

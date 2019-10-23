@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap';
 import { SidenavModule } from './shared/layouts/sidenav/sidenav.module';
+import { SelectAutocompleteModule } from 'mat-select-autocomplete';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SidenavModule } from './shared/layouts/sidenav/sidenav.module';
     HttpClientModule,
     BrowserAnimationsModule,
     ModalModule.forRoot(),
-    SidenavModule
+    SidenavModule,
+    SelectAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

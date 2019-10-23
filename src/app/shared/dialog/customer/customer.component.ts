@@ -1,8 +1,9 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ViewChildren } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSidenav } from '@angular/material';
 import { FormGroup, FormControl, Validators, FormControlName, FormBuilder, FormArray } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { SelectAutocompleteComponent } from 'mat-select-autocomplete';
 
 export interface Staff {
   staffName: string;
@@ -12,7 +13,7 @@ export interface Source {
 }
 export interface Customer {
   name:string;
-  mobile:string;
+  value:string;
 }
 
 @Component({
@@ -21,13 +22,31 @@ export interface Customer {
   styleUrls: ['./customer.component.scss']
 })
 export class CustomerComponent implements OnInit {
+  @ViewChildren(SelectAutocompleteComponent) multiSelect: SelectAutocompleteComponent;
+  selectedOptions = [];
+
+  selected = this.selectedOptions;
+  showError = false;
+  errorMessage = '';
+
+  onToggleDropdown() {
+    this.multiSelect.toggleDropdown();
+  }
+
+  getSelectedOptions(selected) {
+    this.selected = selected;
+  }
+
+  onResetSelection() {
+    this.selectedOptions = [];
+  }
   customerForm: FormGroup;
   service:any;
   customer: Customer[] = [
-    {name: 'Abhi', mobile:'9632587412'},
-    {name: 'Anandh',mobile:'7894561232'},
-    {name: 'Sruthi',mobile:'9764317946'},
-    {name:'Ravi',mobile:'8293714697'}
+    {name: 'Abhi', value:'Abhi'},
+    {name: 'Anandh',value:'Anandh'},
+    {name: 'Sruthi',value:'Sruthi'},
+    {name:'Ravi',value:'Ravi'}
   ];
   customerDet = new FormControl();
   filteredCustomer: Observable<Customer[]>; 
@@ -55,7 +74,7 @@ export class CustomerComponent implements OnInit {
       );
      }
 
-  ngOnInit() {
+  ngOnInit() {           
     this.customerForm = new FormGroup({
       customerName: new FormControl(null, Validators.required),
       customerMobile: new FormControl(null, [Validators.required,Validators.pattern('[6-9]\\d{9}')]),
@@ -77,10 +96,12 @@ export class CustomerComponent implements OnInit {
       customerGSTNumber: new FormControl(null),
       customerPreferredStaff: new FormControl(null),
       customerNote: new FormControl(null),
+      customerAddon: new FormControl(null),
       addonCustomer: this.formBuilder.array([this.createAddonCustomer()]),      
       customerSource: new FormControl(null)
-    })
+    });
   }
+
   dobCheck(event) {
     return false;
   }
@@ -94,7 +115,7 @@ export class CustomerComponent implements OnInit {
   // }
   private _filterCustomer(value: string): Customer[] {
     const filterValue = value;            
-    return this.customer.filter(customername => customername.name.toLowerCase().indexOf(filterValue) === 0 || customername.mobile.indexOf(filterValue) === 0);
+    return this.customer.filter(customername => customername.name.toLowerCase().indexOf(filterValue) === 0 || customername.value.indexOf(filterValue) === 0);
   }
   createAddonCustomer(): FormGroup {
     return this.formBuilder.group({
@@ -105,11 +126,10 @@ export class CustomerComponent implements OnInit {
  }
 
  addAddonCustomer(): void {
-  this.service = this.customerForm.get('addonCustomer') as FormArray;
-  this.service.push(this.createAddonCustomer());
-}
-Delete(_index) {
-  this.service.removeAt(_index);
-}
-
+    this.service = this.customerForm.get('addonCustomer') as FormArray;
+    this.service.push(this.createAddonCustomer());
+  }
+  Delete(_index) {
+    this.service.removeAt(_index);
+  }
 }

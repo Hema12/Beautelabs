@@ -30,21 +30,25 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {sno: 1, name: 'Meera',mobile: '9632587412',serviceName:'Glow Mask Facial',staffName:'Aadhi',startTime:'09:00',serviceDuration:'01:00',servicePrice:'1500',status:'Arrived',source:'Phone'},
+  {sno: 1, name: 'Meera',mobile: '9632587412',serviceName:'Glow Mask Facial',staffName:'Aadhi',startTime:'09:00',serviceDuration:'01:00',servicePrice:'1,500',status:'Arrived',source:'Phone'},
   {sno: 2, name: 'Nila', mobile: '7946132541',serviceName:'Tan Mask',staffName:'Devi',startTime:'09:45',serviceDuration:'00:45',servicePrice:'800',status:'Arrived',source:'Direct'},
   {sno: 3, name: 'Naveen', mobile: '8293714612',serviceName:'Hair Cut',staffName:'Hari',startTime:'09:10',serviceDuration:'00:30',servicePrice:'120',status:'Arrived',source:'Phone'},
-  {sno: 4, name: 'Hema', mobile: '7391827391',serviceName:'Bleech &amp; Facial',staffName:'Latha',startTime:'10:00',serviceDuration:'01:30',servicePrice:'2000',status:'Arrived',source:'Direct'},
+  {sno: 4, name: 'Hema', mobile: '7391827391',serviceName:'Bleech and Facial',staffName:'Latha',startTime:'10:00',serviceDuration:'01:30',servicePrice:'2,000',status:'Arrived',source:'Direct'},
   {sno: 5, name: 'Jai', mobile: '9685741245',serviceName:'Hair Cut',staffName:'Karthi',startTime:'10:30',serviceDuration:'00:20',servicePrice:'200',status:'booked',source:'Phone'},
   {sno: 6, name: 'SasiKumar', mobile: '7193827391',serviceName:'Threading',staffName:'Nisha',startTime:'09:50',serviceDuration:'00:15',servicePrice:'50',status:'Arrived',source:'Phone'},
   {sno: 7, name: 'Nisha', mobile: '9176947845',serviceName:'Hair Cut',staffName:'Aadhi',startTime:'10:30',serviceDuration:'00:30',servicePrice:'200',status:'booked',source:'Direct'},
   {sno: 8, name: 'Latha', mobile: '8974654123',serviceName:'Threading',staffName:'Devi',startTime:'11:00',serviceDuration:'00:15',servicePrice:'50',status:'booked',source:'Phone'},
-  {sno: 9, name: 'Ravi', mobile: '7986957454',serviceName:'Facial',staffName:'Karthi',startTime:'12:10',serviceDuration:'00:40',servicePrice:'1300',status:'booked',source:'Facebook'},
-  {sno: 10, name: 'Abhinaya', mobile: '9876543214',serviceName:'Party Makeup',staffName:'Nisha',startTime:'11:15',serviceDuration:'02:00',servicePrice:'4500',status:'booked',source:'Website'},
+  {sno: 9, name: 'Ravi', mobile: '7986957454',serviceName:'Facial',staffName:'Karthi',startTime:'12:10',serviceDuration:'00:40',servicePrice:'1,300',status:'booked',source:'Facebook'},
+  {sno: 10, name: 'Abhinaya', mobile: '9876543214',serviceName:'Party Makeup',staffName:'Nisha',startTime:'11:15',serviceDuration:'02:00',servicePrice:'4,500',status:'booked',source:'Website'},
   {sno: 11, name: 'Zenath', mobile: '8795462134',serviceName:'Threading',staffName:'Devi',startTime:'12:30',serviceDuration:'00:15',servicePrice:'50',status:'booked',source:'Phone'},
   {sno: 12, name: 'Nithya', mobile: '9678125432',serviceName:'Threading',staffName:'Nisha',startTime:'12:45',serviceDuration:'00:15',servicePrice:'50',status:'booked',source:'Phone'},
   {sno: 13, name: 'Anbu', mobile: '7684957545',serviceName:'Hair Cut',staffName:'Sasi',startTime:'09:50',serviceDuration:'00:20',servicePrice:'120',status:'Arrived',source:'Phone'},
   {sno: 14, name: 'Sasi', mobile: '9283714565',serviceName:'Facial',staffName:'Prakash',startTime:'09:20',serviceDuration:'01:00',servicePrice:'700',status:'Arrived',source:'Phone'},
 ];
+export interface Status {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-appointment',
   templateUrl: './appointment.component.html',
@@ -68,7 +72,10 @@ export class AppointmentComponent implements OnInit {
   customerMobile: string;
   customerEmail: string;
   serviceTitle: string;
+  bookingStatus: string;
+  bookingStatusBg: string;
   startTime:string;
+  eventId:string;
   endTime:string;
   staffName: string;
   source: string;
@@ -86,7 +93,19 @@ export class AppointmentComponent implements OnInit {
     {id:'3',title:'Nithya'},
     {id:'4',title:'Ashika'},
     {id:'5',title:'Ravi'},
+    {id:'6',title:'Devi'},
+    {id:'7',title:'Ramya'},
+    {id:'8',title:'Nithya'},
+    {id:'9',title:'Ashika'},
+    {id:'10',title:'Ravi'}
   ];  
+  status: Status[] = [
+    {value: 'New', viewValue: 'New'},
+    {value: 'Arrived', viewValue: 'Customer Arrived'},
+    {value: 'Started', viewValue: 'In Process'},
+    {value: 'Completed', viewValue: 'Completed'},
+    {value: 'Cancelled', viewValue: 'Cancelled'}
+  ];
   businessHours: [ // specify an array instead
     {
       daysOfWeek: [ 1, 2, 3 ], // Monday, Tuesday, Wednesday
@@ -106,14 +125,30 @@ export class AppointmentComponent implements OnInit {
   //   { title: 'Hair Coloring',  customerName:'Nisha', customerMobile:'9632574512', customerEmail:'nisha23@gmail.com', resourceId:'3', startTime: new Date('2019-10-16'), staffName:'Nithya',  source:'Walk-in', bookedTime:'04:20PM', backgroundColor:'#34cf7d' }
   // ]; 
   events: any = [
-    { title: 'Hair Cut', resourceId:'1', start: new Date(),  backgroundColor:'#f00'},
-    { title: 'Bleech',  resourceId:'2',start: new Date(), backgroundColor:'#9fb3d4' },
-    { title: 'Facial',  resourceId:'1', start: new Date('2019-10-17'),backgroundColor:'#407d5d' },
-    { title: 'Hair Coloring', resourceId:'3', start: new Date('2019-10-16'),  backgroundColor:'#34cf7d' }
+    {id:'1', title: 'Hair Cut', resourceId:'1', start: new Date(),  backgroundColor:'#3498db'},
+    {id:'2',  title: 'Bleech',  resourceId:'2',start: new Date(), backgroundColor:'#9fb3d4' },
+    {id:'3',  title: 'Facial',  resourceId:'1', start: new Date('2019-10-17'),backgroundColor:'#407d5d' },
+    {id:'4',  title: 'Hair Coloring', resourceId:'3', start: new Date('2019-10-16'),  backgroundColor:'#34cf7d' },
+    {id:'5',  title: 'Tan Mask', resourceId:'3', start: new Date(),  backgroundColor:'#f00' }
   ]; 
   eventClick(model:any) {
-     this.serviceTitle = model.event.title;
-     this.startTime = model.event.start;    
+    this.serviceTitle = model.event.title;
+    this.startTime = model.event.start;   
+    this.eventId = model.event.id;
+    this.bookingStatusBg = model.event.backgroundColor;
+    if(this.bookingStatusBg == '#3498db') {
+      this.bookingStatus = 'New';
+    } else if(this.bookingStatusBg == '#9fb3d4') {
+      this.bookingStatus = 'Arrived';
+    }
+    else if(this.bookingStatusBg == '#407d5d') {
+      this.bookingStatus = 'In Process';
+    }
+    else if(this.bookingStatusBg == '#34cf7d') {
+      this.bookingStatus = 'Completed';
+    } else {
+      this.bookingStatus = 'Cancelled';
+    }
     // this.endTime = model.event.end;
     // this.resourceName = model.event.resourceId.title;
     // this.customerName = model.event.customerName;
@@ -154,13 +189,15 @@ export class AppointmentComponent implements OnInit {
   }
  
    constructor(private modalService: BsModalService, public dialog: MatDialog, public router: Router) { }
-
+  
+   cancelBooking(val) {
+     this.bookingStatus = 'Cancelled';  
+   }
 
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    console.log(this.todayDate);
     //this.initFunction();
     this.calicon="list";
     this.calString = "Calendar";

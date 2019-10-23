@@ -123,7 +123,7 @@ addService(): void {
 
 createProduct(): FormGroup {
   return this.formBuilder.group({
-    bookingService: new FormControl(),
+    productName: new FormControl(),
     productQty: new FormControl(),
     productPrice: new FormControl(),
     productDisc: new FormControl(),

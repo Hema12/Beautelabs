@@ -1,211 +1,159 @@
-<div fxLayout="column" fxLayoutAlign="start">
-    <div fxLayout="row">
-        <div fxFlex="83%" fxLayoutAlign="start">
-            <h2>Services</h2>
-        </div>
-        <div fxFlex="16%" fxHide fxShow.gt-sm fxLayoutAlign="end">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#" [routerLink]="['/beautelabs/cbot-admin/dashboard']"><mat-icon>home</mat-icon></a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Services</li>
-                </ol>
-                </nav>
-        </div>
-    </div>    
+<div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mr-zero ml-zero pall-zero">            
+    <div class="col-xl-1 col-sm-2 topwidth">
+        <h2 class="page-title">Services</h2> 
+    </div>        
+   
 </div>
-<mat-drawer-container class="example-container"> 
-    <mat-card>
-        <mat-tab-group>
-            <mat-tab label="Category"> 
-                <div fxLayout="column">
-                    <div fxLayout="row">
-                        <div fxLayoutAlign="start" fxFlex="50%">
+<!-- <mat-drawer-container class="example-container pall-zero mall-zero">  -->
+    <div class="example-container pall-zero mall-zero">
+        <mat-card>
+            <mat-tab-group>
+                <mat-tab label="Category"> 
+                    <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking ml-zero pall-zero">
+                        <div class="col-xl-2 col-sm-12 topwidthcustomer pall-zero">
                             <button mat-raised-button color="primary" (click)="serviceCategoryCreate(categorycreatetemplate)" style="height: 35px; margin-top: 2%;">Add Category</button> 
                         </div>
-                        <div fxFlex="32%" fxHide fxShow.gt-sm fxLayoutAlign="middle">
+                        <div class="col-sm-12 col-xl-3 col-lg-3 topwidthcustomerField">
                             <mat-form-field class="searchInputfull">
                                 <input matInput (keyup)="applyCategoryFilter($event.target.value)" placeholder="Search Category by Name">
                                 <mat-icon matSuffix>search</mat-icon>
-                            </mat-form-field>
-                        </div>
-                        
-                        <div fxFlex="18%" fxHide fxShow.gt-sm fxLayoutAlign="end">
+                            </mat-form-field> 
+                        </div>                        
+                        <div class="col-xl-6 col-lg-6 col-sm-12 pall-zero">
                             <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
                         </div>
                     </div>
-                </div>
-                <div fxLayout="row">
-                    <table mat-table [dataSource]="serviceCategorySource" class="mat-elevation-z8" matSort>
-                    
-                    <ng-container matColumnDef="sno">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
-                        <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
-                    </ng-container>
-                    
-                    <ng-container matColumnDef="serviceCategoryName">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                        <td mat-cell *matCellDef="let element"> {{element.serviceCategoryName}} </td>
-                    </ng-container>
-                                
-                    <ng-container matColumnDef="action">
-                        <th mat-header-cell *matHeaderCellDef>Action</th>
-                        <td mat-cell *matCellDef="let element; let i=index;">
-                            <button mat-flat-button [matMenuTriggerFor]="menu" color="primary">Action</button>
-                            <mat-menu #menu="matMenu">
-                                <button mat-menu-item>
-                                    <mat-icon>edit</mat-icon>
-                                    <span>Edit</span>
-                                </button>
-                                <button mat-menu-item>
-                                    <mat-icon>delete</mat-icon>
-                                    <span>Delete</span>
-                                </button>
-                            </mat-menu>
-                        </td>
-                    </ng-container>
-                    <tr mat-header-row *matHeaderRowDef="displayedCategoryColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedCategoryColumns;"></tr>
-                    </table>
-                </div>
-            </mat-tab>
-            <mat-tab label="Sub Category"> 
-                <div fxLayout="column">
-                    <div fxLayout="row">
-                        <div fxLayoutAlign="start" fxFlex="50%">
+                    <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking ml-zero pall-zero">
+                        <table mat-table [dataSource]="serviceCategorySource" class="mat-elevation-z8" matSort class="full-width scrollDiv">
+                        
+                        <ng-container matColumnDef="sno">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                            <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="serviceCategoryName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                            <td mat-cell *matCellDef="let element"> {{element.serviceCategoryName}} </td>
+                        </ng-container>
+                                    
+                        <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef>Action</th>
+                            <td mat-cell *matCellDef="let element; let i=index;">                           
+                                <mat-icon color="primary" class="actionicon" matTooltip="Edit">edit</mat-icon>                                   
+                                <mat-icon color="warn" class="actionicon" matTooltip="Delete">delete</mat-icon>                                    
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedCategoryColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedCategoryColumns;"></tr>
+                        </table>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Sub Category"> 
+                    <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking ml-zero pall-zero">
+                        <div class="col-xl-2 col-sm-12 topwidthcustomer pall-zero">
                             <button mat-raised-button color="primary" (click)="serviceSubCategoryCreate(subcategorycreatetemplate)" style="height: 35px; margin-top: 2%;">Add Sub Category</button> 
                         </div>
-                        <div fxFlex="32%" fxHide fxShow.gt-sm fxLayoutAlign="middle">
-                            <mat-form-field class="searchInputfull">
-                                <input matInput (keyup)="applySubCategoryFilter($event.target.value)" placeholder="Search Service by category / sub category name">
+                        <div class="col-sm-12 col-xl-3 col-lg-3 topwidthcustomerField">
+                            <mat-form-field>
+                                <input matInput (keyup)="applySubCategoryFilter($event.target.value)" placeholder="Search Sub Category by Name">
                                 <mat-icon matSuffix>search</mat-icon>
                             </mat-form-field>
-                        </div>
-                        
-                        <div fxFlex="18%" fxHide fxShow.gt-sm fxLayoutAlign="end">
+                        </div>                        
+                        <div class="col-xl-6 col-lg-6 col-sm-12 pall-zero">
                             <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
                         </div>
                     </div>
-                </div>
-                
-                <div fxLayout="row">
-                    <table mat-table [dataSource]="serviceSubCatgeorySource" class="mat-elevation-z8" matSort>
-                    
-                    <ng-container matColumnDef="sno">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
-                        <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
-                    </ng-container>
-                    
-                    <ng-container matColumnDef="serviceCategoryName">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
-                        <td mat-cell *matCellDef="let element"> {{element.serviceCategoryName}} </td>
-                    </ng-container>
-                    
-                    <ng-container matColumnDef="serviceSubCategoryName">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Sub Category </th>
-                        <td mat-cell *matCellDef="let element"> {{element.serviceSubCategoryName}} </td>
-                    </ng-container>
-                    
-                    <ng-container matColumnDef="action">
-                        <th mat-header-cell *matHeaderCellDef>Action</th>
-                        <td mat-cell *matCellDef="let element; let i=index;">
-                            <button mat-flat-button [matMenuTriggerFor]="menu" color="primary">Action</button>
-                            <mat-menu #menu="matMenu">
-                                <button mat-menu-item>
-                                    <mat-icon>edit</mat-icon>
-                                    <span>Edit</span>
-                                </button>
-                                <button mat-menu-item>
-                                    <mat-icon>delete</mat-icon>
-                                    <span>Delete</span>
-                                </button>
-                            </mat-menu>
-                        </td>
-                    </ng-container>
-                    <tr mat-header-row *matHeaderRowDef="displayedSubCategoryColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedSubCategoryColumns;"></tr>
-                    </table>
-                </div>
-            </mat-tab>
-            <mat-tab label="Services"> 
-                <div fxLayout="column">
-                    <div fxLayout="row">
-                        <div fxLayoutAlign="start" fxFlex="50%">
+                    <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking ml-zero pall-zero">
+                        <table mat-table [dataSource]="serviceSubCatgeorySource" class="mat-elevation-z8" matSort>
+                        
+                        <ng-container matColumnDef="sno">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                            <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="serviceCategoryName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+                            <td mat-cell *matCellDef="let element"> {{element.serviceCategoryName}} </td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="serviceSubCategoryName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Sub Category </th>
+                            <td mat-cell *matCellDef="let element"> {{element.serviceSubCategoryName}} </td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef>Action</th>
+                            <td mat-cell *matCellDef="let element; let i=index;">
+                                <mat-icon color="primary" class="actionicon" matTooltip="Edit">edit</mat-icon>                                   
+                                <mat-icon color="warn" class="actionicon" matTooltip="Delete">delete</mat-icon>                                    
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedSubCategoryColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedSubCategoryColumns;"></tr>
+                        </table>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Services"> 
+                    <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking ml-zero pall-zero">
+                        <div class="col-xl-2 col-sm-12 topwidthcustomer pall-zero">
                             <button mat-raised-button color="primary" (click)="serviceCreate()" style="height: 35px; margin-top: 2%;">Add Service</button> 
                         </div>
-                        <div fxFlex="32%" fxHide fxShow.gt-sm fxLayoutAlign="middle">
-                            <mat-form-field class="searchInputfull">
+                        <div class="col-sm-12 col-xl-3 col-lg-3 topwidthcustomerField">
+                            <mat-form-field>
                                 <input matInput (keyup)="applyServiceFilter($event.target.value)" placeholder="Search Service by Name">
                                 <mat-icon matSuffix>search</mat-icon>
                             </mat-form-field>
-                        </div>
-                        
-                        <div fxFlex="18%" fxHide fxShow.gt-sm fxLayoutAlign="end">
+                        </div>                        
+                        <div class="col-xl-6 col-lg-6 col-sm-12 pall-zero">
                             <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
                         </div>
                     </div>
-                </div>
-                <div fxLayout="row">                     
-                    <table mat-table [dataSource]="serviceSource" class="mat-elevation-z8" matSort>                
-                    <ng-container matColumnDef="sno">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
-                        <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
-                    </ng-container>
-                    
-                    <ng-container matColumnDef="serviceName">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                        <td mat-cell *matCellDef="let element"> {{element.serviceName}} </td>
-                    </ng-container>
-                    <ng-container matColumnDef="serviceCategory">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
-                        <td mat-cell *matCellDef="let element"> {{element.serviceCategory}} </td>
-                    </ng-container>
-                    <ng-container matColumnDef="serviceSubCategory">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Sub category </th>
-                        <td mat-cell *matCellDef="let element"> {{element.serviceSubCategory}} </td>
-                    </ng-container>
-                    
-                    <ng-container matColumnDef="servicePrice">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
-                        <td mat-cell *matCellDef="let element"> {{element.servicePrice}} </td>
-                    </ng-container>
-                    <ng-container matColumnDef="serviceDuration">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Duration (In Hours) </th>
-                        <td mat-cell *matCellDef="let element"> {{element.serviceDuration}} </td>
-                    </ng-container>
-                    
-                    <ng-container matColumnDef="action">
-                        <th mat-header-cell *matHeaderCellDef>Action</th>
-                        <td mat-cell *matCellDef="let element; let i=index;">
-                            <button mat-flat-button [matMenuTriggerFor]="menu" color="primary">Action</button>
-                            <mat-menu #menu="matMenu">
-                                <button mat-menu-item (click)="sideNavToggle(sideNav, element)">
-                                    <mat-icon>remove_red_eye</mat-icon>
-                                    <span>View</span>
-                                </button>
-                                <button mat-menu-item>
-                                    <mat-icon>edit</mat-icon>
-                                    <span>Edit</span>
-                                </button>
-                                <button mat-menu-item>
-                                    <mat-icon>store_mall_directory</mat-icon>
-                                    <span>Update Quantity</span>
-                                </button>
-                                <button mat-menu-item>
-                                    <mat-icon>delete</mat-icon>
-                                    <span>Delete</span>
-                                </button>
-                            </mat-menu>
-                        </td>
-                    </ng-container>
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                    </table>
-                </div>
-            </mat-tab>
-        </mat-tab-group>
-    </mat-card>
-    
-    <mat-drawer #sideNav mode="side" opened="false" [position]="nav_position" class="rightsidemodal">
+                    <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking ml-zero pall-zero">                    
+                        <table mat-table [dataSource]="serviceSource" class="mat-elevation-z8" matSort>                
+                        <ng-container matColumnDef="sno">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                            <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="serviceName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                            <td mat-cell *matCellDef="let element"> {{element.serviceName}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="serviceCategory">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+                            <td mat-cell *matCellDef="let element"> {{element.serviceCategory}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="serviceSubCategory">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Sub category </th>
+                            <td mat-cell *matCellDef="let element"> {{element.serviceSubCategory}} </td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="servicePrice">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+                            <td mat-cell *matCellDef="let element"> {{element.servicePrice}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="serviceDuration">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Duration (In Hours) </th>
+                            <td mat-cell *matCellDef="let element"> {{element.serviceDuration}} </td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef>Action</th>
+                            <td mat-cell *matCellDef="let element; let i=index;">
+                                <mat-icon color="primary" class="actionicon" matTooltip="View" (click)="openViewModal(element)">remove_red_eye</mat-icon>              
+                                <mat-icon color="primary" class="actionicon" matTooltip="Edit">edit</mat-icon>                                   
+                                <mat-icon color="warn" class="actionicon" matTooltip="Delete">delete</mat-icon>             
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card>
+    </div>
+    <!-- <mat-drawer #sideNav mode="side" opened="false" [position]="nav_position" class="rightsidemodal">
         <h2 matDialogTitle class="mb-15">Service Details</h2>
         <mat-dialog-content class="dialog-detail">
             <p>Service Name : {{View?.serviceName}}</p>
@@ -244,7 +192,7 @@
         <mat-dialog-actions align="end" class="submit-button">
             <button mat-raised-button color="warn" (click)="sideNav.close()" class="mr-5 mb-5">Close</button>
         </mat-dialog-actions>
-    </mat-drawer>
+    </mat-drawer> -->
 
     <!-- Category Create -->
     <ng-template #categorycreatetemplate>
@@ -306,4 +254,61 @@
             </mat-dialog-actions>
     </ng-template>
 
-</mat-drawer-container>
+ 
+        <div class="modal bookingmodel" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+                <div class="modal-dialog">            
+                    <div class="modal-content">   
+                        <div class="modal-header">
+                            <h5 class="modal-title"> 
+                                Service View
+                                <span class="fr"> <mat-icon (click)="hide()" class="warn">close</mat-icon> </span>
+                            </h5>
+                        </div>
+                        <div class="modal-body">                
+                                <div class="col-md-12 col-xl-12 col-lg-12"> 
+                                        <p>Service Name : {{View?.serviceName}}</p>
+                                        <p>Duration (In Hours) : {{View?.serviceDuration}}</p>
+                                        <p>Category: {{View?.serviceCategory}}</p>
+                                        <p>SubCategory: {{View?.serviceSubCategory}}</p>
+                                        <p>Price: {{View?.servicePrice}}</p>     
+                                    </div> 
+                                    <div class="col-md-12 col-xl-12 col-lg-12">
+                                        <table class="table table-bordered full-width">
+                                            <thead>
+                                                <tr>    
+                                                    <th>Sno</th>
+                                                    <th>Product Name</th>
+                                                    <th>Consumed</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>LOREAL Shampoo</td>
+                                                    <td>.300ml</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>LOREAL Hair Spa Cream</td>
+                                                    <td>.200ml</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>Skeydnor Cleansor</td>
+                                                    <td>.150ml</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>                               
+                                    </div>
+                        </div>
+                    <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button mat-raised-button class="startBillbtn ml-2" (click)="hide()">Close</button>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+            
+
+    <!-- </mat-drawer-container> -->

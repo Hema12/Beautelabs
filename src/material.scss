@@ -30,7 +30,11 @@
     overflow: hidden !important;
 }
 td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type, th.mat-header-cell:last-of-type {
-    padding:4px !important;
+    padding-right:4px !important;
+}
+td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type, th.mat-header-cell:first-of-type
+{
+    padding-left: 4px !important;
 }
 .mat-table .mat-icon {
     font-size: $secondary-font-size-xl !important;
@@ -140,8 +144,9 @@ button.mat-menu-item {
 }
 .mat-raised-button {
     line-height: 30px !important;
-    font-size: $primary-font-size-sm !important;
+    font-size: $secondary-font-size !important;
     padding:0px 6px !important;
+    font-family: $primary-font-family-table !important;
 }
 .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
     background: $primary-color-darkblue !important;
@@ -166,9 +171,9 @@ button.mat-menu-item {
 .mat-paginator-container {
     min-height: 40px !important;
 }
-.mat-card {
-    padding:11px 2px !important;          
-}
+// .mat-card {
+//     padding:11px 2px !important;          
+// }
 .newCard
 {    
     overflow-y: scroll !important; 
@@ -184,7 +189,9 @@ button.mat-menu-item {
 .mat-card-content {
     margin-bottom: 5px !important;
 }
-
+.mat-radio-label {
+    font-family: $primary-font-family-table !important;
+}
 .mat-card-footer .mat-icon {
     font-size: 20px !important;
 }
@@ -204,12 +211,15 @@ button.mat-menu-item {
     border: 1px solid #e0e0e0;
     margin-right: 2% !important;
 }
+.mat-dialog-title {
+    font-family: $primary-font-family-table !important;
+}
 .mat-tab-label {
     justify-content: flex-start !important;
     height: 55px !important;
 }
 .mat-tab-body-wrapper {
-    width:80% !important;
+    width:100% !important;
 }
 .mat-tab-group {
     flex-direction: row !important;
@@ -335,18 +345,38 @@ button.mat-menu-item {
 }
 .mat-form-field-flex {
     padding-left: 3px !important;
-    border-radius: 3px !important;
+    //border-radius: 3px !important;
     border:1px solid rgba(197, 214, 222, .7) !important;
     border-color:#ccc !important;
 }
 .mat-form-field-appearance-legacy .mat-form-field-infix {
-    padding:0.5em 0 !important;
+    //padding:0.5em 0 !important;
 }
 .mat-form-field-appearance-legacy .mat-form-field-underline {
     background: none !important;
 }
+.mat-form-field-appearance-standard .mat-form-field-flex {
+    padding:0em !important;
+}
+.mat-form-field-appearance-standard .mat-form-field-underline {
+    background-color: rgb(255,255,255,0) !important;
+}
+.mat-primary .mat-pseudo-checkbox-checked, .mat-primary .mat-pseudo-checkbox-indeterminate {
+    background: $primary-color-darkblue !important;
+}
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color:$primary-color-darkblue !important;
+}
+.mat-checkbox-indeterminate.mat-primary .mat-checkbox-background, .mat-checkbox-checked.mat-primary .mat-checkbox-background {
+    background-color: $primary-color-darkblue !important;
+}
 .mat-form-field-infix {
     border-top:none !important;
+}
+.mat-select-placeholder {
+    color: #1a263a !important;
+    font-size: 13px !important;
+    padding-left: 3px !important;
 }
 .selplaceHolder {
     color:$primary-color-darkblue !important;
@@ -386,7 +416,7 @@ button.mat-menu-item {
     font-size: $secondary-font-size !important;
     //top:1.7em !important;
     line-height: 23px !important;
-    font-family: Arial, Helvetica, sans-serif !important;
+    font-family: $primary-font-family-table !important;
     color:$primary-color-darkblue !important
 }
 // .mat-drawer-backdrop.mat-drawer-shown {
@@ -397,6 +427,7 @@ button.mat-menu-item {
 // }
 .mat-select-value-text {
     font-size: $secondary-font-size !important;
+    font-family: $primary-font-family-table !important;
 }
 .mat-form-field-label-wrapper {
     top: -1.04375em !important;

@@ -83,6 +83,7 @@ export class ServicesComponent implements OnInit {
   modalRef: BsModalRef;
   View:any;
   serviceList:any;
+  showModal: boolean = false;
   serviceCategoryList:any;
   serviceSubcategoryList:any;
   @ViewChildren(MatPaginator) paginator = new QueryList<MatPaginator>();
@@ -154,12 +155,19 @@ export class ServicesComponent implements OnInit {
   serviceSubCategoryCreate(subcategorycreatetemplate: TemplateRef<any>) {
     this.modalRef = this.modalService.show(subcategorycreatetemplate);
   }
-  openViewModal(viewtemplate: TemplateRef<any>, Value) {   
+  openViewModal(Value) {   
+    this.showModal = true;
     this.View = this.serviceList.filteredData.find(obj => obj.name === Value.name);
-    this.modalRef = this.modalService.show(viewtemplate);
+ }
+ viewService(serviceviewtemplate: TemplateRef<any>,value) {
+    this.View = this.serviceList.filteredData.find(obj => obj.name === value.name);
+   this.modalRef = this.modalService.show(serviceviewtemplate);
  }
  cancel() {
   this.modalRef.hide();
+}
+hide() {
+  this.showModal = false;
 }
 sideNavToggle(sideNav, val) {
   sideNav.toggle();   

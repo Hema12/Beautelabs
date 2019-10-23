@@ -1,41 +1,23 @@
-
-<!-- <div fxLayout="column" fxLayoutAlign="start">
-    <div fxLayout="row">
-        <div fxFlex="83%" fxLayoutAlign="start">
-            <h2>Sales</h2>
+<div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mr-zero ml-zero pall-zero">            
+        <div class="col-xl-1 col-sm-2 topwidth pall-zero">
+            <h2 class="page-title">Sales</h2> 
         </div>
-        <div fxFlex="16%" fxHide fxShow.gt-sm fxLayoutAlign="end">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#" [routerLink]="['/beautelabs/cbot-admin/dashboard']"><mat-icon>home</mat-icon></a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Sales</li>
-                </ol>
-                </nav>
+        <div class="col-xl-1 col-sm-2 topwidth">
+            <button mat-raised-button [routerLink]="['/beautelabs/cbot-admin/saleCreate']" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button> 
         </div>
-    </div>    
-</div> -->
-<div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mr-zero ml-zero pall-zero">        
-    <div class="col-md-2 col-xl-1 col-lg-1 col-sm-2 topwidth pall-zero">
-        <h2 class="page-title">Sales</h2>
+        <div class="col-xl-3 col-lg-3 col-sm-2 topwidth">
+            <mat-form-field class="bookingstaff">
+                <mat-label>Select</mat-label>
+                <mat-select>
+                    <mat-option value="all">All</mat-option>
+                    <mat-option value="today">Today</mat-option>
+                    <mat-option value="last week">Last Week</mat-option>
+                    <mat-option value="last 15 days">Last 15 Days</mat-option>
+                    <mat-option value="last month">Last Month</mat-option>
+                </mat-select>
+            </mat-form-field> 
+        </div>
     </div>
-    <div class="col-md-2 col-xl-1 col-lg-1 col-sm-2 topwidth">
-            <button mat-raised-button [routerLink]="['/beautelabs/cbot-admin/saleCreate']" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button>  
-    </div>
-    <div class="col-md-2 col-xl-3 col-lg-3 col-sm-2 topwidth">
-        <mat-form-field class="bookingstaff">
-            <mat-label>Select</mat-label>
-            <mat-select>
-                <mat-option value="all">All</mat-option>
-                <mat-option value="today">Today</mat-option>
-                <mat-option value="last week">Last Week</mat-option>
-                <mat-option value="last 15 days">Last 15 Days</mat-option>
-                <mat-option value="last month">Last Month</mat-option>
-            </mat-select>
-        </mat-form-field> 
-    </div>
-</div>
-
-
 <div class="row col-md-12 col-sm-12 col-xs-12 col-xl-12 col-lg-12 pall-zero mall-zero newCardTable scrollDiv">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
     

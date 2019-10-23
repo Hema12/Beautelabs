@@ -113,6 +113,9 @@ body {
     font-size: $primary-font-size-sm;
     margin-bottom: 1%;
 }
+.staff {
+    width:80% !important
+}
 .highlight {
     background: #949494;
 }
@@ -203,6 +206,9 @@ th {
 .pl-15 {
     padding-left: 15% !important;
 }
+.pl-7 {
+    padding-left: 7% !important;
+}
 .pr-5 {
     padding-right: 5px !important;
 }
@@ -270,17 +276,23 @@ th {
     line-height: 30px !important;
     padding:0px 6px !important;
     min-width: 60px !important;
-    font-size: $secondary-font-size !important;
 }
 .bookingcancelbtn {
-    height: 30px !important;
     margin-top: -0% !important;
     background-color: #F44336 !important;
     border-color:#F44336 !important;
     color:#fff !important;
-    line-height: 32px !important;
     padding:0px 10px !important;
    
+}
+.startBillbtn {
+    height: 30px !important;
+    margin-top: -0% !important;
+    background-color: #3498db !important;
+    color:#fff !important;
+    line-height: 30px !important;
+    padding:0px 6px !important;
+    min-width: 70px !important;
 }
 .bookingbtn .mat-icon {
     font-size: 13px !important;
@@ -375,7 +387,7 @@ th {
     font-size: $primary-font-size-sm !important;
 }
 .profile .mat-icon {
-    font-size:$primary-font-size-md !important;
+    font-size:$primary-font-size-md !important;    
 //    vertical-align: sub !important;
 }
 .profileHistory button {
@@ -512,24 +524,26 @@ th {
 }
 .modal-header {
     min-height: 16.428571429px;
-    padding: 8px 15px;
+    padding: 12px 15px;
     border-bottom: 1px solid #e5e5e5;
-    background: #222;
+    background: $primary-color-white !important;
 }
 .modal-content {
     padding:2% 4% !important;
 }
 .modal-title {
     width: 100%;
-    font-size: $primary-font-size !important;
-    color:$primary-color-white !important;
+    font-size: $primary-font-size-lg !important;
+    color:$primary-color-darkblue !important;
     margin:0% !important;
+    font-family: $primary-font-family-common !important;
 }
 .modal-footer {
-    padding: 8px 15px 8px;
+    padding: 10px 15px 10px;
     margin-top: 0px !important; 
     text-align: right;
     border-top: 1px solid #e5e5e5;
+    margin-left: 0% !important;
 }
 .fc-resourceTimeGridDay-view .fc-row {
     //padding:4px !important;
@@ -613,7 +627,7 @@ th {
     margin: 0px !important;
 }
 .page-title {
-    font-family: $primary-font-family-common !important;
+    font-family: $primary-font-family-table !important;
     font-weight: $primary-font-weight !important;
     font-size: $primary-font-size-lg !important;
     margin:0px !important;
@@ -744,11 +758,12 @@ th {
     background: $primary-color-white !important;
 }
 .fc-button {
-    padding:0.2em 0.3em !important;
+    padding:0.2em 0.1em !important;
     background: #fff !important;
     color: #000 !important;
     opacity: 1 !important;
-    border:1px solid #ddd !important
+    border:1px solid #ddd !important;
+    font-family: $primary-font-family-table !important;
 }
 .fc-center h2 {
     margin-bottom: 0px;
@@ -763,6 +778,7 @@ th {
     height: 29px;
     line-height: 29px;
     border-radius: 2px;
+    font-family: $primary-font-family-table !important;
 }
 .fc-right .fc-button {
     width:48px !important;
@@ -920,7 +936,8 @@ a:not([href]):not([tabindex]) {
 }
 .inputlink {
     color:$primary-color-linkblue !important;
-    font-size: $secondary-font-size-sm !important;
+    font-size: $secondary-font-size !important;
+    font-family: $primary-font-family-table !important;
     text-align: right;
     display: flex;
     cursor: pointer !important;
@@ -955,11 +972,11 @@ a:not([href]):not([tabindex]) {
 }
 .customer-title {
     padding-left: 1% !important;
-    font-family: $secondary-font-family !important;
-    background: $primary-color-lightwhite;
+   // font-family: $secondary-font-family !important;
+    background: $primary-color-light;
     padding: 0.2em;
-    font-size: $primary-font-size !important;
-    font-weight:$primary-font-weight-600 !important;
+    font-size:$primary-font-size-md !important;
+    font-weight:$primary-font-weight !important;
 }
 .fc-license-message {
     display: none !important;
@@ -1038,6 +1055,10 @@ tr.mat-row {
     flex:0 0 91%;
     max-width: 91%;
 }
+// .col-lg-1 {
+//     flex:0 0 8%;
+//     max-width: 8%;
+// }
 .linkText {
     color: #4285F4 !important;
 }
@@ -1045,11 +1066,36 @@ tr.mat-row {
     bottom:-7px;
     transition: transform .3s, width .3s, bottom .3s;
 }
+.bookingStatus {
+    margin-right: 3% !important;
+}
+// .billFooter {
+//     justify-content: flex-start !important;
+// }
+.billFooter.modal-footer>:not(:last-child) {
+    margin-right: 0px !important;
+}
+.saleDet td,th {
+    font-family: $primary-font-family-table !important;
+    font-size: $primary-font-size !important;
+}
+.saleDet tr {
+    line-height: $primary-line-height-lg !important;
+}
+.actionicon {
+    font-size:$primary-font-size-md !important ;
+}
 //Responsive Css
 //Header
 @media only screen and (min-width: 1024px) and (max-width:1025px) {
     .mat-drawer-content {
         margin-left: 4% !important;
+    }
+    .fc-center {
+        margin-left: -13% !important;
+    }
+    .fc-scroller {
+        height: 1055px !important;
     }
 
 }
@@ -1059,7 +1105,8 @@ tr.mat-row {
         height: 80vh !important;
     }
     .newCardTable {
-        height: 80vh !important;
+        height: 78vh !important;
+        overflow-y: scroll !important;
     }
 }
 
@@ -1105,7 +1152,7 @@ tr.mat-row {
         height: 66vh !important;
     }
     .newCardTable {
-        height: 66vh !important;
+        height: 60vh !important;
     }
     .col-md-3 {
         flex:0 0 32%;
@@ -1252,6 +1299,10 @@ tr.mat-row {
     }
 }
 @media only screen and (min-width: 670px) and (max-width:700px) {
+    // .col-lg-1 {
+    //     flex:0 0 100%;
+    //     max-width: 100%;
+    // }
     .fc-day-grid-container  {
         height: 1032px  !important;
         overflow-y: hidden !important;
@@ -1263,6 +1314,10 @@ tr.mat-row {
 }
 //ipad
 @media only screen and (min-width: 570px) and (max-width:669px) {
+    // .col-lg-1 {
+    //     flex:0 0 100%;
+    //     max-width: 100%;
+    // }
     .grid-item {
         width:100% !important;
     }
@@ -1276,7 +1331,7 @@ tr.mat-row {
         height: 64vh !important;
     }
     .newCardTable {
-        height: 64vh !important;
+        height: 60vh !important;
     }
     textarea.mat-input-element {
         min-height: 10vh !important;
@@ -1304,7 +1359,31 @@ tr.mat-row {
         overflow-y: scroll !important;
     }
 }
+@media only screen and (min-width: 701px) and (max-width:732px) {
+    .fc-day-grid-container  {
+        height: 743px  !important;
+        overflow-y: hidden !important;
+     }
+     .fc-time-grid-container {
+        height: 765px  !important;
+        overflow-y: scroll !important;
+    }
+}
+@media only screen and (min-width: 733px) and (max-width:768px) {
+    .fc-day-grid-container  {
+        height: 1055  !important;
+        overflow-y: hidden !important;
+     }
+     .fc-time-grid-container {
+        height: 765px  !important;
+        overflow-y: scroll !important;
+    }
+}
 @media only screen and (min-width: 701px) and (max-width:768px) {
+    // .col-lg-1 {
+    //     flex:0 0 100%;
+    //     max-width: 100%;
+    // }
     .grid-item {
         width:100% !important;
     }
@@ -1337,14 +1416,7 @@ tr.mat-row {
         flex: 0 0 30%;
         max-width: 30%;
     }
-    .fc-day-grid-container  {
-        height: 743px  !important;
-        overflow-y: hidden !important;
-     }
-     .fc-time-grid-container {
-        height: 765px  !important;
-        overflow-y: scroll !important;
-    }
+  
 }
 
 @media only screen and (min-width: 1500px) { 
@@ -1369,9 +1441,9 @@ tr.mat-row {
         overflow-y: scroll !important;
         min-height: 600px !important;
     }
-    .modal-dialog {
-        padding-top:14% !important;
-    }
+    // .modal-dialog {
+    //     padding-top:14% !important;
+    // }
     .fc-day-grid-container  {
         height: 660px  !important;
         overflow-y: hidden !important;
@@ -1384,7 +1456,7 @@ tr.mat-row {
 @media screen and (min-width: 1200px) and (max-width:1500px) {  
     .fc-day-grid-container  {
      //   height: 945px  !important;
-        height: 1032px !important;
+        height: 1055px !important;
         overflow-y: hidden !important;
      }
      .fc-time-grid-container {
@@ -1410,7 +1482,29 @@ tr.mat-row {
 // }
 //iphone S
 @media only screen and (min-width: 300px) and (max-width:570px) {
-
+    // .col-lg-1 {
+    //     flex:0 0 100%;
+    //     max-width: 100%;
+    // }
+    .mat-tab-group {
+        flex-direction: column !important;
+    }
+    .mat-tab-header {
+        width:100% !important;
+        margin-bottom: 2% !important;
+    }
+    .mat-tab-labels {
+        display: flex !important;
+    }
+    .mat-tab-label {
+        height: 40px !important;
+    }
+    .modal-title {
+        font-size:$secondary-font-size-lg !important;
+    }
+    .modal-header {
+        padding:10px 8px !important
+    }
     .billTitle { 
         width:91%;
     }
@@ -1421,11 +1515,11 @@ tr.mat-row {
         height: 78vh !important;
     }
     .newCardTable {
-        height: 58vh !important;
+        height: 75vh !important;
     }
     .serField {
         flex: 0 0 75% !important;
-        max-width: 75% !important;
+        //max-width: 75% !important;
     }
     .col-md-4 {
         flex: 0 0 14% !important;
@@ -1487,14 +1581,7 @@ tr.mat-row {
     .fc-day-grid .fc-row {
         height: 6em !important;
     }
-    .fc-day-grid-container  {
-        height: 350px  !important;
-        overflow-y: hidden !important;
-     }
-     .fc-time-grid-container {
-        height: 492px  !important;
-        overflow-y: scroll !important;
-    }
+   
     .booking {
         margin-top:2% !important;
     }
@@ -1546,7 +1633,28 @@ tr.mat-row {
         white-space: normal !important;
     }
 }
+@media only screen and (min-width: 300px) and (max-width:567px) {
+    .fc-day-grid-container  {
+        height: 350px  !important;
+        overflow-y: hidden !important;
+     }
+     .fc-time-grid-container {
+        height: 492px  !important;
+        overflow-y: scroll !important;
+    }
+}
+
+@media only screen and (min-width: 568px) and (max-width:570px) {
+    .fc-day-grid-container  {
+        height: 790px  !important;
+     }
+     .fc-time-grid-container {
+        height: 492px  !important;
+        overflow-y: scroll !important;
+    }
+}
 @media only screen and (min-width: 620px) and (max-width:1400px) {
+   
     .grid-item {
         width:100% !important;
     }   
