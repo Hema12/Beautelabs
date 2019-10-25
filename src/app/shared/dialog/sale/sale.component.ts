@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import {DateAdapter} from '@angular/material/core';
+import { ActivatedRoute } from '@angular/router';
 
 export interface Service {
   name: string;
@@ -36,6 +37,9 @@ export class SaleComponent implements OnInit {
   saleForm: FormGroup;
   toDay = new Date();
   Type:string;
+  saleId: any;
+  page_title:string;
+  button_title: string;
   //service:any;
   service: any;
   product:any;
@@ -75,7 +79,15 @@ export class SaleComponent implements OnInit {
   saleCustomerDet = new FormControl();
   filteredCustomer: Observable<Customer[]>; 
   constructor(
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder, private activatedRoute: ActivatedRoute) {
+      this.saleId = this.activatedRoute.snapshot.params['saleId'];     
+      if(this.saleId == '0') {
+        this.page_title = 'New Quick Sale';
+        this.button_title = 'Submit';
+      } else {
+        this.page_title = 'Quick Sale View';
+        this.button_title = 'Update';
+      }
       this.filteredCustomer = this.saleCustomerDet.valueChanges
     .pipe(
       startWith(''),

@@ -1,22 +1,22 @@
 
-<div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mr-zero ml-zero pall-zero">            
+<div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking">            
     <h3 matDialogTitle class="billTitle">Bill Activity</h3>
     <mat-dialog-actions align="end" class="closeicon">
         <mat-icon color="warn" (click)="close()">close</mat-icon>
     </mat-dialog-actions>    
 </div>
 <hr class="horizontalline"/>
-<div class="col-md-12 col-sm-12 col-lg-8 col-xl-8 pall-zero mall-zero">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
-        <ng-container matColumnDef="sno">
+<div class="col-md-11 col-sm-12 col-lg-7 col-xl-7">
+    <table mat-table [dataSource]="dataSource" matSort>
+        <!-- <ng-container matColumnDef="sno">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
             <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
-        </ng-container>
+        </ng-container> -->
         
         <ng-container matColumnDef="billNo">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Bill No </th>
-            <td mat-cell *matCellDef="let element"> {{element.billNo}} </td>
-        </ng-container>                
+            <td mat-cell *matCellDef="let element" (click)="openBill(element)" class="linkText"> {{element.billNo}} </td>
+        </ng-container>    
         
         <ng-container matColumnDef="billDate">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
@@ -32,93 +32,273 @@
             <td mat-cell *matCellDef="let element"> {{element.branch}} </td>
         </ng-container>
         
-        <ng-container matColumnDef="action">
+        <!-- <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef>Action</th>
             <td mat-cell *matCellDef="let element">
                 <mat-icon color="primary" (click)="openBill(element)">remove_red_eye</mat-icon>
             </td>
-        </ng-container>
+        </ng-container> -->
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <!-- <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{hovered: row.hovered, highlighted: row.highlighted}" (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></tr> -->
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.sno}"></tr>
     </table>      
 </div>
-<div class="col-md-12 col-sm-12 col-xl-4 col-lg-4" *ngIf="isShow">
-        <h2 matDialogTitle class="mb-15">Bill Details</h2>
-        <mat-dialog-content class="dialog-detail">  
-            <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12">
-                <div class="col-md-12 col-sm-12 col-xl-6 col-lg-6">             
-                    <p>Bill No : {{View.billNo}}</p>
+<div class="col-md-5 col-sm-5 col-xl-5 col-lg-5" *ngIf="isShow && screenWidth> 780">
+    <mat-card>
+        <mat-card-content>
+            <h3 matDialogTitle class="mb-15">Billing Details</h3>
+            <mat-dialog-content class="dialog-detail">  
+                <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 pall-zero">
+                    <div class="col-md-12 col-sm-12 col-xl-6 col-lg-6">             
+                        <p>Bill No : {{View.billNo}}</p>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xl-6 col-lg-6">             
+                        <p>Date : {{View.billDate}}</p>
+                    </div>
                 </div>
-                <div class="col-md-12 col-sm-12 col-xl-6 col-lg-6">             
-                    <p>Date : {{View.billDate}}</p>
+                <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 pall-zero">
+                    <div class="col-md-12 col-sm-12 col-xl-12 col-lg-12">             
+                        <p>Source : {{View.source}}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12">
-                <h4>Service</h4>
-            </div>
-            <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12">
-                    <table mat-table [dataSource]="serviceList" class="mat-elevation-z8" matSort>
-                            <ng-container matColumnDef="sno">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
-                                <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
-                            </ng-container>
-                            
-                            <ng-container matColumnDef="serviceName">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Service </th>
-                                <td mat-cell *matCellDef="let element"> {{element.serviceName}} </td>
-                            </ng-container>                
-                            
-                            <ng-container matColumnDef="staffName">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Staff </th>
-                                <td mat-cell *matCellDef="let element"> {{element.staffName}} </td>
-                            </ng-container>
-                    
-                            <ng-container matColumnDef="billTotal">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Total </th>
-                                <td mat-cell *matCellDef="let element"> {{element.billTotal}} </td>
-                            </ng-container>
-                            <tr mat-header-row *matHeaderRowDef="displayedServiceColumns"></tr>
-                            <tr mat-row *matRowDef="let row; columns: displayedServiceColumns;"></tr>
-                        </table>      
-                <!-- <table class="full-width table table-bordered wraptbl serviceDet">
-                    <tr>
-                        <th>Service</th>
-                        <th>Staff</th>
-                        <th>Total</th>
-                    </tr>
-                    <tr>
-                        <td>Hair Cut</td>
-                        <td>Devi</td>
-                        <td>200</td>
-                    </tr>
-                    <tr>
-                        <td>Facial</td>
-                        <td>Nisha</td>
-                        <td>1100</td>
-                    </tr>
-                    <tr>
-                        <td>Tan Mask</td>
-                        <td>Nisha</td>
-                        <td>425</td>
-                    </tr>
-                </table> -->
-            </div>
-            <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12">
-                <h4>Feedback</h4>
-                <table class="full-width table table-bordered wraptbl">
-                    <tr>
-                        <th>#</th>
-                        <th>Questions</th>
-                        <th>Answer</th>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
-            </div>
-            
-        </mat-dialog-content>                
+                <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12">
+                    <h4 class="page-subtitle">Service Details</h4>
+                </div>
+                <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                            <th>Service</th>
+                            <th>Staff</th>
+                            <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>Hair Cut</td>
+                            <td>Devi</td>
+                            <td>250</td>
+                            </tr>
+                            <tr>
+                            <td>Threading</td>
+                            <td>Nithya</td>
+                            <td>50</td>
+                            </tr>
+                            <tr>
+                            <td>Facial</td>
+                            <td>Nithya</td>
+                            <td>1425</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- <table mat-table [dataSource]="serviceList" class="mat-elevation-z8" matSort>
+                        <ng-container matColumnDef="sno">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                            <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="serviceName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Service </th>
+                            <td mat-cell *matCellDef="let element"> {{element.serviceName}} </td>
+                        </ng-container>                
+                        
+                        <ng-container matColumnDef="staffName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Staff </th>
+                            <td mat-cell *matCellDef="let element"> {{element.staffName}} </td>
+                        </ng-container>
+                
+                        <ng-container matColumnDef="billTotal">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+                            <td mat-cell *matCellDef="let element"> {{element.billTotal}} </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedServiceColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedServiceColumns;"></tr>
+                    </table>                      -->
+                </div>
+                <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12">
+                    <h4 class="page-subtitle">Feedback</h4>
+                    <table class="full-width table table-bordered wraptbl">
+                        <tr>
+                            <th>#</th>
+                            <th>Questions</th>
+                            <th>Answer</th>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12">                    
+                    <h5 class="page-subtitle">Loyalty Points</h5>
+                </div>
+                <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12 pall-zero mall-zero">
+                    <div class="col-md-6 col-xl-6 col-sm-12 col-lg-6">
+                        <p>Earned : 15</p>
+                    </div>
+                    <div class="col-md-6 col-xl-6 col-sm-12 col-lg-6">
+                        <p>Redeemed : Nil</p>
+                    </div>
+                </div>
+                <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12 pall-zero mall-zero">
+                    <h5 class="page-subtitle">Voucher Points</h5>
+                </div>
+                <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12 pall-zero mall-zero">
+                    <div class="col-md-6 col-xl-6 col-sm-12 col-lg-6">
+                        <p>Earned : 15</p>
+                    </div>
+                    <div class="col-md-6 col-xl-6 col-sm-12 col-lg-6">
+                        <p>Redeemed : Nil</p>
+                    </div>
+                </div>               
+                <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12">
+                    <h5 class="page-subtitle">Prepaid Balance : Nil</h5>
+                </div>
+                <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12">
+                    <h4 class="page-subtitle">Payment Details</h4>
+                </div>
+                <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12">
+                    <table class="full-width table wraptbl">
+                        <tr>
+                            <th>Mode</th>
+                            <th>Total (₹)</th>
+                            <th>Discount (₹)</th>
+                            <th>Amount Paid (₹)</th>
+                            <th>Outstanding (₹)</th>
+                        </tr>
+                        <tr>
+                            <td>Cash</td>
+                            <td>1,725.00</td>
+                            <td>0.00</td>
+                            <td>1,725.00</td>
+                            <td>0.00</td>
+                        </tr>                        
+                    </table>
+                </div>
+            </mat-dialog-content>    
+        </mat-card-content>
+    </mat-card>            
 </div>
 
+<div class="modal bookingmodel" id="myModal" [style.display]="showModal ? 'block' : 'none'"  *ngIf="screenWidth&lt; 780">
+    <div class="modal-dialog">            
+        <div class="modal-content">   
+            <div class="modal-header">
+                <h5 class="modal-title"> 
+                    Billing Details
+                    <span class="fr"> <mat-icon (click)="hide()" class="warn">close</mat-icon> </span>
+                </h5>
+            </div>
+            <div class="modal-body">                                                   
+                <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 pall-zero">
+                    <div class="col-md-12 col-sm-12 col-xl-6 col-lg-6 halfwidth">             
+                        <p>Bill No : {{View.billNo}}</p>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xl-6 col-lg-6 halfwidth">             
+                        <p>Date : {{View.billDate}}</p>
+                    </div>
+                </div>
+                <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 pall-zero">
+                    <div class="col-md-12 col-sm-12 col-xl-12 col-lg-12">  
+                        <p>Source : {{View.source}}</p>
+                    </div>
+                </div>
+                <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12">
+                    <h4>Service Details</h4>
+                </div>
+                <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                <th>Service</th>
+                                <th>Staff</th>
+                                <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <td>Hair Cut</td>
+                                <td>Devi</td>
+                                <td>250</td>
+                                </tr>
+                                <tr>
+                                <td>Threading</td>
+                                <td>Nithya</td>
+                                <td>50</td>
+                                </tr>
+                                <tr>
+                                <td>Facial</td>
+                                <td>Nithya</td>
+                                <td>1425</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+                <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12">
+                    <h4>Feedback</h4>
+                    <table class="full-width table table-bordered wraptbl">
+                        <tr>
+                            <th>#</th>
+                            <th>Questions</th>
+                            <th>Answer</th>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12">                    
+                    <h5 class="page-subtitle">Loyalty Points</h5>
+                </div>
+                <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12 pall-zero mall-zero">
+                    <div class="col-md-6 col-xl-6 col-sm-12 col-lg-6 halfwidth">
+                        <p>Earned : 15</p>
+                    </div>
+                    <div class="col-md-6 col-xl-6 col-sm-12 col-lg-6 halfwidth">
+                        <p>Redeemed : Nil</p>
+                    </div>
+                </div>
+                <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12 pall-zero mall-zero">
+                    <h5 class="page-subtitle">Voucher Points</h5>
+                </div>
+                <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12 pall-zero mall-zero">
+                    <div class="col-md-6 col-xl-6 col-sm-12 col-lg-6 halfwidth">
+                        <p>Earned : 15</p>
+                    </div>
+                    <div class="col-md-6 col-xl-6 col-sm-12 col-lg-6 halfwidth">
+                        <p>Redeemed : Nil</p>
+                    </div>
+                </div>               
+                <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12">
+                    <h5 class="page-subtitle">Prepaid Balance : Nil</h5>
+                </div>
+                <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12">
+                    <h4 matDialogTitle>Payment Details</h4>
+                </div>
+                <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12">
+                    <table class="full-width table wraptbl">
+                        <tr>
+                            <td>Mode</td>
+                            <td>Cash</td>
+                        </tr>
+                        <tr>
+                            <td>Mode</td>
+                            <td>Cash</td>
+                        </tr>
+                        <tr>
+                            <td>Mode</td>
+                            <td>Cash</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        <!-- Modal footer -->
+            <div class="modal-footer">
+                <button mat-raised-button class="startBillbtn ml-2" (click)="hide()">Close</button>
+            </div>            
+        </div>
+    </div>
+</div>

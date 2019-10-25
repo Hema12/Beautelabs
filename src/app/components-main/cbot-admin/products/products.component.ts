@@ -95,6 +95,7 @@ export class ProductsComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   animal: string;
   name: string;
+  showModal: boolean = false;
   productCategoryForm: FormGroup;
   productSubCategoryForm: FormGroup;
   category: productCategory[] = [
@@ -127,8 +128,7 @@ export class ProductsComponent implements OnInit {
       top: '0px',
       right:'0px'
     };
-    const dialogRef = this.dialog.open(ProductComponent, {
-      width: '50%',
+    const dialogRef = this.dialog.open(ProductComponent, {     
       // position: dialogPosition,
       data: {}
     });
@@ -193,5 +193,11 @@ export class ProductsComponent implements OnInit {
    sideNav.toggle();   
    this.View = this.productList.filteredData.find(obj => obj.sno === val.sno);   
  }
-
+ openViewModal(Value) {   
+  this.showModal = true;
+  this.View = this.productList.filteredData.find(obj => obj.sno === Value.sno);
+}
+hide() {
+  this.showModal = false;
+}
 }

@@ -1,21 +1,12 @@
-<!-- <div fxLayout="column">
-    <div fxLayout="row">
-        <div fxLayoutAlign="start" fxFlex="85%">
-            <h2 class="page-title">Add New Appointment</h2>
-        </div>
-        <div fxFlex="15%" fxHide fxShow.gt-sm fxLayoutAlign="end">         
-        </div>
-    </div>
-</div> -->
 <div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pall-zero">
     <div class="col-md-7 col-sm-12 col-lg-7 col-xl-7">
         <h2 class="page-title">New Appointment </h2>
     </div>
 </div>
-<div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pall-zero mall-zero">
-    <mat-card class="full-width newCard">
+<div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pall-zero mall-zero">    
+    <mat-card class="full-width newCard bookingcard">
         <mat-card-content>
-            <div class="col-md-12 col-sm-12 col-lg-7 col-xl-7 pall-zero mall-zero borderrgt">
+            <div class="col-md-12 col-sm-12 col-lg-7 col-xl-7 widthinc">                          
                 <form method="POST" [formGroup]="bookingForm"> 
                     <div class="form-container">              
                         <div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pr-zero">          
@@ -122,85 +113,78 @@
                                 </mat-form-field>
                             </div>
                         </div>  
-                        <div class="col-md-12 tr borderbtm">
+                        <div class="col-md-12 tr">
                             <button mat-raised-button color="warn">Clear</button> 
                             <button mat-raised-button color="primary" (click)="create()" class="ml-1">Submit</button> 
                         </div>
                     </div>
-                </form>
+                </form>                           
             </div>
-            <div class="col-md-12 col-sm-12 col-lg-5 col-xl-5 pr-zero profileHistory" *ngIf="customerHistory">      
-                <div class="row col-md-12 col-xl-12 col-lg-12 pall-zero">
-                    <div class="col-md-4 col-xl-2 col-lg-4 customerProfile pall-zero">
-                        <img src="../../../../assets/images/profile.png" />                                
-                    </div>
-                    <div class="col-md-8 col-xl-10 col-lg-8 profile pall-zero">                                
-                        <h2>Jai Nishanth <mat-icon matSuffix class="ml-2">edit</mat-icon> </h2>
-                        <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
-                            <div class="col-md-12 col-xl-6 col-lg-6 col-sm-12 pall-zero">
-                                <mat-icon matPrefix>phone</mat-icon> +91 9876545679 
+            
+            <div class="col-md-12 col-sm-12 col-lg-8 col-xl-5 profileHistory pall-zero mall-zero" *ngIf="customerHistory">      
+                <mat-card class="full-width newCard">
+                    <mat-card-content>
+                        <div class="row col-md-12 col-xl-12 col-lg-12 pall-zero">
+                            <div class="col-md-4 col-xl-2 col-lg-4 customerProfile pall-zero">
+                                <img src="../../../../assets/images/profile.png" />                                
                             </div>
-                            <div class="col-md-12 col-xl-6 col-lg-6 col-sm-12 pall-zero">
-                                <mat-icon>email</mat-icon>jainishanth17@gmail.com
+                            <div class="col-md-8 col-xl-10 col-lg-8 profile pall-zero">                                
+                                <h2>Jai Nishanth <mat-icon matSuffix class="ml-2">edit</mat-icon> </h2>
+                                <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12 pall-zero mall-zero">
+                                    <div class="col-md-12 col-xl-6 col-lg-6 col-sm-12 pall-zero">
+                                        <mat-icon matPrefix>phone</mat-icon> +91 9876545679 
+                                    </div>
+                                    <div class="col-md-12 col-xl-6 col-lg-6 col-sm-12 pall-zero">
+                                        <mat-icon>email</mat-icon>jainishanth17@gmail.com
+                                    </div>
+                                </div>
+                                <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12 pall-zero mall-zero">
+                                    <div class="col-md-12 col-xl-6 col-lg-6 col-sm-12 pall-zero">
+                                        <mat-icon matPrefix>payment</mat-icon> <span (click)="billingHistory()" class="linkText"> Billing History</span>
+                                    </div>
+                                    <div class="col-md-12 col-xl-6 col-lg-6 col-sm-12 pall-zero">
+                                        <mat-icon>person</mat-icon>Preferred Staff : Ramesh
+                                    </div>
+                                </div>
+                                
                             </div>
-                        </div>
-                        <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
-                            <div class="col-md-12 col-xl-6 col-lg-6 col-sm-12 pall-zero">
-                                <mat-icon matPrefix>payment</mat-icon> <span (click)="billingHistory()" class="linkText"> Billing History</span>
-                            </div>
-                            <div class="col-md-12 col-xl-6 col-lg-6 col-sm-12 pall-zero">
-                                <mat-icon>person</mat-icon>Preferred Staff : Ramesh
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>                      
-                <hr />
-                <div class="row col-md-12 col-xl-12 col-lg-12 mt-2 pall-zero">
-                    <div class="col-md-12 col-xl-12 col-lg-8">
-                        <p class="mb-0">Birthday : 07 Aug, 1991 <span>
-                            <mat-datepicker-toggle matSuffix [for]="dobpicker">
-                            <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
-                            </mat-datepicker-toggle>
-                            <mat-datepicker #dobpicker disabled="false"></mat-datepicker>
-                            <!-- <input matInput [matDatepicker]="dobpicker" disabled> -->
-                        </span>
-                        </p>
-                        <!-- <mat-datepicker #dobpicker></mat-datepicker>
-                        <mat-datepicker-toggle [for]="dobpicker"></mat-datepicker-toggle>
-                        <input type="hidden" [matDatepicker]="dobpicker"> -->
-                        <p class="mb-11">Anniversary : 07 Aug, 1991  <span>
-                            <mat-datepicker-toggle matSuffix [for]="annivpicker">
-                            <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
-                            </mat-datepicker-toggle>
-                            <mat-datepicker #annivpicker disabled="false"></mat-datepicker>
-                           <!-- <input matInput [matDatepicker]="annivpicker" disabled> -->
-                            </span>
-                        </p> 
-                        <p>Membership ID: NA</p>
-                        <p>Loyalty points : NA</p>
-                        <p>Prepaid Card Value : NA</p>
-                        <p>Voucher : NA</p>
-                        <mat-form-field>
-                            <mat-label>Remarks</mat-label> <mat-icon matSuffix>edit</mat-icon>
-                            <textarea matInput></textarea> 
-                        </mat-form-field>
-                        
-                    </div>             
-                </div>     
+                        </div>                      
+                        <hr />
+                        <div class="row col-md-12 col-xl-12 col-lg-12 mt-2 pall-zero">
+                            <div class="col-md-12 col-xl-12 col-lg-8">
+                                <p class="mb-0">Birthday : 07 Aug, 1991 <span>
+                                    <mat-datepicker-toggle matSuffix [for]="dobpicker">
+                                    <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
+                                    </mat-datepicker-toggle>
+                                    <mat-datepicker #dobpicker disabled="false"></mat-datepicker>
+                                    <!-- <input matInput [matDatepicker]="dobpicker" disabled> -->
+                                </span>
+                                </p>
+                                <!-- <mat-datepicker #dobpicker></mat-datepicker>
+                                <mat-datepicker-toggle [for]="dobpicker"></mat-datepicker-toggle>
+                                <input type="hidden" [matDatepicker]="dobpicker"> -->
+                                <p class="mb-11">Anniversary : 07 Aug, 1991  <span>
+                                    <mat-datepicker-toggle matSuffix [for]="annivpicker">
+                                    <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
+                                    </mat-datepicker-toggle>
+                                    <mat-datepicker #annivpicker disabled="false"></mat-datepicker>
+                                <!-- <input matInput [matDatepicker]="annivpicker" disabled> -->
+                                    </span>
+                                </p> 
+                                <p>Membership ID: NA</p>
+                                <p>Loyalty points : NA</p>
+                                <p>Prepaid Card Value : NA</p>
+                                <p>Voucher : NA</p>
+                                <mat-form-field>
+                                    <mat-label>Remarks</mat-label> <mat-icon matSuffix>edit</mat-icon>
+                                    <textarea matInput></textarea> 
+                                </mat-form-field>
+                                
+                            </div>             
+                        </div>  
+                    </mat-card-content>
+                </mat-card>   
             </div>
         </mat-card-content>
     </mat-card>
 </div>
-
-
-<ng-template #recurringtemplate>
-    <h2 matDialogTitle class="candidate-title">Details</h2>
-    <mat-dialog-content class="candidate-detail">
-        <p>Product Name : </p>
-        
-    </mat-dialog-content>
-    <mat-dialog-actions align="end" class="submit-button">
-        <button mat-button  class="mr-5 mb-5">Close</button>
-    </mat-dialog-actions>
-</ng-template>

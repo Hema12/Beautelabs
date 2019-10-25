@@ -50,5 +50,8 @@ export class HeaderComponent implements OnInit {
     this.isExpanded != this.isExpanded;
     //this.sidenav.toggle();
   }
+  collapseMenu() {
+    this.isExpanded = false;
+  }
  
 }

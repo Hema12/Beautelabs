@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators, FormControlName, FormBuilder, FormA
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { SelectAutocompleteComponent } from 'mat-select-autocomplete';
+import { ActivatedRoute } from '@angular/router';
 
 export interface Staff {
   staffName: string;
@@ -50,7 +51,9 @@ export class CustomerComponent implements OnInit {
   ];
   customerDet = new FormControl();
   filteredCustomer: Observable<Customer[]>; 
-
+  customer_Id: any;
+  page_title: string;
+  button_title: string;
   staff: Staff[] = [
     {staffName: 'Aadhi'},
     {staffName: 'Devi'},
@@ -65,8 +68,17 @@ export class CustomerComponent implements OnInit {
     {name: 'Phone'},
     {name:'Promotions'}
   ];
-  constructor( private formBuilder: FormBuilder,
+  constructor( private formBuilder: FormBuilder,private activatedRoute: ActivatedRoute
     ) {
+      this.customer_Id = this.activatedRoute.snapshot.params['customer_Id'];      
+      if(this.customer_Id == '0') {
+        this.page_title = 'Add Customer';
+        this.button_title = 'Submit';
+      } else {
+        this.page_title = 'Edit Customer';
+        this.button_title = 'Update';
+      }
+
       this.filteredCustomer = this.customerDet.valueChanges
       .pipe(
         startWith(''),

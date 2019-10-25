@@ -114,10 +114,9 @@ body {
     margin-bottom: 1%;
 }
 .staff {
-    width:80% !important
-}
-.highlight {
-    background: #949494;
+    max-width:24% !important;
+    flex:0 0 24% !important;
+    margin-left: 1% !important;
 }
 .rgt {
     text-align: right !important;
@@ -199,6 +198,9 @@ th {
 }
 .mb-15 {
     margin-bottom: 15px;
+}
+.mb-red1 {
+    margin-bottom: -1% !important;
 }
 .pl-0 {
     padding-left: 0px !important;
@@ -358,6 +360,7 @@ th {
     line-height: 40px;
     width:96%;
     margin-bottom: 0px !important;
+    padding-left: 1% !important;
 }
 .closeicon {
     display: unset !important;
@@ -438,6 +441,9 @@ th {
 }
 .t-2 {
     margin-top: 2%;
+}
+.pbzerofield .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    padding-bottom: 0px !important;
 }
 .def {
     margin-top:-50px;
@@ -527,16 +533,18 @@ th {
     padding: 12px 15px;
     border-bottom: 1px solid #e5e5e5;
     background: $primary-color-white !important;
+    font-family: $primary-font-family-table !important;
 }
 .modal-content {
     padding:2% 4% !important;
+    font-family: $primary-font-family-table !important;
 }
 .modal-title {
     width: 100%;
     font-size: $primary-font-size-lg !important;
     color:$primary-color-darkblue !important;
     margin:0% !important;
-    font-family: $primary-font-family-common !important;
+    font-family: $primary-font-family-table !important;
 }
 .modal-footer {
     padding: 10px 15px 10px;
@@ -544,6 +552,13 @@ th {
     text-align: right;
     border-top: 1px solid #e5e5e5;
     margin-left: 0% !important;
+    font-family: $primary-font-family-table !important;
+}
+.productimg {
+    height: 170px !important;
+}
+.middlevertical {
+    vertical-align: middle !important;
 }
 .fc-resourceTimeGridDay-view .fc-row {
     //padding:4px !important;
@@ -567,12 +582,20 @@ th {
 .topwidthcustomerField {
     width:50% !important;
 }
+.searchField {
+    width:75% !important;
+}.searchField .mat-icon {
+    vertical-align: middle !important;
+}
 .topwidthcustomerField .mat-form-field{
    // width: 150px !important;
 }
 .topwidth .mat-form-field-underline {
     display: none !important;
-  }
+}
+.paginator .mat-form-field-underline {
+    display: none !important;
+}
 
 .cdk-overlay-container {
     z-index: 1051 !important;
@@ -635,8 +658,12 @@ th {
     color:$primary-color-darkblue !important;
     // margin:5px 0px 5px 3px !important;
 }
+.page-subtitle {
+    font-size: $primary-font-size !important;
+    font-family: $primary-font-family-table !important;
+}
 .customerProfile img {
-    height: 95px !important;    
+    height: 80px !important;    
 }
 .customer img {
     width:170px;
@@ -820,7 +847,7 @@ td.fc-day.fc-widget-content.fc-future {
     height: 4em !important;
 }
 .fc-day-grid .fc-row {
-    height: 10em !important;
+    height: 8em !important;
 }
 .fc-view-container *, .fc-view-container *:before, .fc-view-container *:after {
     font-size: 11px !important;
@@ -1061,6 +1088,7 @@ tr.mat-row {
 // }
 .linkText {
     color: #4285F4 !important;
+    cursor: pointer !important;
 }
 .menuchange::after {
     bottom:-7px;
@@ -1085,6 +1113,36 @@ tr.mat-row {
 .actionicon {
     font-size:$primary-font-size-md !important ;
 }
+.table-paginator .mat-paginator-container {
+    padding:0px !important;
+}
+.table-paginator {
+    margin-top:-1% !important;
+}
+.mat-row.highlighted {
+    background: #999 !important;
+}
+.mat-row.hovered {
+    background: #eee !important;
+}
+.highlight {
+    background:#eee !important;
+}
+
+.table-bordered thead>tr>th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+    color: $primary-color-white !important;
+    font-size: $secondary-font-size !important;
+    font-weight: $primary-font-weight !important;
+    font-family: $primary-font-family-table !important;
+}
+.table-bordered thead {
+    background: $primary-color-darkblue !important;
+}
+.bookingcard {
+    padding:20px 0px !important;
+}
 //Responsive Css
 //Header
 @media only screen and (min-width: 1024px) and (max-width:1025px) {
@@ -1092,12 +1150,15 @@ tr.mat-row {
         margin-left: 4% !important;
     }
     .fc-center {
-        margin-left: -13% !important;
+        margin-left: -12% !important;
     }
     .fc-scroller {
         height: 1055px !important;
     }
-
+    .widthinc {
+        max-width:100% !important;
+        flex:0 0 100% !important;
+    }
 }
 @media only screen and (min-width: 1020px) and (max-width:1299px)
 {
@@ -1105,12 +1166,25 @@ tr.mat-row {
         height: 80vh !important;
     }
     .newCardTable {
-        height: 78vh !important;
+        height: 79vh !important;
+        overflow-y: scroll !important;
+    }
+    
+}
+@media only screen and (min-width: 1025px) and (max-width:1299px)
+{
+    .newCardView {
+        height: 79vh !important;
         overflow-y: scroll !important;
     }
 }
-
-
+@media only screen and (min-width: 1020px) and (max-width:1024px)
+{
+    .newCardView {
+        height: 65vh !important;
+        overflow-y: scroll !important;
+    }
+}
 @media only screen and (min-width: 810px)  and (max-width:825px){
     .col-md-2 {
         max-width:30%;
@@ -1122,20 +1196,27 @@ tr.mat-row {
     }
 }
 @media only screen and (min-width: 992px) {
-    .col-lg-7 {
-        -ms-flex: 0 0 100%;
-         flex: 0 0 100%; 
-         max-width: 100%; 
+    // .col-lg-7 {
+    //     -ms-flex: 0 0 100%;
+    //      flex: 0 0 100%; 
+    //      max-width: 100%; 
+    // }
+    .col-md-offset-3 {
+        margin-left: 25% !important;
     }
-    .col-lg-5 {
-        -ms-flex: 0 0 100%;
-        flex: 0 0 100%; 
-        max-width: 100%; 
-    }
+    // .col-lg-5 {
+    //     -ms-flex: 0 0 100%;
+    //     flex: 0 0 100%; 
+    //     max-width: 100%; 
+    // }
     .col-md-4 {
         max-width:16%;
         flex:0 0 16%;
     }
+    // .col-lg-8 {
+    //     flex: 0 0 100%;
+    //     max-width: 100%;
+    // }
     .profile{
         left: 5% !important;
     }
@@ -1154,6 +1235,9 @@ tr.mat-row {
     .newCardTable {
         height: 60vh !important;
     }
+    .newCardView {
+        height: 60vh !important;
+    }
     .col-md-3 {
         flex:0 0 32%;
         max-width: 32%;
@@ -1169,6 +1253,9 @@ tr.mat-row {
         height: 66vh !important;
     }
     .newCardTable {
+        height: 66vh !important;
+    }
+    .newCardView {
         height: 66vh !important;
     }
     .col-md-3 {
@@ -1190,7 +1277,7 @@ tr.mat-row {
         margin-left: 0px;
     }
     .topwidthcustomerField .mat-form-field{ 
-        width:200px !important;
+        width:170px !important;
     }
     .pl-0 {
         padding-left: 13px !important;
@@ -1277,25 +1364,40 @@ tr.mat-row {
 }
 @media only screen and (min-width: 560px) and (max-width:570px) {
     .fc-center {
-        margin-left: 60px;
+        margin-left: 78px;
     }
 }
-@media only screen and (min-width: 640px) and (max-width:670px) {
+@media only screen and (min-width: 640px) and (max-width:650px) {
     .fc-center {
-        margin-left: -15px;
+        margin-left: -2px;
     }
 }
-@media only screen and (min-width: 730px) and (max-width:768px) {
+@media only screen and (min-width: 651px) and (max-width:670px) {
+    .fc-center {
+        margin-left: -10px;
+    }
+}
+@media only screen and (min-width: 737px) and (max-width:768px) {
     .fc-center {
         margin-left: -45px;
-    }
+    }   
+}
+@media only screen and (min-width: 730px) and (max-width:736px) {
+    .fc-center {
+        margin-left: -33px;
+    }   
 }
 @media only screen and (min-width: 812px) and (max-width:840px) {
     .fc-center {
-        margin-left: -73px;
+        margin-left: -62px;
     }
     .booking {
         margin-top:1% !important;
+    }
+    .staff {
+        max-width: 32% !important;
+        flex:0 0 32% !important;
+        margin-left: 1% !important;
     }
 }
 @media only screen and (min-width: 670px) and (max-width:700px) {
@@ -1312,12 +1414,20 @@ tr.mat-row {
         overflow-y: scroll !important;
     }
 }
+@media only screen and (min-width: 571px) and (max-width:640px) {
+    .newCardTable {
+        height: 75vh !important;
+    }
+}
 //ipad
 @media only screen and (min-width: 570px) and (max-width:669px) {
     // .col-lg-1 {
     //     flex:0 0 100%;
     //     max-width: 100%;
     // }
+    .table-paginator {
+        margin-top:-3% !important;
+    }
     .grid-item {
         width:100% !important;
     }
@@ -1330,7 +1440,8 @@ tr.mat-row {
     .newCard {
         height: 64vh !important;
     }
-    .newCardTable {
+    
+    .newCardView {
         height: 60vh !important;
     }
     textarea.mat-input-element {
@@ -1358,6 +1469,19 @@ tr.mat-row {
         height: 765px  !important;
         overflow-y: scroll !important;
     }
+    .mat-tab-group {
+        flex-direction: column !important;
+    }
+    .mat-tab-header {
+        width:100% !important;
+        margin-bottom: 2% !important;
+    }
+    .mat-tab-labels {
+        display: flex !important;
+    }
+    .mat-tab-label {
+        height: 40px !important;
+    }
 }
 @media only screen and (min-width: 701px) and (max-width:732px) {
     .fc-day-grid-container  {
@@ -1378,12 +1502,20 @@ tr.mat-row {
         height: 765px  !important;
         overflow-y: scroll !important;
     }
+    .staff {
+        max-width: 49% !important;
+        flex:0 0 49% !important;
+        margin-left: 1% !important;
+    }
 }
 @media only screen and (min-width: 701px) and (max-width:768px) {
     // .col-lg-1 {
     //     flex:0 0 100%;
     //     max-width: 100%;
     // }
+    .mat-list-base .mat-list-item {
+        height: 45px !important;
+    }
     .grid-item {
         width:100% !important;
     }
@@ -1397,6 +1529,9 @@ tr.mat-row {
         height: 64vh !important;
     }
     .newCardTable {
+        height: 64vh !important;
+    }
+    .newCardView {
         height: 64vh !important;
     }
     textarea.mat-input-element {
@@ -1430,6 +1565,11 @@ tr.mat-row {
         overflow-y: hidden !important;
         overflow-x: hidden !important;
     }
+    .newCardView {
+        min-height: 50vh !important;
+        overflow-y: hidden !important;
+        overflow-x: hidden !important;
+    }
     .mat-drawer-content {
         margin-left: 2% !important;
     }
@@ -1456,7 +1596,8 @@ tr.mat-row {
 @media screen and (min-width: 1200px) and (max-width:1500px) {  
     .fc-day-grid-container  {
      //   height: 945px  !important;
-        height: 1055px !important;
+    //    height: 1055px !important;
+        height: 658px !important;
         overflow-y: hidden !important;
      }
      .fc-time-grid-container {
@@ -1468,6 +1609,27 @@ tr.mat-row {
     }
     .mat-drawer-content {
         margin-left: 3.6%;
+    }
+}
+@media screen and (min-width: 1300px) , screen and (min-height: 1020px) { 
+    .mat-list-base .mat-list-item {
+        height: 45px !important;
+    }
+    .fc-day-grid-container {
+        height: 758px !important;
+        overflow-y: hidden !important;
+    }
+    .fc-dayGridMonth-view {
+        overflow-y: hidden !important;
+        height: 700px !important;
+    }
+    .fc-day-grid .fc-row {
+        height: 10em !important;
+    }
+}
+@media screen and (min-width: 1024px) and (max-width: 1026px) { 
+    .mat-list-base .mat-list-item {
+        height: 43px !important;
     }
 }
 // @media only screen and (min-width: 568px) {
@@ -1486,6 +1648,20 @@ tr.mat-row {
     //     flex:0 0 100%;
     //     max-width: 100%;
     // }
+    // .mat-list-base .mat-list-item {
+    //     height: 45px !important;
+    // }
+    .halfwidth {
+        width:50% !important;
+    }
+    .profileHistory {
+        margin-bottom: 2% !important;
+    }
+    .staff {
+        flex:0 0 98% !important;
+        max-width: 98% !important;
+        
+    }
     .mat-tab-group {
         flex-direction: column !important;
     }
@@ -1514,7 +1690,8 @@ tr.mat-row {
     .newCard {
         height: 78vh !important;
     }
-    .newCardTable {
+   
+    .newCardView {
         height: 75vh !important;
     }
     .serField {
@@ -1642,6 +1819,10 @@ tr.mat-row {
         height: 492px  !important;
         overflow-y: scroll !important;
     }
+    .newCardTable {
+        //height: 75vh !important;
+        min-height: 9vh !important;
+    }
 }
 
 @media only screen and (min-width: 568px) and (max-width:570px) {
@@ -1651,6 +1832,9 @@ tr.mat-row {
      .fc-time-grid-container {
         height: 492px  !important;
         overflow-y: scroll !important;
+    }
+    .newCardTable {
+        height: 60vh !important;        
     }
 }
 @media only screen and (min-width: 620px) and (max-width:1400px) {
@@ -1663,23 +1847,15 @@ tr.mat-row {
         margin-left: 2% !important;
         position: absolute !important;
     }
-    .fc-day-grid .fc-row {
-        height: 8em !important;
-    }
+    
     .fc-time-grid .fc-slats td {
         height:1em !important;
     }
     .booking .mat-tab-body-wrapper {
         margin-top:5% !important;
     }
-    .fc-body .fc-scroller {
-        overflow-y: scroll !important;        
-        overflow-x: hidden !important;
-    }
-    .fc-dayGridMonth-view {
-        overflow-y: hidden !important;
-        height: 488px !important;
-    }
+    
+   
     .fc-time-grid-container {
         overflow-y: scroll !important;
         height: 492px !important;
@@ -1693,7 +1869,77 @@ tr.mat-row {
         height: 514px !important;
     }
 }
-@media only screen and (min-width: 1090x) and (max-width:2300px) {
+@media only screen and (min-width: 1200px) and (max-width:1350px) {
+    .fc-dayGridMonth-view {
+        overflow-y: hidden !important;
+        // height: 488px !important;
+        height: 488px !important;
+    }
+    .fc-body .fc-scroller {
+      //  overflow-y: scroll !important;        
+        overflow-x: hidden !important;
+    }
+}
+@media only screen and (min-width: 1351px) and (max-width:1950px) {
+    .fc-dayGridMonth-view {
+        overflow-y: hidden !important;
+        // height: 488px !important;
+        height:576px !important;
+    }
+    .fc-day-grid .fc-row {
+        height: 8em !important;
+    }
+    .fc-body .fc-scroller {
+       // overflow-y: scroll !important;        
+        overflow-x: hidden !important;
+    }
+}
+@media only screen and (min-width:620px) and (max-width:767px) {
+    .fc-dayGridMonth-view {
+        overflow-y: hidden !important;
+        // height: 488px !important;
+        height: 576px !important;
+    }
+    .fc-day-grid .fc-row {
+        height: 8em !important;
+    }
+    .fc-body .fc-scroller {
+        overflow-y: scroll !important;        
+        overflow-x: hidden !important;
+    }
+}
+@media only screen and (min-width:770px) and (max-width:1199px) {
+    .fc-dayGridMonth-view {
+        overflow-y: hidden !important;
+        // height: 488px !important;
+        height: 576px !important;
+    }
+    .fc-day-grid .fc-row {
+        height: 8em !important;
+    }
+    .fc-body .fc-scroller {
+     //   overflow-y: scroll !important;        
+        overflow-x: hidden !important;
+    }
+}
+@media only screen and (min-width:768px) and (max-width:769px) {
+    .fc-dayGridMonth-view {
+        overflow-y: hidden !important;
+        // height: 488px !important;
+        height: 721px !important;
+    }
+    .fc-day-grid .fc-row {
+        height: 10em !important;
+    }
+    .fc-day-grid-container {
+        height: 660px !important;
+    }
+    .fc-body .fc-scroller {
+        overflow-y: hidden !important;        
+        overflow-x: hidden !important;
+    }
+}
+@media only screen and (min-width: 1090px) and (max-width:2300px) {
     .grid-item {
         width:100% !important;
     }

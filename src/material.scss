@@ -136,6 +136,10 @@ button.mat-menu-item {
 .mat-button {
     outline: 0 !important;
 }
+span:focus {
+    outline: none;
+    border: 0;
+ }
 .mat-flat-button.mat-success, .mat-raised-button.mat-success, .mat-fab.mat-success, .mat-mini-fab.mat-success
 {
     background: $primary-color-darkblue !important;
@@ -171,9 +175,13 @@ button.mat-menu-item {
 .mat-paginator-container {
     min-height: 40px !important;
 }
-// .mat-card {
+ .mat-card {
+     width:100% !important;
 //     padding:11px 2px !important;          
-// }
+ }
+//  .mat-body p, .mat-body-1 p, .mat-typography p {
+//      margin: 0 0 8px  !important;
+//  }
 .newCard
 {    
     overflow-y: scroll !important; 
@@ -213,6 +221,7 @@ button.mat-menu-item {
 }
 .mat-dialog-title {
     font-family: $primary-font-family-table !important;
+    font-size: $primary-font-size-lg !important;
 }
 .mat-tab-label {
     justify-content: flex-start !important;
@@ -224,6 +233,7 @@ button.mat-menu-item {
 .mat-tab-group {
     flex-direction: row !important;
 }
+
 .mat-tab-label-active {
     background: #fff;  
     opacity: 1 !important;

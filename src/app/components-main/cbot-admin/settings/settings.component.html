@@ -1,24 +1,14 @@
-<div fxLayout="column" fxLayoutAlign="start">
-    <div fxLayout="row">
-        <div fxFlex="83%" fxLayoutAlign="start">
-            <h2>Settings</h2>
-        </div>
-        <div fxFlex="16%" fxHide fxShow.gt-sm fxLayoutAlign="end">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#" [routerLink]="['/beautelabs/cbot-admin/dashboard']"><mat-icon>home</mat-icon></a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Settings</li>
-                </ol>
-                </nav>
-        </div>
-    </div>    
+<div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking pall-zero">            
+    <div class="col-xl-1 col-sm-2 topwidth">
+        <h2 class="page-title">Settings</h2> 
+    </div>            
 </div>
-<mat-card class="settingstabhgt">
+<mat-card class="settingstabhgt newCard">
     <mat-tab-group>
         <mat-tab label="Entity Management">             
             <form [formGroup]="entityForm">
                 <div class="form-container">
-                    <h5 class="candidate-title mb-5">Business Details</h5>
+                    <h3 class="candidate-title">Business Details</h3>
                     <div class="row col-md-6 col-lg-12 col-xl-12 col-sm-12"> 
                         <div class="col-md-12 col-lg-4 col-xl-4 col-sm-12">
                             <mat-form-field>
@@ -45,28 +35,27 @@
                             </mat-form-field> 
                         </div>    
                     </div>
+                    <div class="col-md-6 col-lg-12 col-xl-12 col-sm-12"> 
+                        <button mat-raised-button color="primary">Update</button>
+                    </div>
                 </div>
             </form>
         </mat-tab>
         <mat-tab label="Vendors"> 
-            <div fxLayout="column">
-                <div fxLayout="row">
-                    <div fxLayoutAlign="start" fxFlex="50%">
-                        <button mat-raised-button color="primary" (click)="serviceSubCategoryCreate(subcategorycreatetemplate)" style="height: 35px; margin-top: 2%;">Add Sub Category</button> 
-                    </div>
-                    <div fxFlex="32%" fxHide fxShow.gt-sm fxLayoutAlign="middle">
-                        <mat-form-field class="searchInputfull">
-                            <input matInput (keyup)="applySubCategoryFilter($event.target.value)" placeholder="Search Service by category / sub category name">
-                            <mat-icon matSuffix>search</mat-icon>
-                        </mat-form-field>
-                    </div>
-                    
-                    <div fxFlex="18%" fxHide fxShow.gt-sm fxLayoutAlign="end">
-                        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
-                    </div>
+            <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking ml-zero pall-zero">
+                <div class="col-xl-1 col-sm-2 topwidthcustomer pall-zero">
+                    <button mat-raised-button color="primary" (click)="serviceSubCategoryCreate(subcategorycreatetemplate)" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button> 
+                </div>
+                <div class="col-sm-4 col-xl-3 col-lg-3 searchField pbzerofield">
+                    <mat-form-field>
+                        <input matInput (keyup)="applyProductFilter($event.target.value)" placeholder="Search Service by category / sub category name">
+                        <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field> 
+                </div>                        
+                <div class="col-xl-6 col-lg-6 col-sm-6 pall-zero pbzerofield paginator">
+                    <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" class="table-paginator"></mat-paginator>
                 </div>
             </div>
-            
             <div fxLayout="row">
                 <table mat-table [dataSource]="serviceSubCatgeorySource" class="mat-elevation-z8" matSort>
                 
@@ -87,22 +76,9 @@
                 
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef>Action</th>
-                    <td mat-cell *matCellDef="let element; let i=index;">
-                        <button mat-flat-button [matMenuTriggerFor]="menu" color="primary">Action</button>
-                        <mat-menu #menu="matMenu">
-                            <button mat-menu-item>
-                                <mat-icon>remove_red_eye</mat-icon>
-                                <span>View</span>
-                            </button>
-                            <button mat-menu-item>
-                                <mat-icon>edit</mat-icon>
-                                <span>Edit</span>
-                            </button>
-                            <button mat-menu-item>
-                                <mat-icon>delete</mat-icon>
-                                <span>Delete</span>
-                            </button>
-                        </mat-menu>
+                    <td mat-cell *matCellDef="let element; let i=index;">                        
+                        <mat-icon>edit</mat-icon>                               
+                        <mat-icon>delete</mat-icon>                            
                     </td>
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="displayedSubCategoryColumns"></tr>
@@ -111,21 +87,18 @@
             </div>
         </mat-tab>
         <mat-tab label="Products"> 
-            <div fxLayout="column">
-                <div fxLayout="row">
-                    <div fxLayoutAlign="start" fxFlex="50%">
-                        <button mat-raised-button color="primary" (click)="productsCreate()" style="height: 35px; margin-top: 2%;">Add Products</button> 
-                    </div>
-                    <div fxFlex="32%" fxHide fxShow.gt-sm fxLayoutAlign="middle">
-                        <mat-form-field class="searchInputfull">
-                            <input matInput (keyup)="applyProductFilter($event.target.value)" placeholder="Search Products by Name">
-                            <mat-icon matSuffix>search</mat-icon>
-                        </mat-form-field>
-                    </div>
-                    
-                    <div fxFlex="18%" fxHide fxShow.gt-sm fxLayoutAlign="end">
-                        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
-                    </div>
+            <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking ml-zero pall-zero">
+                <div class="col-xl-1 col-sm-2 topwidthcustomer pall-zero">
+                    <button mat-raised-button color="primary" (click)="productsCreate()" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button> 
+                </div>
+                <div class="col-sm-4 col-xl-3 col-lg-3 searchField pbzerofield">
+                    <mat-form-field>
+                        <input matInput (keyup)="applyProductFilter($event.target.value)" placeholder="Search Product by Name">
+                        <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field> 
+                </div>                        
+                <div class="col-xl-6 col-lg-6 col-sm-6 pall-zero pbzerofield paginator">
+                    <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" class="table-paginator"></mat-paginator>
                 </div>
             </div>
             <div fxLayout="row">                     
@@ -160,25 +133,8 @@
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef>Action</th>
                     <td mat-cell *matCellDef="let element; let i=index;">
-                        <button mat-flat-button [matMenuTriggerFor]="menu" color="primary">Action</button>
-                        <mat-menu #menu="matMenu">
-                            <button mat-menu-item>
-                                <mat-icon>remove_red_eye</mat-icon>
-                                <span>View</span>
-                            </button>
-                            <button mat-menu-item>
-                                <mat-icon>edit</mat-icon>
-                                <span>Edit</span>
-                            </button>
-                            <button mat-menu-item>
-                                <mat-icon>store_mall_directory</mat-icon>
-                                <span>Update Quantity</span>
-                            </button>
-                            <button mat-menu-item>
-                                <mat-icon>delete</mat-icon>
-                                <span>Delete</span>
-                            </button>
-                        </mat-menu>
+                        <mat-icon>edit</mat-icon>                               
+                        <mat-icon>delete</mat-icon>   
                     </td>
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -187,21 +143,18 @@
             </div>
         </mat-tab>
         <mat-tab label="Membership"> 
-            <div fxLayout="column">
-                <div fxLayout="row">
-                    <div fxLayoutAlign="start" fxFlex="50%">
-                        <button mat-raised-button color="primary" (click)="openMembershipCreateModal(membershipcreatetemplate)" style="height: 35px; margin-top: 2%;">Add Membership</button> 
-                    </div>
-                    <div fxFlex="32%" fxHide fxShow.gt-sm fxLayoutAlign="middle">
-                        <mat-form-field class="searchInputfull">
-                            <input matInput (keyup)="applyMembershipFilter($event.target.value)" placeholder="Search Membership by Name">
-                            <mat-icon matSuffix>search</mat-icon>
-                        </mat-form-field>
-                    </div>
-                    
-                    <div fxFlex="18%" fxHide fxShow.gt-sm fxLayoutAlign="end">
-                        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
-                    </div>
+            <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking ml-zero pall-zero">
+                <div class="col-xl-1 col-sm-2 topwidthcustomer pall-zero">
+                    <button mat-raised-button color="primary" (click)="openMembershipCreateModal(membershipcreatetemplate)" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button> 
+                </div>
+                <div class="col-sm-4 col-xl-3 col-lg-3 searchField pbzerofield">
+                    <mat-form-field>
+                        <input matInput (keyup)="applyStaffCategoryFilter($event.target.value)" placeholder="Search Membership by Name">
+                        <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field> 
+                </div>                        
+                <div class="col-xl-6 col-lg-6 col-sm-6 pall-zero pbzerofield paginator">
+                    <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" class="table-paginator"></mat-paginator>
                 </div>
             </div>
             <div fxLayout="row">                     
@@ -231,17 +184,8 @@
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef>Action</th>
                     <td mat-cell *matCellDef="let element; let i=index;">
-                        <button mat-flat-button [matMenuTriggerFor]="menu" color="primary">Action</button>
-                        <mat-menu #menu="matMenu">
-                            <button mat-menu-item>
-                                <mat-icon>edit</mat-icon>
-                                <span>Edit</span>
-                            </button>
-                            <button mat-menu-item>
-                                <mat-icon>delete</mat-icon>
-                                <span>Delete</span>
-                            </button>
-                        </mat-menu>
+                        <mat-icon>edit</mat-icon>                               
+                        <mat-icon>delete</mat-icon>   
                     </td>
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="displayedMembershipColumns"></tr>
@@ -250,21 +194,18 @@
             </div>
         </mat-tab>
         <mat-tab label="Package"> 
-            <div fxLayout="column">
-                <div fxLayout="row">
-                    <div fxLayoutAlign="start" fxFlex="50%">
-                        <button mat-raised-button color="primary" (click)="openPackageCreateModal(packagecreatetemplate)" style="height: 35px; margin-top: 2%;">Add Package</button> 
-                    </div>
-                    <div fxFlex="32%" fxHide fxShow.gt-sm fxLayoutAlign="middle">
-                        <mat-form-field class="searchInputfull">
-                            <input matInput (keyup)="applyPackageFilter($event.target.value)" placeholder="Search Package by Name">
-                            <mat-icon matSuffix>search</mat-icon>
-                        </mat-form-field>
-                    </div>
-                    
-                    <div fxFlex="18%" fxHide fxShow.gt-sm fxLayoutAlign="end">
-                        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
-                    </div>
+            <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking ml-zero pall-zero">
+                <div class="col-xl-1 col-sm-2 topwidthcustomer pall-zero">
+                    <button mat-raised-button color="primary" (click)="openPackageCreateModal(packagecreatetemplate)" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button> 
+                </div>
+                <div class="col-sm-4 col-xl-3 col-lg-3 searchField pbzerofield">
+                    <mat-form-field>
+                        <input matInput (keyup)="applyStaffCategoryFilter($event.target.value)" placeholder="Search Package by Name">
+                        <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field> 
+                </div>                        
+                <div class="col-xl-6 col-lg-6 col-sm-6 pall-zero pbzerofield paginator">
+                    <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" class="table-paginator"></mat-paginator>
                 </div>
             </div>
             <div fxLayout="row">                     
@@ -290,17 +231,8 @@
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef>Action</th>
                     <td mat-cell *matCellDef="let element; let i=index;">
-                        <button mat-flat-button [matMenuTriggerFor]="menu" color="primary">Action</button>
-                        <mat-menu #menu="matMenu">
-                            <button mat-menu-item>
-                                <mat-icon>edit</mat-icon>
-                                <span>Edit</span>
-                            </button>
-                            <button mat-menu-item>
-                                <mat-icon>delete</mat-icon>
-                                <span>Delete</span>
-                            </button>
-                        </mat-menu>
+                        <mat-icon>edit</mat-icon>                               
+                        <mat-icon>delete</mat-icon>   
                     </td>
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="displayedPackageColumns"></tr>
@@ -309,24 +241,22 @@
             </div>
         </mat-tab>
         <mat-tab label="Staff Category"> 
-            <div fxLayout="column">
-                <div fxLayout="row">
-                    <div fxLayoutAlign="start" fxFlex="50%">
-                        <button mat-raised-button color="primary" (click)="openStaffCreateModal(staffCategorycreatetemplate)" style="height: 35px; margin-top: 2%;">Add Staff Category</button> 
-                    </div>
-                    <div fxFlex="32%" fxHide fxShow.gt-sm fxLayoutAlign="middle">
-                        <mat-form-field class="searchInputfull">
-                            <input matInput (keyup)="applyStaffCategoryFilter($event.target.value)" placeholder="Search Staff category by Name">
-                            <mat-icon matSuffix>search</mat-icon>
-                        </mat-form-field>
-                    </div>
-                    
-                    <div fxFlex="18%" fxHide fxShow.gt-sm fxLayoutAlign="end">
-                        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
-                    </div>
+            
+            <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking ml-zero pall-zero">
+                <div class="col-xl-1 col-sm-2 topwidthcustomer pall-zero">
+                    <button mat-raised-button color="primary" (click)="openStaffCreateModal(staffCategorycreatetemplate)" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button> 
+                </div>
+                <div class="col-sm-4 col-xl-3 col-lg-3 searchField pbzerofield">
+                    <mat-form-field>
+                        <input matInput (keyup)="applyStaffCategoryFilter($event.target.value)" placeholder="Search Staff Category by Name">
+                        <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field> 
+                </div>                        
+                <div class="col-xl-6 col-lg-6 col-sm-6 pall-zero pbzerofield paginator">
+                    <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" class="table-paginator"></mat-paginator>
                 </div>
             </div>
-            <div fxLayout="row">                     
+            <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking ml-zero pall-zero">                    
                 <table mat-table [dataSource]="staffCategorySource" class="mat-elevation-z8" matSort>                
                 <ng-container matColumnDef="sno">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
@@ -341,21 +271,8 @@
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef>Action</th>
                     <td mat-cell *matCellDef="let element; let i=index;">
-                        <button mat-flat-button [matMenuTriggerFor]="menu" color="primary">Action</button>
-                        <mat-menu #menu="matMenu">
-                            <button mat-menu-item>
-                                <mat-icon>remove_red_eye</mat-icon>
-                                <span>View</span>
-                            </button>
-                            <button mat-menu-item>
-                                <mat-icon>edit</mat-icon>
-                                <span>Edit</span>
-                            </button>
-                            <button mat-menu-item>
-                                <mat-icon>delete</mat-icon>
-                                <span>Delete</span>
-                            </button>
-                        </mat-menu>
+                        <mat-icon>edit</mat-icon>                               
+                        <mat-icon>delete</mat-icon>   
                     </td>
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="displayedStaffCategoryColumns"></tr>

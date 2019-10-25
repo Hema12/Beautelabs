@@ -137,6 +137,10 @@ const routes: Routes = [
         loadChildren: () => import('../../shared/dialog/customer/customer.module').then(m => m.CustomerModule),
       },
       {
+        path: 'customerCreate/:customer_Id',
+        loadChildren: () => import('../../shared/dialog/customer/customer.module').then(m => m.CustomerModule),
+      },
+      {
         path: 'customerView',
         loadChildren: () => import('../../shared/dialog/customer-view/customer-view.module').then(m => m.CustomerViewModule),
       },
@@ -146,6 +150,14 @@ const routes: Routes = [
       },
       {
         path: 'saleCreate',
+        loadChildren: () => import('../../shared/dialog/sale/sale.module').then(m => m.SaleModule),
+      },
+      {
+        path: 'saleView',
+        loadChildren: () => import('../../shared/dialog/sale-view/sale-view.module').then(m => m.SaleViewModule),
+      },
+      {
+        path: 'saleCreate/:saleId',
         loadChildren: () => import('../../shared/dialog/sale/sale.module').then(m => m.SaleModule),
       },
       {

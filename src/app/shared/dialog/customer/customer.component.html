@@ -1,22 +1,6 @@
-<!-- <div fxLayout="column">
-    <div fxLayout="row">
-        <div fxLayoutAlign="start" fxFlex="85%">
-            <h2 matDialogTitle class="candidate-title">Add Customer</h2>
-        </div>
-        <div fxFlex="15%" fxHide fxShow.gt-sm fxLayoutAlign="end">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#" [routerLink]="['/beautelabs/cbot-admin/dashboard']"><mat-icon>home</mat-icon></a></li>
-                    <li class="breadcrumb-item"><a href="#" [routerLink]="['/beautelabs/cbot-admin/customers']">Customers </a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Create</li>
-                </ol>
-                </nav>
-        </div>
-    </div>
-</div> -->
 <div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pall-zero">
     <div class="col-md-7 col-sm-12 col-lg-7 col-xl-7">
-        <h2 class="page-title">Add Customer </h2>
+        <h2 class="page-title"> {{page_title}} </h2>
     </div>
 </div>
 <div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pall-zero mall-zero">
@@ -238,7 +222,7 @@
                         <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12 tr">
                             <!-- <button mat-raised-button color="warn" (click)="cloesModal()">Close</button> -->
                             <button mat-raised-button color="warn" (click)="clearForm()">Clear</button> 
-                            <button mat-raised-button color="primary" [disabled]="!customerForm.valid" class="ml-1">Submit</button> 
+                            <button mat-raised-button color="primary" [disabled]="!customerForm.valid" class="ml-1">{{button_title}}</button> 
                         </div>
                     </div>
                 </form>

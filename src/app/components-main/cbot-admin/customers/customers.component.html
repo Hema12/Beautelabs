@@ -1,36 +1,26 @@
-<!-- <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mr-zero ml-zero pall-zero">        
-    <div class="col-md-3 col-xl-1 col-lg-1 col-sm-2 topwidthcustomer">
-        <h2 class="page-title">Customers</h2>
+<div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking ml-1 pall-zero">            
+    <div class="col-xl-1 col-sm-2 topwidthcustomer pall-zero">
+        <h2 class="page-title">Customers</h2> 
     </div>
-    <div class="col-md-2 col-xl-1 col-lg-1 col-sm-2 topwidthcustomer">
-        <button mat-raised-button [routerLink]="['/beautelabs/cbot-admin/customerCreate']" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button>  
+    <div class="col-xl-1 col-sm-2 topwidthcustomer">
+        <button mat-raised-button (click)="customerAddEdit(0)" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button> 
     </div>
-    <div class="col-md-2 col-xl-3 col-lg-3 col-sm-2 topwidthcustomerField">
+    <div class="col-xl-5 col-lg-3 col-sm-3 topwidthcustomerField pbzerofield">
         <mat-form-field class="searchInputfull">
             <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Customer by Name / Mobile Number / Email Id">
             <mat-icon matSuffix>search</mat-icon>
         </mat-form-field> 
     </div>
-</div> -->
-<div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mr-zero ml-zero pall-zero">            
-        <div class="col-xl-1 col-sm-2 topwidthcustomer pall-zero">
-            <h2 class="page-title">Customers</h2> 
-        </div>
-        <div class="col-xl-1 col-sm-2 topwidthcustomer">
-            <button mat-raised-button [routerLink]="['/beautelabs/cbot-admin/customerCreate']" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button> 
-        </div>
-        <div class="col-xl-3 col-lg-3 col-sm-2 topwidthcustomerField">
-            <mat-form-field class="searchInputfull">
-                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Customer by Name / Mobile Number / Email Id">
-                <mat-icon matSuffix>search</mat-icon>
-            </mat-form-field> 
-        </div>
+    <div class="col-xl-5 col-lg-4 col-sm-5 pall-zero mall-zero pbzerofield paginator">
+        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" class="table-paginator"></mat-paginator> 
     </div>
-<div class="row col-md-12 col-sm-12 col-xs-12 col-xl-12 col-lg-12 pall-zero mall-zero newCardTable scrollDiv">
+</div>
+<div class="row col-md-12 col-sm-12 col-xs-12 col-xl-12 col-lg-12 pall-zero mall-zero newCardView scrollDiv">
     <mat-card class="mt-md col-md-3 col-sm-12 col-xs-12 col-lg-3 col-xl-3 staff" *ngFor="let customerList of customerData | async">
         <mat-card-header class="rgt">
             <mat-card-title>
-                <button mat-mini-fab color="accent" *ngIf="customerList.membership" matTooltip="Gold Membership"><mat-icon>card_membership</mat-icon></button>
+                <!-- <button mat-mini-fab color="accent" *ngIf="customerList.membership" matTooltip="Gold Membership"><mat-icon>card_membership</mat-icon></button> -->
+                <mat-icon color="accent" *ngIf="customerList.membership" matTooltip="Gold Membership">card_membership</mat-icon>
             </mat-card-title>
         </mat-card-header>
         <mat-card-content class="mb-0">
@@ -48,10 +38,10 @@
         </mat-card-content>
         <mat-card-footer class="rgt">
             <button mat-icon-button color="success"><mat-icon>group</mat-icon> 3</button>                
-            <button mat-button color="success"><mat-icon>edit</mat-icon></button>            
+            <button mat-button color="success" (click)="customerAddEdit(customerList.sno)"><mat-icon>edit</mat-icon></button>            
         </mat-card-footer>
     </mat-card>
 </div> 
-<div class="row col-md-12 col-sm-12 col-xs-12 col-xl-12 col-lg-12 pall-zero mall-zero">
+<!-- <div class="row col-md-12 col-sm-12 col-xs-12 col-xl-12 col-lg-12 pall-zero mall-zero">
     <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>  
-</div>
+</div> -->

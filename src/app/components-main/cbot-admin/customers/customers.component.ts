@@ -5,6 +5,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { Observable } from 'rxjs';
 import { SidenavService } from 'src/app/shared/services/sidenav.service';
+import { Router } from '@angular/router';
 
 export interface customerData {
   name: string;
@@ -69,7 +70,7 @@ export class CustomersComponent implements OnInit {
     {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
     {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
   ];
-  constructor(private modalService: BsModalService, public dialog: MatDialog, private sidenav: SidenavService) { }
+  constructor(private modalService: BsModalService, public dialog: MatDialog, private sidenav: SidenavService, private router: Router) { }
 
 
 
@@ -86,6 +87,9 @@ export class CustomersComponent implements OnInit {
     this.sidenav.toggle();
   }
 
+  customerAddEdit(val) {        
+    this.router.navigate(['/beautelabs/cbot-admin/customerCreate', val])
+  }
 
 
 }

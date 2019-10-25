@@ -6,25 +6,25 @@
 </div>
 <!-- <mat-drawer-container class="example-container pall-zero mall-zero">  -->
     <div class="example-container pall-zero mall-zero">
-        <mat-card>
+        <mat-card class="newCard">
             <mat-tab-group>
                 <mat-tab label="Category"> 
                     <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking ml-zero pall-zero">
-                        <div class="col-xl-2 col-sm-12 topwidthcustomer pall-zero">
-                            <button mat-raised-button color="primary" (click)="serviceCategoryCreate(categorycreatetemplate)" style="height: 35px; margin-top: 2%;">Add Category</button> 
+                        <div class="col-xl-1 col-sm-2 topwidthcustomer pall-zero">
+                            <button mat-raised-button color="primary" (click)="serviceCategoryCreate(categorycreatetemplate)" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button> 
                         </div>
-                        <div class="col-sm-12 col-xl-3 col-lg-3 topwidthcustomerField">
-                            <mat-form-field class="searchInputfull">
+                        <div class="col-sm-4 col-xl-3 col-lg-3 searchField pbzerofield">
+                            <mat-form-field>
                                 <input matInput (keyup)="applyCategoryFilter($event.target.value)" placeholder="Search Category by Name">
                                 <mat-icon matSuffix>search</mat-icon>
                             </mat-form-field> 
                         </div>                        
-                        <div class="col-xl-6 col-lg-6 col-sm-12 pall-zero">
-                            <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+                        <div class="col-xl-6 col-lg-6 col-sm-6 pall-zero pbzerofield paginator">
+                            <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" class="table-paginator"></mat-paginator>
                         </div>
                     </div>
                     <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking ml-zero pall-zero">
-                        <table mat-table [dataSource]="serviceCategorySource" class="mat-elevation-z8" matSort class="full-width scrollDiv">
+                        <table mat-table [dataSource]="serviceCategorySource" class="mat-elevation-z8" matSort class="full-width">
                         
                         <ng-container matColumnDef="sno">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
@@ -43,24 +43,24 @@
                                 <mat-icon color="warn" class="actionicon" matTooltip="Delete">delete</mat-icon>                                    
                             </td>
                         </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="displayedCategoryColumns"></tr>
+                        <tr mat-header-row *matHeaderRowDef="displayedCategoryColumns; sticky:true"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedCategoryColumns;"></tr>
                         </table>
                     </div>
                 </mat-tab>
                 <mat-tab label="Sub Category"> 
                     <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking ml-zero pall-zero">
-                        <div class="col-xl-2 col-sm-12 topwidthcustomer pall-zero">
-                            <button mat-raised-button color="primary" (click)="serviceSubCategoryCreate(subcategorycreatetemplate)" style="height: 35px; margin-top: 2%;">Add Sub Category</button> 
+                        <div class="col-xl-1 col-sm-2 topwidthcustomer pall-zero">
+                            <button mat-raised-button (click)="serviceSubCategoryCreate(subcategorycreatetemplate)" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button> 
                         </div>
-                        <div class="col-sm-12 col-xl-3 col-lg-3 topwidthcustomerField">
+                        <div class="col-sm-4 col-xl-3 col-lg-3 searchField pbzerofield">
                             <mat-form-field>
                                 <input matInput (keyup)="applySubCategoryFilter($event.target.value)" placeholder="Search Sub Category by Name">
                                 <mat-icon matSuffix>search</mat-icon>
                             </mat-form-field>
                         </div>                        
-                        <div class="col-xl-6 col-lg-6 col-sm-12 pall-zero">
-                            <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+                        <div class="col-xl-6 col-lg-6 col-sm-6 pall-zero pbzerofield paginator">
+                            <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" class="table-paginator"></mat-paginator>
                         </div>
                     </div>
                     <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking ml-zero pall-zero">
@@ -88,24 +88,24 @@
                                 <mat-icon color="warn" class="actionicon" matTooltip="Delete">delete</mat-icon>                                    
                             </td>
                         </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="displayedSubCategoryColumns"></tr>
+                        <tr mat-header-row *matHeaderRowDef="displayedSubCategoryColumns; sticky:true"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedSubCategoryColumns;"></tr>
                         </table>
                     </div>
                 </mat-tab>
                 <mat-tab label="Services"> 
                     <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking ml-zero pall-zero">
-                        <div class="col-xl-2 col-sm-12 topwidthcustomer pall-zero">
-                            <button mat-raised-button color="primary" (click)="serviceCreate()" style="height: 35px; margin-top: 2%;">Add Service</button> 
+                        <div class="col-xl-1 col-sm-2 topwidthcustomer pall-zero">
+                            <button mat-raised-button color="primary" (click)="serviceCreate()" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button> 
                         </div>
-                        <div class="col-sm-12 col-xl-3 col-lg-3 topwidthcustomerField">
+                        <div class="col-sm-4 col-xl-3 col-lg-3 searchField pbzerofield">
                             <mat-form-field>
                                 <input matInput (keyup)="applyServiceFilter($event.target.value)" placeholder="Search Service by Name">
                                 <mat-icon matSuffix>search</mat-icon>
                             </mat-form-field>
                         </div>                        
-                        <div class="col-xl-6 col-lg-6 col-sm-12 pall-zero">
-                            <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+                        <div class="col-xl-6 col-lg-6 col-sm-6 pall-zero pbzerofield paginator">
+                            <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" class="table-paginator"></mat-paginator>
                         </div>
                     </div>
                     <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking ml-zero pall-zero">                    
@@ -145,7 +145,7 @@
                                 <mat-icon color="warn" class="actionicon" matTooltip="Delete">delete</mat-icon>             
                             </td>
                         </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                         </table>
                     </div>
@@ -256,59 +256,59 @@
 
  
         <div class="modal bookingmodel" id="myModal" [style.display]="showModal ? 'block' : 'none'">
-                <div class="modal-dialog">            
-                    <div class="modal-content">   
-                        <div class="modal-header">
-                            <h5 class="modal-title"> 
-                                Service View
-                                <span class="fr"> <mat-icon (click)="hide()" class="warn">close</mat-icon> </span>
-                            </h5>
-                        </div>
-                        <div class="modal-body">                
-                                <div class="col-md-12 col-xl-12 col-lg-12"> 
-                                        <p>Service Name : {{View?.serviceName}}</p>
-                                        <p>Duration (In Hours) : {{View?.serviceDuration}}</p>
-                                        <p>Category: {{View?.serviceCategory}}</p>
-                                        <p>SubCategory: {{View?.serviceSubCategory}}</p>
-                                        <p>Price: {{View?.servicePrice}}</p>     
-                                    </div> 
-                                    <div class="col-md-12 col-xl-12 col-lg-12">
-                                        <table class="table table-bordered full-width">
-                                            <thead>
-                                                <tr>    
-                                                    <th>Sno</th>
-                                                    <th>Product Name</th>
-                                                    <th>Consumed</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>LOREAL Shampoo</td>
-                                                    <td>.300ml</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>LOREAL Hair Spa Cream</td>
-                                                    <td>.200ml</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Skeydnor Cleansor</td>
-                                                    <td>.150ml</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>                               
-                                    </div>
-                        </div>
-                    <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button mat-raised-button class="startBillbtn ml-2" (click)="hide()">Close</button>
-                        </div>
-                    
+            <div class="modal-dialog">            
+                <div class="modal-content">   
+                    <div class="modal-header">
+                        <h5 class="modal-title"> 
+                            Service View
+                            <span class="fr"> <mat-icon (click)="hide()" class="warn">close</mat-icon> </span>
+                        </h5>
                     </div>
+                    <div class="modal-body">                
+                            <div class="col-md-12 col-xl-12 col-lg-12"> 
+                                    <p>Service Name : {{View?.serviceName}}</p>
+                                    <p>Duration (In Hours) : {{View?.serviceDuration}}</p>
+                                    <p>Category: {{View?.serviceCategory}}</p>
+                                    <p>SubCategory: {{View?.serviceSubCategory}}</p>
+                                    <p>Price: {{View?.servicePrice}}</p>     
+                                </div> 
+                                <div class="col-md-12 col-xl-12 col-lg-12">
+                                    <table class="table table-bordered full-width">
+                                        <thead>
+                                            <tr>    
+                                                <th>Sno</th>
+                                                <th>Product Name</th>
+                                                <th>Consumed</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>LOREAL Shampoo</td>
+                                                <td>300ml</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>LOREAL Hair Spa Cream</td>
+                                                <td>200ml</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Skeydnor Cleansor</td>
+                                                <td>150ml</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>                               
+                                </div>
+                    </div>
+                <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button mat-raised-button class="startBillbtn ml-2" (click)="hide()">Close</button>
+                    </div>
+                
                 </div>
             </div>
+        </div>
             
 
     <!-- </mat-drawer-container> -->

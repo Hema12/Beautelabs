@@ -209,7 +209,6 @@ create() {
 }
 
 getDisabledValue() {
-
   return true; 
 }
 openRecur() {   
@@ -225,23 +224,24 @@ openRecur() {
 }
 
 billingHistory() {   
-    const dialogRef = this.dialog.open(BillingActivityComponent, {      
-      width:'95%',
-      height: '90%',
-      
-    });
-  
-    dialogRef.afterClosed().subscribe(result => {
+  const dialogRef = this.dialog.open(BillingActivityComponent, {      
+    width:'95%',
+    height: '90%',
     
-    });
-  }
+  });
 
-  serviceCreate(): void {
-    const dialogRef = this.dialog.open(ServiceComponent, {
-      width: 'col-md-7',
-    });
+  dialogRef.afterClosed().subscribe(result => {
+  
+  });
+}
 
-    dialogRef.afterClosed().subscribe(result => {
-    });
-  }
+serviceCreate(): void {
+  const dialogRef = this.dialog.open(ServiceComponent, {
+    width: 'col-md-7',
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+  });
+}
+ 
 }

@@ -1,71 +1,151 @@
 <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mr-zero ml-zero pall-zero">            
-        <div class="col-xl-1 col-sm-2 topwidth pall-zero">
-            <h2 class="page-title">Sales</h2> 
-        </div>
-        <div class="col-xl-1 col-sm-2 topwidth">
-            <button mat-raised-button [routerLink]="['/beautelabs/cbot-admin/saleCreate']" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button> 
-        </div>
-        <div class="col-xl-3 col-lg-3 col-sm-2 topwidth">
-            <mat-form-field class="bookingstaff">
-                <mat-label>Select</mat-label>
-                <mat-select>
-                    <mat-option value="all">All</mat-option>
-                    <mat-option value="today">Today</mat-option>
-                    <mat-option value="last week">Last Week</mat-option>
-                    <mat-option value="last 15 days">Last 15 Days</mat-option>
-                    <mat-option value="last month">Last Month</mat-option>
-                </mat-select>
-            </mat-form-field> 
-        </div>
+    <div class="col-xl-1 col-sm-2 topwidth pall-zero">
+        <h2 class="page-title">Sales</h2> 
     </div>
+    <div class="col-xl-1 col-sm-2 topwidth">
+        <button mat-raised-button (click)="viewSale(0)" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button> 
+    </div>
+    <div class="col-xl-3 col-lg-3 col-sm-2 topwidth pbzerofield">
+        <mat-form-field class="bookingstaff">
+            <mat-label>Select</mat-label>
+            <mat-select>
+                <mat-option value="all">All</mat-option>
+                <mat-option value="today">Today</mat-option>
+                <mat-option value="last week">Last Week</mat-option>
+                <mat-option value="last 15 days">Last 15 Days</mat-option>
+                <mat-option value="last month">Last Month</mat-option>
+            </mat-select>
+        </mat-form-field> 
+    </div>
+    <div class="col-xl-7 col-lg-4 col-sm-6 pall-zero mall-zero pbzerofield paginator">
+        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" class="table-paginator"></mat-paginator> 
+    </div>
+</div>
 <div class="row col-md-12 col-sm-12 col-xs-12 col-xl-12 col-lg-12 pall-zero mall-zero newCardTable scrollDiv">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
-    
-    <ng-container matColumnDef="sno">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
-    </ng-container>
-    
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>                
-    
-    <ng-container matColumnDef="mobile">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Mobile </th>
-        <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
-    </ng-container>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-striped" matSort>    
+        <ng-container matColumnDef="sno">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>                
+        
+        <ng-container matColumnDef="mobile">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Mobile </th>
+            <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
+        </ng-container>
 
-    <ng-container matColumnDef="serviceName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Service  </th>
-        <td mat-cell *matCellDef="let element"> {{element.serviceName}} </td>
-    </ng-container>
-    
-    <ng-container matColumnDef="serviceDate">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-        <td mat-cell *matCellDef="let element"> {{element.serviceDate}} </td>
-    </ng-container>   
+        <ng-container matColumnDef="totalAmount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Total (₹) </th>
+            <td mat-cell *matCellDef="let element"> {{element.totalAmount}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="serviceDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.serviceDate}} </td>
+        </ng-container>   
 
-    <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef style="width:40px">Action</th>
-        <td mat-cell *matCellDef="let element" style="width:40px">
-            <mat-icon color="primary">remove_red_eye</mat-icon>                                    
-        </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    
-     
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef style="width:40px">Action</th>
+            <td mat-cell *matCellDef="let element" style="width:40px">
+                <mat-icon color="primary" (click)="saleView()">remove_red_eye</mat-icon>                                    
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>         
     </table>
-    <mat-toolbar class="bg-light">
-            <mat-toolbar-row>
-              <span class="example-spacer"></span>
-              <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator> 
-            </mat-toolbar-row>
-          </mat-toolbar>
+    <!-- <mat-toolbar class="bg-light">
+        <mat-toolbar-row>
+            <span class="example-spacer"></span>
+            <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator> 
+        </mat-toolbar-row>
+    </mat-toolbar> -->
 </div>
 
-
-
-
-
+<!-- View Sale Details -->
+<div class="modal bookingmodel" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+    <div class="modal-dialog">            
+        <div class="modal-content">   
+            <div class="modal-header">
+                <h5 class="modal-title"> 
+                     {{View?.name}} - {{View?.mobile}}
+                    <span class="fr"> <mat-icon (click)="hide()" class="warn">close</mat-icon> </span>
+                </h5>
+            </div>
+            <div class="modal-body">                
+                <div class="col-md-12 col-xl-12 col-lg-12">
+                    <table mat-table [dataSource]="serviceDataSource" class="mat-elevation-z8" matSort>
+                        <ng-container matColumnDef="sno">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                            <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="serviceDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                            <td mat-cell *matCellDef="let element"> {{element.serviceDate}} </td>
+                        </ng-container>                
+                        
+                        <ng-container matColumnDef="serviceName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Service </th>
+                            <td mat-cell *matCellDef="let element"> {{element.serviceName}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="staffName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Staff </th>
+                            <td mat-cell *matCellDef="let element"> {{element.staffName}} </td>
+                        </ng-container>   
+                    
+                        <ng-container matColumnDef="totalAmount">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Total (₹) </th>
+                            <td mat-cell *matCellDef="let element"> {{element.totalAmount}} </td>
+                        </ng-container>                                                
+                    
+                        <tr mat-header-row *matHeaderRowDef="displayedServiceColumns; sticky: true"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedServiceColumns;"></tr>                                                                 
+                    </table>
+                    <!-- <table class="table table-bordered full-width">
+                        <thead>
+                            <tr>    
+                                <th>Sno</th>
+                                <th>Date</th>
+                                <th>Service</th>
+                                <th>Staff</th>
+                                <th>Amount</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>02/08/2019</td>
+                                <td>Hair Cut</td>
+                                <td>Devi</td>
+                                <td>250</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>02/08/2019</td>
+                                <td>Facial</td>
+                                <td>Nithya</td>
+                                <td>1100</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>28/08/2019</td>
+                                <td>Threading</td>
+                                <td>Nithya</td>
+                                <td>60</td>                                
+                            </tr>
+                        </tbody>
+                    </table>                                -->
+                </div>                               
+            </div>
+        <!-- Modal footer -->
+            <div class="modal-footer">
+                <button mat-raised-button class="startBillbtn ml-2" (click)="hide()">Close</button>
+            </div>            
+        </div>
+    </div>
+    </div>
