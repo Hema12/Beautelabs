@@ -1,6 +1,6 @@
 
 <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking">            
-    <h3 matDialogTitle class="billTitle">Bill Activity</h3>
+    <h3 matDialogTitle class="billTitle">Billing Activity</h3>
     <mat-dialog-actions align="end" class="closeicon">
         <mat-icon color="warn" (click)="close()">close</mat-icon>
     </mat-dialog-actions>    
@@ -24,7 +24,7 @@
         </ng-container>
 
         <ng-container matColumnDef="billTotal">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Total </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Total (₹) </th>
             <td mat-cell *matCellDef="let element"> {{element.billTotal}} </td>
         </ng-container>
         <ng-container matColumnDef="branch">
@@ -70,24 +70,24 @@
                             <tr>
                             <th>Service</th>
                             <th>Staff</th>
-                            <th>Price</th>
+                            <th>Price (₹)</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                             <td>Hair Cut</td>
                             <td>Devi</td>
-                            <td>250</td>
+                            <td>250.00</td>
                             </tr>
                             <tr>
                             <td>Threading</td>
                             <td>Nithya</td>
-                            <td>50</td>
+                            <td>50.00</td>
                             </tr>
                             <tr>
                             <td>Facial</td>
                             <td>Nithya</td>
-                            <td>1425</td>
+                            <td>1425.00</td>
                             </tr>
                         </tbody>
                     </table>
@@ -159,7 +159,23 @@
                     <h4 class="page-subtitle">Payment Details</h4>
                 </div>
                 <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12">
-                    <table class="full-width table wraptbl">
+                    <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12 pall-zero mall-zero">
+                        <div class="col-md-6 col-xl-6 col-sm-12 col-lg-6">
+                            <p>Mode </p>
+                            <p>Total (₹)</p>
+                            <p>Discount (₹)</p>
+                            <p>Amount Paid (₹)</p>
+                            <p>Outstanding (₹)</p>
+                        </div>
+                        <div class="col-md-6 col-xl-6 col-sm-12 col-lg-6">
+                            <p>Cash</p>
+                            <p>1,725.00</p>
+                            <p>0.00</p>
+                            <p>1,725.00</p>
+                            <p>0.00</p>
+                        </div>
+                    </div>
+                    <!-- <table class="full-width table wraptbl">
                         <tr>
                             <th>Mode</th>
                             <th>Total (₹)</th>
@@ -174,7 +190,7 @@
                             <td>1,725.00</td>
                             <td>0.00</td>
                         </tr>                        
-                    </table>
+                    </table> -->
                 </div>
             </mat-dialog-content>    
         </mat-card-content>
@@ -192,10 +208,10 @@
             </div>
             <div class="modal-body">                                                   
                 <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 pall-zero">
-                    <div class="col-md-12 col-sm-12 col-xl-6 col-lg-6 halfwidth">             
+                    <div class="col-md-6 col-sm-6 col-xl-6 col-lg-6 halfwidth">             
                         <p>Bill No : {{View.billNo}}</p>
                     </div>
-                    <div class="col-md-12 col-sm-12 col-xl-6 col-lg-6 halfwidth">             
+                    <div class="col-md-6 col-sm-6 col-xl-6 col-lg-6 halfwidth pall-zero">             
                         <p>Date : {{View.billDate}}</p>
                     </div>
                 </div>
@@ -213,24 +229,24 @@
                                 <tr>
                                 <th>Service</th>
                                 <th>Staff</th>
-                                <th>Price</th>
+                                <th>Price (₹)</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                 <td>Hair Cut</td>
                                 <td>Devi</td>
-                                <td>250</td>
+                                <td>250.00</td>
                                 </tr>
                                 <tr>
                                 <td>Threading</td>
                                 <td>Nithya</td>
-                                <td>50</td>
+                                <td>50.00</td>
                                 </tr>
                                 <tr>
                                 <td>Facial</td>
                                 <td>Nithya</td>
-                                <td>1425</td>
+                                <td>1425.00</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -279,20 +295,22 @@
                     <h4 matDialogTitle>Payment Details</h4>
                 </div>
                 <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12">
-                    <table class="full-width table wraptbl">
-                        <tr>
-                            <td>Mode</td>
-                            <td>Cash</td>
-                        </tr>
-                        <tr>
-                            <td>Mode</td>
-                            <td>Cash</td>
-                        </tr>
-                        <tr>
-                            <td>Mode</td>
-                            <td>Cash</td>
-                        </tr>
-                    </table>
+                    <div class="row col-md-12 col-xl-12 col-sm-12 col-lg-12 pall-zero mall-zero">
+                        <div class="col-md-6 col-xl-6 col-sm-6 col-lg-6 halfwidth">
+                            <p>Mode </p>
+                            <p>Total (₹)</p>
+                            <p>Discount (₹)</p>
+                            <p>Amount Paid (₹)</p>
+                            <p>Outstanding (₹)</p>
+                        </div>
+                        <div class="col-md-6 col-xl-6 col-sm-6 col-lg-6 halfwidth">
+                            <p>Cash</p>
+                            <p>1,725.00</p>
+                            <p>0.00</p>
+                            <p>1,725.00</p>
+                            <p>0.00</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         <!-- Modal footer -->

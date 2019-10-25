@@ -20,6 +20,7 @@ export class RecurPopupComponent implements OnInit {
   recurForm: FormGroup;
   selFrequency: boolean = false;
   selFrequencyValue: string;
+  freqval:string;
   recurFrequency: recurFrequency[] = [
     {value: 'Doesn\'t repeat'},
     {value: 'Daily'},
@@ -47,12 +48,19 @@ export class RecurPopupComponent implements OnInit {
   constructor( public dialogRef: MatDialogRef<RecurPopupComponent>, 
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-  ngOnInit() {
+  ngOnInit() {    
+    this.freqval = this.data;        
     this.recurForm = new FormGroup({
       recurFrequency: new FormControl(null),
       recurEndTime: new FormControl(null),
       recurSpecificDate: new FormControl(null)
-    })
+    });
+    if(this.data) {
+      this.recurForm.controls['recurFrequency'].setValue(this.data.freq);
+      this.recurForm.controls['recurEndTime'].setValue(this.data.endtime);
+      this.selFrequency = true;
+    }
+    
   }
 
   getFrequency(value) {    
@@ -62,6 +70,7 @@ export class RecurPopupComponent implements OnInit {
     this.selFrequencyValue = val;    
   }
   submit() {    
-    this.dialogRef.close(`${this.recurForm.value.recurFrequency}`);
+    // this.dialogRef.close(`${this.recurForm.value.recurFrequency}`);
+    this.dialogRef.close(this.recurForm.value);
   }
 }

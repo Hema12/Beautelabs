@@ -171,7 +171,9 @@ export class AppointmentComponent implements OnInit {
   toggleWeekends() {
     this.calendarWeekends = !this.calendarWeekends;
   }
-
+  startBill(billId) {
+    this.router.navigate(['/beautelabs/cbot-admin/saleCreate', billId])
+  }
 
   handleDateClick(arg) {
     if(arg.date >= this.todayDate) {    

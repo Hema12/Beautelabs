@@ -12,11 +12,11 @@ export interface billDetails {
 }
 
 const bill_details: billDetails[] = [
-  {sno: 1, billNo: '1725',billDate: '18/10/2019',billTotal:'2,500',branch:'Ganapathy',source:'Direct-walkin'},
-  {sno: 2, billNo: '1598', billDate: '21/09/2019',billTotal:'500',branch:'Ganapathy',source:'Phone'},
-  {sno: 3, billNo: '1501', billDate: '15/08/2019',billTotal:'1,400',branch:'Ganapathy',source:'Facebook'},
-  {sno: 4, billNo: '1467', billDate: '02/08/2019',billTotal:'800',branch:'Ganapathy',source:'Direct-walkin'},
-  {sno: 5, billNo: '1344', billDate: '29/06/2019',billTotal:'1,800',branch:'Ganapathy',source:'Phone'},
+  {sno: 1, billNo: '1725',billDate: '18/10/2019',billTotal:'2,500.00',branch:'Ganapathy',source:'Direct-walkin'},
+  {sno: 2, billNo: '1598', billDate: '21/09/2019',billTotal:'500.00',branch:'Ganapathy',source:'Phone'},
+  {sno: 3, billNo: '1501', billDate: '15/08/2019',billTotal:'1,400.00',branch:'Ganapathy',source:'Facebook'},
+  {sno: 4, billNo: '1467', billDate: '02/08/2019',billTotal:'800.00',branch:'Ganapathy',source:'Direct-walkin'},
+  {sno: 5, billNo: '1344', billDate: '29/06/2019',billTotal:'1,800.00',branch:'Ganapathy',source:'Phone'},
 ];
 
 export interface billServiceDetails {

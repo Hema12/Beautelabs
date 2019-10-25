@@ -51,7 +51,7 @@
                             </div> 
                             <div class="col-sm-12 col-lg-2 col-xl-2 col-md-3">
                                 <button mat-raised-button class="recurbtn" (click)="openRecur()" *ngIf="showRecur">Recurring <mat-icon matSuffix>autorenew</mat-icon></button>     
-                                <button mat-raised-button class="recurbtn" (click)="openRecur()" *ngIf="showFreq">{{selfreq}} <mat-icon matSuffix>autorenew</mat-icon></button>                                                            
+                                <button mat-raised-button class="recurbtn" (click)="openRecurval(selfreq,selFreqendTime)" *ngIf="showFreq">{{selfreq}} <mat-icon matSuffix>autorenew</mat-icon></button>                                                            
                                     
                             </div>  
                         </div>
@@ -132,18 +132,18 @@
                                 <h2>Jai Nishanth <mat-icon matSuffix class="ml-2">edit</mat-icon> </h2>
                                 <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12 pall-zero mall-zero">
                                     <div class="col-md-12 col-xl-6 col-lg-6 col-sm-12 pall-zero">
-                                        <mat-icon matPrefix>phone</mat-icon> +91 9876545679 
+                                        <mat-icon matPrefix class="profileicon">phone</mat-icon> +91 9876545679 
                                     </div>
                                     <div class="col-md-12 col-xl-6 col-lg-6 col-sm-12 pall-zero">
-                                        <mat-icon>email</mat-icon>jainishanth17@gmail.com
+                                        <mat-icon matPrefix class="profileicon">email</mat-icon>jainishanth17@gmail.com
                                     </div>
                                 </div>
                                 <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12 pall-zero mall-zero">
                                     <div class="col-md-12 col-xl-6 col-lg-6 col-sm-12 pall-zero">
-                                        <mat-icon matPrefix>payment</mat-icon> <span (click)="billingHistory()" class="linkText"> Billing History</span>
+                                        <mat-icon matPrefix class="profileicon">payment</mat-icon> <span (click)="billingHistory()" class="linkText"> Billing History</span>
                                     </div>
                                     <div class="col-md-12 col-xl-6 col-lg-6 col-sm-12 pall-zero">
-                                        <mat-icon>person</mat-icon>Preferred Staff : Ramesh
+                                        <mat-icon class="profileicon">person</mat-icon>Preferred Staff : Ramesh
                                     </div>
                                 </div>
                                 

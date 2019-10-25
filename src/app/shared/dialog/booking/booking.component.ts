@@ -75,6 +75,7 @@ export interface Source {
 })
 export class BookingComponent implements OnInit {
   selfreq: string;
+  selFreqendTime: string;
   showRecur: boolean = true;
   showFreq: boolean = false;
   bookingForm: FormGroup;
@@ -218,7 +219,23 @@ openRecur() {
 
   dialogRef.afterClosed().subscribe(result => {
    this.showRecur = false;
-    this.selfreq = result;
+   this.selfreq = result.recurFrequency;
+   this.selFreqendTime = result.recurEndTime;
+    this.showFreq = true;    
+  });
+}
+openRecurval(freq, endtime) {     
+  const dialogRef = this.dialog.open(RecurPopupComponent, {
+    width:'col-md-5',
+    data: {freq,endtime}
+    });
+
+  dialogRef.afterClosed().subscribe(result => {
+   this.showRecur = false;
+   console.log(result);
+   
+    this.selfreq = freq;
+    this.selFreqendTime = endtime;
     this.showFreq = true;    
   });
 }
