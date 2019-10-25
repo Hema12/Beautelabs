@@ -51,7 +51,7 @@
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef style="width:40px">Action</th>
             <td mat-cell *matCellDef="let element" style="width:40px">
-                <mat-icon color="primary" (click)="saleView()">remove_red_eye</mat-icon>                                    
+                <mat-icon color="primary" (click)="saleView(element.sno)">remove_red_eye</mat-icon>                                    
             </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
