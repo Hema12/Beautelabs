@@ -75,15 +75,29 @@ td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
     min-height: 46px !important;
     z-index: 2 !important;
 }
-
+.mat-drawer-container {
+    // background: #1A2038 !important;
+   // background: #222A45 !important; //dark blue color
+   background: #EAF0F7 !important; //light color
+}
 .mat-drawer {
-    background: #1A263A !important;
+    // background: #222A45 !important;
+    background: #222A45 !important;
     min-width: 2% !important;
 }
-
+.darkcard {    
+    // background: #222a45 !important;
+    background: #404860 !important;
+}
+.darkcard .mat-card-header-text {
+    margin: 0px !important;
+}
+.darkcard .mat-card-content {
+    color:rgba(255,255,255,.54)!important;
+}
 .mat-drawer-content {
-    min-height: 95vh !important; 
-    overflow: hidden !important;
+    height: 95vh !important; 
+    // overflow: hidden !important;
 }
 .mat-nav-list a {
     color:$primary-color-black !important;
@@ -122,10 +136,22 @@ td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
 .mat-paginator {
     width:100% !important;
     background: transparent !important;
+    color:$primary-color-white !important;
 }
 tr.mat-header-row {
     background:$primary-color-darkblue !important;
+   // 
     height: 30px !important;    
+}
+.dashboardTableHeader tr.mat-header-row
+{
+   // background: #1ca98f !important;
+   background: #fff !important;
+}
+.dashboardTableHeader th button {
+    color:#909090 !important;
+    font-size: $primary-font-size-sm !important;
+    font-family: $primary-font-family-common !important;
 }
 .mat-header-cell {
     font-size: $secondary-font-size !important;
@@ -152,6 +178,9 @@ span:focus {
     outline: none;
     border: 0;
  }
+ .commonSearchField .mat-form-field-appearance-legacy .mat-form-field-outline {
+    background: white !important;
+  }
 .mat-flat-button.mat-success, .mat-raised-button.mat-success, .mat-fab.mat-success, .mat-mini-fab.mat-success
 {
     background: $primary-color-darkblue !important;
@@ -450,7 +479,11 @@ span:focus {
 .mat-select-value-text {
     font-size: $secondary-font-size !important;
     font-family: $primary-font-family-table !important;
+    color:$primary-color-white !important
 }
 .mat-form-field-label-wrapper {
     top: -1.04375em !important;
+}
+.dashboardheader .mat-card-header-text {
+    margin:0px !important;
 }
