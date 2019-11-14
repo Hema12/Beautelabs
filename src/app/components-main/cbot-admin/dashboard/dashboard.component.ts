@@ -274,8 +274,10 @@ export class DashboardComponent implements OnInit {
     
   // ];
   public barTopChartData: ChartDataSets[] = [
-    { data: [35000, 69000, 22500, 50000, 50000, 30000,80000,70000,60000,20000,30005], label: 'Last Year' },
-    { data: [45000, 82000, 3500, 71000, 89000, 49000, 91000,80200,86000,30000,40500], label: 'This Year' }
+    { data: [35000, 69000, 22500, 50000, 50000, 30000, 80000,70000,60000,20000,30005], label: '2019', backgroundColor:'#53BF56' },
+    { data: [45000, 82000, 35000, 71000, 89000, 49000, 91000,80200,86000,30000,40500], label: '2018', backgroundColor:'#53BF56' },
+    { data: [35000, 69000, 22500, 50000, 50000, 30000, 80000,70000,60000,20000,30005], label: '2017', backgroundColor:'#53BF56' },
+    { data: [45000, 82000, 35000, 71000, 89000, 49000, 91000,80200,86000,30000,40500], label: '2016', backgroundColor:'#53BF56' }
   ];
   // top bar chart
   public barTopChartLabels: Label[] = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'];
@@ -294,44 +296,34 @@ export class DashboardComponent implements OnInit {
      display: false,
      labels: {
       fontColor: '#222222'
-  }
-  },
- 
-  animation: {
-    onComplete: function () {
-      var ctx = this.chart.ctx;
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      var chart = this;
-      var datasets = this.config.data.datasets;
-
-      datasets.forEach(function (dataset: Array<any>, i: number) {
-        ctx.font = "10px Arial";
-
-
-        ctx.fillStyle = "Black";
-        chart.getDatasetMeta(i).data.forEach(function (p: any, j: any) {
-          ctx.fillText(datasets[i].data[j], p._model.x, p._model.y - 20);
-        });
-
-      });
-    }
-  },
+     }
+    },
+    plugins:{     
+      datalabels: {
+        color: 'transparent',
+        labels: {
+          
+        }
+      },
+    }, 
   scales: {
     xAxes: [{
-        barPercentage: 0.4,
+        barPercentage: 0.6,
         gridLines: {
         //  color: 'rgba(171,171,171,1)',
          // lineWidth: 0,
-      //    display:false,
-        }
+          display:false,
+        },
+        ticks: {
+          display: false //this will remove only the label
+      }
     },      
   ],
   yAxes: [{
     gridLines: {
       lineWidth: 0,
      // color:'rgba(255,255,255,1)',
-    //  drawBorder: false,
+      drawBorder: false,
       display: false
     },
     ticks: {
@@ -412,7 +404,7 @@ export class DashboardComponent implements OnInit {
 
   //Country Revenue Pie Chart
   public pieRevenueChartLabels:string[] = ['Chennai', 'Coimbatore', 'Erode', 'Trichy', 'Salem','Karur'];  
-  public pieRevenueChartData:number[] = [50000, 60000, 90000, 80000, 85000, 98000];
+  public pieRevenueChartData: Array<number> = [50, 60, 90, 80, 85, 98];
   public pieRevenueChartType:string = 'pie';
   public pieRevenueChartColors: Color[] = [
     {
@@ -430,8 +422,17 @@ export class DashboardComponent implements OnInit {
     
   ];
   public pieChartPlugins = [pluginDataLabels];
+  public pieRevenueChartPlugins = [{
+    pluginDataLabels,
+    beforeInit: function(chart, options) {
+      chart.legend.afterFit = function() {
+        this.height += 1; // must use `function` and not => because of `this`
+      };
+    }
+  }]
   public pieRevenueChartOptions: ChartOptions = {
     responsive: true,
+    
     maintainAspectRatio: false,
     elements: 
     { 
@@ -446,25 +447,30 @@ export class DashboardComponent implements OnInit {
     },
     legend: {
       reverse: true,
-      position: 'bottom',
+      position: 'bottom',      
       labels: {
         fontFamily: "Roboto",
         boxWidth: 15,
         fontColor:"#000",
+        
       },
 
     },  
     plugins:{
      animationEnabled: true,   
-     easing:'easeOutBounce',  
      innerRadius: 0,
      outerRadius: 0,
-    //  hoverRadius:20,
-    //  hitRadius:10,
-    //  pointHoverRadius:30,
-    //  pointRadius:20,
       datalabels: {        
         color:'black',
+        formatter: (value, ctx) => {
+          let sum = 0;
+          let dataArr = ctx.chart.data.datasets[0].data;
+          // dataArr.map(data => {
+          //     sum += data;
+          // });
+          let val = value +"K";
+          return val;
+      },
         labels: {
             title: {
                 font: {
@@ -472,12 +478,13 @@ export class DashboardComponent implements OnInit {
                     size:10,
                 }
             },
+            
             value: {
                 color: 'black',
                 font: {
                   size:10
                 }
-            }
+            },
         }
     },
     pieceLabel: {
@@ -496,10 +503,15 @@ export class DashboardComponent implements OnInit {
       animateRotate: true,      
     },
     tooltips: {
+      mode:'label',
       callbacks: {
         title: function(tooltipItem, data) {
           return data[tooltipItem[0]['index']];
-        },         
+        }, 
+        label: function(tooltipItem, data) { 
+          var indice = tooltipItem.index;                 
+          return  data.labels[indice] +': '+data.datasets[0].data[indice] + 'k';
+      }
       },
       // backgroundColor: '#FFF',
       titleFontSize: 12,
@@ -531,6 +543,60 @@ export class DashboardComponent implements OnInit {
   public chartHovered(e:any):void {
     console.log(e);
   }
+
+
+  //Top Bar Stacked Chart
+  public barTopStackChartOptions: ChartOptions = {
+    legend: {
+    display: false,
+    labels: {
+     fontColor: '#222222'
+    }
+   },
+   plugins:{     
+     datalabels: {
+       color: 'transparent',
+       labels: {
+         
+       }
+     },
+   }, 
+ scales: {
+   xAxes: [{
+       barPercentage: 0.6,
+       gridLines: {
+       //  color: 'rgba(171,171,171,1)',
+        lineWidth: 0,
+         display:false,
+       },
+       ticks: {
+         display: false //this will remove only the label
+     }
+   },      
+ ],
+ yAxes: [{
+   gridLines: {
+     lineWidth: 0,
+    // color:'rgba(255,255,255,1)',
+     drawBorder: false,
+     display: false
+   },
+   ticks: {
+     display: false //this will remove only the label
+ }
+},
+]
+}
+ };
+ public barTopStackChartLabels: Label[] = ['2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000', '1999', '1998', '1997', '1996', '1995'];
+ public barTopStackChartType = 'bar';
+ public barTopStackChartLegend = true;
+ public barTopStackChartPlugins = [];
+
+   public barTopStackChartData: ChartDataSets[] = [
+     { data: [65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56, 55, 40, 80, 81, 56, 55, 40, 55, 40, 65, 59, 80, 81], label: 'Series A', stack: 'a', backgroundColor:'#fff' },
+  //   { data: [28, 48, 40, 19, 86, 27, 90,28, 48, 40, 19, 86, 27, 90], label: 'Series B', stack: 'a' }
+   ];
 
   constructor() { }
 
