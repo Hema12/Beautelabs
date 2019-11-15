@@ -1,16 +1,17 @@
-<div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pall-zero">
+<!-- <div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pall-zero">
     <div class="col-md-7 col-sm-12 col-lg-7 col-xl-7">
         <h2 class="page-title">New Appointment </h2>
     </div>
-</div>
+</div> -->
 <div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pall-zero mall-zero">    
-    <mat-card class="full-width newCard bookingcard">
+    <mat-card class="full-width newCard pall-zero">
+        <h2 class="subheading">New Appointment</h2>         
         <mat-card-content>
             <div class="col-md-12 col-sm-12 col-lg-7 col-xl-7 widthinc">                          
                 <form method="POST" [formGroup]="bookingForm"> 
                     <div class="form-container">              
                         <div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pr-zero">          
-                            <div class="col-sm-12 col-lg-3 col-xl-3 col-md-3">
+                            <div class="col-sm-12 col-lg-4 col-xl-4">
                                 <mat-form-field class="belowlinkinput">
                                     <input matInput placeholder="Customer" aria-label="Customer" [matAutocomplete]="customer" [formControl]="customerDet">
                                     <mat-autocomplete #customer="matAutocomplete">
@@ -19,16 +20,16 @@
                                         </mat-option>
                                     </mat-autocomplete>
                                 </mat-form-field>
-                                <p class="inputlink" [routerLink]="['/beautelabs/cbot-admin/customerCreate']" routerLinkActive="active"><mat-icon>add</mat-icon> New Customer</p>
+                                <p class="inputlink" (click)="customerAddEdit(0)"><mat-icon>add</mat-icon> New Customer</p>
                             </div>  
-                            <div class="col-sm-12 col-lg-3 col-xl-3 col-md-3">
+                            <div class="col-sm-12 col-lg-4 col-xl-4">
                                 <mat-form-field>
                                     <input matInput [min]="minDate" [matDatepicker]="picker" formControlName="bookingDate" (click)="picker.open()" placeholder="Date">
                                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                     <mat-datepicker #picker></mat-datepicker>
                                 </mat-form-field>
                             </div> 
-                            <div class="col-sm-12 col-lg-2 col-xl-2 col-md-3">
+                            <div class="col-sm-12 col-lg-4 col-xl-4">
                                 <mat-form-field>
                                     <mat-label class="selplaceHolder">Status</mat-label>
                                     <mat-select formControlName="bookingStatus">
@@ -39,7 +40,7 @@
                                 </mat-form-field> 
 
                             </div> 
-                            <div class="col-sm-12 col-lg-2 col-xl-2 col-md-3">
+                            <div class="col-sm-12 col-lg-4 col-xl-4">
                                 <mat-form-field>
                                     <mat-label class="selplaceHolder">Source</mat-label>
                                     <mat-select formControlName="bookingSource">
@@ -49,7 +50,7 @@
                                     </mat-select>
                                 </mat-form-field>
                             </div> 
-                            <div class="col-sm-12 col-lg-2 col-xl-2 col-md-3">
+                            <div class="col-sm-12 col-lg-3 col-xl-3">
                                 <button mat-raised-button class="recurbtn" (click)="openRecur()" *ngIf="showRecur">Recurring <mat-icon matSuffix>autorenew</mat-icon></button>     
                                 <button mat-raised-button class="recurbtn" (click)="openRecurval(selfreq,selFreqendTime)" *ngIf="showFreq">{{selfreq}} <mat-icon matSuffix>autorenew</mat-icon></button>                                                            
                                     

@@ -38,6 +38,15 @@ export class SaleComponent implements OnInit {
   toDay = new Date();
   Type:string;
   saleId: any;
+  serviceTotal: any;
+  productTotal: any = 0;
+  lineSubTotal: number = 0;
+  subTotal: number = 0;
+  grandTotal: any;
+  serviceQty: any = 0;
+  servicePrice: any = 0;
+  serviceDisc: any = 0;
+  serviceTotalPrice: any = 0;
   page_title:string;
   button_title: string;
   //service:any;
@@ -165,4 +174,39 @@ DeleteProduct(_index) {
 ModeOfPay(val) {
   this.Type = val;
 }
+
+//Service Amount Calculation
+servicePriceCalc() {
+  const length =  this.saleForm.controls['service']['controls'].length;  
+  //For each formarray calculation
+  for (let index = 0; index < length; index++) {
+    //Get service quantity formcontrol value and store it to variable q
+    this.serviceQty = this.saleForm.controls['service']['controls'][index].controls.serviceQty.value;
+    this.servicePrice = this.saleForm.controls['service']['controls'][index].controls.servicePrice.value;
+    this.serviceDisc = this.saleForm.controls['service']['controls'][index].controls.serviceDisc.value;
+    //calculate and set it to servicetotalprice formcontrol
+    this.saleForm.controls['service']['controls'][index].controls.serviceTotalPrice.setValue(this.serviceQty * this.servicePrice - this.serviceDisc);         
+    this.lineSubTotal = this.saleForm.controls['service']['controls'][index].controls.serviceTotalPrice.value;   
+    this.subTotal = this.lineSubTotal;
+    this.saleForm.controls['subTotal'].setValue(this.subTotal);
+  }
+  
 }
+
+// product price calculation
+productPriceCalc() {
+  const length =  this.saleForm.controls['product']['controls'].length;
+  const q = 0;
+  const p = 0;
+  const d = 0;
+  for (let index = 0; index < length; index++) {
+    const q = this.saleForm.controls['product']['controls'][index].controls.productQty.value;
+    const p = this.saleForm.controls['product']['controls'][index].controls.productPrice.value;
+    const d = this.saleForm.controls['product']['controls'][index].controls.productDisc.value;
+    this.saleForm.controls['product']['controls'][index].controls.productTotalPrice.setValue(q * p - d);   
+    this.productTotal = this.saleForm.controls['product']['controls'][index].controls.productTotalPrice.value;    
+  } 
+  this.saleForm.controls['subTotal'].setValue(this.lineSubTotal + this.productTotal);
+}
+}
+

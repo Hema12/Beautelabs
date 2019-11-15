@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import {DateAdapter} from '@angular/material/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap';
 import { Time } from '@angular/common';
@@ -156,17 +156,15 @@ export class BookingComponent implements OnInit {
     
   //    }
   constructor(private formBuilder: FormBuilder,private active_route: ActivatedRoute,private datePipe : DatePipe, 
-    private modalService: BsModalService, private dialog:MatDialog) {    
+    private modalService: BsModalService, private dialog:MatDialog, private router: Router) {    
       this.filteredCustomer = this.customerDet.valueChanges
     .pipe(
       startWith(''),
       map(customer => customer ? this._filterCustomer(customer) : this.customer.slice())
-    );
-    
-     }
+    );    
+  }
 
-  ngOnInit() {      
-  
+  ngOnInit() {        
     this.bookingForm = new FormGroup({
       customerName: new FormControl(null),
       bookingDate: new FormControl(null),    
@@ -259,6 +257,10 @@ serviceCreate(): void {
 
   dialogRef.afterClosed().subscribe(result => {
   });
+}
+
+customerAddEdit(val) {        
+  this.router.navigate(['/beautelabs/cbot-admin/customerCreate', val])
 }
  
 }

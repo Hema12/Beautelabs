@@ -56,7 +56,7 @@ td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
 }
 .mat-toolbar {
     background: $primary-color-white !important;
-    border-bottom:1px solid #dee3e7 !important;
+    // border-bottom:1px solid #dee3e7 !important;
 }
 .mat-icon.mat-primary {
     color:$primary-color-darkblue !important;
@@ -135,13 +135,13 @@ td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
 //paginator
 .mat-paginator {
     width:100% !important;
-    background: transparent !important;
-    color:$primary-color-white !important;
+    background: #eaf0f7 !important;
+    color:$primary-color-darkblue !important;
 }
 tr.mat-header-row {
     background:$primary-color-darkblue !important;
    // 
-    height: 30px !important;    
+    height:35px !important;    
 }
 .dashboardTableHeader tr.mat-header-row
 {
@@ -194,7 +194,9 @@ span:focus {
     font-family: $primary-font-family-table !important;
 }
 .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
-    background: $primary-color-darkblue !important;
+    // background: $primary-color-darkblue !important;
+    background: $primary-bg-button !important;
+   
 }
 .mat-raised-button .mat-primary {
     background-color: $primary-color-darkblue !important;
@@ -262,11 +264,11 @@ span:focus {
 }
 .mat-dialog-title {
     font-family: $primary-font-family-table !important;
-    font-size: $primary-font-size-lg !important;
+    font-size: $primary-font-size-md !important;
 }
 .mat-tab-label {
     justify-content: flex-start !important;
-    height: 55px !important;
+    height: 40px !important;
 }
 .mat-tab-body-wrapper {
     width:100% !important;
@@ -334,7 +336,7 @@ span:focus {
     border: 1px solid #e0e0e0;
     margin-right: 2% !important;
     margin-bottom: 2% !important;
-    height: 55px !important;
+    height: 40px !important;
     display: unset !important;
 }
 .customer .mat-tab-body-wrapper {
@@ -398,9 +400,11 @@ span:focus {
     padding-left: 3px !important;
     //border-radius: 3px !important;
     border:1px solid rgba(197, 214, 222, .7) !important;
-    border-color:#ccc !important;
+    border-color:#ced4da !important;
+    border-radius: 0.25rem;
 }
 .mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding:0.5375em 0 !important;
     //padding:0.5em 0 !important;
 }
 .mat-form-field-appearance-legacy .mat-form-field-underline {
@@ -479,11 +483,16 @@ span:focus {
 .mat-select-value-text {
     font-size: $secondary-font-size !important;
     font-family: $primary-font-family-table !important;
-    color:$primary-color-white !important
+    color:$primary-color-darkblue !important
 }
-.mat-form-field-label-wrapper {
-    top: -1.04375em !important;
-}
+// .mat-form-field-label-wrapper {
+//     top: -1.04375em !important;
+// }
 .dashboardheader .mat-card-header-text {
     margin:0px !important;
+}
+.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-appearance-legacy.mat-form-field-can-float .mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label {
+    transform: translateY(-1.58125em) scale(0.75) perspective(100px) translateZ(0.001px) !important;
+    -ms-transform: translateY(-1.28125em) scale(0.75) !important;
+    width: 133.3333333333%;
 }

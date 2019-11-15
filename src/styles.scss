@@ -284,7 +284,10 @@ body {
     width:100%;
     height: 40px;
     line-height: 40px;
-    z-index: 1;
+    z-index: 2;
+    border-top:1px solid #e0e0e0;
+    background:#f0f3f5;
+    position: fixed;
 }
 .footer p {
     color: #0f2129;
@@ -600,7 +603,7 @@ th {
     width:20% !important;
 }
 .topwidth .mat-icon {
-    color: $primary-color-white !important;
+   // color: $primary-color-white !important;
 }
 .topwidth .mat-form-field {
     width:120px !important;
@@ -683,12 +686,25 @@ th {
     font-size: $primary-font-size-lg !important;
     margin:0px !important;
     width:100%;
-    color:$primary-color-white !important;
+    color:$primary-color-button-blue !important;
     // margin:5px 0px 5px 3px !important;
 }
 .page-subtitle {
     font-size: $primary-font-size !important;
     font-family: $primary-font-family-table !important;
+}
+.brdr-radius2 {
+    border-radius: 2px !important;
+}
+.subheading {
+    background: #e8ebec38;
+    border-top: 2px solid #2767b3;
+    padding: 5px 15px;
+    margin-bottom: 2% !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15) !important;
+    font-weight: $primary-font-weight !important;
+    font-size: $primary-font-size-lg !important;
+    color:$primary-color-button-blue !important;
 }
 .customerProfile img {
     height: 80px !important;    
@@ -759,20 +775,21 @@ th {
     padding:0px;
     position: absolute;
     bottom: 0px;
-    background: #57707b;
+    background: #eceeef;
     width: 100%;
     margin:0 0px 0px -16px !important;
+    border-top:1px solid #ddd !important;
 }
 .customerFooter p {
     font-size: 13px !important;
-    color:#fff;
+    color:#222;
     margin-bottom: 0px;
     line-height: 30px;
     padding-left: 8%;
     width:100%;
 }
 .tabhgt {
-    min-height: 50vh;
+    min-height: 70vh;
 }
 .settingstabhgt {
     min-height: 70vh;
@@ -843,21 +860,21 @@ th {
 }
 .fc-past {
     //background: #bbbbbb;
-    background: #f4433678;
+    // background: #eef0f2;
     background-size: 5px 5px;
     background-image: linear-gradient(45deg, transparent 46%, rgba(16, 25, 40, 0.2) 49%, rgba(16, 25, 40, 0.2) 51%, transparent 55%);
 }
 td.fc-day.fc-widget-content.fc-future {
     //background: #78e6c8a1;
-    background-image: linear-gradient(45deg, transparent 46%, rgba(16, 25, 40, 0.2) 49%, rgba(16, 25, 40, 0.2) 51%, transparent 55%);
-    background-size: 5px 5px;
+    // background-image: linear-gradient(45deg, transparent 46%, rgba(16, 25, 40, 0.2) 49%, rgba(16, 25, 40, 0.2) 51%, transparent 55%);
+    // background-size: 5px 5px;
 }
 .fc-unthemed td.fc-today {
     // background: #cff5e363;
     // background: #1cd47c30;
-    background: #dbde3252;
-     background-image: linear-gradient(45deg, transparent 46%, rgba(16, 25, 40, 0.2) 49%, rgba(16, 25, 40, 0.2) 51%, transparent 55%);
-     background-size: 5px 5px;
+    background: #EAF0F7;
+    //  background-image: linear-gradient(45deg, transparent 46%, rgba(16, 25, 40, 0.2) 49%, rgba(16, 25, 40, 0.2) 51%, transparent 55%);
+    //  background-size: 5px 5px;
  }
  .fc-unthemed th, .fc-unthemed td, .fc-unthemed thead, .fc-unthemed tbody, .fc-unthemed .fc-divider, .fc-unthemed .fc-row, .fc-unthemed .fc-content, .fc-unthemed .fc-popover, .fc-unthemed .fc-list-view, .fc-unthemed .fc-list-heading td {
      border-color: #795548;
@@ -1092,7 +1109,7 @@ td,th {
     // text-overflow: ellipsis !important;
 }
 tr.mat-row {
-    height: 30px !important;
+    height: 35px !important;
 }
  .fc-scroller .fc-day-grid-container {
     height: 350px  !important;
@@ -1115,7 +1132,7 @@ tr.mat-row {
 //     max-width: 8%;
 // }
 .linkText {
-    color: #4285F4 !important;
+    color: #2d65c3 !important;
     cursor: pointer !important;
 }
 .menuchange::after {
@@ -1156,7 +1173,9 @@ tr.mat-row {
 .highlight {
     background:#eee !important;
 }
-
+.border-btm {
+    border-bottom: 1px solid #dee3e7 !important;
+}
 .table-bordered thead>tr>th {
     vertical-align: bottom;
     border-bottom: 2px solid #ddd;
@@ -1327,13 +1346,13 @@ tr.mat-row {
 }
 //Table
 .table thead tr th {
-    padding: 12px 10px 12px 10px;
+    padding: 7px 10px;
     border-bottom: 1px solid #eee;
-    background-color: #ebf0f7;
+    // background-color: #ebf0f7;
     font-family: $primary-font-family-common !important;
 }
 .table tbody tr td, .table tbody tr th {
-    padding: 3px;
+    padding: 5px;
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
     font-family: $primary-font-family-common !important;
@@ -1792,16 +1811,17 @@ tr.mat-row {
   
   .order-info-box7 i {
     font-size: 26px; }
-    .infobox-5 .card-icon i {
-        font-size: 2rem;
-        color: $primary-color-white !important;
-    }
-  .box-part {
+.infobox-5 .card-icon i {
+    font-size: 2rem;
+    color: $primary-color-white !important;
+}
+.box-part {
     background: #fff;
     border-radius: 10px;
     padding: 30px 15px;
-    margin: 5px 0 23px; }
-  .topdarkbg {
+    margin: 5px 0 23px; 
+}
+.topdarkbg {
     // background: #333;
     background-image: url('assets/images/dark-bg.png');
     height: 100px;
@@ -2183,11 +2203,16 @@ tr.mat-row {
     vertical-align: middle !important;
 }
 .detail-title h3, h4 {
-    margin-bottom: 0px !important;
+    // margin-bottom: 0px !important;
 }
 .smHorizontal {
     margin-top:7px !important;
     margin-bottom: 7px !important;
+}
+.backicon {
+    font-size: $primary-font-size !important;
+    vertical-align: sub !important;
+    width:16px !important;
 }
 .filterChart {
     border: 1px solid #8a8a8a !important; 
@@ -2240,10 +2265,15 @@ tr.mat-row {
         flex:0 0 100% !important;
     }
 }
+// @media only screen and (min-width: 1024px) {
+// .newCard {
+//     height: 55vh !important;
+// }
+// }
 @media only screen and (min-width: 1020px) and (max-width:1299px)
 {
     .newCard {
-        height: 80vh !important;
+        height: 81vh;
     }
     .newCardTable {
         height: 79vh !important;
@@ -2546,7 +2576,7 @@ tr.mat-row {
         max-width: 30%;
     }
     .fc-day-grid-container  {
-        height: 660px  !important;
+        height: 967px  !important;
         overflow-y: hidden !important;
      }
      .fc-time-grid-container {
@@ -2569,7 +2599,7 @@ tr.mat-row {
 }
 @media only screen and (min-width: 701px) and (max-width:732px) {
     .fc-day-grid-container  {
-        height: 743px  !important;
+        height: 967px  !important;
         overflow-y: hidden !important;
      }
      .fc-time-grid-container {
@@ -2732,12 +2762,28 @@ tr.mat-row {
         width:800px;
     }   
 }
+@media only screen and (min-width: 670px) { 
+    .fc-day-grid-container {
+        height: 967px !important;
+        overflow-y: hidden !important;
+    }
+    .fc-dayGridMonth-view {
+        overflow-y: hidden !important;
+        height: 715px !important;
+    }
+   
+}
+@media screen and (min-width: 670px) and (max-width:671px) { 
+    .newCard {
+        height: 60vh !important;
+    }
+}
 @media screen and (min-width: 1300px) , screen and (min-height: 1020px) { 
     .mat-list-base .mat-list-item {
         height: 45px !important;
     }
     .fc-day-grid-container {
-        height: 758px !important;
+        height: 527px;
         overflow-y: hidden !important;
     }
     .fc-dayGridMonth-view {
@@ -2879,7 +2925,7 @@ tr.mat-row {
         width:100% !important;
     }
     .fc-day-grid .fc-row {
-        height: 6em !important;
+        height: 8em !important;
     }
    
     .booking {
@@ -2939,7 +2985,7 @@ tr.mat-row {
 }
 @media only screen and (min-width: 300px) and (max-width:567px) {
     .fc-day-grid-container  {
-        height: 350px  !important;
+        height: 479px  !important;
         overflow-y: hidden !important;
      }
      .fc-time-grid-container {
@@ -2985,7 +3031,7 @@ tr.mat-row {
    
     .fc-time-grid-container {
         overflow-y: scroll !important;
-        height: 492px !important;
+        // height: 492px !important;
     }
     // .fc-day-grid-container {
     //     overflow-y: scroll !important;
