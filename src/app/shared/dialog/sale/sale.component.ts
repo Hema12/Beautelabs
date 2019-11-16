@@ -40,13 +40,20 @@ export class SaleComponent implements OnInit {
   saleId: any;
   serviceTotal: any;
   productTotal: any = 0;
-  lineSubTotal: number = 0;
+  lineServiceSubTotal: number = 0;
+  lineProductSubTotal: number = 0;
   subTotal: number = 0;
   grandTotal: any;
   serviceQty: any = 0;
   servicePrice: any = 0;
   serviceDisc: any = 0;
+  productQty: any = 0;
+  productPrice: any = 0;
+  productDisc: any = 0;
   serviceTotalPrice: any = 0;
+  productTotalPrice: any = 0;
+  cgstTaxAmount:number = 0;
+  sgstTaxAmount:number = 0;
   page_title:string;
   button_title: string;
   //service:any;
@@ -115,15 +122,18 @@ export class SaleComponent implements OnInit {
       bookingNote: new FormControl(null),
       paymentMode: new FormControl(null),
       subTotal: new FormControl(null),
+      cgstAmount: new FormControl(null),
+      sgstAmount: new FormControl(null),
       grandTotal: new FormControl(null),
+      cgstTaxValue: new FormControl(null),
+      sgstTaxValue: new FormControl(null),
+      taxAmountTotal: new FormControl(null),
       remainingChange: new FormControl(null)
     });
     
   }
   private _filterCustomer(value: string): Customer[] {
-    const filterValue = value;       
-    console.log(filterValue);
-     
+    const filterValue = value;            
     return this.customer.filter(customername => customername.name.toLowerCase().indexOf(filterValue) === 0 || customername.mobile.indexOf(filterValue) === 0);
   }
   createService(): FormGroup {
@@ -186,27 +196,53 @@ servicePriceCalc() {
     this.serviceDisc = this.saleForm.controls['service']['controls'][index].controls.serviceDisc.value;
     //calculate and set it to servicetotalprice formcontrol
     this.saleForm.controls['service']['controls'][index].controls.serviceTotalPrice.setValue(this.serviceQty * this.servicePrice - this.serviceDisc);         
-    this.lineSubTotal = this.saleForm.controls['service']['controls'][index].controls.serviceTotalPrice.value;   
-    this.subTotal = this.lineSubTotal;
-    this.saleForm.controls['subTotal'].setValue(this.subTotal);
+    this.lineServiceSubTotal = this.saleForm.controls['service']['controls'][index].controls.serviceTotalPrice.value;   
   }
-  
 }
 
 // product price calculation
 productPriceCalc() {
-  const length =  this.saleForm.controls['product']['controls'].length;
-  const q = 0;
-  const p = 0;
-  const d = 0;
+  const length =  this.saleForm.controls['product']['controls'].length; 
   for (let index = 0; index < length; index++) {
-    const q = this.saleForm.controls['product']['controls'][index].controls.productQty.value;
-    const p = this.saleForm.controls['product']['controls'][index].controls.productPrice.value;
-    const d = this.saleForm.controls['product']['controls'][index].controls.productDisc.value;
-    this.saleForm.controls['product']['controls'][index].controls.productTotalPrice.setValue(q * p - d);   
-    this.productTotal = this.saleForm.controls['product']['controls'][index].controls.productTotalPrice.value;    
+    this.productQty = this.saleForm.controls['product']['controls'][index].controls.productQty.value;
+    this.productPrice = this.saleForm.controls['product']['controls'][index].controls.productPrice.value;
+    this.productDisc = this.saleForm.controls['product']['controls'][index].controls.productDisc.value;
+    this.saleForm.controls['product']['controls'][index].controls.productTotalPrice.setValue(this.productQty * this.productPrice - this.productDisc);   
+    this.lineProductSubTotal = this.saleForm.controls['product']['controls'][index].controls.productTotalPrice.value;    
   } 
-  this.saleForm.controls['subTotal'].setValue(this.lineSubTotal + this.productTotal);
+}
+
+//Caluclate Sub Total include all added services and products
+calculateTotal():number {  
+  let servcieRows = this.saleForm.get('service') as FormArray;
+  let productRows = this.saleForm.get('product') as FormArray;
+  return servcieRows.controls.
+      map((serviceRow)=> serviceRow.get('serviceQty').value * serviceRow.get('servicePrice').value - serviceRow.get('serviceDisc').value). //calcualte each amount
+      reduce((sum,amount) => sum + amount,0) +  
+    productRows.controls.
+    map((productRow) => productRow.get('productQty').value * productRow.get('productPrice').value - productRow.get('productDisc').value). //calcualte each amount
+    reduce((sum,amount) => sum + amount,0); //find sum
+  }
+  
+//Tax1 Calculation
+cgstCalc() {
+  this.cgstTaxAmount = this.saleForm.controls['subTotal'].value * this.saleForm.controls['cgstTaxValue'].value / 100;
+}
+
+//Tax2 Calculation
+sgstCalc() {
+  this.sgstTaxAmount = this.saleForm.controls['subTotal'].value * this.saleForm.controls['sgstTaxValue'].value / 100;
+}
+
+//Calculate Total Tax Amount
+calculateTotalTax() {  
+  this.saleForm.controls['taxAmountTotal'].setValue(this.saleForm.controls['subTotal'].value * this.saleForm.controls['cgstTaxValue'].value / 100 + 
+  this.saleForm.controls['subTotal'].value * this.saleForm.controls['sgstTaxValue'].value / 100);
+}
+
+//Calculate Grand Total 
+calculateGrandTotal() {
+  this.saleForm.controls['grandTotal'].setValue(this.saleForm.controls['subTotal'].value + this.saleForm.controls['taxAmountTotal'].value);
 }
 }
 

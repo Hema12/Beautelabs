@@ -594,6 +594,10 @@ th {
     height: 45px !important;
     line-height: 45px !important;
 }
+.fc-scroller {
+    // height: 100% !important;
+    overflow: hidden scroll !important;
+}
 .dialog-title {
     border-bottom: 1px solid #ff3c01;
     width: fit-content;
@@ -892,7 +896,7 @@ td.fc-day.fc-widget-content.fc-future {
     height: 4em !important;
 }
 .fc-day-grid .fc-row {
-    height: 8em !important;
+    height: 10em !important;
 }
 .fc-view-container *, .fc-view-container *:before, .fc-view-container *:after {
     font-size: 11px !important;
@@ -934,14 +938,50 @@ td.fc-day.fc-widget-content.fc-future {
 .fc-event, .fc-event-dot {
     background-color: #03a9f4;
 }
+.dragservice .fc-event {
+    margin: 10px 0 !important;
+    cursor: pointer !important;
+    padding: 5px !important;
+}
 .fc-event {
-    line-height: 1.7 !important;
+    border: 0px !important;
+    color: #fff !important;    
+    background: #109adc !important;
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(76, 175, 80, 0.4);
 }
-a:not([href]):not([tabindex]) {
-    top:696px !important;
-    left:0% !important;
-    margin-right: 0% !important;
+.fc-service {
+    border: 0px !important;
+    color: #fff !important;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 3px 4px -5px rgba(76, 175, 80, 0.4);
+    border-radius: 3px;
+    font-size: $primary-font-size-sm !important;
 }
+
+.fc-service-haircut {
+    background: linear-gradient(45deg, #4caf50, #93d496) !important;
+}
+
+.fc-service-facial {
+    background: linear-gradient(45deg, #109adc, #94d1fd) !important;
+}
+.fc-service-bleech {
+    background:linear-gradient(45deg, #a890d3, #edbae7) !important;
+   //background: linear-gradient(45deg, #6b78f5, #5969FF) !important;
+}
+.fc-service-waxing {
+    //background: linear-gradient(45deg, #e24e80, #da89a5) !important;
+    background:linear-gradient(45deg, #fda582, #f7cf68) !important;
+//  background: linear-gradient(45deg, #f1296d, #ea6492) !important;
+}
+.fc-service-bodypolish {
+    // background:linear-gradient(45deg, #f55247, #e47e76) !important;
+    background:linear-gradient(45deg, #f57269, #ec7970) !important;
+}
+// a:not([href]):not([tabindex]) {
+//     top:696px !important;
+//     left:0% !important;
+//     margin-right: 0% !important;
+// }
 .fc-time-grid .fc-event, .fc-time-grid .fc-bgevent {
     position: relative !important;
 }
@@ -1111,12 +1151,7 @@ td,th {
 tr.mat-row {
     height: 35px !important;
 }
- .fc-scroller .fc-day-grid-container {
-    height: 350px  !important;
- }
- .fc-scroller .fc-time-grid-container {
-    height: 492px  !important;
-}
+
 .mt-red4 {
     margin-top:-4% !important;
 }
@@ -2182,14 +2217,7 @@ tr.mat-row {
         .rounded-circle {
             border-radius: 50% !important;
         }
-.newCardDashboard {
-    height:70vh;
-    transition: visibility 0s 2s, opacity 2s linear;
-}
-.newCardDashboardDetails {
-    height:86vh;
-    transition: visibility 0s 2s, opacity 2s linear;
-}
+
 .newCardDashboardDetails h3 {
     margin-bottom: 0px !important;
     color:rgba(255,255,255,0.7) !important;
@@ -2257,44 +2285,12 @@ tr.mat-row {
     .fc-center {
         margin-left: -12% !important;
     }
-    .fc-scroller {
-        height: 1055px !important;
-    }
     .widthinc {
         max-width:100% !important;
         flex:0 0 100% !important;
     }
 }
-// @media only screen and (min-width: 1024px) {
-// .newCard {
-//     height: 55vh !important;
-// }
-// }
-@media only screen and (min-width: 1020px) and (max-width:1299px)
-{
-    .newCard {
-        height: 81vh;
-    }
-    .newCardTable {
-        height: 79vh !important;
-        overflow-y: scroll !important;
-    }
-    
-}
-@media only screen and (min-width: 1025px) and (max-width:1299px)
-{
-    .newCardView {
-        height: 79vh !important;
-        overflow-y: scroll !important;
-    }
-}
-@media only screen and (min-width: 1020px) and (max-width:1024px)
-{
-    .newCardView {
-        height: 65vh !important;
-        overflow-y: scroll !important;
-    }
-}
+
 @media only screen and (min-width: 810px)  and (max-width:825px){
     .col-md-2 {
         max-width:30%;
@@ -2339,35 +2335,15 @@ tr.mat-row {
     
 }
 @media only screen and (min-width:710px) and (max-width: 890px) {
-    .newCard {
-        height: 66vh !important;
-    }
-    .newCardTable {
-        height: 60vh !important;
-    }
-    .newCardView {
-        height: 60vh !important;
-    }
+   
     .col-md-3 {
         flex:0 0 32%;
         max-width: 32%;
         margin-left: 1%;
     }
-    .fc-day-grid-container {
-        height: 900px !important;
-        overflow-y: scroll !important;
-    }
 }
 @media only screen and (min-width:660px) and (max-width: 710px) {
-    .newCard {
-        height: 66vh !important;
-    }
-    .newCardTable {
-        height: 66vh !important;
-    }
-    .newCardView {
-        height: 66vh !important;
-    }
+ 
     .col-md-3 {
         flex:0 0 45%;
         max-width: 45%;
@@ -2462,16 +2438,6 @@ tr.mat-row {
     }
 }
 
-@media only screen and (min-width: 640px) and (max-width:650px) {
-    .fc-day-grid-container  {
-        height: 660px  !important;
-        overflow-y: scroll !important;
-     }
-     .fc-time-grid-container {
-        height: 765px  !important;
-        overflow-y: scroll !important;
-    }
-}
 @media only screen and (min-width: 560px) and (max-width:570px) {
     .fc-center {
         margin-left: 78px;
@@ -2514,25 +2480,7 @@ tr.mat-row {
         margin-left: 1% !important;
     }
 }
-@media only screen and (min-width: 670px) and (max-width:700px) {
-    // .col-lg-1 {
-    //     flex:0 0 100%;
-    //     max-width: 100%;
-    // }
-    .fc-day-grid-container  {
-        height: 1032px  !important;
-        overflow-y: hidden !important;
-     }
-     .fc-time-grid-container {
-        height: 765px  !important;
-        overflow-y: scroll !important;
-    }
-}
-@media only screen and (min-width: 571px) and (max-width:640px) {
-    .newCardTable {
-        height: 75vh !important;
-    }
-}
+
 //ipad
 @media only screen and (min-width: 570px) and (max-width:669px) {
     // .col-lg-1 {
@@ -2551,13 +2499,6 @@ tr.mat-row {
     .topwidth {
         width: 20% !important;
     }
-    .newCard {
-        height: 64vh !important;
-    }
-    
-    .newCardView {
-        height: 60vh !important;
-    }
     textarea.mat-input-element {
         min-height: 10vh !important;
     }
@@ -2575,14 +2516,6 @@ tr.mat-row {
         flex: 0 0 30%;
         max-width: 30%;
     }
-    .fc-day-grid-container  {
-        height: 967px  !important;
-        overflow-y: hidden !important;
-     }
-     .fc-time-grid-container {
-        height: 765px  !important;
-        overflow-y: scroll !important;
-    }
     .mat-tab-group {
         flex-direction: column !important;
     }
@@ -2597,25 +2530,9 @@ tr.mat-row {
         height: 40px !important;
     }
 }
-@media only screen and (min-width: 701px) and (max-width:732px) {
-    .fc-day-grid-container  {
-        height: 967px  !important;
-        overflow-y: hidden !important;
-     }
-     .fc-time-grid-container {
-        height: 765px  !important;
-        overflow-y: scroll !important;
-    }
-}
+
 @media only screen and (min-width: 733px) and (max-width:768px) {
-    .fc-day-grid-container  {
-        height: 1055  !important;
-        overflow-y: hidden !important;
-     }
-     .fc-time-grid-container {
-        height: 765px  !important;
-        overflow-y: scroll !important;
-    }
+  
     .staff {
         max-width: 49% !important;
         flex:0 0 49% !important;
@@ -2643,15 +2560,6 @@ tr.mat-row {
     .topwidth {
         width: 20% !important;
     }
-    .newCard {
-        height: 64vh !important;
-    }
-    .newCardTable {
-        height: 64vh !important;
-    }
-    .newCardView {
-        height: 64vh !important;
-    }
     textarea.mat-input-element {
         min-height: 10vh !important;
     }
@@ -2677,58 +2585,18 @@ tr.mat-row {
         float: right;
         margin-top:5px !important;
     }
-    .newCardDashboard {
-        height:63vh;
-        transition: visibility 0s 2s, opacity 2s linear;
-        overflow: hidden !important;
-    }
+
     .scrollDiv {
         overflow: unset !important;
-    }
-    .newCardDashboardDetails {
-        overflow: hidden !important;
-    }
-    .newCard {
-        min-height: 50vh !important;
-        overflow-y: hidden !important;
-        overflow-x: hidden !important;
-    }
-    .newCardTable {
-        min-height: 50vh !important;
-        overflow-y: hidden !important;
-        overflow-x: hidden !important;
-    }
-    .newCardView {
-        min-height: 50vh !important;
-        overflow-y: hidden !important;
-        overflow-x: hidden !important;
     }
     .mat-drawer-content {
         margin-left: 2% !important;
     }
-    .fc-dayGridMonth-view .fc-dayGrid-view {
-        overflow-y: scroll !important;
-        min-height: 600px !important;
-    }
-    .fc-timeGridWeek-view .fc-timeGrid-view {
-        overflow-y: scroll !important;
-        min-height: 600px !important;
-    }
-    // .modal-dialog {
-    //     padding-top:14% !important;
-    // }
     .patientcard {
         flex:0 0 20% !important;
         max-width: 20% !important;
     }
-    .fc-day-grid-container  {
-        height: 660px  !important;
-        overflow-y: hidden !important;
-     }
-     .fc-time-grid-container {
-        height: 765px  !important;
-        overflow-y: scroll !important;
-    }
+    
   
 }
 @media screen and (min-width: 1200px) and (max-width:1500px) {  
@@ -2738,16 +2606,6 @@ tr.mat-row {
     .rgtalign {
         float: right;
         margin-top:5px !important;
-    }
-    .fc-day-grid-container  {
-     //   height: 945px  !important;
-    //    height: 1055px !important;
-        height: 658px !important;
-        overflow-y: hidden !important;
-     }
-     .fc-time-grid-container {
-        height: 765px  !important;
-        overflow-y: scroll !important;
     }
     textarea.mat-input-element {
         min-height: 10vh !important;
@@ -2762,53 +2620,18 @@ tr.mat-row {
         width:800px;
     }   
 }
-@media only screen and (min-width: 670px) { 
-    .fc-day-grid-container {
-        height: 967px !important;
-        overflow-y: hidden !important;
-    }
-    .fc-dayGridMonth-view {
-        overflow-y: hidden !important;
-        height: 715px !important;
-    }
-   
-}
-@media screen and (min-width: 670px) and (max-width:671px) { 
-    .newCard {
-        height: 60vh !important;
-    }
-}
+
 @media screen and (min-width: 1300px) , screen and (min-height: 1020px) { 
     .mat-list-base .mat-list-item {
         height: 45px !important;
     }
-    .fc-day-grid-container {
-        height: 527px;
-        overflow-y: hidden !important;
-    }
-    .fc-dayGridMonth-view {
-        overflow-y: hidden !important;
-        height: 700px !important;
-    }
-    .fc-day-grid .fc-row {
-        height: 10em !important;
-    }    
+      
 }
 @media screen and (min-width: 1024px) and (max-width: 1026px) { 
     .mat-list-base .mat-list-item {
         height: 43px !important;
     }
 }
-// @media only screen and (min-width: 568px) {
-//     .fc-day-grid-container  {
-//         height: 350px  !important;
-//         overflow-y: hidden !important;
-//      }
-//      .fc-time-grid-container {
-//         height: 492px  !important;
-//         overflow-y: scroll !important;
-//     }
-// }
 //iphone S
 @media only screen and (min-width: 300px) and (max-width:570px) {
     // .col-lg-1 {
@@ -2853,15 +2676,6 @@ tr.mat-row {
     }
     textarea.mat-input-element {
         min-height: 10vh !important;
-    }
-    .newCard {
-        height: 78vh !important;
-    }
-   .newDashboard {
-       height: 90vh !important;
-   }
-    .newCardView {
-        height: 75vh !important;
     }
     .serField {
         flex: 0 0 75% !important;
@@ -2925,7 +2739,7 @@ tr.mat-row {
         width:100% !important;
     }
     .fc-day-grid .fc-row {
-        height: 8em !important;
+        height: 10em !important;
     }
    
     .booking {
@@ -2983,33 +2797,8 @@ tr.mat-row {
         padding-top:0px !important;
     }
 }
-@media only screen and (min-width: 300px) and (max-width:567px) {
-    .fc-day-grid-container  {
-        height: 479px  !important;
-        overflow-y: hidden !important;
-     }
-     .fc-time-grid-container {
-        height: 492px  !important;
-        overflow-y: scroll !important;
-    }
-    .newCardTable {
-        //height: 75vh !important;
-        min-height: 9vh !important;
-    }
-}
 
-@media only screen and (min-width: 568px) and (max-width:570px) {
-    .fc-day-grid-container  {
-        height: 790px  !important;
-     }
-     .fc-time-grid-container {
-        height: 492px  !important;
-        overflow-y: scroll !important;
-    }
-    .newCardTable {
-        height: 60vh !important;        
-    }
-}
+
 @media only screen and (min-width: 620px) and (max-width:1400px) {
    
     .grid-item {
@@ -3027,45 +2816,11 @@ tr.mat-row {
     .booking .mat-tab-body-wrapper {
         margin-top:5% !important;
     }
-    
-   
-    .fc-time-grid-container {
-        overflow-y: scroll !important;
-        // height: 492px !important;
-    }
-    // .fc-day-grid-container {
-    //     overflow-y: scroll !important;
-    //     height: 1032px !important;
-    // }
-    .fc-resourceTimeGridDay-view .fc-timeGrid-view {
-        overflow-y: scroll !important;
-        height: 514px !important;
-    }
+       
 }
-@media only screen and (min-width: 1200px) and (max-width:1350px) {
-    .fc-dayGridMonth-view {
-        overflow-y: hidden !important;
-        // height: 488px !important;
-        height: 488px !important;
-    }
-    .fc-body .fc-scroller {
-      //  overflow-y: scroll !important;        
-        overflow-x: hidden !important;
-    }
-}
+
 @media only screen and (min-width: 1351px) and (max-width:1950px) {
-    .fc-dayGridMonth-view {
-        overflow-y: hidden !important;
-        // height: 488px !important;
-        height:576px !important;
-    }
-    .fc-day-grid .fc-row {
-        height: 8em !important;
-    }
-    .fc-body .fc-scroller {
-       // overflow-y: scroll !important;        
-        overflow-x: hidden !important;
-    }
+  
     .saledialog {
         right: auto;
         left: auto;
@@ -3074,53 +2829,12 @@ tr.mat-row {
     }
 }
 @media only screen and (min-width:620px) and (max-width:767px) {
-    .fc-dayGridMonth-view {
-        overflow-y: hidden !important;
-        // height: 488px !important;
-        height: 576px !important;
-    }
-    .fc-day-grid .fc-row {
-        height: 8em !important;
-    }
-    .fc-body .fc-scroller {
-        overflow-y: scroll !important;        
-        overflow-x: hidden !important;
-    }
+ 
     .halfwidth {
         width:50% !important;
     }
 }
-@media only screen and (min-width:770px) and (max-width:1199px) {
-    .fc-dayGridMonth-view {
-        overflow-y: hidden !important;
-        // height: 488px !important;
-        height: 576px !important;
-    }
-    .fc-day-grid .fc-row {
-        height: 8em !important;
-    }
-    .fc-body .fc-scroller {
-     //   overflow-y: scroll !important;        
-        overflow-x: hidden !important;
-    }
-}
-@media only screen and (min-width:768px) and (max-width:769px) {
-    .fc-dayGridMonth-view {
-        overflow-y: hidden !important;
-        // height: 488px !important;
-        height: 721px !important;
-    }
-    .fc-day-grid .fc-row {
-        height: 10em !important;
-    }
-    .fc-day-grid-container {
-        height: 660px !important;
-    }
-    .fc-body .fc-scroller {
-        overflow-y: hidden !important;        
-        overflow-x: hidden !important;
-    }
-}
+
 @media only screen and (min-width: 1090px) and (max-width:2300px) {
     .grid-item {
         width:100% !important;

@@ -96,7 +96,7 @@ td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
     color:rgba(255,255,255,.54)!important;
 }
 .mat-drawer-content {
-    height: 95vh !important; 
+    height: 91vh !important; 
     // overflow: hidden !important;
 }
 .mat-nav-list a {
@@ -407,6 +407,17 @@ span:focus {
     padding:0.5375em 0 !important;
     //padding:0.5em 0 !important;
 }
+::ng-deep.mat-form-field-disabled .mat-form-field-underline {
+    background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 1) 0,
+    rgba(0, 0, 0, 0.42) 33%,
+    #c2c7cc 0
+  ) !important;
+  background-size: 1px 100% !important;
+  background-repeat: repeat-x !important;
+}
+	
 .mat-form-field-appearance-legacy .mat-form-field-underline {
     background: none !important;
 }

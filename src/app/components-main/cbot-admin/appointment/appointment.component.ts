@@ -1,20 +1,16 @@
-import { Component, OnInit, ViewChild, TemplateRef, HostBinding } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, HostBinding, ElementRef } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
-import { BookingComponent } from 'src/app/shared/dialog/booking/booking.component';
 import Swal from 'sweetalert2';
 import { FullCalendarComponent } from '@fullcalendar/angular';
-import { EventInput } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGrigPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
+import interactionPlugin, { Draggable } from '@fullcalendar/interaction';
 import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
 import { Router } from '@angular/router';
-import { DateTime, Info } from 'luxon';
-import moment from 'moment';
-import { RecurPopupComponent } from 'src/app/shared/dialog/recur-popup/recur-popup.component';
+import timeGridPlugin from '@fullcalendar/timegrid';
 
 export interface PeriodicElement {
   name: string;
@@ -81,8 +77,11 @@ export class AppointmentComponent implements OnInit {
   source: string;
   bookedTime:string;
   resourceName: string;
+  options: any;
+  eventsModel: any;
   showModal: boolean;  
-  @ViewChild(FullCalendarComponent, {static: true}) calendarComponent: FullCalendarComponent;  
+  @ViewChild(FullCalendarComponent, {static: true}) calendarComponent: FullCalendarComponent;
+  @ViewChild('externalEvents', {static:false}) public external: ElementRef;
   calendarVisible = true;
   calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin, resourceTimeGridPlugin];
   calendarWeekends = true;
@@ -167,14 +166,33 @@ export class AppointmentComponent implements OnInit {
   clickEvent(val) {
     console.log(val);
   }
- 
+  eventDragStop(model) {
+    console.log(model);
+  }
   toggleWeekends() {
     this.calendarWeekends = !this.calendarWeekends;
   }
   startBill(billId) {
     this.router.navigate(['/beautelabs/cbot-admin/saleCreate', billId])
   }
-
+  updateHeader() {
+    this.options.header = {
+      left: 'prev,next myCustomButton',
+      center: 'title',
+      right: ''
+    };
+  }
+  updateEvents() {
+    this.eventsModel = [{
+      title: 'Updaten Event',
+      start: this.yearMonth + '-08',
+      end: this.yearMonth + '-10'
+    }];
+  }
+  get yearMonth(): string {
+    const dateObj = new Date();
+    return dateObj.getUTCFullYear() + '-' + (dateObj.getUTCMonth() + 1);
+  }
   handleDateClick(arg) {
     if(arg.date >= this.todayDate) {    
       this.router.navigate(['/beautelabs/cbot-admin/bookingCreate', { Seldate: arg.dateStr }]);
@@ -200,10 +218,32 @@ export class AppointmentComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    //this.initFunction();
     this.calicon="list";
     this.calString = "Calendar";
     this.selIcon = "event";    
+    this.options = {
+      editable: true,     
+      header: {
+        left: 'prev,next today myCustomButton',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+      },    
+      // add other plugins
+      plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin, resourceTimeGridPlugin]
+    };
+    
+}
+
+ngAfterViewInit() {  
+  new Draggable(this.external.nativeElement, {
+        itemSelector: '.fc-event',
+        eventData: function(eventEl) {
+          
+          return {
+            title: eventEl.innerText
+          };
+        }
+    });
 }
 caltoggle() { 
   if(this.calicon == "event_note") { 

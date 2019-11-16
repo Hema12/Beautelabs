@@ -424,30 +424,29 @@ export class DashboardComponent implements OnInit {
   public pieChartPlugins = [pluginDataLabels];
   public pieRevenueChartPlugins = [{
     pluginDataLabels,
-    beforeInit: function(chart, options) {
-      chart.legend.afterFit = function() {
-        this.height += 1; // must use `function` and not => because of `this`
-      };
-    }
+    // beforeInit: function(chart, options) {
+    //   chart.legend.afterFit = function() {
+    //     this.height += 1; // must use `function` and not => because of `this`
+    //   };
+    // }
   }]
   public pieRevenueChartOptions: ChartOptions = {
-    responsive: true,
-    
+    responsive: true,    
     maintainAspectRatio: false,
-    elements: 
-    { 
-        point: 
-        {
-            radius: 0,
-            hitRadius: 0,            
-            hoverRadius: 0,
-            hoverBorderWidth: 0,
+    // elements: 
+    // { 
+    //     point: 
+    //     {
+    //         radius: 0,
+    //         hitRadius: 0,            
+    //         hoverRadius: 0,
+    //         hoverBorderWidth: 0,
             
-        }
-    },
+    //     }
+    // },
     legend: {
-      reverse: true,
-      position: 'bottom',      
+      // reverse: true,
+      position: 'top',      
       labels: {
         fontFamily: "Roboto",
         boxWidth: 15,
@@ -458,16 +457,13 @@ export class DashboardComponent implements OnInit {
     },  
     plugins:{
      animationEnabled: true,   
-     innerRadius: 0,
-     outerRadius: 0,
+    //  innerRadius: 0,
+    //  outerRadius: 0,
       datalabels: {        
         color:'black',
         formatter: (value, ctx) => {
           let sum = 0;
           let dataArr = ctx.chart.data.datasets[0].data;
-          // dataArr.map(data => {
-          //     sum += data;
-          // });
           let val = value +"K";
           return val;
       },
