@@ -868,6 +868,11 @@ th {
     background-size: 5px 5px;
     background-image: linear-gradient(45deg, transparent 46%, rgba(16, 25, 40, 0.2) 49%, rgba(16, 25, 40, 0.2) 51%, transparent 55%);
 }
+th.fc-day-header.fc-widget-header {
+    border-color: #888 !important;
+    font-size: 11px !important;
+    font-weight: normal !important;
+}
 td.fc-day.fc-widget-content.fc-future {
     //background: #78e6c8a1;
     // background-image: linear-gradient(45deg, transparent 46%, rgba(16, 25, 40, 0.2) 49%, rgba(16, 25, 40, 0.2) 51%, transparent 55%);
@@ -880,9 +885,9 @@ td.fc-day.fc-widget-content.fc-future {
     //  background-image: linear-gradient(45deg, transparent 46%, rgba(16, 25, 40, 0.2) 49%, rgba(16, 25, 40, 0.2) 51%, transparent 55%);
     //  background-size: 5px 5px;
  }
- .fc-unthemed th, .fc-unthemed td, .fc-unthemed thead, .fc-unthemed tbody, .fc-unthemed .fc-divider, .fc-unthemed .fc-row, .fc-unthemed .fc-content, .fc-unthemed .fc-popover, .fc-unthemed .fc-list-view, .fc-unthemed .fc-list-heading td {
-     border-color: #795548;
- }
+//  .fc-unthemed th, .fc-unthemed td, .fc-unthemed thead, .fc-unthemed tbody, .fc-unthemed .fc-divider, .fc-unthemed .fc-row, .fc-unthemed .fc-content, .fc-unthemed .fc-popover, .fc-unthemed .fc-list-view, .fc-unthemed .fc-list-heading td {
+//      border-color: #795548;
+//  }
 .fc-toolbar.fc-header-toolbar {
     margin-bottom: 0.5em !important;
 }
@@ -896,9 +901,9 @@ td.fc-day.fc-widget-content.fc-future {
     height: 4em !important;
 }
 .fc-day-grid .fc-row {
-    height: 10em !important;
+    min-height: 10em !important;
 }
-.fc-view-container *, .fc-view-container *:before, .fc-view-container *:after {
+.fc-view-container *:before, .fc-view-container *:after {
     font-size: 11px !important;
 }
 .fc-icon:hover{
@@ -927,8 +932,8 @@ td.fc-day.fc-widget-content.fc-future {
     line-height: 45px !important;
 }
 .fc-day-grid-event {
-    margin: 1px 2px 4px 0px;
-    padding: 0 1px;
+    margin: 2px 3px 4px 3px;
+    padding: 2px;
     color: #fff !important;
     border:none !important;
 }
@@ -938,6 +943,58 @@ td.fc-day.fc-widget-content.fc-future {
 .fc-event, .fc-event-dot {
     background-color: #03a9f4;
 }
+.fc-event-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+}
+.fc-list-table td {
+    border-width: 1px 0 0 !important;
+    padding: 8px 14px !important;
+}
+.fc-ltr .fc-list-item-marker {
+    padding-right: 0;
+}
+.fc td, .fc th {
+    border-style: solid;
+    border-width: 1px;
+    padding: 0;
+    vertical-align: top;
+    font-size: 12px;
+}
+.fc-list-item-marker, .fc-list-item-time {
+    white-space: nowrap;
+    width: 1px;
+}
+ .fc-list-item-time {
+   
+    width: 20% !important;
+    float: left !important;
+}
+.fc-list-item-marker {
+    width:5% !important;
+    float: left !important;
+}
+.fc-list-item-title {
+    float: left !important;
+}
+.fc-ltr .fc-list-heading-alt, .fc-rtl .fc-list-heading-main {
+    float: right;
+}
+.fc-list-heading td {
+    font-weight: 700 !important;
+    font-size: 13px !important;
+}
+.fc-list-view, .fc-unthemed .fc-list-heading td, .fc-list-item td {
+    border: 1px solid #fff !important;
+    padding:5px;
+}
+.serviceList .fc-event {
+    margin:3px 0 !important;
+    cursor: pointer !important;
+    padding: 5px !important;
+}
 .dragservice .fc-event {
     margin: 10px 0 !important;
     cursor: pointer !important;
@@ -946,8 +1003,10 @@ td.fc-day.fc-widget-content.fc-future {
 .fc-event {
     border: 0px !important;
     color: #fff !important;    
-    background: #109adc !important;
+    // background: #109adc !important;
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(76, 175, 80, 0.4);
+    //     width: 10px;
+    //   border-radius: 12px;    
 }
 .fc-service {
     border: 0px !important;
@@ -982,10 +1041,10 @@ td.fc-day.fc-widget-content.fc-future {
 //     left:0% !important;
 //     margin-right: 0% !important;
 // }
-.fc-time-grid .fc-event, .fc-time-grid .fc-bgevent {
-    position: relative !important;
-}
-.fc-resourceTimeGridDay-button, .fc-dayGridMonth-button, .fc-timeGridWeek-button, .fc-timeGridDay-button{
+// .fc-time-grid .fc-event, .fc-time-grid .fc-bgevent {
+//     position: relative !important;
+// }
+.fc-resourceTimeGridDay-button, .fc-dayGridMonth-button, .fc-timeGridWeek-button, .fc-timeGridDay-button, .fc-listWeek-button {
     color: #1a263a !important;
     border-radius: 0 !important;
     background-color: #f7f7f8 !important;
@@ -2051,7 +2110,7 @@ tr.mat-row {
         .card .body {
           font-size: 14px;
           color: #555;
-          padding: 5px 15px; }
+          padding: 13px 15px; }
           .card .body .col-xs-1,
           .card .body .col-sm-1,
           .card .body .col-md-1,

@@ -51,6 +51,10 @@ td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
 .mat-table .mat-icon {
     font-size: $secondary-font-size-xl !important;
 }
+.serviceList{border:none !important;}
+.serviceList td{
+    border:none !important;
+}
 .staffcategory th.mat-header-cell {
     width:20% !important;
 }

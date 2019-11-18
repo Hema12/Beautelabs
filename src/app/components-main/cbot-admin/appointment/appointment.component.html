@@ -7,7 +7,7 @@
 </div> -->
     
 <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mall-zero pall-zero">            
-    <div class="col-xl-1 col-sm-2 topwidth pall-zero">
+    <div class="col-xl-1 col-sm-2 topwidth">
         <button mat-raised-button [routerLink]="['/beautelabs/cbot-admin/bookingCreate']" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button>  
     </div>
     <div class="col-xl-1 col-sm-2 topwidth">
@@ -32,15 +32,39 @@
             <div class="col-sm-12 col-lg-3 col-xl-3 mb-10">
                 <mat-card>
                     <mat-card-content> 
-                        <div class="dragservice" #externalEvents>
-                            <h3>Services</h3>
-                            <div class='fc-event fc-service-bleech'>Bleech - Divya</div>                        
-                            <div class='fc-event fc-service-waxing'>Waxing - Nisha</div>
-                            <div class='fc-event fc-service-bodypolish'>Body Polishing - Devi</div>                            
-                            <div class='fc-event fc-service-facial'>Golden Facial - Nithya</div>
-                            <div class='fc-event fc-service-haircut'>Haircut - Ravi</div>                           
-                            <div class='fc-event fc-service-bleech'>Bleech - Nisha</div>
-                            <!-- <div class='fc-event fc-service-haircut'>Haircut - Preethi</div>
+                        <div #externalEvents>
+                            <!-- <h3>Services</h3> -->
+                            <div>
+                                <mat-form-field class="example-full-width">                                   
+                                    <input matInput placeholder="Name" [(ngModel)]="services.name">
+                                </mat-form-field>                                 
+                               <!--  <mat-form-field class="belowlinkinput selfield">
+                                    <mat-label class="selplaceHolder">Service</mat-label>
+                                    <mat-select [(ngModel)]="selectedValue">
+                                        <mat-option *ngFor="let service of serviceList" [value]="service.name">
+                                        {{service.name}}
+                                        </mat-option>                                    
+                                    </mat-select>                                                
+                                </mat-form-field> -->
+                                <button mat-raised-button color="primary" (click)="addNew()">Save</button>
+                            </div>
+                            <table mat-table [dataSource]="dataServiceSource" class="serviceList">
+                                <ng-container matColumnDef="name">
+                                    <th mat-header-cell *matHeaderCellDef style="display: none;"> </th>
+                                    <td mat-cell *matCellDef="let element" class='fc-event fc-service-bleech'> {{element.name}} </td>
+                                </ng-container>                                 
+                                <tr mat-header-row *matHeaderRowDef="displayedServiceColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedServiceColumns;"></tr>
+                            </table>
+                            <div  class="dragservice">
+                                <div class='fc-event fc-service-bleech'>Bleech</div>                        
+                                <div class='fc-event fc-service-waxing'>Waxing</div>
+                                <div class='fc-event fc-service-bodypolish'>Body Polishing</div>                            
+                                <div class='fc-event fc-service-facial'>Golden Facial</div>
+                                <div class='fc-event fc-service-haircut'>Haircut</div>  
+                            </div>                         
+                           <!--  <div class='fc-event fc-service-bleech'>Bleech - Nisha</div>
+                            <div class='fc-event fc-service-haircut'>Haircut - Preethi</div>
                             <div class='fc-event fc-service-bodypolish'>Body Polishing - Usha</div>
                             <div class='fc-event fc-service-facial'>Golden Facial - Deepthi</div>
                             <div class='fc-event fc-service-haircut'>Haircut - Prakash</div> -->
@@ -54,18 +78,20 @@
                             <full-calendar
                                 *ngIf="options" #calendar
                                 #fullcalendar
-                                defaultView="dayGridMonth"
+                                defaultView="timeGridDay"
                                 [editable]="true"
+                                [eventLimit]="true"
                                 [droppable] ="true"
                                 [header]="options.header"
                                 (dateClick)="handleDateClick($event)"
                                 (eventDragStop)="eventDragStop($event)"
                                 [plugins]="options.plugins"
-                                (eventClick)="eventClick($event)"
-                               
+                                (eventClick)="eventClick($event)"                               
                                 slotDuration='00:15:00'
                                 slotMinutes= '00:15:00'
                                 [events]="events"
+                                (eventRender)="eventRender($event)"
+                                (dayRender)="dayRender($event)"
                                 [nowIndicator]= "true"                                
                                 [aspectRatio] = '2'
                                 [showNonCurrentDates] = "true">
