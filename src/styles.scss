@@ -373,6 +373,12 @@ th {
 .bookingstaff {
     margin-top:0.6%;
 }
+.bookingstaff span.mat-form-field-label-wrapper label {
+    color:#fff !important;
+}
+.bookingstaff .mat-select-arrow {
+    color:#fff !important;
+}
 .bookingbtn {
     height: 30px !important;
     margin-top: -0% !important;
@@ -382,6 +388,8 @@ th {
     line-height: 30px !important;
     padding:0px 6px !important;
     min-width: 60px !important;
+    border: 1px solid #fff !important;
+    border-radius: 0px !important;
 }
 .bookingcancelbtn {
     margin-top: -0% !important;
@@ -603,6 +611,7 @@ th {
     width: fit-content;
     margin-bottom: 6%;
 }
+
 .topwidth {
     width:20% !important;
 }
@@ -834,39 +843,55 @@ th {
     background: $primary-color-white !important;
 }
 .fc-button {
-    padding:0.2em 0.1em !important;
-    background: #fff !important;
-    color: #000 !important;
+    padding:3px 10px !important;
+    background: #0168c1 !important;
+    color: #fff !important;
     opacity: 1 !important;
-    border:1px solid #ddd !important;
-    font-family: $primary-font-family-table !important;
+    border:none !important;
+    border-radius: 0px !important;
+    // font-family: $primary-font-family-table !important;
 }
 .fc-center h2 {
     margin-bottom: 0px;
-    font-size: 11px;
+    font-size: 15px;
     background: #fff;
     width: auto;
     min-width: 130px;
     text-align: center;
     opacity: 1;
-    border:1px solid #ddd !important;
+    // border:1px solid #ddd !important;
     color: #000;
     height: 29px;
     line-height: 29px;
     border-radius: 2px;
-    font-family: $primary-font-family-table !important;
+    // font-family: $primary-font-family-table !important;
 }
-.fc-right .fc-button {
-    width:48px !important;
-}
-.fc-today-button {
-    width:45px !important;
+// .fc-right .fc-button {
+//     width:48px !important;
+// }
+// .fc-today-button {
+//     width:45px !important;
+// }
+.rightbtn {
+    float: right;
+    position: absolute;
+    right: 30px;
+    top:-3px;
 }
 .fc-past {
     //background: #bbbbbb;
     // background: #eef0f2;
     background-size: 5px 5px;
     background-image: linear-gradient(45deg, transparent 46%, rgba(16, 25, 40, 0.2) 49%, rgba(16, 25, 40, 0.2) 51%, transparent 55%);
+}
+.fc-toolbar > * > :not(:first-child) {
+    margin-left: 0px !important;
+}
+.fc-prev-button {
+    margin-right: 2px !important;
+}
+.fc-today-button {
+    margin-right: 2px !important;
 }
 th.fc-day-header.fc-widget-header {
     border-color: #888 !important;
@@ -890,6 +915,9 @@ td.fc-day.fc-widget-content.fc-future {
 //  }
 .fc-toolbar.fc-header-toolbar {
     margin-bottom: 0.5em !important;
+    margin-top:-20px !important;
+    margin-left: 1% !important;
+    width:80% !important;
 }
 .fc-dayGridMonth-button .bookingstaff {
     top:1% !important;
@@ -907,7 +935,7 @@ td.fc-day.fc-widget-content.fc-future {
     font-size: 11px !important;
 }
 .fc-icon:hover{
-    color:#1a5fd2;
+    color:#ddd;
 }
 // .fc-head {
 //     background: #2c3e500d !important;
@@ -927,6 +955,12 @@ td.fc-day.fc-widget-content.fc-future {
 //     padding: 0;
 //     vertical-align: top;
 // }
+
+.fc-day-grid .fc-event-container a {
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 12px !important;
+}
 .fc-day-header {
     height: 45px !important;
     line-height: 45px !important;
@@ -938,6 +972,9 @@ td.fc-day.fc-widget-content.fc-future {
     border:none !important;
 }
 .fc-day-grid-event .fc-time {
+    display: none;
+}
+.fc-day-grid-event .fc-title {
     display: none;
 }
 .fc-event, .fc-event-dot {
@@ -969,11 +1006,11 @@ td.fc-day.fc-widget-content.fc-future {
 }
  .fc-list-item-time {
    
-    width: 20% !important;
+    width: 30% !important;
     float: left !important;
 }
 .fc-list-item-marker {
-    width:5% !important;
+    width:8% !important;
     float: left !important;
 }
 .fc-list-item-title {
@@ -998,15 +1035,16 @@ td.fc-day.fc-widget-content.fc-future {
 .dragservice .fc-event {
     margin: 10px 0 !important;
     cursor: pointer !important;
-    padding: 5px !important;
+    padding: 4px 5px !important;
 }
 .fc-event {
     border: 0px !important;
     color: #fff !important;    
     // background: #109adc !important;
+    font-size: $secondary-font-size !important;
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(76, 175, 80, 0.4);
     //     width: 10px;
-    //   border-radius: 12px;    
+    border-radius: 5px;    
 }
 .fc-service {
     border: 0px !important;
@@ -1034,7 +1072,14 @@ td.fc-day.fc-widget-content.fc-future {
 }
 .fc-service-bodypolish {
     // background:linear-gradient(45deg, #f55247, #e47e76) !important;
-    background:linear-gradient(45deg, #f57269, #ec7970) !important;
+    background:linear-gradient(45deg, #f57269, #f9938b) !important;
+    // background: linear-gradient(45deg, #3997e8, #3287d0) !important;
+}
+input {
+    padding:2px !important;
+}
+input.active {
+    background: #ddd !important;
 }
 // a:not([href]):not([tabindex]) {
 //     top:696px !important;
@@ -1067,7 +1112,59 @@ td.fc-day.fc-widget-content.fc-future {
 .abspos {
     position: absolute !important;
 }
-
+.calendar-btn {
+    min-width:38px !important;
+    line-height: 26px !important;
+    border-radius: 0px !important;
+    box-shadow: none !important;
+    border:1px solid #0168c1 !important;
+    margin-right: 2px !important;
+    background: #0168c1 !important;
+    color:#fff !important;
+}
+.calendartype-btn {
+    min-width:50px !important;
+    line-height: 26px !important;
+    border-radius: 0px !important;
+    box-shadow: none !important;
+    // border:1px solid #0168c1 !important;
+    margin-right: 2px !important;
+    border:1px solid #0168c1 !important;
+    background: #0168c1 !important;
+    color:#fff !important;
+    // background: linear-gradient(45deg, #109adc, #94d1fd) !important;
+}
+.card-block ul {
+    padding-left: 0px !important;
+}
+.cal-month-view .cal-day-cell {
+    min-height: 115px !important;
+}
+.cal-month-view .cal-open-day-events {
+    // background: linear-gradient(45deg, #3e6c92, #99c1e4) !important;    
+    // background: linear-gradient(45deg, #205682, #7ab2e2) !important;
+    // box-shadow: inset 0 0 15px 0 #205682 !important;
+    background: #eeeeee !important;
+    color:#383a3c !important;
+    box-shadow: none !important;
+}
+.dark-btn {
+    background: #343D45 !important;
+    border-radius: 0px !important;
+    color: $primary-color-white !important;
+    min-width: 80px !important;
+    line-height: 35px !important;
+}
+.add-btn {
+    border-radius: 0px !important;
+    color: $primary-color-white !important;
+    min-width: 80px !important;
+}
+.service-del {
+    font-size: 16px;
+    vertical-align: top;
+    float: right;
+}
 //menu
 .menuicon {
     margin-top: 2vh;
@@ -1659,7 +1756,6 @@ tr.mat-row {
         font-size: 26px;
         margin-top: -4px;
         color: #555; }
-  
   .info-box-3.hover-zoom-effect .icon i {
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
@@ -1926,6 +2022,9 @@ tr.mat-row {
   }
   .white-font {
       color:$primary-color-white !important
+  }
+  .dark-font {
+      color:$primary-color-darkblue !important;
   }
   .small-icon {
       font-size: $primary-font-size !important;
@@ -2452,6 +2551,10 @@ tr.mat-row {
     .logo {
         min-width: 30% !important;
     }
+    .fc-scroller {
+        overflow: hidden scroll !important;
+        height: 180px !important;
+    }
   }
   @media only screen and (min-width:420px) and (max-width: 610px) {
     .logo {
@@ -2494,6 +2597,10 @@ tr.mat-row {
 @media only screen and (min-width: 411px) and (max-width:1200px) {
     .header {
         height: 5vh;
+    }
+    .fc-scroller {
+        overflow: hidden scroll !important;
+        // height: 160px !important;
     }
 }
 

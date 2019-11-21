@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild, TemplateRef, HostBinding, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, HostBinding, ElementRef, ChangeDetectionStrategy, Input, Output } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+// import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+// import { BsModalService } from 'ngx-bootstrap/modal';
+// import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import Swal from 'sweetalert2';
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -12,6 +12,47 @@ import interactionPlugin, { Draggable } from '@fullcalendar/interaction';
 import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
 import { Router } from '@angular/router';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import moment from 'moment';
+
+import {
+  startOfDay,
+  endOfDay,
+  subDays,
+  addDays,
+  endOfMonth,
+  isSameDay,
+  isSameMonth,
+  addHours
+} from 'date-fns';
+import { Subject, Subscription } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {
+  CalendarEvent,
+  CalendarEventAction,
+  CalendarEventTimesChangedEvent,
+  CalendarView
+} from 'angular-calendar';
+import { EventEmitter } from 'events';
+
+
+const colors: any = {
+  red: {
+    primary: '#ad2121',
+    secondary: '#FAE3E3'
+  },
+  blue: {
+    primary: '#1e90ff',
+    secondary: '#D1E8FF'
+  },
+  yellow: {
+    primary: '#e3bc08',
+    secondary: '#FDF1BA'
+  }
+};
+
+interface MyCalendarEventTimesChangedEvent extends CalendarEventTimesChangedEvent {
+  droppedOutsideCalendar?: boolean;
+}
 
 export interface PeriodicElement {
   name: string;
@@ -58,7 +99,8 @@ export interface Status {
 @Component({
   selector: 'app-appointment',
   templateUrl: './appointment.component.html',
-  styleUrls: ['./appointment.component.scss']
+  styleUrls: ['./appointment.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppointmentComponent implements OnInit {
   public calicon:any;
@@ -70,18 +112,20 @@ export class AppointmentComponent implements OnInit {
   taskfield:any;
   displayedColumns: string[] = ['sno', 'name', 'mobile','serviceName','staffName','startTime','serviceDuration','servicePrice','status','source','action'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
-  modalRef: BsModalRef;
+  // modalRef: BsModalRef;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   animal: string;
   customerName: string;  
   customerMobile: string;
-  customerEmail: string;
+  customerEmail: string;  
   serviceTitle: string;
   bookingStatus: string;
   bookingStatusBg: string;
   startTime:string;
   eventId:string;
+  listView: boolean = false;
+  defaultView: boolean = true;
   endTime:string;
   staffName: string;
   source: string;
@@ -89,10 +133,19 @@ export class AppointmentComponent implements OnInit {
   resourceName: string;
   options: any;
   selectedService:any;
+  selectedServiceName: string;
   eventsModel: any;
   showModal: boolean;  
   @ViewChild(FullCalendarComponent, {static: true}) calendarComponent: FullCalendarComponent;
   @ViewChild('externalEvents', {static:false}) public external: ElementRef;
+  @ViewChild('modalContent', { static: false }) modalContent: TemplateRef<any>;
+  view: CalendarView = CalendarView.Month;
+  CalendarView = CalendarView;
+  viewDate: Date = new Date();
+  modalData: {
+    action: string;
+    event: CalendarEvent;
+  };
   calendarVisible = true;
   calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin, resourceTimeGridPlugin];
   calendarWeekends = true;
@@ -144,9 +197,9 @@ export class AppointmentComponent implements OnInit {
   //   { title: 'Facial',  customerName:'Meera', customerMobile:'9632574512', customerEmail:'nisha23@gmail.com', resourceId:'1', startTime: new Date('2019-10-17'), staffName:'Devi',  source:'Phone', bookedTime:'10:10AM', backgroundColor:'#407d5d' },
   //   { title: 'Hair Coloring',  customerName:'Nisha', customerMobile:'9632574512', customerEmail:'nisha23@gmail.com', resourceId:'3', startTime: new Date('2019-10-16'), staffName:'Nithya',  source:'Walk-in', bookedTime:'04:20PM', backgroundColor:'#34cf7d' }
   // ]; 
-  events: any = [
+  eventsOld: any = [
     {id:'1', title: 'Hair Cut', resourceId:'1', start: new Date('2019-11-20 02:30:00'),  backgroundColor:'#F3565D'},
-    {id:'2',  title: 'Bleech',  resourceId:'2',start: new Date('2019-11-18 05:30:00'), backgroundColor:'##FF5722' },
+    {id:'2',  title: 'Bleech',  resourceId:'2',start: new Date('2019-11-18 05:30:00'), backgroundColor:'#fb6a3d' },
     {id:'3',  title: 'Facial',  resourceId:'1', start: new Date('2019-11-17 10:15:00'),backgroundColor:'#f14343' },
     {id:'4',  title: 'Hair Coloring', resourceId:'3', start: new Date('2019-11-16 03:00:00'),  backgroundColor:'#9B59B6' },
     {id:'5',  title: 'Tan Mask', resourceId:'3', start: new Date(),  backgroundColor:'#4d31e6' },
@@ -164,7 +217,7 @@ export class AppointmentComponent implements OnInit {
     this.bookingStatusBg = model.event.backgroundColor;    
     if(this.bookingStatusBg == '#F3565D') {
       this.bookingStatus = 'New';
-    } else if(this.bookingStatusBg == '#FF5722') {
+    } else if(this.bookingStatusBg == '#fb6a3d') {
       this.bookingStatus = 'Arrived';
     }
     else if(this.bookingStatusBg == '#1BBC9B') {
@@ -222,13 +275,182 @@ export class AppointmentComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
- 
-   constructor(private modalService: BsModalService, public dialog: MatDialog, public router: Router) { }
+  
+
+  actions: CalendarEventAction[] = [
+    {
+      label: '<i class="fa fa-fw fa-pencil dark-font"></i>',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.handleEvent('Edited', event);
+      }
+    },
+    {
+      label: '<i class="fa fa-fw fa-trash dark-font"></i>',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.events = this.events.filter(iEvent => iEvent !== event);
+       // this.handleEvent('Deleted', event);
+      }
+    }
+  ];
+
+  refresh: Subject<any> = new Subject();
+
+  events: CalendarEvent[] = [
+    {
+      start: subDays(startOfDay(new Date()), 1),
+      end: addDays(new Date(), 1),
+      title: 'A 3 day event',
+      color: colors.red,
+      actions: this.actions,
+      allDay: true,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true
+    },
+    {
+      start: startOfDay(new Date()),
+      title: 'An event with no end date',
+      color: colors.yellow,
+      actions: this.actions,      
+      draggable: true
+    },
+    {
+      start: subDays(endOfMonth(new Date()), 3),
+      end: addDays(endOfMonth(new Date()), 3),
+      title: 'A long event that spans 2 months',
+      color: colors.blue,
+      allDay: true
+    },
+    {
+      start: addHours(startOfDay(new Date()), 2),
+      end: addHours(new Date(), 2),
+      title: 'A draggable and resizable event',
+      color: colors.yellow,
+      actions: this.actions,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true
+    },
+  ];
+
+  activeDayIsOpen: boolean = false; 
+  externalEvents: CalendarEvent[] = [{
+    title: 'Haircut',
+    color: colors.yellow,
+    start: new Date(),
+    draggable: true,
+    resizable: {
+      beforeStart: true,
+      afterEnd: true
+    },
+  }, {
+    title: 'Facial',
+    color: colors.blue,
+    start: new Date(),
+    draggable: true,
+    resizable: {
+      beforeStart: true,
+      afterEnd: true
+    },
+  }, {
+    title: 'Waxing',
+    color: colors.blue,
+    start: new Date(),
+    draggable: true,
+    resizable: {
+      beforeStart: true,
+      afterEnd: true
+    },
+  }, 
+  {
+    title: 'Body Polishing',
+    color: colors.blue,
+    start: new Date(),
+    draggable: true,
+    resizable: {
+      beforeStart: true,
+      afterEnd: true
+    },
+  }, {
+    title: 'Threading',
+    color: colors.blue,
+    start: new Date(),
+    draggable: true,
+    resizable: {
+      beforeStart: true,
+      afterEnd: true
+    },
+  }, 
+];
+
+
+eventDropped({event, newStart, newEnd, droppedOutsideCalendar}: MyCalendarEventTimesChangedEvent): void {
+  if (!droppedOutsideCalendar) {
+    const externalIndex: number = this.externalEvents.indexOf(event);
+    
+    if (externalIndex > -1) {
+      // this.externalEvents.splice(externalIndex, 1);
+      this.events.push(
+        {
+          start: newStart,
+          end: newEnd,
+          title: event.title,
+          color: colors.yellow,
+          actions: this.actions,
+          resizable: {
+            beforeStart: true,
+            afterEnd: true
+          },
+          draggable: true
+        }
+      );
+    }
+    event.start = newStart;
+    if (newEnd) {
+      event.end = newEnd;
+    }
+    this.viewDate = newStart;
+    this.activeDayIsOpen = true;
+  }
+}
+
+droppedBack(event: CalendarEvent): void {    
+  const internalIndex: number = this.events.indexOf(event);
+  if (internalIndex > -1) {
+    this.events.splice(internalIndex, 1);
+    this.externalEvents.push(event);
+    this.refresh.next();
+  }
+}
+
+  //  constructor(private modalService: BsModalService, public dialog: MatDialog, public router: Router, private modal: NgbModal) { }
+  constructor( public router: Router, private modal: NgbModal) { }
   
    cancelBooking(val) {
      this.bookingStatus = 'Cancelled';  
    }
 
+   addNew(ser) {
+      this.externalEvents.push( { title: this.selectedServiceName,
+      color: colors.blue,
+      start: new Date(),
+      draggable: true,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      } });
+      
+   }
+   selService(val) {
+     console.log(val);
+     const externalIndex: number = this.externalEvents.indexOf(val);
+     this.externalEvents.splice(externalIndex, 1);
+     
+   }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
@@ -240,16 +462,19 @@ export class AppointmentComponent implements OnInit {
       editable: true,
       eventLimit: true, // for all non-TimeGrid views
       header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'timeGridDay,timeGridWeek,dayGridMonth,listWeek'
+         left: 'prev today next',
+         center: 'title',
+        // right: 'timeGridDay,timeGridWeek,dayGridMonth,listWeek'
+        // left: '',
+        // center:'',
+         right: ''
       },    
-      // add other plugins
-      plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin, resourceTimeGridPlugin, listPlugin],    
-      rerenderEvents: function() {
-        console.log('tst');
-        
+      buttonText: {
+        today: 'Today'
       },
+      // add other plugins
+      // plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin, resourceTimeGridPlugin, listPlugin],    
+      plugins: [listPlugin],          
       views: {
         timeGrid: {
           eventLimit: 6 // adjust to 6 only for timeGridWeek/timeGridDay
@@ -258,60 +483,21 @@ export class AppointmentComponent implements OnInit {
           eventLimit: 4
         }
       },     
-      eventRender: function(event, eventElement) {
-        if (event) {
-            eventElement.find("div.fc-content").prepend("<span class='fc-event-dot'></span>");
-        }
-    },
-      eventAfterRender: function (event, element) {
-        (element).tooltip({title:event.title, container: "body"});
-      }
-    // eventAfterAllRender: function (view) {
-    //   // Count events
-    //     var quantity = ('.fc-event').length;
-    //     console.log(quantity);
-    //     return quantity;        
-        
-    // },
-      
-//       dayClick: function(date, allDay, jsEvent, view) {
-//         if (!allDay) {
-//           // strip time information
-//           date = new Date(date.getFullYear(), date.getMonth(), date.getDay());
-//         }
-//         var ar =  function(event) {
-//           if (event.start.year() == date.year() && event.start.month() == date.month() && event.start.day() == date.day()) {
-//             return true;
-//           }
-//           return false;
-//         };
-//         console.log(ar.length);
-//       },
-//       eventRender: function( event, element, view,info ) {
-//         element.find('.fc-title').prepend('<span>123</span> '); 
-//         var tooltip = new tooltip(info.el, {
-//           title: info.event.extendedProps.description,
-//           placement: 'top',
-//           trigger: 'hover',
-//           container: 'body'
-//         });
-//    }
      };
      
     
 }
 
-ngAfterViewInit() {  
-  new Draggable(this.external.nativeElement, {
-        itemSelector: '.fc-event',
-        eventData: function(eventEl) {
-          
-          return {
-            title: eventEl.innerText
-          };
-        }
-    });
-}
+// ngAfterViewInit() {  
+//   new Draggable(this.external.nativeElement, {
+//         itemSelector: '.fc-event',
+//         eventData: function(eventEl) {          
+//           return {
+//             title: eventEl.innerText
+//           };
+//         }
+//     });
+// }
 caltoggle() { 
   if(this.calicon == "event_note") { 
     this.calicon = "list";
@@ -324,22 +510,89 @@ caltoggle() {
   }
 }
 
-addNew(){
-  SERVICE_DATA.push(this.services)
-  this.dataServiceSource = new MatTableDataSource(SERVICE_DATA);
-  this.services = {
-    name :""
-  };
-  }
+// addNew(ser){
+  // SERVICE_DATA.push(this.services);  
+  // this.dataServiceSource = new MatTableDataSource(SERVICE_DATA);
+  // this.services = {
+  //   name :""
+  // };
+  // }
   selectChangeHandler (event: any) {    
     this.selectedService = event.target.value;
   }
-  eventRender(event) {
- //  console.log(event);
-   return event.el.innerText;
-  }   
-  dayRender(e) {    
-    console.log(e);
+
+  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    if (isSameMonth(date, this.viewDate)) {
+      if (
+        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
+        events.length === 0
+      ) {
+        this.activeDayIsOpen = false;
+      } else {
+        this.activeDayIsOpen = true;
+      }
+      this.viewDate = date;
+    }
+  }
+
+  eventTimesChanged({
+    event,
+    newStart,
+    newEnd
+  }: CalendarEventTimesChangedEvent): void {
+    this.events = this.events.map(iEvent => {
+      if (iEvent === event) {
+        return {
+          ...event,
+          start: newStart,
+          end: newEnd
+        };
+      }
+      return iEvent;
+    });
+    this.handleEvent('Dropped or resized', event);
+  }
+
+
+  handleEvent(action: string, event: CalendarEvent): void {
+    console.log(event);
+    
+    this.modalData = { event, action };
+    this.modal.open(this.modalContent, { size: 'lg' });
+  }
+
+  addEvent(): void {
+    this.events = [
+      ...this.events,
+      {
+        title: 'New event',
+        start: startOfDay(new Date()),
+        end: endOfDay(new Date()),
+        color: colors.red,
+        draggable: true,
+        resizable: {
+          beforeStart: true,
+          afterEnd: true
+        }
+      }
+    ];   
+  }
+  deleteEvent(eventToDelete: CalendarEvent) {
+    this.events = this.events.filter(event => event !== eventToDelete);
+  }
+
+  setView(view: CalendarView) {
+    this.defaultView = true;
+    this.view = view;
+    this.listView = false;
+  }
+
+  closeOpenMonthViewDay() {
+    this.activeDayIsOpen = false;
+  }
+  showListView() {        
+    this.listView = true;
+    this.defaultView = false;
   }
 
 }

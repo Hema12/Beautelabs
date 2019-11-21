@@ -199,7 +199,8 @@ span:focus {
 }
 .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
     // background: $primary-color-darkblue !important;
-    background: $primary-bg-button !important;
+    // background: $primary-bg-button !important;
+    background: $primary-blue-bg !important;
    
 }
 .mat-raised-button .mat-primary {
@@ -498,7 +499,10 @@ span:focus {
 .mat-select-value-text {
     font-size: $secondary-font-size !important;
     font-family: $primary-font-family-table !important;
-    color:$primary-color-darkblue !important
+    color:$primary-color-darkblue !important;
+}
+.bookingstaff .mat-select-value-text {
+    color:$primary-color-white !important;
 }
 // .mat-form-field-label-wrapper {
 //     top: -1.04375em !important;
