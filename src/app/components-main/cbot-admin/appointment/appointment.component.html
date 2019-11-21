@@ -8,9 +8,9 @@
 <div _ngcontent-elastic-ui-c29="" class="page-header reverse-padding> topdarkbg">
     </div>
 <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mall-zero pall-zero">            
-    <div class="col-xl-1 col-sm-2 topwidth">
+    <!-- <div class="col-xl-1 col-sm-2 topwidth">
         <button mat-raised-button [routerLink]="['/beautelabs/cbot-admin/bookingCreate']" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button>  
-    </div>
+    </div> -->
     <div class="col-xl-1 col-sm-2 topwidth">
         <button mat-button (click)="caltoggle()" class="white-font"><mat-icon>{{calicon}}</mat-icon>    </button>
     </div>
@@ -39,7 +39,7 @@
                             </mat-form-field>         -->
                             <mat-form-field>
                                 <mat-label>Services</mat-label>
-                                <mat-select [(ngModel)]="selectedServiceName" (ngModelChange)="serviceSelect()">
+                                <mat-select [(ngModel)]="selectedServiceName">
                                     <mat-option value="Haircut">Haircut</mat-option>
                                     <mat-option value="Bleech">Bleech</mat-option>
                                     <mat-option value="Fruit Facial">Fruit Facial</mat-option>
