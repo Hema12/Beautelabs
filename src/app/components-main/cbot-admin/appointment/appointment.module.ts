@@ -9,9 +9,11 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
+import { DayViewSchedulerComponent } from './day-view-scheduler.component';
+
 
 @NgModule({
-  declarations: [AppointmentComponent],
+  declarations: [AppointmentComponent, DayViewSchedulerComponent],
   imports: [
     CommonModule,
     AppointmentRoutingModule,

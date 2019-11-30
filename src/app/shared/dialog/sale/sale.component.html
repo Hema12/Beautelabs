@@ -236,6 +236,7 @@
                                             <td class="col-md-3 col-lg-3 col-xl-3">
                                                 <mat-form-field>
                                                     <input matInput formControlName="grandTotal" [ngModel]="calculateGrandTotal()" readonly disabled />
+                                                    
                                                 </mat-form-field>
                                             </td>                                
                                         </tr>
@@ -243,6 +244,17 @@
                                             <td class="col-md-3 col-lg-3 col-xl-3">Change (₹)</td>
                                             <td class="col-md-3 col-lg-3 col-xl-3">₹ 0</td>                                
                                         </tr>
+                                        <!-- <tr>
+                                            <td>
+                                                    <input
+                                                    type="text"
+                                                    formControlName="testInput"
+                                                    [(ngModel)]="testInput"
+                                                    (keydown)="numberCheck($event)"
+                                                    (keyup)="CommaFormatted($event)"
+                                                  />
+                                            </td>
+                                        </tr> -->
                                     </table>
                                 </div>
                             </div>

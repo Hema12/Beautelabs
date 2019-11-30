@@ -61,21 +61,21 @@ export interface Source {
 
 
 @Component({
-  selector: 'app-booking',
-  templateUrl: './booking.component.html',
-  styleUrls: ['./booking.component.scss'],
+  selector: 'app-new-booking',
+  templateUrl: './new-booking.component.html',
+  styleUrls: ['./new-booking.component.scss'],
   providers: [
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
 
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
   ],
 })
-export class BookingComponent implements OnInit {
+export class NewBookingComponent implements OnInit {
   selfreq: string;
   selFreqendTime: string;
   showRecur: boolean = true;
   showFreq: boolean = false;
-  bookingForm: FormGroup;
+  newBookingForm: FormGroup;
   bookingDate = new FormControl(moment());
   toDay = new Date();
   selDate: any;
@@ -179,7 +179,7 @@ export class BookingComponent implements OnInit {
 
   //    }
   constructor(private formBuilder: FormBuilder, private active_route: ActivatedRoute, private datePipe: DatePipe,
-    private modalService: BsModalService, private dialog: MatDialog, private router: Router, public dialogRef: MatDialogRef<BookingComponent>, 
+    private modalService: BsModalService, private dialog: MatDialog, private router: Router, public dialogRef: MatDialogRef<NewBookingComponent>, 
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.filteredCustomer = this.customerDet.valueChanges
       .pipe(
@@ -189,7 +189,7 @@ export class BookingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.bookingForm = new FormGroup({
+    this.newBookingForm = new FormGroup({
       customerName: new FormControl(null),
       bookingDate: new FormControl(null),
       bookingStatus: new FormControl(null),
@@ -206,31 +206,22 @@ export class BookingComponent implements OnInit {
     if (this.selDate) {
       this.finalTime = this.selDate.slice(11, -9);
       this.serviceTime = this.finalTime;
-      this.bookingForm.controls['bookingDate'].setValue(this.selDate);
+      this.newBookingForm.controls['bookingDate'].setValue(this.selDate);
     }
     if(this.data) {
-      console.log(this.data.bgColor);
-      if(this.data.bgColor == '#ffd619') {
-        this.bookingForm.controls['bookingStatus'].setValue('New');
-      } else if (this.data.bgColor =='#ffa217') {
-        this.bookingForm.controls['bookingStatus'].setValue('Arrived');
-      }else if (this.data.bgColor =='#64c9ff') {
-        this.bookingForm.controls['bookingStatus'].setValue('Started');
-      }else {
-        this.bookingForm.controls['bookingStatus'].setValue('Completed');
-      }
-      this.bookingForm.controls['bookingDate'].setValue(this.data.dt);
-      let formArr = <FormArray>this.bookingForm.controls.service;
+      console.log(this.data.dt);
+      this.newBookingForm.controls['bookingDate'].setValue(this.data.dt);
+      let formArr = <FormArray>this.newBookingForm.controls.service;
       formArr.at(0).patchValue({bookingStartTime:this.data.check})
       formArr.at(0).patchValue({bookingService:this.data.title})
       formArr.at(0).patchValue({bookingStaff:this.data.userName})
     }
     
     
-    // let formArr = <FormArray>this.bookingForm.controls.service;
+    // let formArr = <FormArray>this.newBookingForm.controls.service;
     // formArr.at(0).patchValue({bookingStartTime:this.serviceStartTime})
-    // console.log('aa',this.bookingForm.controls.service.value[0].bookingStartTime);    
-    // this.bookingForm.get('bookingStatus').setValue('New');
+    // console.log('aa',this.newBookingForm.controls.service.value[0].bookingStartTime);    
+    this.newBookingForm.get('bookingStatus').setValue('New');
   }
 
   private _filterCustomer(value: string): Customer[] {
@@ -248,7 +239,7 @@ export class BookingComponent implements OnInit {
   }
 
   addService(): void {
-    this.service = this.bookingForm.get('service') as FormArray;
+    this.service = this.newBookingForm.get('service') as FormArray;
     this.service.push(this.createService());
   }
 
@@ -256,12 +247,12 @@ export class BookingComponent implements OnInit {
     this.service.removeAt(_index);
   }
   create() {
-    // console.log(this.bookingForm.getRawValue());
-    // console.log('Start', this.bookingForm.controls.service.value[0].bookingStartTime);
-    this.bookingForm.controls['customerName'].setValue(this.customerDet.value);
-    // let formArr = <FormArray>this.bookingForm.controls.service;
+    // console.log(this.newBookingForm.getRawValue());
+    // console.log('Start', this.newBookingForm.controls.service.value[0].bookingStartTime);
+    this.newBookingForm.controls['customerName'].setValue(this.customerDet.value);
+    // let formArr = <FormArray>this.newBookingForm.controls.service;
     // formArr.at(0).patchValue({bookingStaff:this.data.check})
-    this.dialogRef.close(this.bookingForm.value);
+    this.dialogRef.close(this.newBookingForm.value);
    // Swal.fire('Success');
   }
 
@@ -319,8 +310,6 @@ export class BookingComponent implements OnInit {
   customerAddEdit(val) {
     this.router.navigate(['/beautelabs/cbot-admin/customerCreate', val])
   }
-  close() {
-    this.dialogRef.close();
-  }
+
 }
 

@@ -8,13 +8,13 @@
 <div _ngcontent-elastic-ui-c29="" class="page-header reverse-padding> topdarkbg">
     </div>
 <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mall-zero pall-zero">            
-    <!-- <div class="col-xl-1 col-sm-2 topwidth">
-        <button mat-raised-button [routerLink]="['/beautelabs/cbot-admin/bookingCreate']" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button>  
-    </div> -->
+    <div class="col-xl-1 col-sm-2 topwidth">
+        <button mat-raised-button [routerLink]="['/beautelabs/cbot-admin/newBookingCreate']" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button>  
+    </div>
     <div class="col-xl-1 col-sm-2 topwidth">
         <button mat-button (click)="caltoggle()" class="white-font"><mat-icon>{{calicon}}</mat-icon>    </button>
     </div>
-    <div class="col-xl-3 col-lg-3 col-sm-2 topwidth">
+    <!-- <div class="col-xl-3 col-lg-3 col-sm-2 topwidth">
         <mat-form-field class="bookingstaff">
             <mat-label>Staff</mat-label>
             <mat-select>
@@ -26,92 +26,508 @@
                 <mat-option value="last month">Ravi</mat-option>
             </mat-select>
         </mat-form-field> 
-    </div>
+    </div> -->
 </div>
 <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mall-zero pall-zero mt-1">      
-    <div class='row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mall-zero pall-zero' *ngIf="selIcon=='event'">            
-            <div class="col-sm-12 col-lg-2 col-xl-2 mb-10">
+    <div class='row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mall-zero pall-zero' *ngIf="selIcon=='event'">                                    
+        <div class="row col-sm-12 col-lg-12 col-xl-12 mb-10 pall-zero mall-zero" *ngIf="defaultView && view=='month'">            
+            <div class="col-sm-12 col-lg-12 col-xl-12 mb-10">
                 <mat-card>
                     <mat-card-content> 
+                        <div class="row col-md-12 col-xl-12 col-lg-12">
+                            <div class="col-md-3 col-xl-3 col-lg-3">
+                                <button mat-raised-button mwlCalendarPreviousView [view]="view" class="calendar-btn"
+                                    [(viewDate)]="viewDate"
+                                    (viewDateChange)="closeOpenMonthViewDay()">
+                                    <mat-icon>keyboard_arrow_left</mat-icon>
+                                </button> 
+                                <button mat-raised-button class="calendar-btn"
+                                    mwlCalendarToday
+                                    [(viewDate)]="viewDate" >
+                                    Today
+                                </button>
+                                <button mat-raised-button mwlCalendarNextView [view]="view" class="calendar-btn"
+                                        [(viewDate)]="viewDate"
+                                        (viewDateChange)="closeOpenMonthViewDay()" >
+                                    <mat-icon>keyboard_arrow_right</mat-icon>
+                                </button>
+                            </div>
+                            <div class="col-md-6 text-center col-xl-6 col-lg-6">
+                                <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+                            </div>
+                            <div class="col-md-3 text-right col-xl-3 col-lg-3">
+                                <div class="btn-group">
+                                    <button mat-raised-button (click)="showDayView()" class="calendartype-btn">
+                                        Day
+                                    </button>
+                                    <button mat-raised-button (click)="setView(CalendarView.Month)" class="calendartype-btn" 
+                                        >
+                                        Month
+                                    </button>
+                                    <button mat-raised-button (click)="setView(CalendarView.Week)" class="calendartype-btn"
+                                       >
+                                        Week
+                                    </button>
+                                    <!-- <button mat-raised-button (click)="setView(CalendarView.Day)" class="calendartype-btn"
+                                        [class.active]="view === CalendarView.Day">
+                                        Day
+                                    </button> -->
+                                    
+                                    <button mat-raised-button class="calendartype-btn" (click)="showListView()">
+                                        List
+                                    </button>                                   
+                                </div>
+                            </div>
+                            
+                        </div>                       
+                        <br />
+                        <div *ngIf="defaultView">
+                                <div [ngSwitch]="view">
+                                    <mwl-calendar-month-view
+                                        *ngSwitchCase="CalendarView.Month"
+                                        [viewDate]="viewDate"
+                                        [events]="events"
+                                        [refresh]="refresh"
+                                        [activeDayIsOpen]="activeDayIsOpen"
+                                        (dayClicked)="dayClicked($event.day)"                        
+                                        (eventClicked)="newEvent('Clicked', $event.event)"
+                                        (eventTimesChanged)="eventDropped($event)">
+                                    </mwl-calendar-month-view>
+                                    <mwl-calendar-week-view
+                                        *ngSwitchCase="CalendarView.Week"
+                                        [viewDate]="viewDate"
+                                        [events]="events"
+                                        [headerTemplate]="headerTemplate"
+                                        [refresh]="refresh"
+                                        [dayStartHour]="7"
+                                        [dayStartMinute]="0"
+                                        [dayEndHour]="21"
+                                        [dayEndMinute]="59"
+                                        (eventClicked)="weekEventClicked('Clicked',$event.event)"
+                                        (eventTimesChanged)="eventDropped($event)">
+                                    </mwl-calendar-week-view>
+
+                                    <mwl-day-view-scheduler
+                                        *ngSwitchCase="CalendarView.Day"
+                                        [viewDate]="viewDate"
+                                        [events]="groupedSimilarEvents"
+                                        [refresh]="refresh"
+                                        [dayStartHour]="7"
+                                        [dayStartMinute]="0"
+                                        [dayEndHour]="21"
+                                        [dayEndMinute]="59"
+                                        [headerTemplate]="headerTemplate"
+                                        (eventClicked)="newEvent('Clicked', $event.event)"
+                                        (eventTimesChanged)="eventDropped($event)"                                       
+                                        (userChanged)="userChanged($event)"
+                                        (hourSegmentClicked)="newDayEvent('New Event',$event.date)"
+                                        >
+                                    </mwl-day-view-scheduler>
+                                    <!-- <mwl-calendar-week-view
+                                        *ngSwitchCase="CalendarView.Day"
+                                        class="cal-day-view"
+                                        [viewDate]="viewDate"
+                                        [events]="events"
+                                        [daysInWeek]="1"
+                                        [refresh]="refresh"
+                                        (eventClicked)="handleEvent('Clicked', $event.event)"
+                                        (eventTimesChanged)="eventDropped($event)"
+                                        (userChanged)="userChanged($event)">
+                                    </mwl-calendar-week-view>   -->
+                                    <!-- <mwl-calendar-week-view class="cal-day-view" 
+                                        *ngSwitchCase="CalendarView.Day"
+                                        [daysInWeek]="1"
+                                        [viewDate]="viewDate"
+                                        [events]="events"
+                                        [dayStartHour]="0"
+                                        [dayStartMinute]="0"
+                                        [dayEndHour]="23"
+                                        [dayEndMinute]="59"
+                                        [refresh]="refresh"
+                                        [headerTemplate]="dayViewContainer"
+                                        [hourSegments]="2"
+                                        (eventClicked)="handleEvent('Clicked',$event.event)"
+                                        (eventTimesChanged)="eventDropped($event)">
+                                    </mwl-calendar-week-view>                                                 -->
+                                
+                                </div>   
+                                <br />
+                                <div *ngIf="view=='month'">
+                                    <h3>Edit events
+                                        <button mat-raised-button color="primary" class="pull-right" (click)="addEvent()">  Add new </button>
+                                        <div class="clearfix"></div>
+                                    </h3>
+                                                
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>Title</th>
+                                                <th>Primary color</th>
+                                                <!-- <th>Secondary color</th> -->
+                                                <th>Starts at</th>
+                                                <th>Ends at</th>
+                                                <th>Remove</th>
+                                            </tr>
+                                            </thead>
+                                        
+                                            <tbody>
+                                                <tr *ngFor="let event of monthEvents; let index = index">
+                                                    <td>
+                                                        <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        [(ngModel)]="event.title"
+                                                        (keyup)="refresh.next()">
+                                                    </td>
+                                                    <td>
+                                                        <input
+                                                            type="color"
+                                                            [(ngModel)]="event.color.primary"
+                                                            (change)="refresh.next()">
+                                                    </td>
+                                                <!-- <td>
+                                                <input
+                                                    type="color"
+                                                    [(ngModel)]="event.color.secondary"
+                                                    (change)="refresh.next()"
+                                                />
+                                                </td> -->
+                                                <td>
+                                                <input
+                                                    class="form-control"
+                                                    type="text"
+                                                    mwlFlatpickr
+                                                    [(ngModel)]="event.start"
+                                                    (ngModelChange)="refresh.next()"
+                                                    [altInput]="true"
+                                                    [convertModelValue]="true"
+                                                    [enableTime]="true"
+                                                    dateFormat="Y-m-dTH:i"
+                                                    altFormat="F j, Y H:i"
+                                                    placeholder="Not set"
+                                                />
+                                                </td>
+                                                <td>
+                                                <input
+                                                    class="form-control"
+                                                    type="text"
+                                                    mwlFlatpickr
+                                                    [(ngModel)]="event.end"
+                                                    (ngModelChange)="refresh.next()"
+                                                    [altInput]="true"
+                                                    [convertModelValue]="true"
+                                                    [enableTime]="true"
+                                                    dateFormat="Y-m-dTH:i"
+                                                    altFormat="F j, Y H:i"
+                                                    placeholder="Not set"
+                                                />
+                                                </td>
+                                                
+                                                <td>
+                                                    <mat-icon (click)="deleteEvent(event)" color="warn">delete</mat-icon>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        <ng-template #dayHeaderTemplate let-locale="locale" let-hours="hours">
+                                                                    
+                        </ng-template>
+
+                        <!-- <ng-template
+                            #customCellTemplate
+                            let-day="day"
+                            let-openDay="openDay"
+                            let-locale="locale"
+                            let-tooltipPlacement="tooltipPlacement"
+                            let-highlightDay="highlightDay"
+                            let-unhighlightDay="unhighlightDay"
+                            let-eventClicked="eventClicked"
+                            let-tooltipTemplate="tooltipTemplate"
+                            let-tooltipAppendToBody="tooltipAppendToBody">
+                            <div class="cal-cell-top" (dblclick)="doubleClick(day)">
+                                <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
+                                <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
+                            </div>
+                            <div class="cal-events" *ngIf="day.events.length > 0" (dblclick)="doubleClick(day)">
+                                <div
+                                class="cal-event"
+                                *ngFor="let event of day.events; trackBy:trackByEventId"
+                                [style.backgroundColor]="event.color?.primary"
+                                [ngClass]="event?.cssClass"
+                                (mouseenter)="highlightDay.emit({event: event})"
+                                (mouseleave)="unhighlightDay.emit({event: event})"
+                                [mwlCalendarTooltip]="event.title | calendarEventTitle:'monthTooltip':event"
+                                [tooltipPlacement]="tooltipPlacement"
+                                [tooltipEvent]="event"
+                                [tooltipTemplate]="tooltipTemplate"
+                                [tooltipAppendToBody]="tooltipAppendToBody"
+                                mwlDraggable
+                                [class.cal-draggable]="event.draggable"
+                                dragActiveClass="cal-drag-active"
+                                [dropData]="{event: event}"
+                                [dragAxis]="{x: event.draggable, y: event.draggable}"
+                                (mwlClick)="eventClicked.emit({ event: event })">
+                                </div>
+                            </div>
+                        </ng-template> -->
+                    
+                    
+                        <ng-template #headerTemplate let-days="days" let-locale="locale" let-dayClicked="dayClicked" let-eventDropped="eventDropped">
+                            <div class="cal-day-headers cursor-default">
+                                <div
+                                        class="cal-header"
+                                        *ngFor="let day of days"
+                                        [class.cal-past]="day.isPast"
+                                        [class.cal-future]="day.isFuture"
+                                        [class.cal-drag-over]="day.dragOver"
+                                        (mwlClick)="dayClicked.emit({date: day.date})"
+                                        mwlDroppable
+                                        (dragEnter)="day.dragOver = true"
+                                        (dragLeave)="day.dragOver = false"
+                                        (drop)="day.dragOver = false; eventDropped.emit({event: $event.dropData.event, newStart: day.date, fromHeader: true})">
+                                    <div class="top" [class.today]="day.isToday">
+                                        <div class="day-label text-uppercase">
+                                            {{ day.date | calendarDate:'weekViewColumnHeader':locale }}
+                                        </div>
+                                        <div class="day-number">{{ day.date | calendarDate:'weekViewColumnSubHeader':locale }}</div>                      
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+
+                        
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>  
+        
+        <div class="row col-sm-12 col-xl-12 col-lg-12 mb-10 pall-zero mall-zero" *ngIf="defaultView && view=='week'">
+            <!-- <div class="col-sm-12 col-lg-2 col-xl-2 mb-10">  
+                <mat-card>
+                    <mat-card-content>
                         <div class="col-md-12 col-xl-12 col-lg-12 pall-zero mall-zero">
-                            <!-- <mat-form-field class="example-full-width">                                   
-                                <input matInput placeholder="Service" [(ngModel)]="services.name">
-                            </mat-form-field>         -->
                             <mat-form-field>
                                 <mat-label>Services</mat-label>
                                 <mat-select [(ngModel)]="selectedServiceName">
                                     <mat-option value="Haircut">Haircut</mat-option>
-                                    <mat-option value="Bleech">Bleech</mat-option>
-                                    <mat-option value="Fruit Facial">Fruit Facial</mat-option>
-                                    <mat-option value="Golden Facial">Golden Facial</mat-option>
-                                    <mat-option value="Tan Mask">Tan Mask</mat-option>
+                                    <mat-option value="Waxing">Waxing</mat-option>
+                                    <mat-option value="Facial">Facial</mat-option>
+                                    <mat-option value="Threading">Threading</mat-option>
+                                    <mat-option value="Body Polishing">Body Polishing</mat-option>
                                 </mat-select>
                             </mat-form-field> 
                             <button mat-raised-button (click)="addNew(services.name)" class="dark-btn">Add Service</button>                            
-                            <!-- <button mat-raised-button color="primary" class="pull-right" (click)="addEvent()">  Add new </button>   -->
-                        </div>
-                            
+                        </div>    
                         <div mwlDroppable (drop)="droppedBack($event.dropData.event)">
                             <div class="card-block">
                                 <ul class="dragservice">
                                     <li *ngFor="let event of externalEvents" mwlDraggable
                                     [dropData]="{event: event}" style="position:relative; z-index: 10" class="fc-event fc-service-bodypolish">
-                                        <a href="javascript:;" style="color:#fff"> {{ event.title }}</a> <span><mat-icon class="service-del" (click)="selService(event)">delete</mat-icon></span>
+                                        <a href="javascript:;" style="color:#fff"> {{ event.title }}</a> 
+                                        <span><mat-icon class="service-del" (click)="selService(event)" *ngIf="event.title!='New Appointment'">delete</mat-icon></span>
                                     </li>
                                 </ul>
-                            </div>
+                            </div>                                
                         </div>
-                        <!-- <div #externalEvents>
-                            <div>
-                                 <mat-form-field class="example-full-width">                                   
-                                    <input matInput placeholder="Service" [(ngModel)]="services.name">
-                                </mat-form-field>         -->
-                        <!-- <button mat-raised-button color="primary" (click)="addNew()">Save</button> -->
-                                                                    
-                            <!-- <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Title</th>
-                                    </tr>
-                                </thead>
+                    </mat-card-content>
+                </mat-card>                  
+                                                               
+            </div>  -->
+            <div class="col-sm-12 col-lg-12 col-xl-12 mb-10">
+                <mat-card>
+                    <mat-card-content> 
+                        <div class="row col-md-12 col-xl-12 col-lg-12">
+                            <div class="col-md-3 col-xl-3 col-lg-3">
+                                <button mat-raised-button mwlCalendarPreviousView [view]="view" class="calendar-btn"
+                                    [(viewDate)]="viewDate"
+                                    (viewDateChange)="closeOpenMonthViewDay()">
+                                    <mat-icon>keyboard_arrow_left</mat-icon>
+                                </button> 
+                                <button mat-raised-button class="calendar-btn"
+                                    mwlCalendarToday
+                                    [(viewDate)]="viewDate" >
+                                    Today
+                                </button>
+                                <button mat-raised-button mwlCalendarNextView [view]="view" class="calendar-btn"
+                                        [(viewDate)]="viewDate"
+                                        (viewDateChange)="closeOpenMonthViewDay()" >
+                                    <mat-icon>keyboard_arrow_right</mat-icon>
+                                </button>
+                            </div>
+                            <div class="col-md-6 text-center col-xl-6 col-lg-6">
+                                <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+                            </div>
+                            <div class="col-md-3 text-right col-xl-3 col-lg-3">
+                            <div class="btn-group">
+                                    <button mat-raised-button (click)="showDayView()" class="calendartype-btn">
+                                        Day
+                                    </button>
+                                    <button mat-raised-button (click)="setView(CalendarView.Month)" class="calendartype-btn" 
+                                      >
+                                        Month
+                                    </button>
+                                    <button mat-raised-button (click)="setView(CalendarView.Week)" class="calendartype-btn"
+                                      >
+                                        Week
+                                    </button>
+                                    <!-- <button mat-raised-button (click)="setView(CalendarView.Day)" class="calendartype-btn"
+                                        [class.active]="view === CalendarView.Day">
+                                        Day
+                                    </button> -->
+                                    
+                                    <button mat-raised-button class="calendartype-btn" (click)="showListView()">
+                                        List
+                                    </button>                                   
+                                </div>
+                            </div>
                             
-                                <tbody>
-                                    <tr *ngFor="let event of events">
-                                        <td><input type="text" class="form-control" [(ngModel)]="event.title" (keyup)="refresh.next()"></td>
-                                    </tr>
-                                </tbody>
-                            </table> -->
-                           
-                            <!-- <table mat-table [dataSource]="dataServiceSource" class="serviceList">
-                                <ng-container matColumnDef="name">
-                                    <th mat-header-cell *matHeaderCellDef style="display: none;"> </th>
-                                    <td mat-cell *matCellDef="let element" class='fc-event fc-service-bleech'> {{element.name}} </td>
-                                </ng-container>                                 
-                                <tr mat-header-row *matHeaderRowDef="displayedServiceColumns"></tr>
-                                <tr mat-row *matRowDef="let row; columns: displayedServiceColumns;"></tr>
-                            </table> -->
-                            <!-- <div  class="dragservice">
-                                <div class='fc-event fc-service-bleech'>Bleech</div>                        
-                                <div class='fc-event fc-service-waxing'>Waxing</div>
-                                <div class='fc-event fc-service-bodypolish'>Body Polishing</div>                            
-                                <div class='fc-event fc-service-facial'>Golden Facial</div>
-                                <div class='fc-event fc-service-haircut'>Haircut</div>  
-                            </div>                          -->
-                           <!-- <div class='fc-event fc-service-bleech'>Bleech - Nisha</div>
-                            <div class='fc-event fc-service-haircut'>Haircut - Preethi</div>
-                            <div class='fc-event fc-service-bodypolish'>Body Polishing - Usha</div>
-                            <div class='fc-event fc-service-facial'>Golden Facial - Deepthi</div>
-                            <div class='fc-event fc-service-haircut'>Haircut - Prakash</div>  -->
-                                              
+                        </div>                       
+                        <br />
+                        <div *ngIf="defaultView">
+                            <div [ngSwitch]="view">
+                                <mwl-calendar-month-view
+                                    *ngSwitchCase="CalendarView.Month"
+                                    [viewDate]="viewDate"
+                                    [events]="events"
+                                    [refresh]="refresh"
+                                    [activeDayIsOpen]="activeDayIsOpen"
+                                    (dayClicked)="dayClicked($event.day)"                       
+                                    (eventClicked)="newEvent('Clicked', $event.event)"
+                                    (eventTimesChanged)="eventDropped($event)">
+                                </mwl-calendar-month-view>
+                                <mwl-calendar-week-view
+                                    *ngSwitchCase="CalendarView.Week"
+                                    [viewDate]="viewDate"
+                                    [events]="groupedSimilarEvents"
+                                    [headerTemplate]="headerTemplate"
+                                    [refresh]="refresh"
+                                    [dayStartHour]="7"
+                                    [dayStartMinute]="0"
+                                    [dayEndHour]="21"
+                                    [dayEndMinute]="59"
+                                    (eventClicked)="weekEventClicked('Clicked',$event.event)"
+                                    (eventTimesChanged)="eventDropped($event)">
+                                </mwl-calendar-week-view>
+                                <mwl-day-view-scheduler
+                                *ngSwitchCase="CalendarView.Day"
+                                [viewDate]="viewDate"
+                                [events]="events"
+                                [refresh]="refresh"
+                                [dayStartHour]="7"
+                                [dayStartMinute]="0"
+                                [dayEndHour]="21"
+                                [dayEndMinute]="59"
+                                [headerTemplate]="headerTemplate"
+                                (eventClicked)="newEvent('Clicked', $event)"
+                                (eventTimesChanged)="eventDropped($event)"                                
+                                (userChanged)="userChanged($event)">
+                                </mwl-day-view-scheduler>
+                                <!-- (eventClicked)="newEvent('Clicked', $event.event)" -->
+                                <!-- <mwl-calendar-week-view
+                                    *ngSwitchCase="CalendarView.Day"
+                                    class="cal-day-view"
+                                    [viewDate]="viewDate"
+                                    [events]="events"
+                                    [daysInWeek]="1"
+                                    [refresh]="refresh"
+                                    (eventClicked)="handleEvent('Clicked', $event.event)"
+                                    (eventTimesChanged)="eventDropped($event)"
+                                    (userChanged)="userChanged($event)">
+                                </mwl-calendar-week-view>   -->
+                                <!-- <mwl-calendar-week-view class="cal-day-view" 
+                                    *ngSwitchCase="CalendarView.Day"
+                                    [daysInWeek]="1"
+                                    [viewDate]="viewDate"
+                                    [events]="events"
+                                    [dayStartHour]="0"
+                                    [dayStartMinute]="0"
+                                    [dayEndHour]="23"
+                                    [dayEndMinute]="59"
+                                    [refresh]="refresh"
+                                    [headerTemplate]="dayViewContainer"
+                                    [hourSegments]="2"
+                                    (eventClicked)="handleEvent('Clicked',$event.event)"
+                                    (eventTimesChanged)="eventDropped($event)">
+                                </mwl-calendar-week-view>                                                 -->
+                            
+                            </div>   
+                            <br />
+                            
+                        </div>
+                                            
+                     
+                                            
+                        <ng-template #headerTemplate let-days="days" let-locale="locale" let-dayClicked="dayClicked" let-eventDropped="eventDropped">
+                            <div class="cal-day-headers cursor-default">
+                                <div
+                                        class="cal-header"
+                                        *ngFor="let day of days"
+                                        [class.cal-past]="day.isPast"
+                                        [class.cal-future]="day.isFuture"
+                                        [class.cal-drag-over]="day.dragOver"
+                                        (mwlClick)="dayClicked.emit({date: day.date})"
+                                        mwlDroppable
+                                        (dragEnter)="day.dragOver = true"
+                                        (dragLeave)="day.dragOver = false"
+                                        (drop)="day.dragOver = false; eventDropped.emit({event: $event.dropData.event, newStart: day.date, fromHeader: true})">
+                                    <div class="top" [class.today]="day.isToday">
+                                        <div class="day-label text-uppercase">
+                                            {{ day.date | calendarDate:'weekViewColumnHeader':locale }}
+                                        </div>
+                                        <div class="day-number">{{ day.date | calendarDate:'weekViewColumnSubHeader':locale }}</div>                      
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                       
                     </mat-card-content>
                 </mat-card>
             </div>
-            <div class="col-sm-12 col-lg-10 col-xl-10 mb-10">
-                <mat-card>
-                    <mat-card-content> 
-                        <div class="row col-md-12 col-xl-12 col-lg-12" *ngIf="defaultView">
-                            <div class="col-md-3 col-xl-3 col-lg-3">
-                                <!-- <div class="btn-group"> -->
+        </div>
+
+
+        <!-- <div class="row col-sm-12 col-xl-12 col-lg-12 mb-10 pall-zero mall-zero" *ngIf="defaultView && view=='day' && !listView">
+                <div class="col-sm-12 col-lg-2 col-xl-2 mb-10">  
+                    <mat-card>
+                        <mat-card-content>
+                            <div class="col-md-12 col-xl-12 col-lg-12 pall-zero mall-zero">
+                                <mat-form-field>
+                                    <mat-label>Services</mat-label>
+                                    <mat-select [(ngModel)]="selectedServiceName">
+                                        <mat-option value="Haircut">Haircut</mat-option>
+                                        <mat-option value="Waxing">Waxing</mat-option>
+                                        <mat-option value="Facial">Facial</mat-option>
+                                        <mat-option value="Threading">Threading</mat-option>
+                                        <mat-option value="Body Polishing">Body Polishing</mat-option>
+                                    </mat-select>
+                                </mat-form-field> 
+                                <button mat-raised-button (click)="addNew(services.name)" class="dark-btn">Add Service</button>                            
+                            </div>    
+                            <div mwlDroppable (drop)="droppedBack($event.dropData.event)">
+                                <div class="card-block">
+                                    <ul class="dragservice">
+                                        <li *ngFor="let event of externalEvents" mwlDraggable
+                                        [dropData]="{event: event}" style="position:relative; z-index: 10" class="fc-event fc-service-bodypolish">
+                                            <a href="javascript:;" style="color:#fff"> {{ event.title }}</a> 
+                                            <span><mat-icon class="service-del" (click)="selService(event)" *ngIf="event.title!='New Appointment'">delete</mat-icon></span>
+                                        </li>
+                                    </ul>
+                                </div>                                
+                            </div>
+                        </mat-card-content>
+                    </mat-card>                  
+                                                                   
+                </div> 
+                <div class="col-sm-12 col-lg-10 col-xl-10 mb-10">
+                    <mat-card>
+                        <mat-card-content> 
+                            <div class="row col-md-12 col-xl-12 col-lg-12">
+                                <div class="col-md-3 col-xl-3 col-lg-3">
                                     <button mat-raised-button mwlCalendarPreviousView [view]="view" class="calendar-btn"
                                         [(viewDate)]="viewDate"
                                         (viewDateChange)="closeOpenMonthViewDay()">
@@ -127,55 +543,35 @@
                                             (viewDateChange)="closeOpenMonthViewDay()" >
                                         <mat-icon>keyboard_arrow_right</mat-icon>
                                     </button>
-                                <!-- </div> -->
-                            </div>
-                            <div class="col-md-6 text-center col-xl-6 col-lg-6">
-                                <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
-                            </div>
-                            <div class="col-md-3 text-right col-xl-3 col-lg-3">
-                                <div class="btn-group">
-                                    <button mat-raised-button (click)="setView(CalendarView.Month)" class="calendartype-btn" 
-                                        [class.active]="view === CalendarView.Month">
-                                        Month
-                                    </button>
-                                    <button mat-raised-button (click)="setView(CalendarView.Week)" class="calendartype-btn"
-                                        [class.active]="view === CalendarView.Week">
-                                        Week
-                                    </button>
-                                    <button mat-raised-button (click)="setView(CalendarView.Day)" class="calendartype-btn"
-                                        [class.active]="view === CalendarView.Day">
-                                        Day
-                                    </button>
-                                    <button mat-raised-button class="calendartype-btn" (click)="showListView()">
-                                        List
-                                    </button>
                                 </div>
-                            </div>
-                            
-                        </div>
-                        <div class="col-md-12 col-xl-12 col-lg-12" *ngIf="listView">                           
-                            <div class="col-md-9 col-xl-9 col-lg-9">
-                            </div>
-                            <div class="col-md-3 text-right col-xl-3 col-lg-3 rightbtn">
-                                <div class="btn-group">
-                                <button mat-raised-button (click)="setView(CalendarView.Month)" class="calendartype-btn" 
-                                    [class.active]="view === CalendarView.Month">
-                                    Month
-                                </button>
-                                <button mat-raised-button (click)="setView(CalendarView.Week)" class="calendartype-btn"
-                                    [class.active]="view === CalendarView.Week">
-                                    Week
-                                </button>
-                                <button mat-raised-button (click)="setView(CalendarView.Day)" class="calendartype-btn"
-                                    [class.active]="view === CalendarView.Day">
-                                    Day
-                                </button>
-                                <button mat-raised-button class="calendartype-btn" (click)="showListView()">
-                                List
-                            </button>
+                                <div class="col-md-6 text-center col-xl-6 col-lg-6">
+                                    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
                                 </div>
-                            </div>                                
-                        </div>
+                                <div class="col-md-3 text-right col-xl-3 col-lg-3">
+                                <div class="btn-group">
+                                        <button mat-raised-button (click)="showDayView()" class="calendartype-btn">
+                                            Day
+                                        </button>
+                                        <button mat-raised-button (click)="setView(CalendarView.Month)" class="calendartype-btn" 
+                                            [class.active]="view === CalendarView.Month">
+                                            Month
+                                        </button>
+                                        <button mat-raised-button (click)="setView(CalendarView.Week)" class="calendartype-btn"
+                                            [class.active]="view === CalendarView.Week">
+                                            Week
+                                        </button>
+                                        <button mat-raised-button (click)="setView(CalendarView.Day)" class="calendartype-btn"
+                                            [class.active]="view === CalendarView.Day">
+                                            Day
+                                        </button>
+                                        
+                                        <button mat-raised-button class="calendartype-btn" (click)="showListView()">
+                                            List
+                                        </button>                                   
+                                    </div>
+                                </div>
+                                
+                            </div>                       
                             <br />
                             <div *ngIf="defaultView">
                                 <div [ngSwitch]="view">
@@ -186,180 +582,360 @@
                                         [refresh]="refresh"
                                         [activeDayIsOpen]="activeDayIsOpen"
                                         (dayClicked)="dayClicked($event.day)"
-                                        (eventClicked)="handleEvent('Clicked', $event.event)"
+                                        [cellTemplate]="customCellTemplate"                           
+                                        (eventClicked)="newEvent('Clicked', $event.event)"
                                         (eventTimesChanged)="eventDropped($event)">
                                     </mwl-calendar-month-view>
                                     <mwl-calendar-week-view
                                         *ngSwitchCase="CalendarView.Week"
                                         [viewDate]="viewDate"
                                         [events]="events"
+                                        [headerTemplate]="headerTemplate"
                                         [refresh]="refresh"
-                                        (eventClicked)="handleEvent('Clicked', $event.event)"
+                                        [dayStartHour]="7"
+                                        [dayStartMinute]="0"
+                                        [dayEndHour]="21"
+                                        [dayEndMinute]="59"
+                                        (eventClicked)="newEvent('Clicked', $event.event)"
                                         (eventTimesChanged)="eventDropped($event)">
                                     </mwl-calendar-week-view>
-                                    <mwl-calendar-week-view
-                                        *ngSwitchCase="CalendarView.Day"
-                                        class="cal-day-view"
-                                        [viewDate]="viewDate"
-                                        [events]="events"
-                                        [daysInWeek]="1"
-                                        [refresh]="refresh"
-                                        (eventClicked)="handleEvent('Clicked', $event.event)"
-                                        (eventTimesChanged)="eventDropped($event)">
-                                    </mwl-calendar-week-view>  
-                                                    
+                                    <mwl-day-view-scheduler
+                                    *ngSwitchCase="CalendarView.Day"
+                                    [viewDate]="viewDate"
+                                    [events]="events"
+                                    [refresh]="refresh"
+                                    [locale]="locale"
+                                    [dayStartHour]="7"
+                                    [dayStartMinute]="0"
+                                    [dayEndHour]="21"                                    
+                                    [dayEndMinute]="59"
+                                    [headerTemplate]="headerTemplate"
+                                    [snapDraggedEvents]="snapDraggedEvents"
+                                    [currentTimeMarkerTemplate]="currentTimeMarkerTemplate"
+                                    (eventTimesChanged)="eventDropped($event)"
+                                    (eventClicked)="newEvent('Clicked', $event.event)"                                    
+                                    (userChanged)="userChanged($event)"
+                                    (hourSegmentClicked)="newDayEvent('New Event',$event.date)"
+                                    >
+                                    </mwl-day-view-scheduler>                                   
+                                
                                 </div>   
                                 <br />
-                                <h3>Edit events
-                                    <button mat-raised-button color="primary" class="pull-right" (click)="addEvent()">  Add new </button>
-                                    <div class="clearfix"></div>
-                                </h3>
-                                            
-                                <div class="table-responsive">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                        <tr>
-                                            <th>Title</th>
-                                            <th>Primary color</th>
-                                            <!-- <th>Secondary color</th> -->
-                                            <th>Starts at</th>
-                                            <th>Ends at</th>
-                                            <th>Remove</th>
-                                        </tr>
-                                        </thead>
-                                    
-                                        <tbody>
-                                        <tr *ngFor="let event of events">
-                                            <td>
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                [(ngModel)]="event.title"
-                                                (keyup)="refresh.next()"
-                                            />
-                                            </td>
-                                            <td>
-                                            <input
-                                            
-                                                type="color"
-                                                [(ngModel)]="event.color.primary"
-                                                (change)="refresh.next()"
-                                            />
-                                            </td>
-                                            <!-- <td>
-                                            <input
-                                                type="color"
-                                                [(ngModel)]="event.color.secondary"
-                                                (change)="refresh.next()"
-                                            />
-                                            </td> -->
-                                            <td>
-                                            <input
-                                                class="form-control"
-                                                type="text"
-                                                mwlFlatpickr
-                                                [(ngModel)]="event.start"
-                                                (ngModelChange)="refresh.next()"
-                                                [altInput]="true"
-                                                [convertModelValue]="true"
-                                                [enableTime]="true"
-                                                dateFormat="Y-m-dTH:i"
-                                                altFormat="F j, Y H:i"
-                                                placeholder="Not set"
-                                            />
-                                            </td>
-                                            <td>
-                                            <input
-                                                class="form-control"
-                                                type="text"
-                                                mwlFlatpickr
-                                                [(ngModel)]="event.end"
-                                                (ngModelChange)="refresh.next()"
-                                                [altInput]="true"
-                                                [convertModelValue]="true"
-                                                [enableTime]="true"
-                                                dateFormat="Y-m-dTH:i"
-                                                altFormat="F j, Y H:i"
-                                                placeholder="Not set"
-                                            />
-                                            </td>
-                                            <td>
-                                                <mat-icon (click)="deleteEvent(event)" color="warn">delete</mat-icon>
-                                            <!-- <button class="btn btn-danger" (click)="deleteEvent(event)">
-                                                Delete
-                                            </button> -->
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                
                             </div>
-                            <full-calendar *ngIf="listView"
-                            #calendar
-                           #fullcalendar
-                           defaultView="listWeek"
-                           [editable]="true"
-                           [eventLimit]="true"
-                           [droppable] ="true"
-                           [header]="options.header"
-                           (dateClick)="handleDateClick($event)"
-                           (eventDragStop)="eventDragStop($event)"
-                           [plugins]="options.plugins"
-                           [buttonText]="options.buttonText"                         
-                           slotDuration='00:15:00'
-                           slotMinutes= '00:15:00'
-                           [events]="events"
-                           [nowIndicator]= "true"                                
-                           [aspectRatio] = '2'
-                           [showNonCurrentDates] = "true">
-                       </full-calendar>      
-                       <!-- (eventClick)="eventClick($event)"  -->
-                                <ng-template #modalContent let-close="close">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Event action occurred</h5>
-                                        <button type="button" class="close" (click)="close()">
-                                        <span aria-hidden="true">&times;</span>
-                                        </button>
+                                                
+
+                            <ng-template
+                                #currentTimeMarkerTemplate
+                                let-columnDate="columnDate"
+                                let-dayStartHour="dayStartHour"
+                                let-dayStartMinute="dayStartMinute"
+                                let-dayEndHour="dayEndHour"
+                                let-dayEndMinute="dayEndMinute"
+                                let-isVisible="isVisible"
+                                let-topPx="topPx"
+                                >
+                                <div
+                                    class="cal-current-time-marker"
+                                    *ngIf="isVisible && showMarker"
+                                    [style.top.px]="topPx"
+                                ></div>
+                            </ng-template>
+                            <ng-template
+                                #customCellTemplate
+                                let-day="day"
+                                let-openDay="openDay"
+                                let-locale="locale"
+                                let-tooltipPlacement="tooltipPlacement"
+                                let-highlightDay="highlightDay"
+                                let-unhighlightDay="unhighlightDay"
+                                let-eventClicked="eventClicked"
+                                let-tooltipTemplate="tooltipTemplate"
+                                let-tooltipAppendToBody="tooltipAppendToBody">
+                                <div class="cal-cell-top" (dblclick)="doubleClick(day)">
+                                    <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
+                                    <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
+                                </div>
+                                <div class="cal-events" *ngIf="day.events.length > 0" (dblclick)="doubleClick(day)">
+                                    <div
+                                    class="cal-event"
+                                    *ngFor="let event of day.events; trackBy:trackByEventId"
+                                    [style.backgroundColor]="event.color?.primary"
+                                    [ngClass]="event?.cssClass"
+                                    (mouseenter)="highlightDay.emit({event: event})"
+                                    (mouseleave)="unhighlightDay.emit({event: event})"
+                                    [mwlCalendarTooltip]="event.title | calendarEventTitle:'monthTooltip':event"
+                                    [tooltipPlacement]="tooltipPlacement"
+                                    [tooltipEvent]="event"
+                                    [tooltipTemplate]="tooltipTemplate"
+                                    [tooltipAppendToBody]="tooltipAppendToBody"
+                                    mwlDraggable
+                                    [class.cal-draggable]="event.draggable"
+                                    dragActiveClass="cal-drag-active"
+                                    [dropData]="{event: event}"
+                                    [dragAxis]="{x: event.draggable, y: event.draggable}"
+                                    (mwlClick)="eventClicked.emit({ event: event })">
                                     </div>
-                                    <div class="modal-body">                                      
-                                        <div>
-                                        Event:
-                                        <pre>{{ modalData?.event | json }}</pre>
+                                </div>
+                            </ng-template>
+                                                
+                            <ng-template #headerTemplate let-days="days" let-locale="locale" let-dayClicked="dayClicked" let-eventDropped="eventDropped">
+                                <div class="cal-day-headers cursor-default">
+                                    <div
+                                            class="cal-header"
+                                            *ngFor="let day of days"
+                                            [class.cal-past]="day.isPast"
+                                            [class.cal-future]="day.isFuture"
+                                            [class.cal-drag-over]="day.dragOver"
+                                            (mwlClick)="dayClicked.emit({date: day.date})"
+                                            mwlDroppable
+                                            (dragEnter)="day.dragOver = true"
+                                            (dragLeave)="day.dragOver = false"
+                                            (drop)="day.dragOver = false; eventDropped.emit({event: $event.dropData.event, newStart: day.date, fromHeader: true})">
+                                        <div class="top" [class.today]="day.isToday">
+                                            <div class="day-label text-uppercase">
+                                                {{ day.date | calendarDate:'weekViewColumnHeader':locale }}
+                                            </div>
+                                            <div class="day-number">{{ day.date | calendarDate:'weekViewColumnSubHeader':locale }}</div>                      
                                         </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-secondary" (click)="close()">
-                                        OK
-                                        </button>
-                                    </div>
-                                </ng-template>
-                        <!-- <full-calendar
-                            *ngIf="options" #calendar
-                            #fullcalendar
-                            defaultView="timeGridDay"
-                            [editable]="true"
-                            [eventLimit]="true"
-                            [droppable] ="true"
-                            [header]="options.header"
-                            (dateClick)="handleDateClick($event)"
-                            (eventDragStop)="eventDragStop($event)"
-                            [plugins]="options.plugins"
-                            (eventClick)="eventClick($event)"                               
-                            slotDuration='00:15:00'
-                            slotMinutes= '00:15:00'
-                            [events]="events"
-                            [nowIndicator]= "true"                                
-                            [aspectRatio] = '2'
-                            [showNonCurrentDates] = "true">
-                        </full-calendar> -->
+                                </div>
+                            </ng-template>
+                           
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div> -->
+        <!-- <div class="row col-sm-12 col-lg-12 col-xl-12 mb-10 pall-zero mall-zero" *ngIf="dayView && !listView && !defaultView"> -->
+        <div class="row col-sm-12 col-lg-12 col-xl-12 mb-10 pall-zero mall-zero" *ngIf="dayView">
+            <div class="col-sm-12 col-lg-2 col-xl-2 mb-10" [hidden]="defaultView || listView">
+                <mat-card>
+                    <mat-card-content>    
+                        <h3>Favourites</h3>                
+                        <div #newEvents>                       
+                            <mat-form-field>
+                                <mat-label>Services</mat-label>
+                                <mat-select [(ngModel)]="selectedServiceName">
+                                    <mat-option value="Haircut">Haircut</mat-option>
+                                    <mat-option value="Waxing">Waxing</mat-option>
+                                    <mat-option value="Facial">Facial</mat-option>
+                                    <mat-option value="Threading">Threading</mat-option>
+                                    <mat-option value="Body Polishing">Body Polishing</mat-option>
+                                </mat-select>
+                            </mat-form-field> 
+                            <button mat-raised-button (click)="addNew(selectedServiceName)" class="dark-btn">Add</button>  
+                            <!-- <div  class="dragservice">
+                                <table mat-table [dataSource]="dataServiceSource" class="mat-elevation-z8" matSort class="table-striped">                                                                               
+                                    <ng-container matColumnDef="name">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header style="display: none;"> Services </th>
+                                        <td mat-cell *matCellDef="let element">{{element.name}}</td>
+                                    </ng-container>        
+                                    <tr mat-header-row *matHeaderRowDef="displayedServiceColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedServiceColumns;"></tr>        
+                                </table>                
+                            </div> -->
+                            <!-- <div  class="dragservice">
+                                <div class="fc-event fc-service-bodypolish">New Appointment</div>
+                                <div class='fc-event fc-service-bodypolish'>Haircut</div>                        
+                                <div class='fc-event fc-service-bodypolish'>Waxing</div>
+                                <div class='fc-event fc-service-bodypolish'>Body Polishing</div>                            
+                                <div class='fc-event fc-service-bodypolish'>Facial</div>
+                                <div class='fc-event fc-service-bodypolish'>Threading</div>  
+                            </div> -->
+                            <div  class="dragservice">
+                                <div *ngFor="let events of services">
+                                    <div class="fc-event">{{events.name}}</div>
+                                </div>
+                            </div> 
+                        </div>  
                     </mat-card-content>
                 </mat-card>
             </div>
+            <div class="col-sm-12 col-lg-10 col-xl-10 mb-10" [hidden]="defaultView || listView">
+                <mat-card>
+                    <mat-card-content>                             
+                        <div class="col-md-12 col-xl-12 col-lg-12">                           
+                            <div class="col-md-9 col-xl-9 col-lg-9">
+                            </div>
+                            <div class="col-md-3 text-right col-xl-3 col-lg-3 rightbtn">
+                                <div class="btn-group">
+                                <button mat-raised-button (click)="showDayView()" class="calendartype-btn">
+                                    Day
+                                </button>
+                                <button mat-raised-button (click)="setView(CalendarView.Month)" class="calendartype-btn" 
+                                   >
+                                    Month
+                                </button>
+                                <button mat-raised-button (click)="setView(CalendarView.Week)" class="calendartype-btn"
+                                    >
+                                    Week
+                                </button>       
+                                <!-- <button mat-raised-button (click)="setView(CalendarView.Day)" class="calendartype-btn"
+                                [class.active]="view === CalendarView.Day">
+                                Day
+                                </button> -->
+                                <button mat-raised-button class="calendartype-btn" (click)="showListView()">
+                                List
+                                </button>
+                                </div>
+                            </div>                                
+                        </div>
+                        <br />   
+                        <full-calendar
+                            #calendar
+                            #fullcalendar
+                            defaultView="resourceTimelineDay"
+                            [editable]="true"
+                            [eventLimit]="true"
+                            [droppable] ="true"
+                            [header] ="options.header"
+                            (dateClick) ="handleDateClick($event)"
+                            (eventDragStop) ="eventDragStop($event)"
+                            [plugins] ="options.plugins"
+                            [buttonText] ="options.buttonText"                         
+                            slotDuration ='00:30:00'
+                            slotMinutes = '00:30:00'                           
+                            minTime='07:00:00'
+                            maxTime='22:00:00'
+                            [allDaySlot] = "true"
+                            (eventClick)="eventClicked($event)"   
+                            [events]="eventsOld"
+                            [resources]="resources"                                   
+                            [hiddenDays]="options.hiddenDays"
+                            (eventReceive) = "eventReceive($event)"
+                            [businessHours]="options.businessHours"
+                            [nowIndicator]= "true"                                
+                            [aspectRatio] = '2'
+                            [showNonCurrentDates] = "true"
+                            (eventRender)="onEventRender($event)">
+                        </full-calendar>      
+                        <!-- <div class="fc-now-indicator fc-now-indicator-arrow">
+                            <img src="assets/images/clock.gif" class="nowindicate" />
+                        </div> -->
+                        <!-- slotLabelInterval = "00:30:00" -->
+                        <!-- <full-calendar *ngIf="dayView"
+                        #fullcalendar
+                        defaultView="timeGridDay"
+                        [editable]="true"
+                        [eventLimit]="true"
+                        [droppable] ="true"
+                        [header]="options.header"
+                        (dateClick)="handleDateClick($event)"
+                        (eventDragStop)="eventDragStop($event)"
+                        [plugins]="options.plugins"
+                        [buttonText]="options.buttonText"                         
+                        slotDuration='00:15:00'
+                        slotMinutes= '00:15:00'
+                        (eventClick)="eventClick($event)"   
+                        [events]="eventsOld"
+                        [nowIndicator]= "true"                                
+                        [aspectRatio] = '2'
+                        [showNonCurrentDates] = "true">
+                    </full-calendar>       -->
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
 
-                
+                            
+        <div class="col-sm-12 col-lg-12 col-xl-12 mb-10" *ngIf="listView">
+            <mat-card>
+                <mat-card-content>                             
+                    <div class="col-md-12 col-xl-12 col-lg-12" *ngIf="listView || dayView">                           
+                        <div class="col-md-9 col-xl-9 col-lg-9">
+                        </div>
+                        <div class="col-md-3 text-right col-xl-3 col-lg-3 rightbtn">
+                            <div class="btn-group">
+                            <button mat-raised-button (click)="showDayView()" class="calendartype-btn">
+                                Day
+                            </button>
+                            <button mat-raised-button (click)="setView(CalendarView.Month)" class="calendartype-btn" 
+                               >
+                                Month
+                            </button>
+                            <button mat-raised-button (click)="setView(CalendarView.Week)" class="calendartype-btn"
+                              >
+                                Week
+                            </button>
+                            <!-- <button mat-raised-button (click)="setView(CalendarView.Day)" class="calendartype-btn"
+                            [class.active]="view === CalendarView.Day">
+                            Day
+                        </button> -->
+                            <button mat-raised-button class="calendartype-btn" (click)="showListView()">
+                            List
+                        </button>
+                            </div>
+                        </div>                                
+                    </div>
+                    <br />
+                                                
+                    <full-calendar *ngIf="listView && !defaultView"
+                        #calendar
+                        #fullcalendar
+                        defaultView="listWeek"
+                        [editable]="true"
+                        [eventLimit]="true"
+                        [droppable] ="true"
+                        [header]="options.header"
+                        (dateClick)="handleDateClick($event)"
+                        (eventDragStop)="eventDragStop($event)"
+                        [plugins]="options.plugins"
+                        [buttonText]="options.buttonText"                         
+                        slotDuration='00:30:00'
+                        slotMinutes= '00:30:00'
+                        [hiddenDays]="options.hiddenDays"
+                        [nowIndicator] = "true"          
+                        (eventClick)="eventClicked($event)"   
+                        [events]="eventsOld"
+                        [resources]="resources"                             
+                        [aspectRatio] = '2'
+                        [showNonCurrentDates] = "true">
+                    </full-calendar>        
+                </mat-card-content>
+            </mat-card>
+        </div>  
+    </div>
+
+   
         <!-- [filterResourcesWithEvents] = true  show only resources who have booking-->   
-    </div>    
-        
+    
+        <!-- <ng-template #modalContent let-close="close">
+            <div class="modal-header">
+                <h5 class="modal-title">New Booking</h5>
+                <button type="button" class="close" (click)="close()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">                                      
+                <pre>{{ modalData?.event | json }}</pre>
+            </div>               
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" (click)="close()">OK</button>
+            </div>
+        </ng-template> -->
+        <ng-template #modalContent let-close="close">
+            <div class="modal-header">
+                <h5 class="modal-title">Event action occurred</h5>
+                <button type="button" class="close" (click)="close()">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                Action:
+                <pre>{{ modalData?.action }}</pre>
+                </div>
+                <div>
+                Event:
+                <pre>{{ modalData?.event | json }}</pre>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" (click)="close()">
+                OK
+                </button>
+            </div>
+        </ng-template>
     <div *ngIf="selIcon=='list'" class="full-width">
         <mat-card>
             <mat-card-content>
@@ -424,11 +1000,40 @@
                             <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" class="paginator"></mat-paginator> 
                         </mat-toolbar-row>
                     </mat-toolbar>
+                    
             </mat-card-content>
         </mat-card>
         
     </div>     
 </div>
+
+
+<ng-template #modalContent let-close="close">
+    <div class="modal-header">
+        <h5 class="modal-title">Event action occurred</h5>
+        <button type="button" class="close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div>
+        Action:
+        <pre>{{ modalData?.action }}</pre>
+        </div>
+        <div>
+        Event:
+        <pre>{{ modalData?.event | json }}</pre>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="close()">
+        OK
+        </button>
+    </div>
+</ng-template>
+
+
+
 
 <div class="modal bookingmodel" id="myModal" [style.display]="showModal ? 'block' : 'none'">
     <div class="modal-dialog">            

@@ -101,7 +101,7 @@ td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
 }
 .mat-drawer-content {
     height: 91vh !important; 
-    // overflow: hidden !important;
+    overflow-x: hidden !important;
 }
 .mat-nav-list a {
     color:$primary-color-black !important;
@@ -409,7 +409,7 @@ span:focus {
     border-radius: 0.25rem;
 }
 .mat-form-field-appearance-legacy .mat-form-field-infix {
-    padding:0.5375em 0 !important;
+    // padding:0.5375em 0 !important;
     //padding:0.5em 0 !important;
 }
 ::ng-deep.mat-form-field-disabled .mat-form-field-underline {

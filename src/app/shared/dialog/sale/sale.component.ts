@@ -44,6 +44,7 @@ export class SaleComponent implements OnInit {
   lineProductSubTotal: number = 0;
   subTotal: number = 0;
   grandTotal: any;
+  testInput: any;
   serviceQty: any = 0;
   servicePrice: any = 0;
   serviceDisc: any = 0;
@@ -128,7 +129,9 @@ export class SaleComponent implements OnInit {
       cgstTaxValue: new FormControl(null),
       sgstTaxValue: new FormControl(null),
       taxAmountTotal: new FormControl(null),
-      remainingChange: new FormControl(null)
+      remainingChange: new FormControl(null),
+      testInput: new FormControl(null)
+
     });
     
   }
@@ -244,5 +247,22 @@ calculateTotalTax() {
 calculateGrandTotal() {
   this.saleForm.controls['grandTotal'].setValue(this.saleForm.controls['subTotal'].value + this.saleForm.controls['taxAmountTotal'].value);
 }
+// CommaFormatted(event) {
+//   // skip for arrow keys
+//   if(event.which >= 37 && event.which <= 40) return;
+ 
+//   // format number
+//   if (this.testInput) {
+//    this.testInput = this.testInput.replace(/\D/g, "")
+//      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+//   }}
+ 
+//  numberCheck (args) {
+//  if (args.key === 'e' || args.key === '+' || args.key === '-') {
+//    return false;
+//  } else {
+//    return true;
+//  }}
+
 }
 

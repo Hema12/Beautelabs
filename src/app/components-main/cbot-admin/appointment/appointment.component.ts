@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, TemplateRef, HostBinding, ElementRef, ChangeDetectionStrategy, Input, Output } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, HostBinding, ElementRef, ChangeDetectionStrategy, Input, Output, ViewChildren, QueryList } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-// import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 // import { BsModalService } from 'ngx-bootstrap/modal';
 // import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import Swal from 'sweetalert2';
@@ -10,9 +10,13 @@ import timeGrigPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin, { Draggable } from '@fullcalendar/interaction';
 import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
+import resourceTimelinePlugin from '@fullcalendar/resource-timeline';
 import { Router } from '@angular/router';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import moment from 'moment';
+import { MonthViewDay } from 'calendar-utils';
+
+import Tooltip from 'tooltip.js'; 
 
 import {
   startOfDay,
@@ -22,9 +26,16 @@ import {
   endOfMonth,
   isSameDay,
   isSameMonth,
-  addHours
+  addHours,
+  isTuesday,
+  getHours,
+  getMinutes,
+  getTime,
+  setHours,
+  setMinutes,
+  isSameMinute
 } from 'date-fns';
-import { Subject, Subscription } from 'rxjs';
+import { Subject, Subscription, Observable } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
@@ -32,8 +43,10 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView
 } from 'angular-calendar';
-import { EventEmitter } from 'events';
-
+import { FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
+import { startWith, map } from 'rxjs/operators';
+import { BookingComponent } from 'src/app/shared/dialog/booking/booking.component';
+import Popper from 'popper.js';
 
 const colors: any = {
   red: {
@@ -53,7 +66,9 @@ const colors: any = {
 interface MyCalendarEventTimesChangedEvent extends CalendarEventTimesChangedEvent {
   droppedOutsideCalendar?: boolean;
 }
-
+export interface bookingstartTime {
+  value: string;
+}
 export interface PeriodicElement {
   name: string;
   sno: number;
@@ -84,10 +99,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {sno: 14, name: 'Sasi', mobile: '9283714565',serviceName:'Facial',staffName:'Prakash',startTime:'09:20',serviceDuration:'01:00',servicePrice:'700.00',status:'Arrived',source:'Phone'},
 ];
 
-export interface Service {
-  name: string
-}
-
 const SERVICE_DATA: Service[] = [
   {name: 'HaiCut'},
   {name: 'Bleech'}
@@ -96,6 +107,48 @@ export interface Status {
   value: string;
   viewValue: string;
 }
+export interface Service {
+  name: string;
+}
+export interface Customer {
+  name: string;
+  mobile:string;
+}
+export interface Users{
+  name: string
+}
+
+
+const users = [
+  {
+    id: 0,
+    name: 'Abhi'
+  },
+  {
+    id: 1,
+    name: 'Deepthi'
+  },
+  {
+    id: 2,
+    name: 'Devi'
+  },
+  {
+    id: 3,
+    name: 'Nisha'
+  },
+  {
+    id: 4,
+    name: 'Nithya'
+  },
+  {
+    id: 5,
+    name: 'Raja'
+  },
+  {
+    id: 6,
+    name: 'Ravi'
+  }
+];
 @Component({
   selector: 'app-appointment',
   templateUrl: './appointment.component.html',
@@ -110,6 +163,7 @@ export class AppointmentComponent implements OnInit {
   @HostBinding('@.disabled') disabled = true;
   public eventMarkers: any;
   taskfield:any;
+  bookingForm: FormGroup;
   displayedColumns: string[] = ['sno', 'name', 'mobile','serviceName','staffName','startTime','serviceDuration','servicePrice','status','source','action'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   // modalRef: BsModalRef;
@@ -122,11 +176,28 @@ export class AppointmentComponent implements OnInit {
   serviceTitle: string;
   bookingStatus: string;
   bookingStatusBg: string;
+  showMarker = true;
+  userName: any = '';
+  bookingstartTime: bookingstartTime[] = [
+    {value: '12:00'},
+    {value: '12:05'},
+    {value: '12:10'},
+    {value: '12:15'},
+    {value: '12:20'},
+    {value: '12:25'},
+    {value: '12:30'},
+    {value: '12:35'},
+    {value: '12:40'},
+    {value: '12:45'},
+  ]; 
+
   startTime:string;
   eventId:string;
   listView: boolean = false;
-  defaultView: boolean = true;
+  dayView: boolean = true;
+  defaultView: boolean = false;
   endTime:string;
+  filterEvents:any;
   staffName: string;
   source: string;
   bookedTime:string;
@@ -135,13 +206,16 @@ export class AppointmentComponent implements OnInit {
   selectedService:any;
   selectedServiceName: string;
   eventsModel: any;
-  showModal: boolean;  
-  @ViewChild(FullCalendarComponent, {static: true}) calendarComponent: FullCalendarComponent;
-  @ViewChild('externalEvents', {static:false}) public external: ElementRef;
+  bookingServiceStaff: any;
+  showModal: boolean;    
+  @ViewChild('fullCalendar', { static: true }) fullCalendar: FullCalendarComponent;
+  @ViewChild('newEvents', { static:false }) public external: ElementRef;
   @ViewChild('modalContent', { static: false }) modalContent: TemplateRef<any>;
+
   view: CalendarView = CalendarView.Month;
+  //view: CalendarView;
   CalendarView = CalendarView;
-  viewDate: Date = new Date();
+  viewDate: Date = new Date();  
   modalData: {
     action: string;
     event: CalendarEvent;
@@ -150,25 +224,28 @@ export class AppointmentComponent implements OnInit {
   calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin, resourceTimeGridPlugin];
   calendarWeekends = true;
   todayDate = new Date();
-  services : Service = {
-    name :""
-  };
+
   serviceList: Service[] = [
     {name: 'Hair Cut'},
     {name: 'Bleech'},
     {name: 'Facial'}
   ];
+  userList: Users[] = [
+    {name: 'Nisha'},
+    {name: 'Deepthi'},
+    {name: 'Ravi'}
+  ];
   resources: any[] = [
-    {id:'1',title:'Devi'},
-    {id:'2',title:'Ramya'},
-    {id:'3',title:'Nithya'},
-    {id:'4',title:'Ashika'},
-    {id:'5',title:'Ravi'},
-    {id:'6',title:'Devi'},
-    {id:'7',title:'Ramya'},
-    {id:'8',title:'Nithya'},
-    {id:'9',title:'Ashika'},
-    {id:'10',title:'Ravi'}
+    {id:'1',title:'Abhi'},
+    {id:'2',title:'Deepthi'},
+    {id:'3',title:'Devi'},
+    {id:'4',title:'Nisha'},
+    {id:'5',title:'Nithya'},
+    {id:'6',title:'Raja'},
+    {id:'7',title:'Ravi'},
+    // {id:'8',title:'Ravi'},
+    // {id:'9',title:'Usha'},
+    // {id:'10',title:'Zeenath'}
   ];  
   displayedServiceColumns: string[] = ['name'];
   dataServiceSource = new MatTableDataSource(SERVICE_DATA);
@@ -181,35 +258,75 @@ export class AppointmentComponent implements OnInit {
   ];
   businessHours: [ // specify an array instead
     {
-      daysOfWeek: [ 1, 2, 3 ], // Monday, Tuesday, Wednesday
-      startTime: '08:00', // 8am
-      endTime: '18:00' // 6pm
+      daysOfWeek: [ 0, 1, 2, 3, 4, 5, 6 ],
+      startTime: '07:00', // 8am
+      endTime: '22:00' // 6pm
     },
-    {
-      daysOfWeek: [ 4, 5 ], // Thursday, Friday
-      startTime: '10:00', // 10am
-      endTime: '16:00' // 4pm
-    }
+   
   ]
-  // events: any = [
-  //   { title: 'Hair Cut', customerName:'Nisha', customerMobile:'9632574512', customerEmail:'nisha23@gmail.com', resourceId:'1', startTime: new Date(), staffName:'Devi', source:'Walk-in', bookedTime:'10:00AM', backgroundColor:'#f00'},
-  //   { title: 'Bleech',  customerName:'Zenath', customerMobile:'9632574512', customerEmail:'nisha23@gmail.com', resourceId:'2',startTime: new Date(), staffName:'Ramya',  source:'Facebooj', bookedTime:'09:30AM', backgroundColor:'#9fb3d4' },
-  //   { title: 'Facial',  customerName:'Meera', customerMobile:'9632574512', customerEmail:'nisha23@gmail.com', resourceId:'1', startTime: new Date('2019-10-17'), staffName:'Devi',  source:'Phone', bookedTime:'10:10AM', backgroundColor:'#407d5d' },
-  //   { title: 'Hair Coloring',  customerName:'Nisha', customerMobile:'9632574512', customerEmail:'nisha23@gmail.com', resourceId:'3', startTime: new Date('2019-10-16'), staffName:'Nithya',  source:'Walk-in', bookedTime:'04:20PM', backgroundColor:'#34cf7d' }
-  // ]; 
+  service: any;
+  customerHistory : boolean = false;
+  serviceTime:any;  
+  services: Service[] = [
+    {name: 'Hair Cut'},
+    {name: 'Bleech'},
+    {name: 'Facial'}
+  ];
+  customerDet = new FormControl();
+  filteredCustomer: Observable<Customer[]>; 
+  customer: Customer[] = [
+    {name: 'Abhi', mobile:'9632587412'},
+    {name: 'Ramesh Bommiah - 7894561232',mobile:'7894561232'},
+    {name: 'Sruthi',mobile:'9764317946'},
+    {name:'Ravi',mobile:'8293714697'}
+  ];
+
   eventsOld: any = [
-    {id:'1', title: 'Hair Cut', resourceId:'1', start: new Date('2019-11-20 02:30:00'),  backgroundColor:'#F3565D'},
-    {id:'2',  title: 'Bleech',  resourceId:'2',start: new Date('2019-11-18 05:30:00'), backgroundColor:'#fb6a3d' },
-    {id:'3',  title: 'Facial',  resourceId:'1', start: new Date('2019-11-17 10:15:00'),backgroundColor:'#f14343' },
-    {id:'4',  title: 'Hair Coloring', resourceId:'3', start: new Date('2019-11-16 03:00:00'),  backgroundColor:'#9B59B6' },
-    {id:'5',  title: 'Tan Mask', resourceId:'3', start: new Date(),  backgroundColor:'#4d31e6' },
-    {id:'6',  title: 'Body Polishing',  resourceId:'1', start: new Date('2019-11-24 11:15:00'),backgroundColor:'#1BBC9B' },
-    {id:'7',  title: 'Threading',  resourceId:'1', start: new Date('2019-11-28 09:35:00'),backgroundColor:'#43bc1b' },
-    {id:'8',  title: 'Body Polishing',  resourceId:'1', start: new Date('2019-11-04 12:20:00'),backgroundColor:'#6d6d6d' },
-    {id:'9',  title: 'Threading',  resourceId:'1', start: new Date('2019-11-08 06:00:00'),backgroundColor:'#6d6d6d' },
-    {id:'10',  title: 'Body Polishing',  resourceId:'1', start: new Date('2019-10-24 04:10:00'),backgroundColor:'#6d6d6d' },
-    {id:'11',  title: 'Threading',  resourceId:'1', start: new Date('2019-09-05 10:30:00'),backgroundColor:'#6d6d6d' },
+    {id:'1', title: 'Haircut', resourceId:'1', start: new Date('2019-11-29 14:30:00'), end: new Date('2019-11-29 16:30:00'),  backgroundColor:'#ffd619'},
+    {id:'2', title: 'Waxing',  resourceId:'2',start: new Date('2019-11-29 17:30:00'), end: new Date('2019-11-29 18:00:00'), backgroundColor:'#ffa217' },
+    {id:'3', title: 'Facial',  resourceId:'1', start: new Date('2019-11-28 10:30:00'), end: new Date('2019-11-28 11:30:00'), backgroundColor:'#ffd619' },
+    {id:'4', title: 'Hair Coloring', resourceId:'3', start: new Date('2019-11-29 15:00:00'), end: new Date('2019-11-29 16:30:00'), backgroundColor:'#64c9ff' },
+    {id:'5', title: 'Waxing', resourceId:'3', start: new Date('2019-11-25 15:00:00'), end: new Date('2019-11-25 16:30:00'), backgroundColor:'#43bc1b' },
+    {id:'5', title: 'Hair Colouring', resourceId:'3', start: new Date('2019-11-28 14:00:00'), end: new Date('2019-11-28 16:30:00'), backgroundColor:'#4d31e6' },
+    {id:'6', title: 'Body Polishing', resourceId:'4', start: new Date('2019-11-25 11:00:00'), end: new Date('2019-11-25 13:00:00'), backgroundColor:'#43bc1b' },
+    {id:'7', title: 'Facial',  resourceId:'1', start: new Date('2019-11-29 09:00:00'), end: new Date('2019-11-29 10:30:00'), backgroundColor:'#43bc1b' },
+    {id:'6', title: 'Body Polishing', resourceId:'1', start: new Date('2019-11-28 15:00:00'), end: new Date('2019-11-28 16:30:00'), backgroundColor:'#64c9ff' },
+    {id:'8', title: 'Threading', resourceId:'5', start: new Date('2019-11-29 12:00:00'), end: new Date('2019-11-29 12:30:00'), backgroundColor:'#ffa217' },
+    {id:'9', title: 'Threading', resourceId:'1', start: new Date('2019-11-28 18:00:00'), end: new Date('2019-11-28 19:00:00'), backgroundColor:'#ffd619' },
+    {id:'10', title: 'Facial', resourceId:'2', start: new Date('2019-11-29 09:00:00'), end: new Date('2019-11-29 10:00:00'), backgroundColor:'#ffa217' },
+    {id:'11', title: 'Body Polishing', resourceId:'1', start: new Date('2019-11-24 16:00:00'), end: new Date('2019-11-24 16:30:00'), backgroundColor:'#ffd619' },
+    {id:'12', title: 'Threading', resourceId:'7', start: new Date('2019-11-28 10:30:00'), end: new Date('2019-11-28 11:30:00'), backgroundColor:'#43bc1b' },
+    {id:'13', title: 'Hair Coloring', resourceId:'6', start: new Date('2019-12-01 10:00:00'), end: new Date('2019-12-01 11:30:00'), backgroundColor:'#64c9ff' },
+    {id:'14', title: 'Threading', resourceId:'5', start: new Date('2019-11-30 12:00:00'), end: new Date('2019-11-30 12:30:00'), backgroundColor:'#ffa217' },
+    {id:'15', title: 'Threading', resourceId:'1', start: new Date('2019-11-30 18:00:00'), end: new Date('2019-11-30 19:00:00'), backgroundColor:'#ffd619' },
+    {id:'16', title: 'Facial', resourceId:'2', start: new Date('2019-11-30 09:00:00'), end: new Date('2019-11-30 10:00:00'), backgroundColor:'#ffa217' },
+    {id:'17', title: 'Body Polishing', resourceId:'1', start: new Date('2019-12-01 16:00:00'), end: new Date('2019-12-01 17:30:00'), backgroundColor:'#ffd619' },
+    {id:'18', title: 'Body Polishing', resourceId:'4', start: new Date('2019-11-30 10:00:00'), end: new Date('2019-11-30 11:30:00'), backgroundColor:'#43bc1b' },
+    {id:'19', title: 'Hair Coloring', resourceId:'6', start: new Date('2019-11-30 10:00:00'), end: new Date('2019-11-30 11:30:00'), backgroundColor:'#64c9ff' },
+    {id:'20', title: 'Waxing', resourceId:'3',start: new Date('2019-11-30 17:30:00'), end: new Date('2019-11-30 18:30:00'), backgroundColor:'#ffa217' },
+    {id:'21', title: 'Facial', resourceId:'4',start: new Date('2019-11-30 17:30:00'), end: new Date('2019-11-30 19:00:00'), backgroundColor:'#43bc1b' },
   ]; 
+
+//Events w/o bg color
+  // eventsOld: any = [
+  //   {id:'1', title: 'Haircut', resourceId:'1', start: new Date('2019-11-29 14:30:00'), end: new Date('2019-11-29 16:30:00')},
+  //   {id:'2',  title: 'Waxing',  resourceId:'2',start: new Date('2019-11-29 17:30:00'), end: new Date('2019-11-29 18:00:00')},
+  //   {id:'3',  title: 'Facial',  resourceId:'1', start: new Date('2019-11-28 10:30:00'), end: new Date('2019-11-28 11:30:00') },
+  //   {id:'4',  title: 'Hair Coloring', resourceId:'3', start: new Date('2019-11-29 15:00:00'), end: new Date('2019-11-29 16:30:00') },
+  //   {id:'5',  title: 'Waxing', resourceId:'3', start: new Date('2019-11-25 15:00:00'), end: new Date('2019-11-25 16:30:00') },
+  //   {id:'5',  title: 'Hair Colouring', resourceId:'3', start: new Date('2019-11-28 14:00:00'), end: new Date('2019-11-28 16:30:00') },
+  //   {id:'6',  title: 'Body Polishing',  resourceId:'4', start: new Date('2019-11-25 11:00:00'), end: new Date('2019-11-25 13:00:00') },
+  //   {id:'7',  title: 'Facial',  resourceId:'1', start: new Date('2019-11-29 09:00:00'), end: new Date('2019-11-29 10:30:00') },
+  //   {id:'6',  title: 'Body Polishing',  resourceId:'1', start: new Date('2019-11-28 15:00:00'), end: new Date('2019-11-28 16:30:00') },
+  //   {id:'8',  title: 'Threading',  resourceId:'5', start: new Date('2019-11-29 12:00:00'), end: new Date('2019-11-29 12:30:00') },
+  //   {id:'9',  title: 'Threading',  resourceId:'1', start: new Date('2019-11-28 18:00:00'), end: new Date('2019-11-28 19:00:00') },
+  //   {id:'10', title: 'Facial',  resourceId:'2', start: new Date('2019-11-29 09:00:00'), end: new Date('2019-11-29 10:00:00') },
+  //   {id:'11', title: 'Body Polishing',  resourceId:'1', start: new Date('2019-11-24 16:00:00'), end: new Date('2019-11-24 16:30:00') },
+  //   {id:'12', title: 'Threading',  resourceId:'7', start: new Date('2019-11-28 10:30:00'), end: new Date('2019-11-28 13:30:00') },
+  //   {id:'13', title: 'Hair Coloring',  resourceId:'6', start: new Date('2019-11-30 10:00:00'), end: new Date('2019-11-30 10:30:00') },
+  // ]; 
+
+
   eventClick(model:any) {
     this.serviceTitle = model.event.title;
     this.startTime = model.event.start;   
@@ -247,8 +364,54 @@ export class AppointmentComponent implements OnInit {
     console.log(val);
   }
   eventDragStop(model) {
-    console.log(model);
+    console.log('drag stop');
+    
   }
+  onEventRender(info: any) {     
+    const tooltip = new Tooltip(info.el, { 
+      title: info.event.title, 
+      placement: 'top', 
+      trigger: 'hover', 
+      container: 'body'
+    });         
+    console.log(tooltip);    
+  } 
+  eventReceive(val) {        
+    const check = new Date(val.event.start).toLocaleTimeString().replace(/:\d+ /, ' ');
+    const title = val.event.title
+    const dialogRef = this.dialog.open(BookingComponent, {
+      data:{ check, title  },       
+      width: '70%',
+      height:'70%'       
+    });  
+    dialogRef.afterClosed().subscribe(result => {      
+        if(result) {          
+          this.bookingServiceStaff = result.service[0].bookingStaff;
+        }
+    });
+  }
+
+
+  eventClicked(val) {    
+    console.log(val);
+    var dt = val.event.start;
+    var userName = val.event._calendar.state.resourceStore[val.event._def.resourceIds[0]].title;    
+    var bgColor = val.event.backgroundColor;
+    const check = new Date(val.event.start).toLocaleTimeString().replace(/:\d+ /, ' ');
+    const title = val.event.title
+    const dialogRef = this.dialog.open(BookingComponent, {
+      data:{ check, title, userName, dt, bgColor },       
+      width: '70%',
+      height:'70%'       
+    });  
+    dialogRef.afterClosed().subscribe(result => {      
+        if(result) {
+          this.bookingServiceStaff = result.service[0].bookingStaff;
+        }
+    });
+  }
+
+
   toggleWeekends() {
     this.calendarWeekends = !this.calendarWeekends;
   }
@@ -261,7 +424,7 @@ export class AppointmentComponent implements OnInit {
     return dateObj.getUTCFullYear() + '-' + (dateObj.getUTCMonth() + 1);
   }
   
-  handleDateClick(arg) {
+  handleDateClick(arg) {   
     if(arg.date >= this.todayDate) {    
       this.router.navigate(['/beautelabs/cbot-admin/bookingCreate', { Seldate: arg.dateStr }]);
     } else {
@@ -286,23 +449,72 @@ export class AppointmentComponent implements OnInit {
     },
     {
       label: '<i class="fa fa-fw fa-trash dark-font"></i>',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
+      onClick: ({ event }: { event: CalendarEvent }): void => {                
         this.events = this.events.filter(iEvent => iEvent !== event);
-       // this.handleEvent('Deleted', event);
+        this.handleEvent('Deleted', event);
       }
     }
   ];
 
   refresh: Subject<any> = new Subject();
-
+  groupedSimilarEvents: CalendarEvent[] = [];
   events: CalendarEvent[] = [
     {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
+      //start: addHours(new Date(),2),
+      //end: addHours(new Date(), 3),
+      start: setHours(setMinutes(new Date(), 0), 9),
+      end: setHours(setMinutes(new Date(), 30), 9),      
+      title: 'Haircut',
       color: colors.red,
       actions: this.actions,
-      allDay: true,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true,
+      meta: {
+        user: users[0]
+      },
+    },
+    {
+      start: setHours(setMinutes(new Date(), 0), 7),
+      end: setHours(setMinutes(new Date(), 30), 7),   
+      title: 'Threading',
+      color: colors.blue,
+      actions: this.actions,      
+      draggable: true,
+      meta: {
+        user: users[1]
+      },
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      }
+    },
+    {
+      start: setHours(setMinutes(new Date(), 0), 7),
+      end: setHours(setMinutes(new Date(), 30), 7),   
+      title: 'Threading',
+      color: colors.blue,
+      actions: this.actions,      
+      draggable: true,
+      meta: {
+        user: users[2]
+      },
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      }
+    },
+    {
+      title: 'Waxing',
+      start: setHours(setMinutes(new Date(), 0), 13),
+      end: setHours(setMinutes(new Date(), 0), 14),   
+      color: colors.blue,
+      actions: this.actions,
+      meta: {
+        user: users[2]
+      },
       resizable: {
         beforeStart: true,
         afterEnd: true
@@ -310,35 +522,138 @@ export class AppointmentComponent implements OnInit {
       draggable: true
     },
     {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions,      
+      start: setHours(setMinutes(new Date(), 0), 15),
+      end: setHours(setMinutes(new Date(), 0), 16),   
+      title: 'Facial',
+      color: colors.blue,
+      meta: {
+        user: users[4]
+      },
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
       draggable: true
     },
     {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
+      start: setHours(setMinutes(new Date(), 0), 18),
+      end: setHours(setMinutes(new Date(), 0), 19),   
+      title: 'Waxing',
       color: colors.blue,
-      allDay: true
+      meta: {
+        user: users[4]
+      },
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true
     },
     {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
+      start: setHours(setMinutes(new Date(), 0), 16),
+      end: setHours(setMinutes(new Date(), 30), 17),   
+      title: 'Body polishing',
       color: colors.yellow,
       actions: this.actions,
       resizable: {
         beforeStart: true,
         afterEnd: true
       },
-      draggable: true
+      draggable: true,
+      meta: {
+        user: users[3]
+      },
     },
+    {
+      start: setHours(setMinutes(new Date(), 0), 18),
+      end: setHours(setMinutes(new Date(), 0), 19),   
+      title: 'Facial',
+      color: colors.red,
+      actions: this.actions,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true,
+      meta: {
+        user: users[5]
+      },
+    },
+    {
+      start: setHours(setMinutes(new Date(), 0), 7),
+      end: setHours(setMinutes(new Date(), 30), 7),   
+      title: 'Hair Coloring',
+      color: colors.red,
+      actions: this.actions,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true,
+      meta: {
+        user: users[6]
+      },
+    },
+    {
+      start: setHours(setMinutes(new Date(), 0), 9),
+      end: setHours(setMinutes(new Date(), 30), 10),   
+      title: 'Body polishing',
+      color: colors.yellow,
+      actions: this.actions,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true,
+      meta: {
+        user: users[6]
+      },
+    },
+    {
+      start: setHours(setMinutes(new Date(), 0), 11),
+      end: setHours(setMinutes(new Date(), 30), 12),   
+      title: 'Body polishing',
+      color: colors.yellow,
+      actions: this.actions,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true,
+      meta: {
+        user: users[3]
+      },
+    },
+    {
+      start: setHours(setMinutes(new Date('November 30, 2019'), 0), 10),
+      end: setHours(setMinutes(new Date('November 30, 2019'), 30), 10),     
+      title: 'Hair Coloring',
+      color: colors.red,
+      actions: this.actions,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true,
+      meta: {
+        user: users[3]
+      },
+    }
   ];
 
   activeDayIsOpen: boolean = false; 
-  externalEvents: CalendarEvent[] = [{
+  externalEvents: CalendarEvent[] = [
+    {
+      title: 'New Appointment',
+      color: colors.yellow,
+      start: new Date(),
+      draggable: true,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+    },    
+    {
     title: 'Haircut',
     color: colors.yellow,
     start: new Date(),
@@ -388,7 +703,7 @@ export class AppointmentComponent implements OnInit {
 ];
 
 
-eventDropped({event, newStart, newEnd, droppedOutsideCalendar}: MyCalendarEventTimesChangedEvent): void {
+eventDropped({event, newStart, newEnd, droppedOutsideCalendar}: MyCalendarEventTimesChangedEvent): void {  
   if (!droppedOutsideCalendar) {
     const externalIndex: number = this.externalEvents.indexOf(event);
     
@@ -405,7 +720,10 @@ eventDropped({event, newStart, newEnd, droppedOutsideCalendar}: MyCalendarEventT
             beforeStart: true,
             afterEnd: true
           },
-          draggable: true
+          draggable: true,
+          meta: {
+            user: users[0],            
+          },
         }
       );
     }
@@ -414,9 +732,60 @@ eventDropped({event, newStart, newEnd, droppedOutsideCalendar}: MyCalendarEventT
       event.end = newEnd;
     }
     this.viewDate = newStart;
-    this.activeDayIsOpen = true;
+    this.activeDayIsOpen = false;
   }
+  //this.newEvent('New Event', event);
+  this.newExternalEvent('New Event', event);
+  this.eventsOld.push(
+    {
+      id:'12',
+      start: newStart,
+      resourceId:'3',
+      title: event.title,
+      backgroundColor: colors.yellow,
+      draggable: true,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+    }
+  )
+  // this.openNewBooking();
+  // this.handleEvent('Dropped or resized', event);
 }
+
+
+// eventDropped({
+//   event,
+//   newStart,
+//   newEnd,
+//   allDay
+// }: CalendarEventTimesChangedEvent): void {
+//   const externalIndex = this.externalEvents.indexOf(event);
+//   if (typeof allDay !== 'undefined') {
+//     event.allDay = allDay;
+//   }
+//   if (externalIndex > -1) {
+//     this.externalEvents.splice(externalIndex, 1);
+//     this.events.push(event);
+//   }
+//   event.start = newStart;
+//   if (newEnd) {
+//     event.end = newEnd;
+//   }
+//   if (this.view === 'month') {
+//     this.viewDate = newStart;
+//     this.activeDayIsOpen = true;
+//   }
+//   this.events = [...this.events];
+// }
+
+// externalDrop(event: CalendarEvent) {
+//   if (this.externalEvents.indexOf(event) === -1) {
+//     this.events = this.events.filter(iEvent => iEvent !== event);
+//     this.externalEvents.push(event);
+//   }
+// }
 
 droppedBack(event: CalendarEvent): void {    
   const internalIndex: number = this.events.indexOf(event);
@@ -426,27 +795,37 @@ droppedBack(event: CalendarEvent): void {
     this.refresh.next();
   }
 }
-
+monthEvents: CalendarEvent[] = [];
   //  constructor(private modalService: BsModalService, public dialog: MatDialog, public router: Router, private modal: NgbModal) { }
-  constructor( public router: Router, private modal: NgbModal) { }
+  constructor( public router: Router, private modal: NgbModal, private formBuilder: FormBuilder, private dialog: MatDialog ) {
+    this.monthEvents = this.events; 
+    this.filteredCustomer = this.customerDet.valueChanges
+    .pipe(
+      startWith(''),
+      map(customer => customer ? this._filterCustomer(customer) : this.customer.slice())
+    );    
+  }
   
    cancelBooking(val) {
      this.bookingStatus = 'Cancelled';  
    }
 
    addNew(ser) {
-      this.externalEvents.push( { title: this.selectedServiceName,
-      color: colors.blue,
-      start: new Date(),
-      draggable: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      } });
+     this.services.push({name:ser});     
+     SERVICE_DATA.push({name: ser})
+     this.dataServiceSource = new MatTableDataSource(SERVICE_DATA);     
+     
+      // this.externalEvents.push( { title: this.selectedServiceName,
+      // color: colors.blue,
+      // start: new Date(),
+      // draggable: true,
+      // resizable: {
+      //   beforeStart: true,
+      //   afterEnd: true
+      // } });
       
    }
-   selService(val) {
-     console.log(val);
+   selService(val) {     
      const externalIndex: number = this.externalEvents.indexOf(val);
      this.externalEvents.splice(externalIndex, 1);
      
@@ -464,9 +843,7 @@ droppedBack(event: CalendarEvent): void {
       header: {
          left: 'prev today next',
          center: 'title',
-        // right: 'timeGridDay,timeGridWeek,dayGridMonth,listWeek'
-        // left: '',
-        // center:'',
+         //right: 'timeGridDay,timeGridWeek,dayGridMonth,listWeek'
          right: ''
       },    
       buttonText: {
@@ -474,7 +851,8 @@ droppedBack(event: CalendarEvent): void {
       },
       // add other plugins
       // plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin, resourceTimeGridPlugin, listPlugin],    
-      plugins: [listPlugin],          
+      // plugins: [resourceTimelinePlugin, listPlugin, timeGridPlugin, interactionPlugin],       
+      plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin, listPlugin, resourceTimelinePlugin],   
       views: {
         timeGrid: {
           eventLimit: 6 // adjust to 6 only for timeGridWeek/timeGridDay
@@ -483,21 +861,111 @@ droppedBack(event: CalendarEvent): void {
           eventLimit: 4
         }
       },     
-     };
-     
-    
+      businessHours: {
+        // days of week. an array of zero-based day of week integers (0=Sunday)
+        daysOfWeek: [ 0, 1, 2, 3, 4, 5, 6], // Sunday - Monday
+      
+        startTime: '07:00', // a start time (07:00am)
+        endTime: '22:00', // an end time (09:30pm)
+      },
+      hiddenDays: [],       
+      eventRender: function (eventObj, $el) {
+        $el.popover({
+            title: eventObj.title,
+            content: eventObj.description,
+            trigger: 'hover',
+            placement: 'top',
+            container: 'body'
+        });
+    },
+      // eventDrop: function(info) {               
+      //   alert(info.event.title + " was dropped on " + info.event.start.toISOString());    
+      //   if (!confirm("Are you sure about this change?")) {
+      //     info.revert();
+      //   }
+      // } 
+     };             
+     this.bookingForm = new FormGroup({
+      customerName: new FormControl(null),
+      bookingDate: new FormControl(null),    
+      bookingStatus: new FormControl(null),
+      bookingSource: new FormControl(null),
+      service: this.formBuilder.array([this.createService()]),      
+      bookingNote: new FormControl(null),
+    });
+    this.groupedSimilarEvents = [];
+    const processedEvents = new Set();
+    this.events.forEach(event => {
+      if (processedEvents.has(event)) {
+        return;
+      }
+      const similarEvents = this.events.filter(otherEvent => {
+        return (
+          otherEvent !== event &&
+          !processedEvents.has(otherEvent) &&
+          isSameMinute(otherEvent.start, event.start) &&
+          (isSameMinute(otherEvent.end, event.end) ||
+            (!otherEvent.end && !event.end)) &&
+          otherEvent.color.primary === event.color.primary &&
+          otherEvent.color.secondary === event.color.secondary
+        );
+      });
+      processedEvents.add(event);
+      similarEvents.forEach(otherEvent => {
+        processedEvents.add(otherEvent);
+      });
+      if (similarEvents.length > 0) {
+        this.groupedSimilarEvents.push({
+          // title: `${similarEvents.length + 1} events`,
+          title: `${similarEvents.length + 1} - ` + event.title,
+          color: event.color,
+          start: event.start,
+          end: event.end,
+          meta: {
+            groupedEvents: [event, ...similarEvents]
+          }
+        });
+      } else {
+        this.groupedSimilarEvents.push(event);
+      }
+    });
+  }
+
+  private _filterCustomer(value: string): Customer[] {
+    const filterValue = value;       
+    this.customerHistory = true;
+    return this.customer.filter(customername => customername.name.toLowerCase().indexOf(filterValue) === 0 || customername.mobile.indexOf(filterValue) === 0);
+  }
+  createService(): FormGroup {
+    return this.formBuilder.group({
+      bookingService: new FormControl(),
+      bookingStaff: new FormControl(),
+      bookingStartTime: new FormControl(),
+    });    
+ }
+
+addService(): void {
+  this.service = this.bookingForm.get('service') as FormArray;
+  this.service.push(this.createService());
+}
+Delete(_index) {
+  this.service.removeAt(_index);
 }
 
-// ngAfterViewInit() {  
-//   new Draggable(this.external.nativeElement, {
-//         itemSelector: '.fc-event',
-//         eventData: function(eventEl) {          
-//           return {
-//             title: eventEl.innerText
-//           };
-//         }
-//     });
-// }
+ngAfterViewInit() {  
+  this.dayView = true;
+   new Draggable(this.external.nativeElement, {        
+        itemSelector: '.fc-event',        
+        eventData: function(eventEl) {     
+          return {            
+            title: eventEl.innerText
+          };
+
+        }
+
+     });  
+}
+
 caltoggle() { 
   if(this.calicon == "event_note") { 
     this.calicon = "list";
@@ -521,25 +989,21 @@ caltoggle() {
     this.selectedService = event.target.value;
   }
 
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    if (isSameMonth(date, this.viewDate)) {
-      if (
-        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-        events.length === 0
-      ) {
+  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }) {
+    if(isSameMonth(date, this.viewDate)) {
+      if ((isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) || events.length === 0) {
         this.activeDayIsOpen = false;
       } else {
-        this.activeDayIsOpen = true;
+        // this.activeDayIsOpen = true;
+        this.activeDayIsOpen = false;
       }
       this.viewDate = date;
-    }
+      this.monthEvents = events;           
+    }    
   }
-
-  eventTimesChanged({
-    event,
-    newStart,
-    newEnd
-  }: CalendarEventTimesChangedEvent): void {
+ 
+ 
+  eventTimesChanged({ event, newStart, newEnd }: CalendarEventTimesChangedEvent): void {
     this.events = this.events.map(iEvent => {
       if (iEvent === event) {
         return {
@@ -553,12 +1017,81 @@ caltoggle() {
     this.handleEvent('Dropped or resized', event);
   }
 
-
-  handleEvent(action: string, event: CalendarEvent): void {
-    console.log(event);
-    
+  handleEvent(action: string, event: CalendarEvent): void {    
     this.modalData = { event, action };
     this.modal.open(this.modalContent, { size: 'lg' });
+  }
+
+  newEvent(action: string, event: CalendarEvent): void {        
+    this.modalData = { event, action };
+    const title = event.title;         
+    const userName = event.meta.user.name;
+    
+    const check = new Date(event.start).toLocaleTimeString().replace(/:\d+ /, ' ');    
+    // console.log('Start',this.bookingForm.controls.service[0].bookingStartTime);
+    // openNewBooking() {         
+    const dialogRef = this.dialog.open(BookingComponent, {
+        data:{ check, title, userName },       
+        width: '70%',
+        height:'70%'       
+      });  
+      dialogRef.afterClosed().subscribe(result => {      
+          if(result) {            
+            this.bookingServiceStaff = result.service[0].bookingStaff;
+          }
+      });
+    // }
+    // this.modal.open(this.modalContent, { size: 'lg' });
+  }
+
+  weekEventClicked(action: string, event: CalendarEvent): void {     
+           
+    this.modalData = { event, action };
+    const title = event.title;         
+    const userName = event.meta.user.name;
+    const dt = event.start;
+    const check = new Date(event.start).toLocaleTimeString().replace(/:\d+ /, ' ');    
+    const dialogRef = this.dialog.open(BookingComponent, {
+        data:{ check, title, userName, dt },       
+        width: '70%',
+        height:'70%'       
+      });  
+      dialogRef.afterClosed().subscribe(result => {      
+          if(result) {            
+            this.bookingServiceStaff = result.service[0].bookingStaff;
+          }
+      });
+  }
+
+  newExternalEvent(action: string, event: CalendarEvent): void {        
+    this.modalData = { event, action };
+    const title = event.title;         
+    
+    const check = new Date(event.start).toLocaleTimeString().replace(/:\d+ /, ' ');
+    const dialogRef = this.dialog.open(BookingComponent, {
+        data:{ check, title },       
+        width: '70%',
+        height:'70%'       
+      });  
+      dialogRef.afterClosed().subscribe(result => {      
+          if(result) {            
+            this.bookingServiceStaff = result.service[0].bookingStaff;
+          }
+      });
+  }
+
+  newDayEvent(action:string, eventTime) : void {
+    
+    const check = new Date(eventTime).toLocaleTimeString().replace(/:\d+ /, ' ');
+    const title = '';
+    const dialogRef = this.dialog.open(BookingComponent, {
+      data:{ check, title },
+      width: '70%',
+      height:'70%'       
+    });  
+    dialogRef.afterClosed().subscribe(result => {       
+
+    });
   }
 
   addEvent(): void {
@@ -576,15 +1109,33 @@ caltoggle() {
         }
       }
     ];   
+    this.eventsOld.push(
+      {
+        id:'12',
+        start:  startOfDay(new Date()),
+        resourceId:'3',
+        title: 'New Event',
+        backgroundColor: colors.yellow,
+        draggable: true,
+        resizable: {
+          beforeStart: true,
+          afterEnd: true
+        },
+      }
+    )
   }
-  deleteEvent(eventToDelete: CalendarEvent) {
+  deleteEvent(eventToDelete: CalendarEvent) {   
     this.events = this.events.filter(event => event !== eventToDelete);
   }
 
-  setView(view: CalendarView) {
+  setView(view: CalendarView) {    
+    console.log(view);
+        
     this.defaultView = true;
     this.view = view;
     this.listView = false;
+    this.dayView = true;
+    this.ngAfterViewInit();
   }
 
   closeOpenMonthViewDay() {
@@ -593,6 +1144,39 @@ caltoggle() {
   showListView() {        
     this.listView = true;
     this.defaultView = false;
+    this.dayView = true;
+    this.ngAfterViewInit();
+  }
+  showDayView() {
+    this.dayView = true;
+    this.listView = false;    
+    this.defaultView = false;   
+    this.ngAfterViewInit();
+  }
+  doubleClick (day: MonthViewDay) {
+    this.view = CalendarView.Day;
   }
 
+  // userChanged({event, newUser}) {
+  //   event.meta.user = newUser;
+  //   this.refresh.next();
+  // }
+
+  userChanged({ event, newUser }) {
+    event.color = newUser.color;
+    event.meta.user = newUser;
+    this.events = [...this.events];
+  }
+
+  // openNewBooking() {
+  //   const dialogRef = this.dialog.open(BookingComponent, {
+  //     width: '70%',
+  //     height:'70%'
+     
+  //   });
+
+  //   dialogRef.afterClosed().subscribe(result => {
+     
+  //   });
+  // }
 }

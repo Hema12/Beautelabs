@@ -3,9 +3,17 @@
         <h2 class="page-title">New Appointment </h2>
     </div>
 </div> -->
-<div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pall-zero mall-zero">    
-    <mat-card class="full-width newCard pall-zero">
-        <h2 class="subheading">New Appointment</h2>         
+<div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 modaltopheader">            
+    <h3 matDialogTitle class="billTitle">New Appointment</h3>
+    <!-- <mat-dialog-actions align="end" class="closeicon"> -->
+        <div align="end" class="closeicon">
+      <mat-icon (click)="close()" class="white-font topicon">close</mat-icon>
+    <!-- </mat-dialog-actions>     -->
+</div>
+</div>
+<div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 mt-2">    
+    <mat-card class="full-width pall-zero woshadow">
+        <!-- <h2 class="subheading">New Appointment</h2>                    -->
         <mat-card-content>
             <div class="col-md-12 col-sm-12 col-lg-7 col-xl-7 widthinc">                          
                 <form method="POST" [formGroup]="bookingForm"> 
@@ -123,14 +131,14 @@
             </div>
             
             <div class="col-md-12 col-sm-12 col-lg-8 col-xl-5 profileHistory pall-zero mall-zero" *ngIf="customerHistory">      
-                <mat-card class="full-width newCard">
+                <mat-card class="full-width">
                     <mat-card-content>
                         <div class="row col-md-12 col-xl-12 col-lg-12 pall-zero">
                             <div class="col-md-4 col-xl-2 col-lg-4 customerProfile pall-zero">
                                 <img src="../../../../assets/images/profile.png" />                                
                             </div>
                             <div class="col-md-8 col-xl-10 col-lg-8 profile pall-zero">                                
-                                <h2>Jai Nishanth <mat-icon matSuffix class="ml-2">edit</mat-icon> </h2>
+                                <h2>Abhi <mat-icon matSuffix class="ml-2">edit</mat-icon> </h2>
                                 <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12 pall-zero mall-zero">
                                     <div class="col-md-12 col-xl-6 col-lg-6 col-sm-12 pall-zero">
                                         <mat-icon matPrefix class="profileicon">phone</mat-icon> +91 9876545679 
