@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { Location } from '@angular/common';
+
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Location, LocationStrategy, PathLocationStrategy, PopStateEvent } from '@angular/common';
+import {  filter} from 'rxjs/operators';
+import { Router, NavigationEnd, NavigationStart } from '@angular/router';
+import { Subscription } from 'rxjs';
 import PerfectScrollbar from 'perfect-scrollbar';
 import * as $ from "jquery";
 
@@ -11,6 +14,7 @@ import * as $ from "jquery";
 })
 export class BeautelabsComponent implements OnInit {
   loader: Boolean = false;
+  private _router: Subscription;
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
   
@@ -45,6 +49,10 @@ export class BeautelabsComponent implements OnInit {
       });
      
      
+      if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
+        let ps = new PerfectScrollbar(elemMainPanel);
+        ps = new PerfectScrollbar(elemSidebar);
+    }
       const window_width = $(window).width();
       let $sidebar = $('.sidebar');
       let $sidebar_responsive = $('body > .navbar-collapse');
@@ -130,5 +138,19 @@ export class BeautelabsComponent implements OnInit {
        }
     });
    }
-  
+
+   runOnRouteChange(): void {
+    if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
+      const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
+      const ps = new PerfectScrollbar(elemMainPanel);
+      ps.update();
+    }
+  }
+  isMac(): boolean {
+    let bool = false;
+    if (navigator.platform.toUpperCase().indexOf('MAC') >= 0 || navigator.platform.toUpperCase().indexOf('IPAD') >= 0) {
+        bool = true;
+    }
+    return bool;
+}
 }

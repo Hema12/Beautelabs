@@ -67,7 +67,7 @@ export class DashboardComponent implements OnInit {
       seq2 = 0;
   };
   ngOnInit() {
-      /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
+      /* ----------==========    Daily Sale Chart initialization for Documentation  ==========---------- */
 
       const dataDailySalesChart: any = {
           labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
@@ -81,7 +81,7 @@ export class DashboardComponent implements OnInit {
               tension: 0
           }),
           low: 0,
-          high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+          high: 50, // we recommend you to set the high as the biggest value + something for a better look
           chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
       }
 
@@ -90,7 +90,7 @@ export class DashboardComponent implements OnInit {
       this.startAnimationForLineChart(dailySalesChart);
 
 
-      /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
+      /* ----------==========    Completed Tasks Chart initialization    ==========---------- */
 
       const dataCompletedTasksChart: any = {
           labels: ['12p', '3p', '6p', '9p', '12p', '3a', '6a', '9a'],
@@ -104,18 +104,18 @@ export class DashboardComponent implements OnInit {
               tension: 0
           }),
           low: 0,
-          high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+          high: 1000, //we recommend you to set the high as the biggest value + something for a better look
           chartPadding: { top: 0, right: 0, bottom: 0, left: 0}
       }
 
       var completedTasksChart = new Chartist.Line('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
 
-      // start animation for the Completed Tasks Chart - Line Chart
+      // start animation for completed tasks chart - line chart
       this.startAnimationForLineChart(completedTasksChart);
 
 
 
-      /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
+      /* ----------==========    Email Subscription Chart initialization   ==========---------- */
 
       var datawebsiteViewsChart = {
         labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
@@ -144,7 +144,7 @@ export class DashboardComponent implements OnInit {
       ];
       var websiteViewsChart = new Chartist.Bar('#websiteViewsChart', datawebsiteViewsChart, optionswebsiteViewsChart, responsiveOptions);
 
-      //start animation for the Emails Subscription Chart
+      // start animation for the Email Subscription Chart
       this.startAnimationForBarChart(websiteViewsChart);
   }
 

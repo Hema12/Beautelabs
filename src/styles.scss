@@ -75,11 +75,11 @@ body {
 .header94  {
 }
 .logo {
-    background: $primary-color-lightwhite;
+    background: #fcfcfc;
     padding: 0px !important;
-    margin: 0px !important;
-    min-width: 12%;
-    width:auto;
+    // margin: 0px !important;
+    // min-width: 12%;
+    // width:auto;
 }
 .logo h1 {
     color: $primary-color-lightgrey;
@@ -282,7 +282,7 @@ body {
     margin-bottom: 5% !important;
 }
 .toplogo {
-    width: 170px;
+    width: 180px;
     height: 40px;
     margin:10px 16px;
 }
