@@ -12,8 +12,7 @@
 body {
     margin:0px !important;
     font-family: $primary-font-family-common !important;
-    background: $primary-color-white !important;
-    overflow-y: hidden !important;
+    background: #eee !important;
     outline: none !important;
 }
 * outline {
@@ -151,6 +150,9 @@ body {
 .mt-11 {
     margin-top:11% !important;
 }
+.mt-60 { 
+    margin-top:60px !important;
+}
 .mt-7 {
     margin-top:7% !important;
 }
@@ -279,6 +281,11 @@ body {
 .mb-5 {
     margin-bottom: 5% !important;
 }
+.toplogo {
+    width: 170px;
+    height: 40px;
+    margin:10px 16px;
+}
 //Footer
 .footer {
     bottom: 0;
@@ -368,8 +375,14 @@ th {
 }
 
 //active menu
-.active {
-    background: #34496d !important;
+// .active {
+//     background: #34496d !important;
+// }
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none !important;
 }
 .bookingstaff {
     margin-top:0.6%;
@@ -389,7 +402,7 @@ th {
     line-height: 30px !important;
     padding:0px 6px !important;
     min-width: 60px !important;
-    border: 1px solid #fff !important;
+    // border: 1px solid #fff !important;
     border-radius: 0px !important;
 }
 .bookingcancelbtn {
@@ -595,10 +608,10 @@ th {
     background-color: #f44336 !important;
 }
 
-.col-md-4 {
-    flex: 1 0 33%;
-    width: 33%;
-}
+// .col-md-4 {
+//     flex: 1 0 33%;
+//     width: 33%;
+// }
 //Modal
 .modal-header {
     min-height: 16.428571429px;
@@ -917,8 +930,8 @@ th {
 // }
 .fc-right{ 
     float: right !important;
-    margin-right: 96px !important;    
-    margin-top: -9px !important;
+    // margin-right: 96px !important;    
+    // margin-top: -9px !important;
 }
 .rightbtn {
     float: right;
@@ -1400,7 +1413,7 @@ table {
 }
 td,th {
     font-size: $secondary-font-size !important;
-    white-space: nowrap !important;
+   // white-space: nowrap !important;
     // overflow: hidden !important;
     // text-overflow: ellipsis !important;
 }
@@ -2534,7 +2547,18 @@ tr.mat-row {
 .detailsdiv .mat-card {
     padding:3px 10px !important;
 }
-
+.topcard {
+    min-height: 130px !important;
+}
+.bottomcard {
+    min-height: 340px !important;
+}
+.whitebg {
+    background: $primary-color-white !important;
+}
+// .fixed-top {
+//     left:260px !important;
+// }
 // .day-view-column-headers {
 //     height: 60px !important;
 //     line-height: 60px !important;
@@ -2679,11 +2703,11 @@ tr.mat-row {
     .activeStaff {
         display: none !important;
     }
-    .col-md-4 {
-        max-width:22%;
-        flex: 0 0 22%;
-        margin-left: 1%;
-    }
+    // .col-md-4 {
+    //     max-width:22%;
+    //     flex: 0 0 22%;
+    //     margin-left: 1%;
+    // }
     .col-md-8 {
         max-width:66%;
         flex: 0 0 66%;
@@ -2713,7 +2737,7 @@ tr.mat-row {
   @media only screen and (min-width: 810px) and (max-width: 900px) {
     .logo {
         min-width: 14% !important;
-    }
+    }   
   }
   @media only screen and (max-width: 410px) {
       .header {
@@ -2863,9 +2887,9 @@ tr.mat-row {
         font-size: 20px !important;
         padding-top:0px !important;
     }
-    .mat-list-base .mat-list-item {
-        height: 45px !important;
-    }
+    // .mat-list-base .mat-list-item {
+    //     height: 45px !important;
+    // }
     .grid-item {
         width:100% !important;
     }
@@ -2900,7 +2924,9 @@ tr.mat-row {
         float: right;
         margin-top:5px !important;
     }
-
+    .fc-toolbar.fc-header-toolbar {
+        margin-top: -55px !important;
+    }
     .scrollDiv {
         overflow: unset !important;
     }
@@ -2934,25 +2960,34 @@ tr.mat-row {
         max-width:800px;
         width:800px;
     }   
+    .fc-toolbar.fc-header-toolbar {
+        margin-top: -55px !important;
+    }
 }
 
 @media screen and (min-width: 1300px) , screen and (min-height: 1020px) { 
-    .mat-list-base .mat-list-item {
-        height:36px !important;
+    // .mat-list-base .mat-list-item {
+    //     height:36px !important;
+    // }
+    .fc-toolbar.fc-header-toolbar {
+        margin-top: -55px !important;
     }
-      
 }
-
-@media screen and (min-width: 1500px) , screen and (min-height: 1300px) { 
-    .mat-list-base .mat-list-item {
-        height:47px !important;
+@media screen and (min-width: 900px) , screen and (max-width: 1199px) { 
+    .fc-toolbar.fc-header-toolbar {
+        margin-top: -55px !important;
     }
+}
+@media screen and (min-width: 1500px) , screen and (min-height: 1300px) { 
+    // .mat-list-base .mat-list-item {
+    //     height:36px !important;
+    // }
       
 }
 @media screen and (min-width: 1024px) and (max-width: 1026px) { 
-    .mat-list-base .mat-list-item {
-        height: 43px !important;
-    }
+    // .mat-list-base .mat-list-item {
+    //     height: 43px !important;
+    // }
 }
 //iphone S
 @media only screen and (min-width: 300px) and (max-width:570px) {
@@ -3003,10 +3038,10 @@ tr.mat-row {
         flex: 0 0 75% !important;
         //max-width: 75% !important;
     }
-    .col-md-4 {
-        flex: 0 0 14% !important;
-        max-width: 14% !important;
-    }
+    // .col-md-4 {
+    //     flex: 0 0 14% !important;
+    //     max-width: 14% !important;
+    // }
     .col-md-8 
     {            
         flex: 0 0 84% !important;

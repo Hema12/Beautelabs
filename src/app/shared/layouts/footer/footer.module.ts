@@ -4,7 +4,6 @@ import { FooterComponent } from './footer.component';
 import { SharedModule } from '../../module/module.module';
 
 
-
 @NgModule({
   declarations: [FooterComponent],
   imports: [

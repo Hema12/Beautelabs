@@ -3,7 +3,7 @@ import { SidenavComponent } from '../sidenav/sidenav.component';
 import { MatSidenav } from '@angular/material';
 import { SidenavService } from '../../services/sidenav.service';
 import { BehaviorSubject } from 'rxjs';
-
+declare const $: any;
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -11,7 +11,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
   //toggleActive:boolean = false; 
-  isExpanded = false;
+  isExpanded = true;
   element: HTMLElement;
 
   screenWidth: number;
@@ -53,5 +53,10 @@ export class HeaderComponent implements OnInit {
   collapseMenu() {
     this.isExpanded = false;
   }
- 
+  isMobileMenu() {
+    if ($(window).width() > 991) {
+        return false;
+    }
+    return true;
+};
 }

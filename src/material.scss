@@ -81,13 +81,15 @@ td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
 }
 .mat-drawer-container {
     // background: #1A2038 !important;
-   // background: #222A45 !important; //dark blue color
-   background: #EAF0F7 !important; //light color
+    // background: #222A45 !important; //dark blue color
+    // background: #EAF0F7 !important; //light color
+    background: #eee !important;
 }
 .mat-drawer {
     // background: #222A45 !important;
-    background: #222A45 !important;
-    min-width: 2% !important;
+    background: $primary-color-white !important;
+    width:200px !important
+    // min-width: 2% !important;
 }
 .darkcard {    
     // background: #222a45 !important;
@@ -100,8 +102,9 @@ td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
     color:rgba(255,255,255,.54)!important;
 }
 .mat-drawer-content {
-    height: 91vh !important; 
+    height: 100vh !important; 
     overflow-x: hidden !important;
+    width:calc(100%-200px) !important;    
 }
 .mat-nav-list a {
     color:$primary-color-black !important;
@@ -109,24 +112,40 @@ td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
 }
 .mat-list-base .mat-list-item {
     color:$primary-color-black;
-    height: 36px !important;
+    height: 43px !important;
 }
-.mat-list-item:hover {
-    background: #293a54!important;
-}
+// .mat-list-item:hover {
+//     background: #293a54!important;
+// }
 .mat-list-item-content {
     padding:0px 5px !important;
 }
 .mat-list-item-content .mat-icon {
-    color:$primary-color-gray !important;
+    color:#3C4858 !important;
     font-size: $secondary-font-size-md !important;
+}
+.mat-menu-panel {
+    min-width: 260px !important;
+}
+.mat-list-item.mat-list-item.mat-list-item-avatar.mat-list-item-with-avatar.active {
+    background: #f44336 !important;
+}
+.mat-list-item.mat-list-item.mat-list-item-avatar.mat-list-item-with-avatar.active .mat-icon {
+    color:#fff !important;
+}
+.mat-list-item.mat-list-item.mat-list-item-avatar.mat-list-item-with-avatar.active .mat-line {
+    color:#fff !important;
+}
+.mat-list-text h4 {
+    color:#3C4858 !important;
+    font-family:$primary-font-family-table !important;
 }
 // .mat-list-item-content .matToolTip {
 //     position: absolute !important;
 //     left:50% !important;
 // }
 .mat-list-text {
-    color: $primary-color-gray !important;
+    // color: $primary-color-gray !important;
     font-size: $primary-font-size-sm !important;
     letter-spacing: 0.01em !important;
 }
@@ -169,8 +188,9 @@ tr.mat-header-row {
     padding:0px 4px !important;
 }
 button.mat-menu-item {
-    min-height: 3vh;
+    min-height: 4vh;
     min-width: 132px !important;
+    padding:3px 6px !important;
 }
 .mat-menu-item .mat-flat-button {
     padding: 0px 4px !important;
@@ -189,6 +209,9 @@ span:focus {
 {
     background: $primary-color-darkblue !important;
     color:$primary-color-white !important;
+    outline: 0 !important;
+}
+.mat-icon-button {
     outline: 0 !important;
 }
 .mat-raised-button {

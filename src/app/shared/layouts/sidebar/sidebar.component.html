@@ -1,0 +1,201 @@
+<div class="logo">
+        <a href="https://www.creative-tim.com" class="simple-text">
+            <div>
+                <img src="../../../../assets/images/logo.png" class="toplogo"/>
+            </div>
+        </a>
+    </div>
+    <div class="sidebar-wrapper">
+      <div *ngIf="isMobileMenu()">
+        <form class="navbar-form">
+          <span class="bmd-form-group">
+            <div class="input-group no-border">
+              <input type="text" value="" class="form-control" placeholder="Search...">
+              <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                <i class="material-icons">search</i>
+                <div class="ripple-container"></div>
+              </button>
+            </div>
+          </span>
+        </form>
+        <ul class="nav navbar-nav nav-mobile-menu">
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)">
+                    <i class="material-icons">dashboard</i>
+                    <p>
+                        <span class="d-lg-none d-md-block">Stats</span>
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="javascript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="material-icons">notifications</i>
+                    <span class="notification">5</span>
+                    <p>
+                        <span class="d-lg-none d-md-block">Some Actions</span>
+                    </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Mike John responded to your email</a>
+                    <a class="dropdown-item" href="#">You have 5 new tasks</a>
+                    <a class="dropdown-item" href="#">You're now friend with Andrew</a>
+                    <a class="dropdown-item" href="#">Another Notification</a>
+                    <a class="dropdown-item" href="#">Another One</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)">
+                    <i class="material-icons">person</i>
+                    <p>
+                        <span class="d-lg-none d-md-block">Account</span>
+                    </p>
+                </a>
+            </li>
+        </ul>
+      </div>
+      <mat-nav-list>
+            <mat-list-item (click)="sidenav.toggle()" [routerLink]="['cbot-admin/dashboard']" routerLinkActive="active">
+              <mat-icon mat-list-icon matTooltip="Dashboard" matTooltipPosition='right' matTooltipClass="menu-tooltip">dashboard</mat-icon>
+              <!-- <h4 mat-line fxHide.gt-sm>Dashboard</h4> -->
+              <h4 mat-line>Dashboard</h4>
+            </mat-list-item>
+            <mat-list-item [routerLink]="['cbot-admin/appointment']" (click)="sidenav.toggle()" routerLinkActive="active">
+              <mat-icon mat-list-icon matTooltip="Appointment" matTooltipPosition='right' matTooltipClass="menu-tooltip">event_note</mat-icon>
+              <h4 mat-line>Appointment</h4>
+            </mat-list-item>
+            <mat-list-item [routerLink]="['cbot-admin/sales']" (click)="sidenav.toggle()" routerLinkActive="active">
+              <mat-icon mat-list-icon matTooltip="Sales" matTooltipPosition='right' matTooltipClass="menu-tooltip">receipt</mat-icon>
+              <h4 mat-line>Sales</h4>
+            </mat-list-item>
+            <mat-list-item [routerLink]="['cbot-admin/campaigns']" (click)="sidenav.toggle()" routerLinkActive="active">
+              <mat-icon mat-list-icon matTooltip="Campaigns" matTooltipPosition='right' matTooltipClass="menu-tooltip">insert_chart</mat-icon>
+              <h4 mat-line>Campaigns</h4>
+            </mat-list-item>
+            <mat-list-item [routerLink]="['cbot-admin/customers']" (click)="sidenav.toggle()" routerLinkActive="active">
+              <mat-icon mat-list-icon matTooltip="Customers" matTooltipPosition='right' matTooltipClass="menu-tooltip">person</mat-icon>
+              <h4 mat-line>Customers</h4>
+            </mat-list-item>
+            <mat-list-item [routerLink]="['cbot-admin/services']" (click)="sidenav.toggle()" routerLinkActive="active">
+              <mat-icon mat-list-icon matTooltip="Services" matTooltipPosition='right' matTooltipClass="menu-tooltip">group_work</mat-icon>
+              <h4 mat-line>Services</h4>
+            </mat-list-item>
+            <mat-list-item [routerLink]="['cbot-admin/products']" (click)="sidenav.toggle()" routerLinkActive="active">
+              <mat-icon mat-list-icon matTooltip="Products" matTooltipPosition='right' matTooltipClass="menu-tooltip">shopping_basket</mat-icon>
+              <h4 mat-line>Products</h4>
+            </mat-list-item>
+            <mat-list-item [routerLink]="['cbot-admin/vendors']" (click)="sidenav.toggle()" routerLinkActive="active">
+              <mat-icon mat-list-icon matTooltip="Vendors" matTooltipPosition='right' matTooltipClass="menu-tooltip">shopping_cart</mat-icon>
+              <h4 mat-line>Vendors</h4>
+            </mat-list-item>           
+            <mat-list-item [matMenuTriggerFor]="purchaseMenu">
+              <mat-icon mat-list-icon matTooltip="Purchase" matTooltipPosition='right' matTooltipClass="menu-tooltip">shopping_basket</mat-icon>
+              <h4 mat-line>Purchase <mat-icon class="abspos">keyboard_arrow_down</mat-icon></h4>
+            </mat-list-item>
+            <mat-menu #purchaseMenu="matMenu" class="sidebarSubmenu">              
+              <button mat-menu-item [routerLink]="['cbot-admin/purchaseOrder']" (click)="sidenav.toggle()"  routerLinkActive="active">
+                  <mat-icon mat-list-icon>shopping_cart</mat-icon>
+                  <button mat-flat-button>Purchase Order</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/purchaseBill']" (click)="sidenav.toggle()" routerLinkActive="active">
+                <mat-icon mat-list-icon>shopping_cart</mat-icon>
+                <button mat-flat-button>Purchase bill</button>
+              </button>
+            </mat-menu>
+            <mat-list-item [matMenuTriggerFor]="inventoryMenu">
+              <mat-icon mat-list-icon matTooltip="Inventory" matTooltipPosition='right' matTooltipClass="menu-tooltip">store_mall_directory</mat-icon>
+              <h4 mat-line>Inventory <mat-icon class="abspos">keyboard_arrow_down</mat-icon></h4>
+            </mat-list-item>
+            <mat-menu #inventoryMenu="matMenu" class="sidebarSubmenu">              
+              <button mat-menu-item [routerLink]="['cbot-admin/inventory']" (click)="sidenav.toggle()" routerLinkActive="active">
+                  <mat-icon mat-list-icon>store_mall_directory</mat-icon>
+                  <button mat-flat-button>Store Track</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/storeTransfer']" (click)="sidenav.toggle()" routerLinkActive="active">
+                <mat-icon mat-list-icon>store_mall_directory</mat-icon>
+                <button mat-flat-button>Transfer</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/location']" (click)="sidenav.toggle()" routerLinkActive="active">
+                <mat-icon mat-list-icon>store_mall_directory</mat-icon>
+                <button mat-flat-button>Locations</button>
+              </button>
+            </mat-menu>
+            <mat-list-item [matMenuTriggerFor]="accountsMenu">
+              <mat-icon mat-list-icon matTooltip="Accounts" matTooltipPosition='right' matTooltipClass="menu-tooltip">credit_card</mat-icon>
+              <h4 mat-line>Accounts <mat-icon class="abspos">keyboard_arrow_down</mat-icon></h4>
+            </mat-list-item>
+            <mat-menu #accountsMenu="matMenu" class="sidebarSubmenu">              
+              <button mat-menu-item [routerLink]="['cbot-admin/saleBill']" (click)="sidenav.toggle()" routerLinkActive="active">
+                  <mat-icon mat-list-icon>credit_card</mat-icon>
+                  <button mat-flat-button>Sale Bills</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/vendorBill']" (click)="sidenav.toggle()" routerLinkActive="active">
+                <mat-icon mat-list-icon>credit_card</mat-icon>
+                <button mat-flat-button>Vendor Bills</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/cashRegister']" (click)="sidenav.toggle()" routerLinkActive="active">
+                <mat-icon mat-list-icon>credit_card</mat-icon>
+                <button mat-flat-button>Bank &amp; Cash</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/dayBook']" (click)="sidenav.toggle()" routerLinkActive="active">
+                <mat-icon mat-list-icon>credit_card</mat-icon>
+                <button mat-flat-button>Day Book</button>
+              </button>
+            </mat-menu>
+            <mat-list-item [matMenuTriggerFor]="hrMenu">
+              <mat-icon mat-list-icon matTooltip="HR" matTooltipPosition='right' matTooltipClass="menu-tooltip">supervisor_account</mat-icon>
+              <h4 mat-line>HR <mat-icon class="abspos">keyboard_arrow_down</mat-icon></h4>
+            </mat-list-item>
+            <mat-menu #hrMenu="matMenu" class="sidebarSubmenu">              
+              <button mat-menu-item [routerLink]="['cbot-admin/staffs']" (click)="sidenav.toggle()" routerLinkActive="active">
+                  <mat-icon mat-list-icon>supervisor_account</mat-icon>
+                  <button mat-flat-button>Staff</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/attendance']" (click)="sidenav.toggle()" routerLinkActive="active">
+                <mat-icon mat-list-icon>supervisor_account</mat-icon>
+                <button mat-flat-button>Attendance</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/payroll']" (click)="sidenav.toggle()" routerLinkActive="active">
+                <mat-icon mat-list-icon>supervisor_account</mat-icon>
+                <button mat-flat-button>Payroll</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/leaves']" (click)="sidenav.toggle()" routerLinkActive="active">
+                <mat-icon mat-list-icon>supervisor_account</mat-icon>
+                <button mat-flat-button>Leaves</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/payrollMaster']" (click)="sidenav.toggle()" routerLinkActive="active">
+                <mat-icon mat-list-icon>supervisor_account</mat-icon>
+                <button mat-flat-button>Payroll Master</button>
+              </button>
+            </mat-menu>
+            <mat-list-item [matMenuTriggerFor]="dealMenu">
+              <mat-icon mat-list-icon matTooltip="Deals" matTooltipPosition='right' matTooltipClass="menu-tooltip">loyalty</mat-icon>
+              <h4 mat-line>Deals <mat-icon class="abspos">keyboard_arrow_down</mat-icon></h4>
+            </mat-list-item>
+            <mat-menu #dealMenu="matMenu" class="sidebarSubmenu">              
+              <button mat-menu-item [routerLink]="['cbot-admin/giftVoucher']" (click)="sidenav.toggle()" routerLinkActive="active">
+                  <mat-icon mat-list-icon>loyalty</mat-icon>
+                  <button mat-flat-button>Promo / Gift Voucher</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/prepaidCard']" (click)="sidenav.toggle()" routerLinkActive="active">
+                <mat-icon mat-list-icon>loyalty</mat-icon>
+                <button mat-flat-button>Prepaid Card</button>
+              </button>
+              <button mat-menu-item [routerLink]="['cbot-admin/loyalty']" (click)="sidenav.toggle()" routerLinkActive="active">
+                <mat-icon mat-list-icon>loyalty</mat-icon>
+                <button mat-flat-button>Loyalty</button>
+              </button>
+            </mat-menu>
+            <mat-list-item [routerLink]="['cbot-admin/expenses']" (click)="sidenav.toggle()" routerLinkActive="active">
+              <mat-icon mat-list-icon matTooltip="Expenses" matTooltipPosition='right' matTooltipClass="menu-tooltip">credit_card</mat-icon>
+              <h4 mat-line>Expenses</h4>
+            </mat-list-item>
+            <mat-list-item [routerLink]="['cbot-admin/reports']" (click)="sidenav.toggle()" routerLinkActive="active">
+              <mat-icon mat-list-icon matTooltip="Reports" matTooltipPosition='right' matTooltipClass="menu-tooltip">report</mat-icon>
+              <h4 mat-line>Reports</h4>
+            </mat-list-item>
+            <mat-list-item [routerLink]="['cbot-admin/settings']" (click)="sidenav.toggle()" routerLinkActive="active">
+              <mat-icon mat-list-icon matTooltip="Settings" matTooltipPosition='right' matTooltipClass="menu-tooltip">settings</mat-icon>
+              <h4 mat-line>Settings</h4>
+            </mat-list-item>            
+        </mat-nav-list>  
+    </div>

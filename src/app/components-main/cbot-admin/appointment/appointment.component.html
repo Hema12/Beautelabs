@@ -5,14 +5,15 @@
     </div>
     
 </div> -->
-<div _ngcontent-elastic-ui-c29="" class="page-header reverse-padding> topdarkbg">
-    </div>
+<!-- <div _ngcontent-elastic-ui-c29="" class="page-header reverse-padding> topdarkbg">
+    </div> -->
+<!-- <div class="mt-60"></div> -->
 <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mall-zero pall-zero">            
     <div class="col-xl-1 col-sm-2 topwidth">
         <button mat-raised-button [routerLink]="['/beautelabs/cbot-admin/newBookingCreate']" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button>  
     </div>
     <div class="col-xl-1 col-sm-2 topwidth">
-        <button mat-button (click)="caltoggle()" class="white-font"><mat-icon>{{calicon}}</mat-icon>    </button>
+        <button mat-button (click)="caltoggle()"><mat-icon>{{calicon}}</mat-icon>    </button>
     </div>
     <!-- <div class="col-xl-3 col-lg-3 col-sm-2 topwidth">
         <mat-form-field class="bookingstaff">
@@ -754,7 +755,7 @@
             <div class="col-sm-12 col-lg-10 col-xl-10 mb-10" [hidden]="defaultView || listView">
                 <mat-card>
                     <mat-card-content>                             
-                        <div class="col-md-12 col-xl-12 col-lg-12">                           
+                        <div class="row col-md-12 col-xl-12 col-lg-12">                           
                             <div class="col-md-9 col-xl-9 col-lg-9">
                             </div>
                             <div class="col-md-3 text-right col-xl-3 col-lg-3 rightbtn">
@@ -780,7 +781,7 @@
                                 </div>
                             </div>                                
                         </div>
-                        <br />   
+                        <br />  
                         <full-calendar
                             #calendar
                             #fullcalendar
@@ -841,7 +842,7 @@
         <div class="col-sm-12 col-lg-12 col-xl-12 mb-10" *ngIf="listView">
             <mat-card>
                 <mat-card-content>                             
-                    <div class="col-md-12 col-xl-12 col-lg-12" *ngIf="listView || dayView">                           
+                    <div class="row col-md-12 col-xl-12 col-lg-12" *ngIf="listView || dayView">                           
                         <div class="col-md-9 col-xl-9 col-lg-9">
                         </div>
                         <div class="col-md-3 text-right col-xl-3 col-lg-3 rightbtn">
