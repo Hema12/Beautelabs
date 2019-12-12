@@ -23,6 +23,7 @@
 
 .mat-table {
     width: 100% !important;
+    margin:1% !important;
     border:1px solid #e6e9ed !important;
 }
 .mat-table td,th {
@@ -89,6 +90,7 @@ td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
 .mat-drawer {
     // background: #222A45 !important;
     background: $primary-color-white !important;
+    box-shadow: 0 16px 38px -12px rgba(0,0,0,.56), 0 4px 25px 0 rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2) !important;
     // position: relative !important;
   //  width:200px !important
     // min-width: 2% !important;
@@ -130,6 +132,9 @@ td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
 }
 .mat-menu-panel {
     min-width: 260px !important;
+    position: absolute !important;
+    left: 2.5% !important;
+    top: 0% !important;
 }
 .mat-list-item.mat-list-item.mat-list-item-avatar.mat-list-item-with-avatar.active {
     // background: #FF9800 !important;
@@ -165,7 +170,7 @@ td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
 //paginator
 .mat-paginator {
     width:100% !important;
-    background: #eaf0f7 !important;
+    background: transparent !important;
     color:$primary-color-darkblue !important;
 }
 tr.mat-header-row {
@@ -251,7 +256,7 @@ span:focus {
     margin:0px 5px 0px 0px !important;
 }
 .mat-paginator-container {
-    min-height: 40px !important;
+    min-height: 45px !important;
 }
  .mat-card {
      width:100% !important;
@@ -260,11 +265,11 @@ span:focus {
 //  .mat-body p, .mat-body-1 p, .mat-typography p {
 //      margin: 0 0 8px  !important;
 //  }
-.newCard
-{    
-    overflow-y: scroll !important; 
-    overflow-x: hidden;
-}
+// .newCard
+// {    
+//     overflow-y: scroll !important; 
+//     overflow-x: hidden;
+// }
 .mat-card-footer {
    margin:0 -16px -14px -16px !important;
 }
@@ -333,7 +338,7 @@ span:focus {
     z-index: 5 !important;
 }
 .mat-list-base {
-    padding-top:5px !important;
+    padding-top:0px !important;
 }
 .mat-menu-item .mat-icon {
     color: #272727 !important;
@@ -531,9 +536,9 @@ span:focus {
     font-family: $primary-font-family-table !important;
     color:$primary-color-darkblue !important;
 }
-.bookingstaff .mat-select-value-text {
-    color:$primary-color-white !important;
-}
+// .bookingstaff .mat-select-value-text {
+//     color:$primary-color-white !important;
+// }
 // .mat-form-field-label-wrapper {
 //     top: -1.04375em !important;
 // }

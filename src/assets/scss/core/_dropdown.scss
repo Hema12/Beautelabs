@@ -117,7 +117,7 @@
   a:active {
     @include shadow-small-color(#fc930a);
     background-color: #fc930a;
-    color: #FFFFFF;
+    color: #FFFFFF !important;
   }
 }
 

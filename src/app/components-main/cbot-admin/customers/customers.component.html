@@ -1,17 +1,17 @@
 <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking ml-1 pall-zero">            
-    <div class="col-xl-1 col-sm-2 topwidthcustomer pall-zero">
+    <!-- <div class="col-xl-1 col-sm-2 topwidthcustomer pall-zero">
         <h2 class="page-title">Customers</h2> 
-    </div>
-    <div class="col-xl-1 col-sm-2 topwidthcustomer">
+    </div> -->
+    <div class="col-xl-1 col-sm-2 topwidthcustomer pall-zero">
         <button mat-raised-button (click)="customerAddEdit(0)" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button> 
     </div>
-    <div class="col-xl-5 col-lg-3 col-sm-3 topwidthcustomerField pbzerofield">
+    <div class="col-xl-4 col-lg-3 col-sm-3 topwidthcustomerField pbzerofield">
         <mat-form-field class="searchInputfull">
             <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Customer by Name / Mobile Number / Email Id">
             <mat-icon matSuffix>search</mat-icon>
         </mat-form-field> 
     </div>
-    <div class="col-xl-5 col-lg-4 col-sm-5 pall-zero mall-zero pbzerofield paginator">
+    <div class="col-xl-6 col-lg-5 col-sm-5 pall-zero mall-zero pbzerofield paginator">
         <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" class="table-paginator"></mat-paginator> 
     </div>
 </div>

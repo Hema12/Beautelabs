@@ -692,12 +692,12 @@ button:focus {
 .bookingstaff {
     margin-top:0.6%;
 }
-.bookingstaff span.mat-form-field-label-wrapper label {
-    color:#fff !important;
-}
-.bookingstaff .mat-select-arrow {
-    color:#fff !important;
-}
+// .bookingstaff span.mat-form-field-label-wrapper label {
+//     color:#fff !important;
+// }
+// .bookingstaff .mat-select-arrow {
+//     color:#fff !important;
+// }
 .bookingbtn {
     height: 30px !important;
     margin-top: -0% !important;
@@ -768,7 +768,10 @@ button:focus {
 }
 .modaltopheader {
     margin:0px !important;
-    background: #0168c1;
+    // background: #0168c1;
+    // background: #3e3e3e;
+    // background: linear-gradient(90deg, #143080, #4b70de);
+    background: #00B4AC;
 }
 .billTitle {
     //border-bottom: 1px solid #efefef;
@@ -777,6 +780,7 @@ button:focus {
     margin-bottom: 0px !important;
     padding-left: 1% !important;
     color:$primary-color-white !important;
+    line-height: 37px !important;
 }
 .popper,
 .tooltip {
@@ -1301,7 +1305,8 @@ td.fc-day.fc-widget-content.fc-future {
     margin-bottom: 0.5em !important;
     margin-top:-20px !important;
     margin-left: 1% !important;
-    // width:80% !important;
+    width:70% !important;
+    position: absolute !important;
 }
 .fc-dayGridMonth-button .bookingstaff {
     top:1% !important;
@@ -2913,6 +2918,17 @@ tr.mat-row {
       }
     }
   }
+
+// .menuLogo {
+.mat-list-base .mat-list-item:first-child {
+    border-bottom: 1px solid #ddd !important;
+    height: 58px !important;
+    margin-bottom: 10px !important;
+}
+.navbar-collapse {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
 //Responsive Css
 
 @media only screen and (min-width: 1024px) and (max-width:1025px) {
@@ -3310,9 +3326,9 @@ tr.mat-row {
     // .mat-list-base .mat-list-item {
     //     height: 45px !important;
     // }
-    .main-panel .main-content {
-        margin-top:30px !important;
-    }
+    // .main-panel .main-content {
+    //     margin-top:30px !important;
+    // }
     .halfwidth {
         width:50% !important;
     }
@@ -3384,7 +3400,7 @@ tr.mat-row {
         float: left !important;
     }
     .mat-paginator-range-actions {
-        width:66% !important;
+        // width:66% !important;
         float: left !important;
     }
     .mtop-5 {

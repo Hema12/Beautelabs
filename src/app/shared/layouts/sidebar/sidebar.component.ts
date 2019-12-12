@@ -172,8 +172,9 @@ sidebarToggle() {
 
 expandMenu(){
   this.isExpanded = !this.isExpanded;   // For hide sidenav remains icons
-  // this.sidenavService.toggle();    // Fully hide sidenav
-  console.log('expand');
-  
+  // this.sidenavService.toggle();    // Fully hide sidenav  
+}
+logout() {
+    this.router.navigate(['/login']);
 }
 }
