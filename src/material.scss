@@ -88,7 +88,7 @@ td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
 .mat-drawer {
     // background: #222A45 !important;
     background: $primary-color-white !important;
-    position: relative !important;
+    // position: relative !important;
   //  width:200px !important
     // min-width: 2% !important;
 }
@@ -106,6 +106,7 @@ td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
     height: 100vh !important; 
     overflow-x: hidden !important;
     width:calc(100%-200px) !important;    
+    margin-top:3% !important;
 }
 .mat-nav-list a {
     color:$primary-color-black !important;
