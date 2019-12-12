@@ -287,8 +287,8 @@ body {
     // margin:10px 9px;
 }
 .toplogosmall {
-    width:30px;
-    height: 34px;
+    width:22px;
+    height: 25px;
 }
 .navbar-wrapper .mat-icon {
     vertical-align: sub !important;
@@ -1594,9 +1594,9 @@ input.active {
 .menu-tooltip {
     background: $primary-color-white !important;
     color:$primary-color-darkblue !important;
-    margin-left: 5px !important;
-    height: 30px !important;
-    line-height: 20px !important;
+    // margin-left: 5px !important;
+    // height: 30px !important;
+    // line-height: 20px !important;
     font-size: 12px !important;      
    
 }
@@ -3250,9 +3250,9 @@ tr.mat-row {
     .col-xl-9 {
         width: 75%;
     }
-    .navbar {
-        width:85% !important;
-    }
+    // .navbar {
+    //     width:85% !important;
+    // }
     .rgtalign {
         float: right;
         margin-top:5px !important;

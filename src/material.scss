@@ -74,6 +74,7 @@ td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
     padding:0% !important;
     align-items: normal !important;
     height: 46px !important;
+    background: #eee !important;
 }
 .mat-toolbar-multiple-rows {
     min-height: 46px !important;
@@ -106,7 +107,7 @@ td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
     height: 100vh !important; 
     overflow-x: hidden !important;
     width:calc(100%-200px) !important;    
-    margin-top:3% !important;
+    // margin-top:1% !important;
 }
 .mat-nav-list a {
     color:$primary-color-black !important;

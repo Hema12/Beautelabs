@@ -279,9 +279,26 @@
   }
 }
 
+@media only screen and (min-width: 300px) and (max-width:780px){
+    .navbar-form
+    {
+        display: none !important;
+    }
+    .nav-mobile-menu
+    {
+        display: none !important;
+    }
+}
+
+@media only screen and (min-width: 800px){
+    .navbar-nav {
+        display: block !important;
+    }
+}
+    
 /*          Changes for small display      */
 
-@media (max-width: 991px){
+@media (max-width: 300px){
 
     .form-group{
         textarea{

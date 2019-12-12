@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, HostListener } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { SidenavService } from '../../services/sidenav.service';
 import {Location} from '@angular/common';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -38,6 +39,12 @@ export class SidebarComponent implements OnInit {
   mobile_menu_visible: any = 0;
   @Input() expandMenuVisible: boolean;
   @ViewChild(MatSidenav, {static: true}) sidenav: MatSidenav;
+  screenWidth: number;
+  private screenWidth$ = new BehaviorSubject<number>(window.innerWidth);
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.screenWidth$.next(event.target.innerWidth);
+  }
   constructor(private sidenavService: SidenavService,location: Location,  private element: ElementRef, private router: Router) { 
     this.location = location;
         this.sidebarVisible = false;
@@ -57,6 +64,9 @@ export class SidebarComponent implements OnInit {
       this.mobile_menu_visible = 0;
     }
    });
+   this.screenWidth$.subscribe(width => {
+    this.screenWidth = width;
+  });
   }
   isMobileMenu() {
       if ($(window).width() > 991) {
@@ -161,9 +171,9 @@ sidebarToggle() {
 };
 
 expandMenu(){
-  this.isExpanded = !this.isExpanded;
-  // this.sidenavService.toggle();
-  this.expandMenuVisible = this.isExpanded;
+  this.isExpanded = !this.isExpanded;   // For hide sidenav remains icons
+  // this.sidenavService.toggle();    // Fully hide sidenav
+  console.log('expand');
   
 }
 }
