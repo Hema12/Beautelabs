@@ -88,7 +88,7 @@ body {
 }
 .logo img {
     height: 90%;
-    margin: 2%;
+    // margin: 3% 7%;
 }
 //Menu
 .menutoggle {
@@ -282,9 +282,314 @@ body {
     margin-bottom: 5% !important;
 }
 .toplogo {
-    width: 180px;
-    height: 40px;
-    margin:10px 16px;
+    width: 160px;
+    // height: 40px;
+    // margin:10px 9px;
+}
+.toplogosmall {
+    width:30px;
+    height: 34px;
+}
+.navbar-wrapper .mat-icon {
+    vertical-align: sub !important;
+}
+//Login page
+.fullbg {
+    background:$primary-color-white;
+    height: 100vh;
+    width:100% !important;
+    margin: 0;
+    overflow: hidden !important;
+}
+.login-logo img{
+    // height: 100px;
+    width:200px;
+}
+.bluebg {
+    background:$primary-color-white;
+    height: 100vh;
+    margin: 0;
+    z-index: 2;
+}
+.login-logo {
+    position: absolute;
+    top:5%;
+    left: 5%;
+    z-index: 1;
+}
+.bluebg:before {
+content: "";
+position: absolute;
+top: 0;
+bottom: 0;
+left: -100px;
+width: 100%;
+// background: #3457DC;
+background: linear-gradient(60deg, #ffa726, #fb8c00);
+transform: skew(-10deg);
+}
+.signup-content {
+    height: 100vh;
+    position: relative;
+    padding-top: 50%;
+    padding-left: 40%;
+}
+.signup-content { 
+    height: 100vh;
+    position: relative;
+  }  
+.signup-content h2 {
+    margin-bottom: 20px !important;  
+    -ms-transform: translate(-40%, -40%);
+    transform: translate(-40%, -40%);
+    color:$primary-color-white;
+    font-family: 'Roboto';
+    text-align: center !important;
+}
+.signup-content p {
+    margin: 0 0 20px 0;   
+    -ms-transform: translate(-40%, -20%);
+    transform: translate(-40%, -20%);
+    color:$primary-color-white;
+    font-size: 14px;
+    font-family: 'Roboto';
+    line-height: 28px;
+    width:100%;
+    text-align: center;
+}
+.signup-content button {
+    margin: 0;   
+    -ms-transform: translate(-55%, -20%);
+    transform: translate(-55%, -20%);
+    color:$primary-color-white;
+    font-size: 14px;
+    font-family: 'Roboto';
+    line-height: 28px;
+    background: #fd9810 !important;
+    border: 1px solid #fcfcfc !important;
+    min-width: 100px !important;
+    margin-left: 7% !important;
+    
+}
+
+.bluebglogin {
+    background:$primary-color-white;
+    height: 100vh;
+    margin: 0;
+    // animation:slide 1s forwards;
+    // animation-delay: 2s;
+    transition-delay: 4s;  
+    z-index:2;
+}
+.bluebglogin:before {
+content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 55px;
+    width: 100%;
+    // background: #3457DC;
+    background: linear-gradient(60deg, #ffa726, #fb8c00);
+    transform: skew(8deg);
+}
+#next {
+    background-color: #1BAA95;
+    color: white;
+    cursor: pointer;
+    padding: 5px;
+    width: 100%;
+  }
+.abspos {
+    position: absolute !important;
+}
+  .slideRightToLeft {
+    background-color: #164656;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    margin: 5px 0;
+    margin-left: 100%;
+    min-width: 100%;
+    transition: all 0.5s;
+  }
+  
+  .slideRightToLeft.show {
+    display: block;
+    margin-left: 0%;
+  }
+// #slide {
+//     position: absolute;
+//     right: -100px;
+//     // width: 100px;
+//     // height: 100px;
+//     -webkit-animation: slide 0.5s forwards;
+//     -webkit-animation-delay: 2s;
+//     animation: slide 0.5s forwards;
+//     animation-delay: 2s;
+// }
+
+// @-webkit-keyframes slide {
+//     100% { right: 0; }
+// }
+
+// @keyframes slide {
+//     100% { right: 0; }
+// }
+// .center { 
+//     height: 100vh;
+//     position: relative;
+//   }  
+// .center h2 {
+//     margin: 0;
+//     position: absolute;
+//     top: 40%;
+//     left: 40%;
+//     -ms-transform: translate(-40%, -40%);
+//     transform: translate(-40%, -40%);
+//     color:$primary-color-white;
+//     font-family: 'Roboto';
+// }
+// .center p {
+//     margin: 0;
+//     position: absolute;
+//     top: 48%;
+//     left: 45%;
+//     -ms-transform: translate(-55%, -20%);
+//     transform: translate(-55%, -20%);
+//     color:$primary-color-white;
+//     font-size: 14px;
+//     font-family: 'Roboto';
+//     line-height: 28px;
+//     width:75%;
+//     text-align: center;
+// }
+// .center button {
+//     margin: 0;
+//     position: absolute;
+//     top: 60%;
+//     left: 40%;
+//     -ms-transform: translate(-55%, -20%);
+//     transform: translate(-55%, -20%);
+//     color:$primary-color-white;
+//     font-size: 14px;
+//     font-family: 'Roboto';
+//     line-height: 28px;
+//     background: #3457dc !important;
+//     border: 1px solid #fcfcfc !important;
+//     min-width: 100px !important;
+// }
+.centerblack { 
+    height: 100vh;
+    position: relative;
+  }  
+.centerblack h2 {
+    margin: 0;
+    position: absolute;
+    top: 22%;
+    left: 40%;
+    -ms-transform: translate(-40%, -40%);
+    transform: translate(-40%, -40%);
+    color:$primary-color-darkblue;
+    font-family: 'Roboto';
+}
+.loginacc h2 {
+    margin: 0;
+    position: absolute;
+    top: 27% !important;
+    left: 40%;
+    -ms-transform: translate(-40%, -40%);
+    transform: translate(-40%, -40%);
+    color:$primary-color-darkblue;
+    font-family: 'Roboto';
+}
+.centerblack p {
+    margin: 0;
+    position: absolute;
+    top: 32%;
+    left: 52%;
+    width:65% !important;
+    text-align: center !important;
+    -ms-transform: translate(-55%, -20%);
+    transform: translate(-55%, -20%);
+    color:$primary-color-darkblue;
+    font-size: 14px;
+    font-family: 'Roboto';
+    line-height: 28px;
+}
+.signupacc p {
+    margin: 0;
+    position: absolute;
+    top: 27% !important;
+    left: 52%;
+    width:65% !important;
+    text-align: center !important;
+    -ms-transform: translate(-55%, -20%);
+    transform: translate(-55%, -20%);
+    color:$primary-color-darkblue;
+    font-size: 14px;
+    font-family: 'Roboto';
+    line-height: 28px;
+}
+.signupbtn {
+    margin: 0;
+    position: absolute !important;
+    top: 100%;
+    left: 40%;
+    -ms-transform: translate(-55%, -20%);
+    transform: translate(-55%, -20%);
+    color:$primary-color-white !important;
+    font-size: 14px;
+    font-family: 'Roboto';
+    line-height: 28px;
+    // background: #3457dc !important;    
+    background: #fd9810 !important;
+    min-width: 100px !important;
+}
+.login-form {
+    margin: 0;
+    position: absolute !important;
+    top: 37%;
+    left: 47%;
+    -ms-transform: translate(-55%, -20%);
+    transform: translate(-55%, -20%);
+    color:$primary-color-white !important;
+    font-size: 14px;
+    font-family: 'Roboto';
+    line-height: 28px;
+    width:55% !important
+}
+.login-form .mat-raised-button {
+    transform: none !important;
+}
+.signupbtn{
+    transform: none !important;
+}
+.signup-form {
+    margin: 0;
+    position: absolute !important;
+    top: 33%;
+    left: 33%;
+    -ms-transform: translate(-55%, -20%);
+    transform: translate(-55%, -20%);
+    color:$primary-color-white !important;
+    font-size: 14px;
+    font-family: 'Roboto';
+    line-height: 28px;
+    width:41% !important
+}
+
+.signupform {
+    margin: 0;
+    position: absolute !important;
+    top: 43%;
+    left: 47%;
+    -ms-transform: translate(-55%, -20%);
+    transform: translate(-55%, -20%);
+    color:$primary-color-white !important;
+    font-size: 14px;
+    font-family: 'Roboto';
+    line-height: 28px;
+    width:41% !important
 }
 //Footer
 .footer {
@@ -1287,10 +1592,11 @@ input.active {
     margin-bottom: 9%;
 }
 .menu-tooltip {
-    background: $primary-color-darkblue !important;
-    color:$primary-color-white !important;
-    margin-left: 15px !important;
+    background: $primary-color-white !important;
+    color:$primary-color-darkblue !important;
+    margin-left: 5px !important;
     height: 30px !important;
+    line-height: 20px !important;
     font-size: 12px !important;      
    
 }
@@ -2944,6 +3250,9 @@ tr.mat-row {
     .col-xl-9 {
         width: 75%;
     }
+    .navbar {
+        width:85% !important;
+    }
     .rgtalign {
         float: right;
         margin-top:5px !important;
@@ -2962,6 +3271,9 @@ tr.mat-row {
     }   
     .fc-toolbar.fc-header-toolbar {
         margin-top: -55px !important;
+    }
+    .login-form {
+      top:41% !important;  
     }
 }
 
@@ -2998,6 +3310,9 @@ tr.mat-row {
     // .mat-list-base .mat-list-item {
     //     height: 45px !important;
     // }
+    .main-panel .main-content {
+        margin-top:30px !important;
+    }
     .halfwidth {
         width:50% !important;
     }
@@ -3214,3 +3529,7 @@ tr.mat-row {
      width: 100%;
      height: 100%;
  }
+
+ .dropdown-menu .mat-icon{
+    font-size:14px !important;
+  }

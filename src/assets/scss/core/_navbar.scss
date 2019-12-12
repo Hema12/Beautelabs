@@ -1,8 +1,10 @@
 .navbar {
     border: 0;
     border-radius: $border-radius-base;
-    padding: 0.625rem 0;
-    margin-bottom: 20px;
+    padding: 0.625rem 0 0 0;
+    margin-bottom: 0px;
+    margin-left: 200px;
+    width:90%;
     @include navbar-colors($white-color, $navbar-color);
 
     &.fixed-top{
@@ -185,6 +187,8 @@
 
   &.navbar-transparent{
     padding-top: 0px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
   }
 
   .collapse{

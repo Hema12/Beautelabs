@@ -9,6 +9,7 @@
   transform: scale(0);
   transform-origin: 0 0;
   will-change: transform, opacity;
+  min-width: 15rem !important;
   transition: transform $bmd-menu-expand-duration $bmd-animation-curve-default,
               opacity $bmd-menu-fade-duration $bmd-animation-curve-default;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
@@ -89,7 +90,7 @@
     font-weight: normal;
     text-decoration: none;
 
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     border-radius: $border-radius / 2;
     margin: 0 $bmd-dropdown-margin-y;
     @include transitions($fast-transition-time, $transition-linear);
@@ -114,8 +115,8 @@
   a:hover,
   a:focus,
   a:active {
-    @include shadow-small-color($brand-primary);
-    background-color: $brand-primary;
+    @include shadow-small-color(#fc930a);
+    background-color: #fc930a;
     color: #FFFFFF;
   }
 }

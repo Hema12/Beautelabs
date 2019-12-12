@@ -1,24 +1,27 @@
 
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Input } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy, PopStateEvent } from '@angular/common';
 import {  filter} from 'rxjs/operators';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs';
 import PerfectScrollbar from 'perfect-scrollbar';
 import * as $ from "jquery";
+import { SidenavService } from '../../../shared/services/sidenav.service';
+import { MatSidenav } from '@angular/material';
 
 @Component({
   selector: 'app-beautelabs',
   templateUrl: './beautelabs.component.html',
-  styleUrls: ['./beautelabs.component.scss']
+  styleUrls: ['./beautelabs.component.scss'],
+  
 })
 export class BeautelabsComponent implements OnInit {
   loader: Boolean = false;
   private _router: Subscription;
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
-  
-  constructor( public location: Location, private router: Router) {}
+  @ViewChild(MatSidenav, {static: true}) sidenav: MatSidenav;
+  constructor( public location: Location, private router: Router, private sidenavService: SidenavService) {}
 
   ngOnInit() {
     this.loaderToggle();
@@ -124,6 +127,9 @@ export class BeautelabsComponent implements OnInit {
               $sidebar_responsive.css('background-image','url("' + new_image + '")');
           }
       });
+      this.sidenavService.setSidenav(this.sidenav);   
+      console.log(this.sidenav);
+       
   }
   loaderToggle() {
     this.router.events.subscribe(event => {
