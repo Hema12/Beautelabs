@@ -11,7 +11,6 @@ import { SidenavService } from '../../services/sidenav.service';
 })
 export class SidenavComponent implements OnInit {
   sidenavWidth = 4;  
-  showSubmenu: boolean = false;
   @ViewChild(MatSidenav, {static: true}) sidenav: MatSidenav;
   constructor(private router: Router, private sidenavService: SidenavService) { }
 
@@ -23,6 +22,5 @@ export class SidenavComponent implements OnInit {
   }
   decrease() {
     this.sidenavWidth = 4;
-  }
- 
+  } 
 }

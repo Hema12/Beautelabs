@@ -1,103 +1,18 @@
-<div fxLayout="column" fxLayoutAlign="start">
-    <div fxLayout="row">
-        <div fxFlex="83%" fxlayoutAlign="start">
-            <h2>Staffs</h2>
-        </div>
-       
-        <div fxFlex="16%" fxHide fxShow.gt-sm fxLayoutAlign="end">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#" [routerLink]="['/beautelabs/cbot-admin/dashboard']"><mat-icon>home</mat-icon></a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Staff</li>
-                </ol>
-            </nav>
-            </div>
-    </div>    
-</div>
-
-<!-- <div fxLayout="row" fxLayoutAlign="end">
-    <mat-form-field class="searchInput">
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Staff by Name / Mobile Number">
-        <mat-icon matSuffix>search</mat-icon>
-    </mat-form-field>
-</div> -->
-<div fxLayout="column">
-    <div fxLayout="row">
-        <div fxLayoutAlign="start" fxFlex="60%">
-            <!-- <button mat-raised-button color="primary" (click)="staffCreate()" style="height: 35px; margin-top: 1%;">Add Staff</button>  -->
-            <button mat-raised-button color="primary" [routerLink]="['/beautelabs/cbot-admin/staffCreate']" style="height: 35px; margin-top: 1%;">Add Staff</button>
-        </div>
-        <div fxFlex="26%" fxHide fxShow.gt-sm fxLayoutAlign="middle">
-            <mat-form-field class="searchInputfull">
-                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Customer by Name / Mobile Number / Email Id">
-                <mat-icon matSuffix>search</mat-icon>
-            </mat-form-field>
-        </div>
-        
-        <div fxFlex="14%" fxHide fxShow.gt-sm fxLayoutAlign="end">
-            <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
-        </div>
+<div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking ml-1 pall-zero">                    
+    <div class="col-xl-1 col-sm-2 topwidthcustomer">
+        <button mat-raised-button [routerLink]="['/beautelabs/cbot-admin/staffCreate']" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button> 
+    </div>
+    <div class="col-xl-4 col-lg-3 col-sm-3 topwidthcustomerField pbzerofield">
+        <mat-form-field class="searchInputfull">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Customer by Name / Mobile Number / Email Id">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field> 
+    </div>
+    <div class="col-xl-7 col-lg-6 col-sm-6 pall-zero mall-zero pbzerofield paginator">
+        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" class="table-paginator"></mat-paginator> 
     </div>
 </div>
-<!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
-    
-    <ng-container matColumnDef="sno">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
-    </ng-container>
-    
-    <ng-container matColumnDef="employeeFirstName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.employeeFirstName}} </td>
-    </ng-container>
-    
-    <ng-container matColumnDef="employeeLastName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.employeeLastName}} </td>
-    </ng-container>
-    
-    <ng-container matColumnDef="employeeMobile">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Mobile Number </th>
-        <td mat-cell *matCellDef="let element"> {{element.employeeMobile}} </td>
-    </ng-container>
-    <ng-container matColumnDef="employeeEmail">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email Id </th>
-        <td mat-cell *matCellDef="let element"> {{element.employeeEmail}} </td>
-    </ng-container>
-    <ng-container matColumnDef="employeeStatus">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status</th>
-        <td mat-cell *matCellDef="let element"> {{element.employeeStatus}} </td>
-    </ng-container>
-    
-    <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef>Action</th>
-        <td mat-cell *matCellDef="let element; let i=index;">
-            <button mat-flat-button [matMenuTriggerFor]="menu" color="primary">Action</button>
-            <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="openViewModal(viewtemplate, element)">
-                    <mat-icon>remove_red_eye</mat-icon>
-                    <span>View</span>
-                </button>
-                <button mat-menu-item>
-                    <mat-icon>edit</mat-icon>
-                    <span>Edit</span>
-                </button>
-                <button mat-menu-item>
-                    <mat-icon>store_mall_directory</mat-icon>
-                    <span>Update Quantity</span>
-                </button>
-                <button mat-menu-item>
-                    <mat-icon>delete</mat-icon>
-                    <span>Delete</span>
-                </button>
-            </mat-menu>
-        </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table> -->
-
-<div class="row col-md-12 col-sm-12 col-xs-12 col-xl-12 col-lg-12 pl-0">
+<div class="row col-md-12 col-sm-12 col-xs-12 col-xl-12 col-lg-12 pall-zero mall-zero newCardView scrollDiv">
     <mat-card class="mt-2 col-md-4 col-sm-12 col-xs-12 col-lg-3 col-xl-3 staff" *ngFor="let staffList of staffData |  async">
         <mat-card-header fxShow.gt-md class="activeStaff">
             <div *ngIf="staffList.employeeStatus=='Active'" class="greencolor"><mat-icon color="primary" matSuffix>check_box</mat-icon><span>{{staffList.employeeStatus}}</span></div>

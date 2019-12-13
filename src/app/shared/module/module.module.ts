@@ -82,14 +82,13 @@ registerLocaleData(en);
         MatSlideToggleModule,        
         MatProgressBarModule,
         MatExpansionModule,
-        FullCalendarModule
-                
+        FullCalendarModule                
     ],    
     providers: [
         {
-            provide: HTTP_INTERCEPTORS,
-            useClass: MyInterceptor,
-            multi: true,
+        provide: HTTP_INTERCEPTORS,
+        useClass: MyInterceptor,
+        multi: true,
         },      
         DatePipe
     ]

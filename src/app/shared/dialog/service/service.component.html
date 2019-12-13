@@ -1,13 +1,15 @@
 
-<div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mr-zero ml-zero pall-zero">            
+<div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking mr-zero ml-zero pall-zero modaltopheader">            
     <h3 matDialogTitle class="billTitle">Add Service</h3>
+    <div align="end" class="closeicon">
+        <mat-icon (click)="close()" class="white-font topicon">close</mat-icon>
+    </div>
     <!-- <mat-dialog-actions align="end" class="closeicon">
         <mat-icon color="warn" (click)="close()">close</mat-icon>
     </mat-dialog-actions>     -->
 </div>
-<hr class="horizontalline"/>
 <div class="col-md-12 col-sm-12 col-lg-12 col-xl-12 mt-2 pall-zero mall-zero">
-    <mat-card class="full-width newCard">
+    <mat-card class="full-width woshadow">
         <mat-card-content>
             <div class="col-md-12 col-sm-12 col-lg-12 col-xl-12 pall-zero mall-zero borderrgt">
                 <form method="POST" [formGroup]="serviceForm"> 

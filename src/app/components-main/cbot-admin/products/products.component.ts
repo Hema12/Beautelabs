@@ -130,6 +130,8 @@ export class ProductsComponent implements OnInit {
     };
     const dialogRef = this.dialog.open(ProductComponent, {     
       // position: dialogPosition,
+      width:'50%',
+      height:'50%',
       data: {}
     });
 

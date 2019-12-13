@@ -1,232 +1,231 @@
-<div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pall-zero">
+<!-- <div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pall-zero">
     <div class="col-md-7 col-sm-12 col-lg-7 col-xl-7">
         <h2 class="page-title"> {{page_title}} </h2>
     </div>
-</div>
-<div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pall-zero mall-zero">
-    <div class="col-md-12 col-sm-12 col-lg-12 col-xl-12 pall-zero mall-zero">
-        <mat-card class="newCard">
-            <mat-card-content>
-                <!-- <form [formGroup]="candidateForm"> -->
-                <form method="POST" [formGroup]="customerForm" class="customerForm"> 
-                    <div class="form-container">
-                        <h4 matDialogTitle class="customer-title">Basic Info</h4>
-                        <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
-                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                                <mat-form-field>
-                                    <input matInput formControlName="customerName" placeholder="CustomerName" required>                        
-                                        <mat-error *ngIf="customerForm.controls['customerName'].errors || !customerForm.controls['customerName'].dirty">
-                                            <span *ngIf="customerForm.controls['customerName'].errors.required">Customer Name is required </span>
-                                        </mat-error>
-                                </mat-form-field>
-                            </div>  
-                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                                <mat-form-field>
-                                    <input matInput formControlName="customerMobile" required placeholder="Mobile Number">
-                                    <mat-error *ngIf="customerForm.controls['customerMobile'].errors || !customerForm.controls['customerMobile'].dirty">
-                                        <span *ngIf="customerForm.controls['customerMobile'].errors.required">Mobile Number is required </span>
-                                        <span *ngIf="customerForm.controls['customerMobile'].errors.pattern">Mobile Number is invalid </span>
+</div> -->
+<div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pall-zero mall-zero">   
+    <mat-card class="full-width newCard pall-zero">   
+        <h2 class="subheading">{{page_title}} </h2>        
+        <mat-card-content>
+            <!-- <form [formGroup]="candidateForm"> -->
+            <form method="POST" [formGroup]="customerForm" class="customerForm"> 
+                <div class="form-container">
+                    <h4 matDialogTitle class="customer-title">Basic Info</h4>
+                    <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="customerName" placeholder="CustomerName" required>                        
+                                    <mat-error *ngIf="customerForm.controls['customerName'].errors || !customerForm.controls['customerName'].dirty">
+                                        <span *ngIf="customerForm.controls['customerName'].errors.required">Customer Name is required </span>
                                     </mat-error>
-                                </mat-form-field>
-                            </div>   
-                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                                <mat-form-field>
-                                    <input matInput formControlName="customerAltPhone" placeholder="Alternate Phone">                        
-                                        <mat-error *ngIf="customerForm.controls['customerAltPhone'].errors || !customerForm.controls['customerAltPhone'].dirty">
-                                            <span *ngIf="customerForm.controls['customerAltPhone'].errors?.pattern">Alternate Mobile Number is invalid </span>
-                                        </mat-error>
-                                </mat-form-field>
-                            </div>  
-                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                                <mat-form-field>
-                                    <input matInput formControlName="customerWhatsappPhone" placeholder="Whatsapp Phone Number">
-                                    <mat-error *ngIf="customerForm.controls['customerWhatsappPhone'].errors || !customerForm.controls['customerWhatsappPhone'].dirty">
-                                        <span *ngIf="customerForm.controls['customerWhatsappPhone'].errors?.pattern">Whatsapp Mobile Number is invalid </span>
+                            </mat-form-field>
+                        </div>  
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="customerMobile" required placeholder="Mobile Number">
+                                <mat-error *ngIf="customerForm.controls['customerMobile'].errors || !customerForm.controls['customerMobile'].dirty">
+                                    <span *ngIf="customerForm.controls['customerMobile'].errors.required">Mobile Number is required </span>
+                                    <span *ngIf="customerForm.controls['customerMobile'].errors.pattern">Mobile Number is invalid </span>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>   
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="customerAltPhone" placeholder="Alternate Phone">                        
+                                    <mat-error *ngIf="customerForm.controls['customerAltPhone'].errors || !customerForm.controls['customerAltPhone'].dirty">
+                                        <span *ngIf="customerForm.controls['customerAltPhone'].errors?.pattern">Alternate Mobile Number is invalid </span>
                                     </mat-error>
-                                </mat-form-field>
-                            </div>  
-                        </div>
+                            </mat-form-field>
+                        </div>  
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="customerWhatsappPhone" placeholder="Whatsapp Phone Number">
+                                <mat-error *ngIf="customerForm.controls['customerWhatsappPhone'].errors || !customerForm.controls['customerWhatsappPhone'].dirty">
+                                    <span *ngIf="customerForm.controls['customerWhatsappPhone'].errors?.pattern">Whatsapp Mobile Number is invalid </span>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>  
+                    </div>
 
-                        <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">                                
-                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                                <mat-form-field>
-                                    <input matInput formControlName="customerEmail" required placeholder="Email Id">
-                                    <mat-error *ngIf="customerForm.controls['customerEmail'].errors || !customerForm.controls['customerEmail'].dirty">
-                                        <span *ngIf="customerForm.controls['customerEmail'].errors.required">Email is required </span>
-                                        <span *ngIf="customerForm.controls['customerEmail'].errors.email">Email is invalid </span>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                                <mat-form-field>
-                                    <input matInput formControlName="customerGroupName" placeholder="Group Name">
-                                </mat-form-field>                    
-                            </div> 
-                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                                <mat-form-field>
-                                    <input matInput [matDatepicker]="picker" formControlName="customerDob" (click)="picker.open()"(keyup)="dobCheck($event)" placeholder="DOB">
-                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                    <mat-datepicker #picker></mat-datepicker>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                                <mat-form-field>
-                                    <input matInput [matDatepicker]="picker1" formControlName="customerAnniversary" (click)="picker1.open()" placeholder="Anniversary">
-                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                                    <mat-datepicker #picker1></mat-datepicker>
-                                </mat-form-field>
-                            </div>
+                    <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">                                
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="customerEmail" required placeholder="Email Id">
+                                <mat-error *ngIf="customerForm.controls['customerEmail'].errors || !customerForm.controls['customerEmail'].dirty">
+                                    <span *ngIf="customerForm.controls['customerEmail'].errors.required">Email is required </span>
+                                    <span *ngIf="customerForm.controls['customerEmail'].errors.email">Email is invalid </span>
+                                </mat-error>
+                            </mat-form-field>
                         </div>
-
-                        <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">                
-                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                                <mat-form-field>
-                                    <mat-label>Source</mat-label>
-                                    <mat-select formControlName="customerSource">
-                                        <mat-option *ngFor="let sourceList of source" [value]="sourceList.name">
-                                        {{sourceList.name}}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                                <mat-form-field>
-                                    <mat-label>Preferred Staff</mat-label>
-                                    <mat-select formControlName="customerPreferredStaff">
-                                        <mat-option *ngFor="let staffList of staff" [value]="staffList.staffName">
-                                        {{staffList.staffName}}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                                <p class="radioLabel">Gender</p>
-                                <mat-radio-group formControlName="gender" color="primary">
-                                    <mat-radio-button  [value]="1">Male</mat-radio-button>
-                                    <mat-radio-button [value]="2" class="ml-2">Female</mat-radio-button>
-                                </mat-radio-group> 
-                            </div>   
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="customerGroupName" placeholder="Group Name">
+                            </mat-form-field>                    
+                        </div> 
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput [matDatepicker]="picker" formControlName="customerDob" (click)="picker.open()"(keyup)="dobCheck($event)" placeholder="DOB">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
                         </div>
-                        <h4 matDialogTitle class="customer-title">Address info</h4>        
-                        <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">    
-                                                    
-                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                                <mat-form-field>
-                                    <input matInput formControlName="customerStreet1" required placeholder="Street1">
-                                    <mat-error *ngIf="customerForm.controls['customerStreet1'].errors || !customerForm.controls['customerStreet1'].dirty">
-                                        <span *ngIf="customerForm.controls['customerStreet1'].errors.required">Street is required </span>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                                <mat-form-field>
-                                    <input matInput formControlName="customerStreet2" placeholder="Street2">
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                                <mat-form-field>
-                                    <input matInput formControlName="customerCity" required placeholder="City">
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                                <mat-form-field>
-                                    <input matInput formControlName="customerState" required placeholder="State">
-                                </mat-form-field>
-                            </div>
-                        </div>
-                        <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">                                
-                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                                <mat-form-field>
-                                    <input matInput formControlName="customerPinCode" required placeholder="Pin Code">
-                                    <mat-error *ngIf="customerForm.controls['customerPinCode'].errors || !customerForm.controls['customerPinCode'].dirty">
-                                        <span *ngIf="customerForm.controls['customerPinCode'].errors.pattern">Pin Code is invalid </span>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
-                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                                <mat-form-field>
-                                    <input matInput formControlName="customerDNDStatus" placeholder="DND Status">
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                                <p class="radioLabel">GST Applicable</p>
-                                <mat-radio-group formControlName="customerGSTApplicable" color="primary">
-                                    <mat-radio-button  [value]="1">Yes</mat-radio-button>
-                                    <mat-radio-button [value]="2" class="ml-2">No</mat-radio-button>
-                                </mat-radio-group> 
-                            </div>                                                                                      
-                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                                <mat-form-field>
-                                    <input matInput formControlName="customerGSTNumber" placeholder="GST Number">
-                                </mat-form-field>
-                            </div>   
-                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                                <mat-form-field>
-                                    <input matInput formControlName="customerCompanyName" placeholder="Company Name">
-                                </mat-form-field>
-                            </div>                
-                        </div>                        
-                        <hr />      
-                        <h4 matDialogTitle class="customer-title">Customers</h4>
-                        <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
-                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                                <mat-select-autocomplete
-                                [placeholder]="'Options Selection'"
-                                [errorMsg]="errorMessage"
-                                [showErrorMsg]="showError"
-                                [options]="customer"
-                                [display]="'name'"
-                                [value]="'value'"
-                                [multiple]='true'
-                                [labelCount]="2"
-                                (selectionChange)="getSelectedOptions($event)">
-                              </mat-select-autocomplete>
-                            </div>
-                        </div>
-                            <!-- <div formArrayName="addonCustomer" *ngFor="let ser of customerForm.controls.addonCustomer['controls']; let i=index">
-                                <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12" [formGroupName]="i">
-                                    <div class="col-md-8 col-lg-3 col-xl-3 col-sm-12">                   
-                                        <mat-form-field>
-                                            <input matInput placeholder="Customer" aria-label="Customer" [matAutocomplete]="customer" [formControl]="customerDet">
-                                            <mat-autocomplete #customer="matAutocomplete">
-                                                <mat-option *ngFor="let customer of filteredCustomer | async" [value]="customer.name" aria-multiselectable="true">
-                                                <span>{{customer.name}} | {{customer.mobile}}</span>
-                                                </mat-option>
-                                            </mat-autocomplete>
-                                        </mat-form-field>                                    
-                                    </div>
-                                    <div class="col-md-1 col-sm-2 col-xl-1 col-lg-1">
-                                        <button mat-icon-button (click)="Delete(i)" class="delbtn">
-                                            <mat-icon>delete</mat-icon>
-                                        </button> 
-                                    </div>
-                                </div>
-                            </div>   
-                            <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12">
-                                <button mat-raised-button color="primary" (click)="addAddonCustomer()" class="mb-2"> Add Customer </button>
-                            </div> -->
-                        <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
-                            <div class="col-md-12 col-lg-6 col-xl-6 col-sm-12">
-                                <mat-form-field>
-                                    <textarea matInput formControlName="customerNote" placeholder="Customer Notes"></textarea>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-12 col-lg-6 col-xl-6 col-sm-12">
-                                <p class="mb-0">Image</p>
-                                <input type="file" accept=".pdf" #fileInput class="fileField" />
-                            </div>
-                        </div>
-                        <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12 tr">
-                            <!-- <button mat-raised-button color="warn" (click)="cloesModal()">Close</button> -->
-                            <button mat-raised-button color="warn" (click)="clearForm()">Clear</button> 
-                            <button mat-raised-button color="primary" [disabled]="!customerForm.valid" class="ml-1">{{button_title}}</button> 
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput [matDatepicker]="picker1" formControlName="customerAnniversary" (click)="picker1.open()" placeholder="Anniversary">
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field>
                         </div>
                     </div>
-                </form>
-            </mat-card-content>
-        </mat-card>
-    </div>
+
+                    <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">                
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <mat-label>Source</mat-label>
+                                <mat-select formControlName="customerSource">
+                                    <mat-option *ngFor="let sourceList of source" [value]="sourceList.name">
+                                    {{sourceList.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <mat-label>Preferred Staff</mat-label>
+                                <mat-select formControlName="customerPreferredStaff">
+                                    <mat-option *ngFor="let staffList of staff" [value]="staffList.staffName">
+                                    {{staffList.staffName}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <p class="radioLabel">Gender</p>
+                            <mat-radio-group formControlName="gender" color="primary">
+                                <mat-radio-button  [value]="1">Male</mat-radio-button>
+                                <mat-radio-button [value]="2" class="ml-2">Female</mat-radio-button>
+                            </mat-radio-group> 
+                        </div>   
+                    </div>
+                    <h4 matDialogTitle class="customer-title">Address info</h4>        
+                    <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">    
+                                                
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="customerStreet1" required placeholder="Street1">
+                                <mat-error *ngIf="customerForm.controls['customerStreet1'].errors || !customerForm.controls['customerStreet1'].dirty">
+                                    <span *ngIf="customerForm.controls['customerStreet1'].errors.required">Street is required </span>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="customerStreet2" placeholder="Street2">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="customerCity" required placeholder="City">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="customerState" required placeholder="State">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">                                
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="customerPinCode" required placeholder="Pin Code">
+                                <mat-error *ngIf="customerForm.controls['customerPinCode'].errors || !customerForm.controls['customerPinCode'].dirty">
+                                    <span *ngIf="customerForm.controls['customerPinCode'].errors.pattern">Pin Code is invalid </span>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="customerDNDStatus" placeholder="DND Status">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <p class="radioLabel">GST Applicable</p>
+                            <mat-radio-group formControlName="customerGSTApplicable" color="primary">
+                                <mat-radio-button  [value]="1">Yes</mat-radio-button>
+                                <mat-radio-button [value]="2" class="ml-2">No</mat-radio-button>
+                            </mat-radio-group> 
+                        </div>                                                                                      
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="customerGSTNumber" placeholder="GST Number">
+                            </mat-form-field>
+                        </div>   
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-form-field>
+                                <input matInput formControlName="customerCompanyName" placeholder="Company Name">
+                            </mat-form-field>
+                        </div>                
+                    </div>                        
+                    <hr />      
+                    <h4 matDialogTitle class="customer-title">Customers</h4>
+                    <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                        <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                            <mat-select-autocomplete
+                            [placeholder]="'Options Selection'"
+                            [errorMsg]="errorMessage"
+                            [showErrorMsg]="showError"
+                            [options]="customer"
+                            [display]="'name'"
+                            [value]="'value'"
+                            [multiple]='true'
+                            [labelCount]="2"
+                            (selectionChange)="getSelectedOptions($event)">
+                            </mat-select-autocomplete>
+                        </div>
+                    </div>
+                        <!-- <div formArrayName="addonCustomer" *ngFor="let ser of customerForm.controls.addonCustomer['controls']; let i=index">
+                            <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12" [formGroupName]="i">
+                                <div class="col-md-8 col-lg-3 col-xl-3 col-sm-12">                   
+                                    <mat-form-field>
+                                        <input matInput placeholder="Customer" aria-label="Customer" [matAutocomplete]="customer" [formControl]="customerDet">
+                                        <mat-autocomplete #customer="matAutocomplete">
+                                            <mat-option *ngFor="let customer of filteredCustomer | async" [value]="customer.name" aria-multiselectable="true">
+                                            <span>{{customer.name}} | {{customer.mobile}}</span>
+                                            </mat-option>
+                                        </mat-autocomplete>
+                                    </mat-form-field>                                    
+                                </div>
+                                <div class="col-md-1 col-sm-2 col-xl-1 col-lg-1">
+                                    <button mat-icon-button (click)="Delete(i)" class="delbtn">
+                                        <mat-icon>delete</mat-icon>
+                                    </button> 
+                                </div>
+                            </div>
+                        </div>   
+                        <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                            <button mat-raised-button color="primary" (click)="addAddonCustomer()" class="mb-2"> Add Customer </button>
+                        </div> -->
+                    <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                        <div class="col-md-12 col-lg-6 col-xl-6 col-sm-12">
+                            <mat-form-field>
+                                <textarea matInput formControlName="customerNote" placeholder="Customer Notes"></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12 col-lg-6 col-xl-6 col-sm-12">
+                            <p class="mb-0">Image</p>
+                            <input type="file" accept=".pdf" #fileInput class="fileField" />
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12 tr">
+                        <!-- <button mat-raised-button color="warn" (click)="cloesModal()">Close</button> -->
+                        <button mat-raised-button color="warn" (click)="clearForm()">Clear</button> 
+                        <button mat-raised-button color="primary" [disabled]="!customerForm.valid" class="ml-1">{{button_title}}</button> 
+                    </div>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
 </div>

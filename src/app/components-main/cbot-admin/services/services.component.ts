@@ -117,7 +117,8 @@ export class ServicesComponent implements OnInit {
   constructor(private modalService: BsModalService, public dialog: MatDialog) { }
   serviceCreate(): void {
     const dialogRef = this.dialog.open(ServiceComponent, {
-      width: '50%',
+      width: '70%',
+      height:'60%',
       data: {}
     });
 

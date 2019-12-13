@@ -42,7 +42,7 @@ export class ProductComponent implements OnInit {
       productExpiry: new FormControl(null, Validators.required),
       productBrand: new FormControl(null, Validators.required),
       productUOM: new FormControl(null),
-      productHSN: new FormControl(null, Validators.required),
+      productHSN: new FormControl(null),
       productNote: new FormControl(null),
       productRetail: new FormControl(null)
     })
@@ -51,8 +51,7 @@ export class ProductComponent implements OnInit {
     return false;
   }
  
-  cloesModal() {
+  close() {
     this.dialogRef.close();
   }
-
 }

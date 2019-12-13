@@ -180,8 +180,9 @@ td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
     color:$primary-color-darkblue !important;
 }
 tr.mat-header-row {
-    background:$primary-color-darkblue !important;
-   // 
+    // background:$primary-color-darkblue !important;
+//    background: linear-gradient(#589dd8, #0092d8) !important;
+    background: #5068aa !important;
     height:35px !important;    
 }
 .dashboardTableHeader tr.mat-header-row

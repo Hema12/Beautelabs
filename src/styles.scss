@@ -885,7 +885,8 @@ button:focus {
     // background: #0168c1;
     // background: #3e3e3e;
     // background: linear-gradient(90deg, #143080, #4b70de);
-    background: #00B4AC;
+    // background: #00B4AC;
+    background: #404a4a;
 }
 .billTitle {
     //border-bottom: 1px solid #efefef;
@@ -894,6 +895,15 @@ button:focus {
     margin-bottom: 0px !important;
     padding-left: 1% !important;
     color:$primary-color-white !important;
+    line-height: 37px !important;
+}
+.billTitle1 {
+    //border-bottom: 1px solid #efefef;
+    line-height: 40px;
+    width:95%;
+    margin-bottom: 0px !important;
+    padding-left: 1% !important;
+    color:$primary-color-darkblue !important;
     line-height: 37px !important;
 }
 .popper,
@@ -1125,6 +1135,7 @@ button:focus {
 }
 .modal{
     background: rgba(0,0,0, .5) !important; 
+    overflow: auto !important;
 }
 .modal-dialog {
     right: auto;
@@ -1191,10 +1202,11 @@ button:focus {
 // }
 
 .subheading {
-    background: #0163b7;    
-    padding: 7px 15px;
-    margin-bottom: 3% !important;
-   font-weight: $primary-font-weight !important;
+    // background: #0163b7;    
+    background: #404a4a;
+    padding: 3px 15px;
+    // margin-bottom: 0px !important;
+    font-weight: $primary-font-weight !important;
     font-size: $primary-font-size-lg !important;
     color:$primary-color-white !important;
 }

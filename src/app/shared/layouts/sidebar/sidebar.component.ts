@@ -16,11 +16,18 @@ export const ROUTES: RouteInfo[] = [
   { path: 'dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
   { path: 'appointment', title: 'Appointment',  icon:'person', class: '' },
   { path: 'sales', title: 'Sales',  icon:'content_paste', class: '' },
+  { path: 'saleCreate', title: 'Sales',  icon:'content_paste', class: '' },
   { path: 'campaigns', title: 'Campaigns',  icon:'library_books', class: '' },
   { path: 'customers', title: 'Customers',  icon:'bubble_chart', class: '' },
+  { path: 'customerCreate', title: 'Customers',  icon:'bubble_chart', class: '' },
   { path: 'services', title: 'Services',  icon:'location_on', class: '' },
   { path: 'products', title: 'Products',  icon:'notifications', class: '' },
   { path: 'vendors', title: 'Vendors',  icon:'unarchive', class: 'active-pro' },
+  { path: 'vendorCreate', title: 'Vendors',  icon:'content_paste', class: '' },
+  { path: 'purchaseOrder', title: 'Purchase Order',  icon:'content_paste', class: '' },
+  { path: 'purchaseBill', title: 'Purchase Bill',  icon:'content_paste', class: '' },
+  { path: 'inventory', title: 'Inventory',  icon:'content_paste', class: '' },
+  { path: 'staffs', title: 'Staffs',  icon:'content_paste', class: '' },
 ];
 @Component({
   selector: 'app-sidebar',
@@ -146,7 +153,7 @@ sidebarToggle() {
 
         if (body.querySelectorAll('.main-panel')) {
             document.getElementsByClassName('main-panel')[0].appendChild($layer);
-        }else if (body.classList.contains('off-canvas-sidebar')) {
+        } else if (body.classList.contains('off-canvas-sidebar')) {
             document.getElementsByClassName('wrapper-full-page')[0].appendChild($layer);
         }
 

@@ -1,21 +1,7 @@
-<div fxLayout="column">
-        <div fxLayout="row">
-            <div fxLayoutAlign="start" fxFlex="85%">
-                <h2 matDialogTitle class="candidate-title">Add Vendor</h2>
-            </div>
-            <div fxFlex="15%" fxHide fxShow.gt-sm fxLayoutAlign="end">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#" [routerLink]="['/beautelabs/cbot-admin/dashboard']"><mat-icon>home</mat-icon></a></li>
-                        <li class="breadcrumb-item"><a href="#" [routerLink]="['/beautelabs/cbot-admin/vendors']">Vendors </a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Create</li>
-                    </ol>
-                    </nav>
-            </div>
-        </div>
-    </div>
-    <mat-card>
-        <mat-card-content>
+<div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pall-zero mall-zero">   
+    <mat-card class="full-width newCard pall-zero">   
+        <h2 class="subheading">Vendors</h2>        
+        <mat-card-content>    
             <form method="POST" [formGroup]="vendorForm" class="customerForm"> 
                 <div class="form-container">
                     <h4 matDialogTitle>Basic Details</h4>
@@ -128,7 +114,7 @@
                     </div>
                     <hr>
                     <h4 matDialogTitle>Products</h4>
-                     <!-- <div formArrayName="vendorProducts" *ngFor="let ser of vendorForm.controls['vendorProducts'].controls; let i = index;"> -->
+                        <!-- <div formArrayName="vendorProducts" *ngFor="let ser of vendorForm.controls['vendorProducts'].controls; let i = index;"> -->
                         <div formArrayName="vendorProducts" *ngFor="let ser of vendorForm.controls.vendorProducts['controls']; let i=index">
                         <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12" [formGroupName]="i">
                             <div class="col-md-11 col-lg-3 col-xl-3 col-sm-12">                   
@@ -250,3 +236,4 @@
             </form>
         </mat-card-content>
     </mat-card>
+</div>
