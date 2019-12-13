@@ -19,6 +19,17 @@ body {
     background: none !important;
     border:none !important;
 }
+*::-webkit-scrollbar {
+    width: 0.2em !important;
+  }
+  *::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3) !important;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: #ddd !important;
+    outline: 1px solid slategrey !important;
+  }
 .primaryBg {
     background: #3C4451;
 }
@@ -42,6 +53,16 @@ body {
     // background-image:linear-gradient(to right,#0178bc 0,#00bdda 100%);
     background: linear-gradient(60deg, #ffa726, #fb8c00);
 }
+.forgot-bg {
+    background: linear-gradient(60deg, #ffa726, #fb8c00);
+}
+.forgotpagelogo {
+    height: 40px;        
+}
+.forgotform {
+    margin:0 auto !important;
+    width:70% !important;
+}
 .login-bg a {
     font-size: 12px;
     // color:#197ffe
@@ -52,6 +73,20 @@ body {
     font-family: $primary-font-family;
     color:#1A263A;
     line-height:$primary-line-height-xxl;
+}
+.forgotpage-title h2 {
+    font-size: $primary-font-size-xxl;
+    font-family: $primary-font-family;
+    color:#1A263A;
+    line-height:$primary-line-height-xxl;
+    text-align: center;
+    margin-top:2% !important;
+}
+.forgotpage-title p {
+    color:#1A263A;
+    font-family: $primary-font-family;
+    text-align: center !important;
+    padding-bottom: 3% !important;
 }
 .loginpage {
     margin:auto !important;
@@ -616,6 +651,9 @@ content: "";
     background: #fd9810 !important;
     min-width: 100px !important;
     left: 35%;
+}
+.forgotbtn {
+    left: 30%;
 }
 .login-form {
     margin: 30px auto;
@@ -3044,6 +3082,9 @@ tr.mat-row {
     // }
     .col-md-offset-3 {
         margin-left: 25% !important;
+    }
+    .col-md-offset-5 {
+        margin-left: 36% !important;
     }
     // .col-lg-5 {
     //     -ms-flex: 0 0 100%;

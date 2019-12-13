@@ -2,7 +2,7 @@
 @import "app/theme/theme.scss";
 
 .mat-card-header img {
-     width:75% !important;
+    //  width:75% !important;
     // height: 70px !important;
 }
 
@@ -125,6 +125,9 @@ td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
 // }
 .mat-checkbox-layout .mat-checkbox-label {
     color:#696969 !important;
+}
+.mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background: #FD9710 !important;
 }
 .mat-list-item-content {
     padding:0px 5px !important;

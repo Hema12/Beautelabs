@@ -209,4 +209,7 @@ export class LoginComponent implements OnInit {
     this.selectedIndex = this.selectedIndex - 3;
   }
 
+  forgotpwd() {
+    this.router.navigate(['/forget']);
+  }
 }
