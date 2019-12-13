@@ -63,7 +63,7 @@ import {
           })),
           state('showSignUp', style({
             // transform : 'translateX(1000px)',
-            right:'-80%'
+            right:'-60%'
           })),
           transition('showLogin => showSignUp', animate('400ms ease-out')),
           transition('showSignUp => showLogin', animate('400ms ease-in')),                 
@@ -76,7 +76,7 @@ import {
           })),
           state('showSignUp', style({
             // transform : 'translateX(830px)',   
-            left:'60%'         
+            left:'52%'         
           })),
           transition('showLogin => showSignUp', animate('400ms ease-out')),
           transition('showSignUp => showLogin', animate('400ms ease-in')),                 
@@ -95,6 +95,8 @@ export class LoginComponent implements OnInit {
   visibility = 'visible';
   isVisible = 'showLogin';
   isSignUpVisible = 'showSignUp';
+  selectedIndex: number = 0;
+  maxNumberOfTabs: number = 3;
   heroes = [
     { id: 11, name: 'Mr. Nice', state: 'inactive' },
     { id: 12, name: 'Narco', state: 'active' },
@@ -184,9 +186,27 @@ export class LoginComponent implements OnInit {
     if(this.isVisible == 'showLogin')  {
       this.loginShow = true;
       this.signUpshow = false;
-    }
-    console.log(this.loginShow);
-    console.log(this.signUpshow);
-    
+    }    
   }
+
+  nextStep() {
+    if (this.selectedIndex != this.maxNumberOfTabs) {
+      this.selectedIndex = this.selectedIndex + 1;
+    }    
+  }
+
+  previousStep() {
+    if (this.selectedIndex != 0) {
+      this.selectedIndex = this.selectedIndex - 1;
+    }
+  }
+
+  thirdStep() {    
+    this.selectedIndex = this.selectedIndex + 3;        
+  }
+
+  loginForm() {    
+    this.selectedIndex = this.selectedIndex - 3;
+  }
+
 }

@@ -123,6 +123,9 @@ td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
 // .mat-list-item:hover {
 //     background: #293a54!important;
 // }
+.mat-checkbox-layout .mat-checkbox-label {
+    color:#696969 !important;
+}
 .mat-list-item-content {
     padding:0px 5px !important;
 }
