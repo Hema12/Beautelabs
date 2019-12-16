@@ -25,7 +25,9 @@ export const ROUTES: RouteInfo[] = [
   { path: 'vendors', title: 'Vendors',  icon:'unarchive', class: 'active-pro' },
   { path: 'vendorCreate', title: 'Vendors',  icon:'content_paste', class: '' },
   { path: 'purchaseOrder', title: 'Purchase Order',  icon:'content_paste', class: '' },
+  { path: 'purchaseOrderCreate', title: 'Purchase Order',  icon:'content_paste', class: '' },
   { path: 'purchaseBill', title: 'Purchase Bill',  icon:'content_paste', class: '' },
+  { path: 'purchaseBillCreate', title: 'Purchase Bill',  icon:'content_paste', class: '' },
   { path: 'inventory', title: 'Inventory',  icon:'content_paste', class: '' },
   { path: 'staffs', title: 'Staffs',  icon:'content_paste', class: '' },
 ];

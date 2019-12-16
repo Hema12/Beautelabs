@@ -374,7 +374,6 @@ export class AppointmentComponent implements OnInit {
       trigger: 'hover', 
       container: 'body'
     });         
-    console.log(tooltip);    
   } 
   eventReceive(val) {        
     const check = new Date(val.event.start).toLocaleTimeString().replace(/:\d+ /, ' ');
@@ -392,8 +391,7 @@ export class AppointmentComponent implements OnInit {
   }
 
 
-  eventClicked(val) {    
-    console.log(val);
+  eventClicked(val) {        
     var dt = val.event.start;
     var userName = val.event._calendar.state.resourceStore[val.event._def.resourceIds[0]].title;    
     var bgColor = val.event.backgroundColor;
@@ -1128,9 +1126,7 @@ caltoggle() {
     this.events = this.events.filter(event => event !== eventToDelete);
   }
 
-  setView(view: CalendarView) {    
-    console.log(view);
-        
+  setView(view: CalendarView) {                
     this.defaultView = true;
     this.view = view;
     this.listView = false;

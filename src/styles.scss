@@ -328,8 +328,8 @@ body {
     // margin:10px 9px;
 }
 .toplogosmall {
-    width:22px;
-    height: 25px;
+    width:32px;
+    height:38px;
 }
 .navbar-wrapper .mat-icon {
     vertical-align: sub !important;
@@ -370,44 +370,72 @@ background: linear-gradient(60deg, #ffa726, #fb8c00);
 transform: skew(-10deg);
 }
 .signup-content {
-    width: 56%;
-    height: 25%;
-    position: absolute;
-    left: 0;
-    right: 18%;
-    top: 0;
-    bottom: 0;
-    margin: auto;  
+    // width: 56%;
+    // height: 25%;
+    // position: absolute;
+    // left: 0;
+    // right: 18%;
+    // top: 0;
+    // bottom: 0;
+    // margin: auto;  
+    width: 56%; 
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
 }
 .signup-content1 {
-    width: 56%;
-    height: 30%;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;  
+    // width: 56%;
+    // height: 25%;
+    // position: absolute;
+    // left: 0;
+    // right: 0;
+    // top: 0;
+    // bottom: 0;
+    // margin: auto;  
+    width: 56%; 
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
 }
 .signupform-content {
-    width: 60%;
-    height: 50%;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;  
+    // width: 60%;
+    // height: 50%;
+    // position: absolute;
+    // left: 0;
+    // right: 0;
+    // top: 0;
+    // bottom: 0;
+    // margin: auto;  
+    width: 60%; 
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
 }
 .signupform-content1 {
-    width: 60%;
-    height: 45%;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;  
+    // width: 60%;
+    // height: 45%;
+    // position: absolute;
+    // left: 0;
+    // right: 0;
+    // top: 0;
+    // bottom: 0;
+    // margin: auto; 
+    width: 60%; 
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
 }
 // .signup-content { 
 //     height: 100vh;
@@ -422,6 +450,7 @@ transform: skew(-10deg);
     color:$primary-color-white;
     font-family: 'Roboto';
     text-align: center !important;
+    z-index: 1;
 }
 .signup-content p {
     margin: 0 0 20px 0;   
@@ -432,6 +461,7 @@ transform: skew(-10deg);
     font-family: 'Roboto';
     line-height: 28px;
     // width:100%;
+    z-index: 1;
     text-align: center;
 }
 .signup-content button {
@@ -456,6 +486,7 @@ transform: skew(-10deg);
     color:$primary-color-white;
     font-family: 'Roboto';
     text-align: center !important;
+    z-index: 1;
 }
 .signup-content1 p {
     margin: 0 0 20px 0;   
@@ -464,6 +495,7 @@ transform: skew(-10deg);
     font-family: 'Roboto';
     line-height: 28px;
     text-align: center;
+    z-index: 1;
 }
 .signup-content1 button {
     margin: 0 auto;   
@@ -1200,7 +1232,10 @@ button:focus {
 //     font-size: $primary-font-size-lg !important;
 //     color:$primary-color-button-blue !important;
 // }
-
+.campaigndetail {
+    border-bottom: 1px solid #f1f1f1;
+    padding: 5px;
+}
 .subheading {
     // background: #0163b7;    
     background: #404a4a;

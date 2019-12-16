@@ -1,11 +1,11 @@
-<div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking">            
+<div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12 booking ml-1 pall-zero mb-4">            
     <!-- <div class="col-xl-1 col-sm-2 topwidthcustomer pall-zero">
         <h2 class="page-title">Campaigns</h2> 
     </div> -->
     <div class="col-xl-1 col-sm-2 topwidthcustomer">
         <button mat-raised-button [routerLink]="['/beautelabs/cbot-admin/saleCreate']" class="bookingbtn mt-2"><mat-icon>add</mat-icon>New</button> 
     </div>
-    <div class="col-xl-3 col-lg-3 col-sm-2 topwidth pbzerofield">
+    <div class="col-xl-3 col-lg-3 col-sm-2 topwidth pbzerofield" fxHide.lt-sm>
         <mat-form-field class="bookingstaff">
             <mat-label>Select</mat-label>
             <mat-select>
@@ -21,49 +21,27 @@
         <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" class="table-paginator"></mat-paginator> 
     </div>
 </div>
-<div class="row col-md-12 col-sm-12 col-xs-12 col-xl-12 col-lg-12 pall-zero mall-zero newCardTable scrollDiv">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-striped" matSort>
-    
-    <ng-container matColumnDef="sno">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
-    </ng-container>
-    
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>                
-    
-    <ng-container matColumnDef="mobile">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Mobile Number </th>
-        <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="serviceName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Service  </th>
-        <td mat-cell *matCellDef="let element"> {{element.serviceName}} </td>
-    </ng-container>
-    
-    <ng-container matColumnDef="serviceDate">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-        <td mat-cell *matCellDef="let element"> {{element.serviceDate}} </td>
-    </ng-container>   
-
-    <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef>Action</th>
-        <td mat-cell *matCellDef="let element">
-            <mat-icon color="primary">remove_red_eye</mat-icon>                        
-        </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-    <!-- <mat-toolbar class="bg-light">
-        <mat-toolbar-row>
-            <span class="example-spacer"></span>
-            <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator> 
-        </mat-toolbar-row>
-    </mat-toolbar> -->
+<div class="row col-md-12 col-sm-12 col-xs-12 col-xl-12 col-lg-12 pall-zero mall-zero newCardView scrollDiv">  
+    <div class="col-md-12 col-sm-12 col-xl-12 col-xl-12 col-lg-12">
+        <mat-card>
+            <mat-card-content class="mb-0">
+        <!-- <mat-card class="mt-md col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12" *ngFor="let campaignDet of campaignData | async"> -->
+            <!-- <mat-card-header class="rgt">
+                <mat-card-title>
+                    <h3>{{campaignDet.name}} ({{campaignDet.count}})</h3>
+                </mat-card-title>
+            </mat-card-header> -->
+                <div class="mt-md col-md-12 col-sm-12 col-xl-12 col-lg-12 col-xl-12 campaigndetail" *ngFor="let campaignDet of campaignData | async">
+                    <div class="row col-md-12 col-sm-12 col-xs-12 col-xl-12 col-lg-12">               
+                        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
+                            <h3>{{campaignDet.name}} ({{campaignDet.count}})</h3>
+                            <p> {{campaignDet.createDate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
 </div>
 
 

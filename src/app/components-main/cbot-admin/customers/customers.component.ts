@@ -76,6 +76,8 @@ export class CustomersComponent implements OnInit {
 
   ngOnInit() {
     this.customerData = this.dataSource.connect();
+    console.log(this.customerData);
+    
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;    
   }

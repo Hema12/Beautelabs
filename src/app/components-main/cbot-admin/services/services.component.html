@@ -253,62 +253,60 @@
                 <button mat-raised-button color="primary" class="mb-5 ml-2">Submit</button>
             </mat-dialog-actions>
     </ng-template>
-
  
-        <div class="modal bookingmodel" id="myModal" [style.display]="showModal ? 'block' : 'none'">
-            <div class="modal-dialog">            
-                <div class="modal-content">   
-                    <div class="modal-header">
-                        <h5 class="modal-title"> 
-                            Service View
-                            <span class="fr"> <mat-icon (click)="hide()" class="warn">close</mat-icon> </span>
-                        </h5>
-                    </div>
-                    <div class="modal-body">                
-                            <div class="col-md-12 col-xl-12 col-lg-12"> 
-                                    <p>Service Name : {{View?.serviceName}}</p>
-                                    <p>Duration (In Hours) : {{View?.serviceDuration}}</p>
-                                    <p>Category: {{View?.serviceCategory}}</p>
-                                    <p>SubCategory: {{View?.serviceSubCategory}}</p>
-                                    <p>Price: {{View?.servicePrice}}</p>     
-                                </div> 
-                                <div class="col-md-12 col-xl-12 col-lg-12">
-                                    <table class="table table-bordered full-width">
-                                        <thead>
-                                            <tr>    
-                                                <th>Sno</th>
-                                                <th>Product Name</th>
-                                                <th>Consumed</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>LOREAL Shampoo</td>
-                                                <td>300ml</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>LOREAL Hair Spa Cream</td>
-                                                <td>200ml</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Skeydnor Cleansor</td>
-                                                <td>150ml</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>                               
-                                </div>
-                    </div>
-                <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button mat-raised-button class="startBillbtn ml-2" (click)="hide()">Close</button>
-                    </div>
-                
+    <div class="modal bookingmodel" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+        <div class="modal-dialog">            
+            <div class="modal-content">   
+                <div class="modal-header">
+                    <h5 class="modal-title"> 
+                        Service View
+                        <span class="fr"> <mat-icon (click)="hide()" class="warn">close</mat-icon> </span>
+                    </h5>
                 </div>
+                <div class="modal-body">                
+                        <div class="col-md-12 col-xl-12 col-lg-12"> 
+                                <p>Service Name : {{View?.serviceName}}</p>
+                                <p>Duration (In Hours) : {{View?.serviceDuration}}</p>
+                                <p>Category: {{View?.serviceCategory}}</p>
+                                <p>SubCategory: {{View?.serviceSubCategory}}</p>
+                                <p>Price: {{View?.servicePrice}}</p>     
+                            </div> 
+                            <div class="col-md-12 col-xl-12 col-lg-12">
+                                <table class="table table-bordered full-width">
+                                    <thead>
+                                        <tr>    
+                                            <th>Sno</th>
+                                            <th>Product Name</th>
+                                            <th>Consumed</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>LOREAL Shampoo</td>
+                                            <td>300ml</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>LOREAL Hair Spa Cream</td>
+                                            <td>200ml</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Skeydnor Cleansor</td>
+                                            <td>150ml</td>
+                                        </tr>
+                                    </tbody>
+                                </table>                               
+                            </div>
+                </div>
+            <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button mat-raised-button class="startBillbtn ml-2" (click)="hide()">Close</button>
+                </div>
+            
             </div>
         </div>
+    </div>
             
-
     <!-- </mat-drawer-container> -->

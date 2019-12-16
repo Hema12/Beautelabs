@@ -1,1 +1,170 @@
-<p>purchase-order-create works!</p>
+<div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12 pall-zero mall-zero">   
+    <mat-card class="full-width newCard pall-zero">   
+        <h2 class="subheading">Purchase Order </h2>            
+        <mat-card-content>
+            <form method="POST" [formGroup]="poForm"> 
+                    <div class="form-container">
+                        <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                                <mat-form-field>
+                                    <input matInput placeholder="Vendor" required aria-label="Vendor" [matAutocomplete]="vendor" [formControl]="vendorDet">
+                                    <mat-autocomplete #vendor="matAutocomplete">
+                                        <mat-option *ngFor="let vendor of filteredVendor | async" [value]="vendor.name">
+                                        <span>{{vendor.name}} | {{vendor.mobile}}</span>
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </div>  
+                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                                <mat-form-field>
+                                    <input matInput [matDatepicker]="picker" required formControlName="bookingDate" (click)="picker.open()" placeholder="Date">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                            </div>  
+                            <div class="col-md-12 col-lg-3 col-xl-3 col-sm-12">
+                                <mat-form-field>
+                                    <mat-label>PO Number</mat-label>
+                                    <input matInput formControlName="poNumber" readonly />
+                                </mat-form-field>
+                            </div> 
+                        </div>     
+                        <hr class="horizontalline" />                       
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            <h3 matDialogTitle>Products</h3>
+                        </div>
+                        <div class="productdetail">
+                            <!-- <div formArrayName="product" *ngFor="let pro of saleForm.controls['product'].controls; let j = index;"> -->
+                                <div formArrayName="product" *ngFor="let ser of poForm.controls.product['controls']; let j=index">
+                                <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12" [formGroupName]="j">
+                                    <div class="col-md-2 col-lg-2 col-xl-2 col-sm-12">                   
+                                        <mat-form-field>
+                                            <mat-label>Product</mat-label>
+                                            <mat-select formControlName="productName">
+                                                <mat-option *ngFor="let productList of products" [value]="productList.name">
+                                                {{productList.name}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>      
+                                    <div class="col-md-2 col-lg-2 col-xl-2 col-sm-12">                   
+                                        <mat-form-field>
+                                            <mat-label>Qty</mat-label>
+                                            <input matInput formControlName="productQty" (ngModelChange)="productPriceCalc()" />
+                                        </mat-form-field>  
+                                    </div>      
+                                    <div class="col-md-2 col-lg-2 col-xl-2 col-sm-12">                   
+                                        <mat-form-field>
+                                            <mat-label>Price (₹)</mat-label>
+                                            <input matInput formControlName="productPrice" (ngModelChange)="productPriceCalc()" />
+                                        </mat-form-field>  
+                                    </div>  
+                                    <div class="col-md-2 col-lg-2 col-xl-2 col-sm-12">                   
+                                        <mat-form-field>
+                                            <mat-label>Disc (In ₹)</mat-label>
+                                            <input matInput formControlName="productDisc" (ngModelChange)="productPriceCalc()" />
+                                        </mat-form-field>  
+                                    </div>        
+                                    <div class="col-sm-12 col-lg-2 col-xl-2 col-md-2 serField">
+                                        <mat-form-field>
+                                            <mat-label>Total(₹)</mat-label>
+                                            <input matInput formControlName="productTotalPrice" readonly />
+                                        </mat-form-field>                           
+                                    </div>
+                                    <div class="col-md-1 col-lg-1 col-xl-1 col-sm-12">
+                                        <button mat-icon-button (click)="DeleteProduct(j)" class="delbtn">
+                                            <mat-icon>delete</mat-icon>
+                                        </button> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                            <button mat-raised-button color="primary" (click)="addProduct()" class="mb-2 ml-1 bookingbtn brdr-radius2"><mat-icon>add</mat-icon> Add Product </button>                           
+                        </div>
+                        <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                            <div class="col-md-12 col-lg-6 col-xl-6 col-sm-12">
+                                <mat-form-field>
+                                    <textarea matInput formControlName="bookingNote" placeholder="Booking Notes"></textarea>
+                                </mat-form-field>
+                            </div> 
+                        </div>                    
+                        <div class="row col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                            <div class="col-md-6 col-lg-8 col-xl-8 col-sm-12 pl-0">
+                                <div class="col-md-6 col-lg-12 col-xl-12 col-sm-12 mb-2">
+                                    <h6 class="candidate-title mat-dialog-title">Mode of Payment</h6>
+                                    <mat-radio-group formControlName="paymentMode" color="primary" (change)="ModeOfPay($event.value)" >
+                                        <mat-radio-button [value]="'Bank'">Bank</mat-radio-button>
+                                        <mat-radio-button [value]="'Cash'" class="ml-2">Cash</mat-radio-button>
+                                    </mat-radio-group> 
+                                </div>
+                                <div class="col-md-6 col-lg-12 col-xl-12 col-sm-12" *ngIf="Type === 'Bank'">
+                                    <mat-radio-group formControlName="paymentMode" color="primary">
+                                        <mat-radio-button  [value]="1">Net Banking</mat-radio-button>
+                                        <mat-radio-button [value]="2" class="ml-2">NEFT</mat-radio-button>
+                                        <mat-radio-button [value]="2" class="ml-2">IMPS</mat-radio-button>
+                                    </mat-radio-group>                             
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-4 col-sm-12">
+                                <div class="col-md-6 col-lg-12 col-xl-12 col-sm-12">
+                                    <table class="saleDet">
+                                        <tr>
+                                            <td class="col-md-3 col-lg-3 col-xl-3">Sub Total (₹)</td>
+                                            <td class="col-md-3 col-lg-3 col-xl-3">
+                                                <mat-form-field>
+                                                    <input matInput formControlName="subTotal" readonly [ngModel]="calculateTotal()" disabled/>
+                                                </mat-form-field> 
+                                            </td>                                
+                                        </tr>
+                                        <tr>
+                                            <td class="col-md-3 col-lg-3 col-xl-3">CGST (%)</td>
+                                            <td class="col-md-3 col-lg-3 col-xl-3">
+                                                <mat-form-field>
+                                                    <input matInput formControlName="cgstTaxValue" (ngModelChange)="cgstCalc()" />
+                                                </mat-form-field>  
+                                            </td>                                
+                                        </tr>
+                                        <tr>
+                                            <td class="col-md-3 col-lg-3 col-xl-3">SGST (%)</td>
+                                            <td class="col-md-3 col-lg-3 col-xl-3">
+                                                <mat-form-field>
+                                                    <input matInput formControlName="sgstTaxValue" (ngModelChange)="sgstCalc()" />
+                                                </mat-form-field>                                              
+                                            </td>                                
+                                        </tr>
+                                        <tr>
+                                            <td class="col-md-3 col-lg-3 col-xl-3">Tax Amount (₹)</td>
+                                            <td class="col-md-3 col-lg-3 col-xl-3">
+                                                <mat-form-field>
+                                                    <input matInput formControlName="taxAmountTotal" [ngModel]="calculateTotalTax()" readonly disabled />
+                                                </mat-form-field>
+                                            </td>                                
+                                        </tr>
+                                        <tr>
+                                            <td class="col-md-3 col-lg-3 col-xl-3">Grand Total (₹)</td>
+                                            <td class="col-md-3 col-lg-3 col-xl-3">
+                                                <mat-form-field>
+                                                    <input matInput formControlName="grandTotal" [ngModel]="calculateGrandTotal()" readonly disabled />
+                                                    
+                                                </mat-form-field>
+                                            </td>                                
+                                        </tr>
+                                        <tr>
+                                            <td class="col-md-3 col-lg-3 col-xl-3">Change (₹)</td>
+                                            <td class="col-md-3 col-lg-3 col-xl-3">₹ 0</td>                                
+                                        </tr>                                       
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 tr">
+                            <button mat-raised-button color="warn">Clear</button> 
+                            <button mat-raised-button color="primary" class="ml-1">{{button_title}}</button> 
+                        </div>
+                    </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
+   

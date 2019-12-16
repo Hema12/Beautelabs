@@ -127,9 +127,7 @@ export class BeautelabsComponent implements OnInit {
               $sidebar_responsive.css('background-image','url("' + new_image + '")');
           }
       });
-      this.sidenavService.setSidenav(this.sidenav);   
-      console.log(this.sidenav);
-       
+      this.sidenavService.setSidenav(this.sidenav);          
   }
   loaderToggle() {
     this.router.events.subscribe(event => {
