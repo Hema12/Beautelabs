@@ -334,6 +334,15 @@ body {
 .navbar-wrapper .mat-icon {
     vertical-align: sub !important;
 }
+.bookingdelicon {
+    font-size: $primary-font-size-md !important;    
+}
+.bookingSpan {
+    margin-top:-31px !important;
+}
+.externalEvent {
+    width:80% !important;
+}
 //Login page
 .fullbg {
     background:$primary-color-white;
@@ -1418,6 +1427,9 @@ button:focus {
 .fc-toolbar > * > :not(:first-child) {
     margin-left: 0px !important;
 }
+.fc-toolbar {
+    align-items: unset !important;
+}
 .fc-prev-button {
     margin-right: 2px !important;
 }
@@ -1553,7 +1565,11 @@ td.fc-day.fc-widget-content.fc-future {
 //     display: none;
 // }
 .fc-event, .fc-event-dot {
-    background-color: #03a9f4;
+    // background-color: #03a9f4;
+    background: #ffd619;
+}
+.cal-week-view .cal-event {
+    color:#222 !important;
 }
 .fc-event-dot {
     display: inline-block;
@@ -3292,6 +3308,9 @@ tr.mat-row {
     .fc-center {
         margin-left: -45px;
     }   
+    .fc-toolbar.fc-header-toolbar {
+        margin-top: -30px !important;
+    }
 }
 @media only screen and (min-width: 730px) and (max-width:736px) {
     .fc-center {
@@ -3429,7 +3448,9 @@ tr.mat-row {
         flex:0 0 20% !important;
         max-width: 20% !important;
     }
-    
+    .fc-toolbar.fc-header-toolbar {
+        margin-top: -55px !important;
+    }
   
 }
 @media screen and (min-width: 1200px) and (max-width:1500px) {  
@@ -3461,20 +3482,18 @@ tr.mat-row {
     .login-form {
       top:41% !important;  
     }
+  
 }
 
 @media screen and (min-width: 1300px) , screen and (min-height: 1020px) { 
     // .mat-list-base .mat-list-item {
     //     height:36px !important;
-    // }
-    .fc-toolbar.fc-header-toolbar {
-        margin-top: -55px !important;
-    }
+    // }    
 }
 @media screen and (min-width: 900px) , screen and (max-width: 1199px) { 
-    .fc-toolbar.fc-header-toolbar {
-        margin-top: -55px !important;
-    }
+    // .fc-toolbar.fc-header-toolbar {
+    //     margin-top: -30px !important;
+    // }
 }
 @media screen and (min-width: 1500px) , screen and (min-height: 1300px) { 
     // .mat-list-base .mat-list-item {
@@ -3499,6 +3518,11 @@ tr.mat-row {
     // .main-panel .main-content {
     //     margin-top:30px !important;
     // }
+    .fc-toolbar.fc-header-toolbar {
+        margin-top:-25px !important;
+        width:unset !important;
+    }
+
     .halfwidth {
         width:50% !important;
     }
@@ -3633,7 +3657,9 @@ tr.mat-row {
         height: 22px !important;
     }
     .fc-center h2 {
-        min-width: 100px !important;
+        min-width: 120px !important;
+        font-size: 12px !important;
+        padding-left: 1% !important;
     }
     .fc-today-button {
         width:40px !important;

@@ -48,18 +48,37 @@ import { startWith, map } from 'rxjs/operators';
 import { BookingComponent } from 'src/app/shared/dialog/booking/booking.component';
 import Popper from 'popper.js';
 
+// const colors: any = {
+//   red: {
+//     primary: '#ad2121',
+//     secondary: '#FAE3E3'
+//   },
+//   blue: {
+//     primary: '#1e90ff',
+//     secondary: '#D1E8FF'
+//   },
+//   yellow: {
+//     primary: '#e3bc08',
+//     secondary: '#FDF1BA'
+//   }
+// };
+
 const colors: any = {
-  red: {
-    primary: '#ad2121',
-    secondary: '#FAE3E3'
+  yellow: {
+    primary: '#ffd619',
+    secondary: '#fde98a'
+  },
+  orange: {
+    primary: '#ffa217',
+    secondary: '#fbeab9'
   },
   blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF'
+    primary: '#64c9ff',
+    secondary: '#c6e5f5'
   },
-  yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA'
+  green : {
+    primary: '#43bc1b',
+    secondary: '#c1fbae'
   }
 };
 
@@ -225,11 +244,6 @@ export class AppointmentComponent implements OnInit {
   calendarWeekends = true;
   todayDate = new Date();
 
-  serviceList: Service[] = [
-    {name: 'Hair Cut'},
-    {name: 'Bleech'},
-    {name: 'Facial'}
-  ];
   userList: Users[] = [
     {name: 'Nisha'},
     {name: 'Deepthi'},
@@ -282,23 +296,23 @@ export class AppointmentComponent implements OnInit {
   ];
 
   eventsOld: any = [
-    {id:'1', title: 'Haircut', resourceId:'1', start: new Date('2019-11-29 14:30:00'), end: new Date('2019-11-29 16:30:00'),  backgroundColor:'#ffd619'},
-    {id:'2', title: 'Waxing',  resourceId:'2',start: new Date('2019-11-29 17:30:00'), end: new Date('2019-11-29 18:00:00'), backgroundColor:'#ffa217' },
-    {id:'3', title: 'Facial',  resourceId:'1', start: new Date('2019-11-28 10:30:00'), end: new Date('2019-11-28 11:30:00'), backgroundColor:'#ffd619' },
-    {id:'4', title: 'Hair Coloring', resourceId:'3', start: new Date('2019-11-29 15:00:00'), end: new Date('2019-11-29 16:30:00'), backgroundColor:'#64c9ff' },
-    {id:'5', title: 'Waxing', resourceId:'3', start: new Date('2019-11-25 15:00:00'), end: new Date('2019-11-25 16:30:00'), backgroundColor:'#43bc1b' },
-    {id:'5', title: 'Hair Colouring', resourceId:'3', start: new Date('2019-11-28 14:00:00'), end: new Date('2019-11-28 16:30:00'), backgroundColor:'#4d31e6' },
-    {id:'6', title: 'Body Polishing', resourceId:'4', start: new Date('2019-11-25 11:00:00'), end: new Date('2019-11-25 13:00:00'), backgroundColor:'#43bc1b' },
-    {id:'7', title: 'Facial',  resourceId:'1', start: new Date('2019-11-29 09:00:00'), end: new Date('2019-11-29 10:30:00'), backgroundColor:'#43bc1b' },
-    {id:'6', title: 'Body Polishing', resourceId:'1', start: new Date('2019-11-28 15:00:00'), end: new Date('2019-11-28 16:30:00'), backgroundColor:'#64c9ff' },
-    {id:'8', title: 'Threading', resourceId:'5', start: new Date('2019-11-29 12:00:00'), end: new Date('2019-11-29 12:30:00'), backgroundColor:'#ffa217' },
-    {id:'9', title: 'Threading', resourceId:'1', start: new Date('2019-11-28 18:00:00'), end: new Date('2019-11-28 19:00:00'), backgroundColor:'#ffd619' },
-    {id:'10', title: 'Facial', resourceId:'2', start: new Date('2019-11-29 09:00:00'), end: new Date('2019-11-29 10:00:00'), backgroundColor:'#ffa217' },
-    {id:'11', title: 'Body Polishing', resourceId:'1', start: new Date('2019-11-24 16:00:00'), end: new Date('2019-11-24 16:30:00'), backgroundColor:'#ffd619' },
-    {id:'12', title: 'Threading', resourceId:'7', start: new Date('2019-11-28 10:30:00'), end: new Date('2019-11-28 11:30:00'), backgroundColor:'#43bc1b' },
-    {id:'13', title: 'Hair Coloring', resourceId:'6', start: new Date('2019-12-01 10:00:00'), end: new Date('2019-12-01 11:30:00'), backgroundColor:'#64c9ff' },
-    {id:'14', title: 'Threading', resourceId:'5', start: new Date('2019-11-30 12:00:00'), end: new Date('2019-11-30 12:30:00'), backgroundColor:'#ffa217' },
-    {id:'15', title: 'Threading', resourceId:'1', start: new Date('2019-11-30 18:00:00'), end: new Date('2019-11-30 19:00:00'), backgroundColor:'#ffd619' },
+    {id:'1', title: 'Haircut', resourceId:'1', start: new Date('2019-12-15 14:30:00'), end: new Date('2019-11-29 16:30:00'),  backgroundColor:'#ffd619'},
+    {id:'2', title: 'Waxing',  resourceId:'2',start: new Date('2019-12-16 17:30:00'), end: new Date('2019-11-29 18:00:00'), backgroundColor:'#ffa217' },
+    {id:'3', title: 'Facial',  resourceId:'1', start: new Date('2019-12-16 10:30:00'), end: new Date('2019-11-28 11:30:00'), backgroundColor:'#ffd619' },
+    {id:'4', title: 'Hair Coloring', resourceId:'3', start: new Date('2019-12-16 15:00:00'), end: new Date('2019-11-29 16:30:00'), backgroundColor:'#64c9ff' },
+    {id:'5', title: 'Waxing', resourceId:'3', start: new Date('2019-12-15 15:00:00'), end: new Date('2019-11-25 16:30:00'), backgroundColor:'#43bc1b' },
+    {id:'5', title: 'Hair Colouring', resourceId:'3', start: new Date('2019-12-17 14:00:00'), end: new Date('2019-11-28 16:30:00'), backgroundColor:'#4d31e6' },
+    {id:'6', title: 'Body Polishing', resourceId:'4', start: new Date('2019-12-16 11:00:00'), end: new Date('2019-11-25 13:00:00'), backgroundColor:'#43bc1b' },
+    {id:'7', title: 'Facial',  resourceId:'1', start: new Date('2019-12-17 09:00:00'), end: new Date('2019-11-29 10:30:00'), backgroundColor:'#43bc1b' },
+    {id:'6', title: 'Body Polishing', resourceId:'1', start: new Date('2019-12-16 15:00:00'), end: new Date('2019-11-28 16:30:00'), backgroundColor:'#64c9ff' },
+    {id:'8', title: 'Threading', resourceId:'5', start: new Date('2019-12-15 12:00:00'), end: new Date('2019-11-29 12:30:00'), backgroundColor:'#ffa217' },
+    {id:'9', title: 'Threading', resourceId:'1', start: new Date('2019-12-17 18:00:00'), end: new Date('2019-11-28 19:00:00'), backgroundColor:'#ffd619' },
+    {id:'10', title: 'Facial', resourceId:'2', start: new Date('2019-12-18 09:00:00'), end: new Date('2019-11-29 10:00:00'), backgroundColor:'#ffa217' },
+    {id:'11', title: 'Body Polishing', resourceId:'1', start: new Date('2019-12-24 16:00:00'), end: new Date('2019-11-24 16:30:00'), backgroundColor:'#ffd619' },
+    {id:'12', title: 'Threading', resourceId:'7', start: new Date('2019-12-28 10:30:00'), end: new Date('2019-11-28 11:30:00'), backgroundColor:'#43bc1b' },
+    {id:'13', title: 'Hair Coloring', resourceId:'6', start: new Date('2019-12-18 10:00:00'), end: new Date('2019-12-01 11:30:00'), backgroundColor:'#64c9ff' },
+    {id:'14', title: 'Threading', resourceId:'5', start: new Date('2019-12-18 12:00:00'), end: new Date('2019-11-30 12:30:00'), backgroundColor:'#ffa217' },
+    {id:'15', title: 'Threading', resourceId:'1', start: new Date('2019-12-16 18:00:00'), end: new Date('2019-11-30 19:00:00'), backgroundColor:'#ffd619' },
     {id:'16', title: 'Facial', resourceId:'2', start: new Date('2019-11-30 09:00:00'), end: new Date('2019-11-30 10:00:00'), backgroundColor:'#ffa217' },
     {id:'17', title: 'Body Polishing', resourceId:'1', start: new Date('2019-12-01 16:00:00'), end: new Date('2019-12-01 17:30:00'), backgroundColor:'#ffd619' },
     {id:'18', title: 'Body Polishing', resourceId:'4', start: new Date('2019-11-30 10:00:00'), end: new Date('2019-11-30 11:30:00'), backgroundColor:'#43bc1b' },
@@ -367,19 +381,20 @@ export class AppointmentComponent implements OnInit {
     console.log('drag stop');
     
   }
-  onEventRender(info: any) {     
+  onEventRender(info: any) {                
     const tooltip = new Tooltip(info.el, { 
       title: info.event.title, 
       placement: 'top', 
       trigger: 'hover', 
       container: 'body'
-    });         
+    });               
   } 
-  eventReceive(val) {        
+  eventReceive(val) {                
     const check = new Date(val.event.start).toLocaleTimeString().replace(/:\d+ /, ' ');
-    const title = val.event.title
+    const title = val.event.title;
+    const bgColor = '#ffd619';
     const dialogRef = this.dialog.open(BookingComponent, {
-      data:{ check, title  },       
+      data:{ check, title, bgColor  },       
       width: '70%',
       height:'70%'       
     });  
@@ -387,13 +402,52 @@ export class AppointmentComponent implements OnInit {
         if(result) {          
           this.bookingServiceStaff = result.service[0].bookingStaff;
         }
+    });    
+    this.events.push({
+      start: val.event.start,
+      end: val.event.end,      
+      title: val.event.title,
+      color: colors.red,
+      actions: this.actions,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true,
+      meta: {
+        user: this.bookingServiceStaff
+      },
+    });
+    this.eventsOld.push({
+      id:'1', title: val.event.title, resourceId:this.bookingServiceStaff, start: val.event.start, end: val.event.end,  backgroundColor:'#ffd619'
     });
   }
 
 
-  eventClicked(val) {        
+  eventClicked(val) {                
     var dt = val.event.start;
     var userName = val.event._calendar.state.resourceStore[val.event._def.resourceIds[0]].title;    
+    var bgColor = val.event.backgroundColor;
+    if(bgColor == "") {
+       bgColor = '#ffd619';
+    }
+    const check = new Date(val.event.start).toLocaleTimeString().replace(/:\d+ /, ' ');
+    const title = val.event.title
+    const dialogRef = this.dialog.open(BookingComponent, {
+      data:{ check, title, userName, dt, bgColor },       
+      width: '70%',
+      height:'70%'       
+    });  
+    dialogRef.afterClosed().subscribe(result => {      
+        if(result) {
+          this.bookingServiceStaff = result.service[0].bookingStaff;
+        }
+    });
+  }
+
+  eventListClicked(val) {            
+    var dt = val.event.start;
+    var userName = val.event._calendar.state.resourceStore[val.event._def.sourceId].title;    
     var bgColor = val.event.backgroundColor;
     const check = new Date(val.event.start).toLocaleTimeString().replace(/:\d+ /, ' ');
     const title = val.event.title
@@ -458,12 +512,26 @@ export class AppointmentComponent implements OnInit {
   groupedSimilarEvents: CalendarEvent[] = [];
   events: CalendarEvent[] = [
     {
-      //start: addHours(new Date(),2),
-      //end: addHours(new Date(), 3),
+      start: addDays(setHours(setMinutes(new Date(), 30), 11), 1),
+      end: addDays(setHours(setMinutes(new Date(), 0), 12),1),
+      title: 'Threading',
+      color: colors.blue,
+      actions: this.actions,      
+      draggable: true,
+      meta: {
+        user: users[1]
+      },
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      }
+    },
+    {
+      
       start: setHours(setMinutes(new Date(), 0), 9),
       end: setHours(setMinutes(new Date(), 30), 9),      
       title: 'Haircut',
-      color: colors.red,
+      color: colors.orange,
       actions: this.actions,
       resizable: {
         beforeStart: true,
@@ -508,7 +576,7 @@ export class AppointmentComponent implements OnInit {
       title: 'Waxing',
       start: setHours(setMinutes(new Date(), 0), 13),
       end: setHours(setMinutes(new Date(), 0), 14),   
-      color: colors.blue,
+      color: colors.yellow,
       actions: this.actions,
       meta: {
         user: users[2]
@@ -518,6 +586,37 @@ export class AppointmentComponent implements OnInit {
         afterEnd: true
       },
       draggable: true
+    },
+
+    {
+      start: subDays(setHours(setMinutes(new Date(), 0), 13), 1),
+      end: subDays(setHours(setMinutes(new Date(), 30), 14),1),
+      title: 'Waxing',
+      color: colors.blue,
+      actions: this.actions,      
+      draggable: true,
+      meta: {
+        user: users[1]
+      },
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      }
+    },
+    {
+      start: subDays(setHours(setMinutes(new Date(), 0), 10), 2),
+      end: subDays(setHours(setMinutes(new Date(), 0), 11),2),
+      title: 'Facial',
+      color: colors.blue,
+      actions: this.actions,      
+      draggable: true,
+      meta: {
+        user: users[1]
+      },
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      }
     },
     {
       start: setHours(setMinutes(new Date(), 0), 15),
@@ -537,7 +636,7 @@ export class AppointmentComponent implements OnInit {
       start: setHours(setMinutes(new Date(), 0), 18),
       end: setHours(setMinutes(new Date(), 0), 19),   
       title: 'Waxing',
-      color: colors.blue,
+      color: colors.green,
       meta: {
         user: users[4]
       },
@@ -550,7 +649,7 @@ export class AppointmentComponent implements OnInit {
     {
       start: setHours(setMinutes(new Date(), 0), 16),
       end: setHours(setMinutes(new Date(), 30), 17),   
-      title: 'Body polishing',
+      title: 'Body Polishing',
       color: colors.yellow,
       actions: this.actions,
       resizable: {
@@ -566,7 +665,7 @@ export class AppointmentComponent implements OnInit {
       start: setHours(setMinutes(new Date(), 0), 18),
       end: setHours(setMinutes(new Date(), 0), 19),   
       title: 'Facial',
-      color: colors.red,
+      color: colors.green,
       actions: this.actions,
       resizable: {
         beforeStart: true,
@@ -581,7 +680,7 @@ export class AppointmentComponent implements OnInit {
       start: setHours(setMinutes(new Date(), 0), 7),
       end: setHours(setMinutes(new Date(), 30), 7),   
       title: 'Hair Coloring',
-      color: colors.red,
+      color: colors.yellow,
       actions: this.actions,
       resizable: {
         beforeStart: true,
@@ -595,7 +694,7 @@ export class AppointmentComponent implements OnInit {
     {
       start: setHours(setMinutes(new Date(), 0), 9),
       end: setHours(setMinutes(new Date(), 30), 10),   
-      title: 'Body polishing',
+      title: 'Body Polishing',
       color: colors.yellow,
       actions: this.actions,
       resizable: {
@@ -610,7 +709,7 @@ export class AppointmentComponent implements OnInit {
     {
       start: setHours(setMinutes(new Date(), 0), 11),
       end: setHours(setMinutes(new Date(), 30), 12),   
-      title: 'Body polishing',
+      title: 'Body Polishing',
       color: colors.yellow,
       actions: this.actions,
       resizable: {
@@ -626,7 +725,7 @@ export class AppointmentComponent implements OnInit {
       start: setHours(setMinutes(new Date('November 30, 2019'), 0), 10),
       end: setHours(setMinutes(new Date('November 30, 2019'), 30), 10),     
       title: 'Hair Coloring',
-      color: colors.red,
+      color: colors.orange,
       actions: this.actions,
       resizable: {
         beforeStart: true,
@@ -808,10 +907,16 @@ monthEvents: CalendarEvent[] = [];
      this.bookingStatus = 'Cancelled';  
    }
 
+   delService(serName) {
+    const externalIndex: number = this.services.indexOf(serName);
+    if (externalIndex !== -1) {
+        this.services.splice(externalIndex, 1);
+    }             
+   }
    addNew(ser) {
      this.services.push({name:ser});     
      SERVICE_DATA.push({name: ser})
-     this.dataServiceSource = new MatTableDataSource(SERVICE_DATA);     
+     this.dataServiceSource = new MatTableDataSource(SERVICE_DATA);       
      
       // this.externalEvents.push( { title: this.selectedServiceName,
       // color: colors.blue,
@@ -829,7 +934,7 @@ monthEvents: CalendarEvent[] = [];
      
    }
 
-  ngOnInit() {
+  ngOnInit() {   
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.calicon="list";
@@ -859,6 +964,12 @@ monthEvents: CalendarEvent[] = [];
           eventLimit: 4
         }
       },     
+    //   eventAfterRender: function(event, element) {
+    //      $(element).tooltip({          
+    //         title: event.title,
+    //         container: "body"
+    //     });
+    // },
       businessHours: {
         // days of week. an array of zero-based day of week integers (0=Sunday)
         daysOfWeek: [ 0, 1, 2, 3, 4, 5, 6], // Sunday - Monday
@@ -867,15 +978,17 @@ monthEvents: CalendarEvent[] = [];
         endTime: '22:00', // an end time (09:30pm)
       },
       hiddenDays: [],       
-      eventRender: function (eventObj, $el) {
-        $el.popover({
-            title: eventObj.title,
-            content: eventObj.description,
-            trigger: 'hover',
-            placement: 'top',
-            container: 'body'
-        });
-    },
+    //   eventRender: function (eventObj, $el) {
+    //     $el.popover({
+    //         title: eventObj.title,
+    //         content: eventObj.description,
+    //         trigger: 'hover',
+    //         placement: 'top',
+    //         container: 'body'
+    //     });
+    // },
+    
+    
       // eventDrop: function(info) {               
       //   alert(info.event.title + " was dropped on " + info.event.start.toISOString());    
       //   if (!confirm("Are you sure about this change?")) {
@@ -1042,15 +1155,15 @@ caltoggle() {
     // this.modal.open(this.modalContent, { size: 'lg' });
   }
 
-  weekEventClicked(action: string, event: CalendarEvent): void {     
-           
+  weekEventClicked(action: string, event: CalendarEvent): void {         
     this.modalData = { event, action };
     const title = event.title;         
     const userName = event.meta.user.name;
     const dt = event.start;
+    const bgColor = event.color['primary'];
     const check = new Date(event.start).toLocaleTimeString().replace(/:\d+ /, ' ');    
     const dialogRef = this.dialog.open(BookingComponent, {
-        data:{ check, title, userName, dt },       
+        data:{ check, title, userName, dt, bgColor },       
         width: '70%',
         height:'70%'       
       });  

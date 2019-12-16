@@ -139,6 +139,12 @@ td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
     color:#3C4858 !important;
     font-size: $secondary-font-size-md !important;
 }
+.cal-month-view .cal-day-badge {
+    margin-left: 0px !important;
+}
+.cal-month-view .cal-day-cell.cal-today .cal-day-number {
+    font-size: 1em !important;
+}
 .mat-menu-panel {
     min-width: 260px !important;
     position: absolute !important;

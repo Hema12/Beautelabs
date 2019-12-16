@@ -201,22 +201,20 @@ export class BookingComponent implements OnInit {
    // this.serviceStartTime = this.active_route.snapshot.params['serviceStartTime'];
   //  if(this.data) {
   //   this.serviceStartTime = this.data;  
-  //  }
-
+  //  } 
     if (this.selDate) {
       this.finalTime = this.selDate.slice(11, -9);
       this.serviceTime = this.finalTime;
       this.bookingForm.controls['bookingDate'].setValue(this.selDate);
     }
-    if(this.data) {
-      console.log(this.data.bgColor);
+    if(this.data) {            
       if(this.data.bgColor == '#ffd619') {
         this.bookingForm.controls['bookingStatus'].setValue('New');
       } else if (this.data.bgColor =='#ffa217') {
         this.bookingForm.controls['bookingStatus'].setValue('Arrived');
       }else if (this.data.bgColor =='#64c9ff') {
         this.bookingForm.controls['bookingStatus'].setValue('Started');
-      }else {
+      }else if(this.data.bgColor == '#43bc1b') {
         this.bookingForm.controls['bookingStatus'].setValue('Completed');
       }
       this.bookingForm.controls['bookingDate'].setValue(this.data.dt);

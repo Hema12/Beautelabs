@@ -66,7 +66,7 @@ export class SidebarComponent implements OnInit {
     const navbar: HTMLElement = this.element.nativeElement;
     this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
     this.router.events.subscribe((event) => {
-    this.sidebarClose();
+    // this.sidebarClose();
     var $layer: any = document.getElementsByClassName('close-layer')[0];
     if ($layer) {
       $layer.remove();
@@ -115,12 +115,12 @@ export class SidebarComponent implements OnInit {
 
     this.sidebarVisible = true;
 };
-sidebarClose() {
-    const body = document.getElementsByTagName('body')[0];
-    this.toggleButton.classList.remove('toggled');
-    this.sidebarVisible = false;
-    body.classList.remove('nav-open');
-};
+// sidebarClose() {
+//     const body = document.getElementsByTagName('body')[0];
+//     this.toggleButton.classList.remove('toggled');
+//     this.sidebarVisible = false;
+//     body.classList.remove('nav-open');
+// };
 sidebarToggle() {
     // const toggleButton = this.toggleButton;
     // const body = document.getElementsByTagName('body')[0];
@@ -129,7 +129,7 @@ sidebarToggle() {
     if (this.sidebarVisible === false) {
         this.sidebarOpen();
     } else {
-        this.sidebarClose();
+        // this.sidebarClose();
     }
     const body = document.getElementsByTagName('body')[0];
 
