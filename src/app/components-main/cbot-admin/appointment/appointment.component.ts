@@ -381,7 +381,7 @@ export class AppointmentComponent implements OnInit {
     console.log('drag stop');
     
   }
-  onEventRender(info: any) {                
+  onEventRender(info: any) {                    
     const tooltip = new Tooltip(info.el, { 
       title: info.event.title, 
       placement: 'top', 
@@ -389,6 +389,17 @@ export class AppointmentComponent implements OnInit {
       container: 'body'
     });               
   } 
+  onEventAfterRender(eventObj, $el) {
+    console.log($el);
+    
+    $el.popover({
+      title: eventObj.title,
+      content: eventObj.description,
+      trigger: 'hover',
+      placement: 'top',
+      container: 'body'
+    });
+  }
   eventReceive(val) {                
     const check = new Date(val.event.start).toLocaleTimeString().replace(/:\d+ /, ' ');
     const title = val.event.title;
@@ -1073,8 +1084,10 @@ ngAfterViewInit() {
           };
 
         }
+        
 
      });  
+     
 }
 
 caltoggle() { 

@@ -395,7 +395,8 @@
                             [nowIndicator]= "true"                                
                             [aspectRatio] = '2'
                             [showNonCurrentDates] = "true"
-                            (eventAfterRender)="onEventRender($event)">                            
+                            (eventRender)="onEventRender($event)"
+                            (eventAfterRender)="onEventAfterRender($event)">                            
                         </full-calendar>      
                     </mat-card-content>
                 </mat-card>
