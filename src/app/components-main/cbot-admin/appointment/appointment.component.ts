@@ -389,17 +389,17 @@ export class AppointmentComponent implements OnInit {
       container: 'body'
     });               
   } 
-  onEventAfterRender(eventObj, $el) {
-    console.log($el);
+  // onEventAfterRender(eventObj, $el) {
+  //   console.log($el);
     
-    $el.popover({
-      title: eventObj.title,
-      content: eventObj.description,
-      trigger: 'hover',
-      placement: 'top',
-      container: 'body'
-    });
-  }
+  //   $el.popover({
+  //     title: eventObj.title,
+  //     content: eventObj.description,
+  //     trigger: 'hover',
+  //     placement: 'top',
+  //     container: 'body'
+  //   });
+  // }
   eventReceive(val) {                
     const check = new Date(val.event.start).toLocaleTimeString().replace(/:\d+ /, ' ');
     const title = val.event.title;
