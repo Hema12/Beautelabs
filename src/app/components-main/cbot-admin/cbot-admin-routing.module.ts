@@ -162,7 +162,7 @@ const routes: Routes = [
       },
       {
         path: 'saleCreate/:saleId',
-        loadChildren: () => import('../../shared/dialog/sale/sale.module').then(m => m.SaleModule),
+        loadChildren: () => import('../../shared/dialog/sale/sale.module').then(m => m.SaleModule),        
       },
       {
         path:'serviceCreate',

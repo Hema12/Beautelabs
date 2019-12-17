@@ -3,15 +3,15 @@
         <mat-tab>
             <div class="row col-sm-12 col-md-12 col-xl-6 col-md-offset-3" style="height: 100vh;margin:0px;">        
                 <mat-card class="loginpage">
-                    <div class="col-md-6 col-sm-6 col-xl-6 col-lg-6">
-                        <mat-card-header class="mobLogin">
+                    <!-- <div class="col-md-6 col-sm-6 col-xl-6 col-lg-6">
+                        <mat-card-header class="mobLogin"> -->
                             <img src="../../../../assets/images/logo.png" class="forgotpagelogo" />                                               
-                        </mat-card-header>
+                        <!-- </mat-card-header> -->
                         <!-- <div class="loginpage-content">
                             <span fxHide fxShow.gt-sm> Welcome to <br />Salon <br />Management Software</span>
                         </div>  -->
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xl-6 col-lg-6">
+                    <!-- </div> -->
+                    <div class="col-md-12 col-sm-12 col-xl-12 col-lg-12">
                         <mat-card-content>
                             <div class="loginpage-title">
                                 Login
@@ -26,7 +26,7 @@
                                     <mat-form-field>
                                         <input matInput type="password" placeholder="Password" />
                                     </mat-form-field>
-                                    <a (click)="forgotpwd()" class="fr">Forgot Password</a>
+                                    <a (click)="forgotpwd()">Forgot Password</a>
                                 </p>
                                 <mat-card-actions align="start">
                                     <button mat-raised-button class="mobButton" (click)="validate()">Submit</button> 
@@ -42,16 +42,9 @@
         </mat-tab>
         <mat-tab>  
             <div class="row col-sm-12 col-md-12 col-xl-6 col-md-offset-3" style="height: 100vh;margin:0px;">        
-                <mat-card class="loginpage">
-                    <div class="col-md-6 col-sm-6 col-xl-6 col-lg-6">
-                        <mat-card-header class="mobLogin">
-                            <img src="../../../../assets/images/logo.png" class="forgotpagelogo" />                                               
-                        </mat-card-header>
-                        <!-- <div class="loginpage-content">
-                            <span fxHide fxShow.gt-sm> Welcome to <br />Salon <br />Management Software</span>
-                        </div>  -->
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xl-6 col-lg-6">
+                <mat-card class="loginpage">                    
+                    <img src="../../../../assets/images/logo.png" class="forgotpagelogo" />                                                                     
+                    <div class="col-md-12 col-sm-12 col-xl-12 col-lg-12">
                         <mat-card-content>
                             <div class="loginpage-title">
                                 Sign Up
@@ -85,7 +78,9 @@
                             
                         </mat-card-content>
                     </div>
-                    <a (click)="previousStep()">Already have an account?. Login to your account</a>
+                    <div class="col-md-12 col-sm-12 col-xl-12 col-lg-12">
+                        <a (click)="previousStep()">Already have an account?. Login to your account</a>
+                    </div>
                 </mat-card>
             </div> 
         </mat-tab>

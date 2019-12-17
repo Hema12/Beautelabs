@@ -119,9 +119,9 @@
         height: 50px;
         font-size: 1.8rem !important;
         line-height: 30px;
-        padding: $padding-general-y 0;
+        padding: 1rem 0;
         font-weight: 300;
-        margin-left: 1rem;
+        margin-left: 3rem;
     }
 
     > .container {
@@ -155,7 +155,7 @@
     }
 
     &.navbar-transparent{
-        background-color: #eee !important;
+        background-color: #eee;
         box-shadow: none;
         padding-top: 25px;
 

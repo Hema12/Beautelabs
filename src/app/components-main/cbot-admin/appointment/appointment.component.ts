@@ -301,7 +301,7 @@ export class AppointmentComponent implements OnInit {
     {id:'3', title: 'Facial',  resourceId:'1', start: new Date('2019-12-16 10:30:00'), end: new Date('2019-11-28 11:30:00'), backgroundColor:'#ffd619' },
     {id:'4', title: 'Hair Coloring', resourceId:'3', start: new Date('2019-12-16 15:00:00'), end: new Date('2019-11-29 16:30:00'), backgroundColor:'#64c9ff' },
     {id:'5', title: 'Waxing', resourceId:'3', start: new Date('2019-12-15 15:00:00'), end: new Date('2019-11-25 16:30:00'), backgroundColor:'#43bc1b' },
-    {id:'5', title: 'Hair Colouring', resourceId:'3', start: new Date('2019-12-17 14:00:00'), end: new Date('2019-11-28 16:30:00'), backgroundColor:'#4d31e6' },
+    {id:'5', title: 'Hair Colouring', resourceId:'3', start: new Date('2019-12-17 14:00:00'), end: new Date('2019-11-28 16:30:00'), backgroundColor:'#ffa217' },
     {id:'6', title: 'Body Polishing', resourceId:'4', start: new Date('2019-12-16 11:00:00'), end: new Date('2019-11-25 13:00:00'), backgroundColor:'#43bc1b' },
     {id:'7', title: 'Facial',  resourceId:'1', start: new Date('2019-12-17 09:00:00'), end: new Date('2019-11-29 10:30:00'), backgroundColor:'#43bc1b' },
     {id:'6', title: 'Body Polishing', resourceId:'1', start: new Date('2019-12-16 15:00:00'), end: new Date('2019-11-28 16:30:00'), backgroundColor:'#64c9ff' },

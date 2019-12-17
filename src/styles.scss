@@ -44,7 +44,7 @@ body {
     margin:1% 4%;
 }
 .main-content {
-   padding:0.8% 1% 0.4% 1%;
+//    padding:0.8% 1% 0.4% 1%;
 //   margin-left: 1%;
 //   margin-right: 1%;
 }
@@ -61,11 +61,15 @@ body {
 }
 .forgotform {
     margin:0 auto !important;
-    width:70% !important;
+    width:90% !important;
 }
 .login-bg a {
     font-size: 12px;
     // color:#197ffe
+    color:#667c98 !important;
+}
+.loginlink {
+    font-size: 12px !important;
     color:#667c98 !important;
 }
 .loginpage-title {
@@ -343,11 +347,20 @@ body {
     width:32px;
     height:38px;
 }
+.mobtoplogosmall {
+    width:24px;
+    height:28px;
+    margin-right: 10px;
+}
 .navbar-wrapper .mat-icon {
-    vertical-align: sub !important;
+    vertical-align: middle !important;
 }
 .bookingdelicon {
     font-size: $primary-font-size-md !important;    
+}
+.topverticon {
+    position: absolute !important;
+    right: 10px !important;
 }
 .bookingSpan {
     margin-top:-31px !important;
@@ -3595,6 +3608,11 @@ tr.mat-row {
     //     height: 43px !important;
     // }
 }
+@media only screen and (min-width: 570px) {
+    .navbar.navbar-transparent {
+        background: #eee !important;
+    }
+}
 //iphone S
 @media only screen and (min-width: 300px) and (max-width:570px) {
     // .col-lg-1 {
@@ -3607,6 +3625,9 @@ tr.mat-row {
     // .main-panel .main-content {
     //     margin-top:30px !important;
     // }
+    .navbar.navbar-transparent {
+        background: #fff !important;
+    }
     .fc-toolbar.fc-header-toolbar {
         margin-top:-25px !important;
         width:unset !important;

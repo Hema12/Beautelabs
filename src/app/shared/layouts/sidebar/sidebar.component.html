@@ -218,7 +218,7 @@
   </mat-sidenav-container>
 </div> -->
  <mat-sidenav-container fixedInViewport="true" class="example-container mat-typography" autosize [hasBackdrop]="false">
-  <mat-sidenav #sidenav mode="side" position="start" role="directory" disableClose="true" [opened]="screenWidth > 900">    
+  <mat-sidenav #sidenav mode="side" position="start" role="directory" disableClose="true" [opened]="screenWidth > 700">    
     <mat-nav-list fxHide.lt-sm>
       <mat-list-item [routerLink]="['cbot-admin/dashboard']" routerLinkActive="active" class="menuLogo">
        <h2 *ngIf="isExpanded"> <img src="../../../../assets/images/logo-small.png" class="toplogosmall" /> <img src="../../../../assets/images/beauty-labslogo.png" class="toplogo" /></h2>
@@ -349,7 +349,7 @@
           <mat-icon mat-list-icon>loyalty</mat-icon>
           <button mat-flat-button>Prepaid Card</button>
         </button>
-        <button mat-menu-item [routerLink]="['cbot-admin/loyalty']" (click)="sidenav.toggle()" routerLinkActive="active">
+        <button mat-menu-item [routerLink]="['cbot-admin/loyalty']" routerLinkActive="active">
           <mat-icon mat-list-icon>loyalty</mat-icon>
           <button mat-flat-button>Loyalty</button>
         </button>
@@ -367,7 +367,7 @@
         <h4 mat-line *ngIf="isExpanded">Settings</h4>
       </mat-list-item>            
     </mat-nav-list>     
-    <mat-nav-list fxHide.gt-sm>
+    <mat-nav-list fxHide.gt-sm fxHide.sm>
       <mat-list-item [routerLink]="['cbot-admin/dashboard']" routerLinkActive="active" class="menuLogo">
       <h2><img src="../../../../assets/images/logo.png" class="mobtoplogo" /></h2>
       </mat-list-item>
@@ -408,11 +408,11 @@
         <h4 mat-line>Purchase <mat-icon class="abspos">keyboard_arrow_down</mat-icon></h4>
       </mat-list-item>
       <mat-menu #purchaseMenu="matMenu" class="sidebarSubmenu">              
-        <button mat-menu-item [routerLink]="['cbot-admin/purchaseOrder']" routerLinkActive="active" (click)="sidenav.toggle()">
+        <button mat-menu-item [routerLink]="['cbot-admin/purchaseOrder']" routerLinkActive="active">
             <mat-icon mat-list-icon>shopping_cart</mat-icon>
             <button mat-flat-button>Purchase Order</button>
         </button>
-        <button mat-menu-item [routerLink]="['cbot-admin/purchaseBill']" routerLinkActive="active" (click)="sidenav.toggle()">
+        <button mat-menu-item [routerLink]="['cbot-admin/purchaseBill']" routerLinkActive="active">
           <mat-icon mat-list-icon>shopping_cart</mat-icon>
           <button mat-flat-button>Purchase bill</button>
         </button>
@@ -518,6 +518,24 @@
    <mat-sidenav-content>
       <div class="main-panel">
         <div class="main-content">
+          <!-- <div class="row col-md-12 col-sm-12 col-xl-12 col-lg-12">                  
+            <div fxHide.gt-sm>
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                  <mat-icon>person</mat-icon>
+                  <span>Profile</span>
+                </button>
+                <button mat-menu-item (click)="logout()">
+                  <mat-icon>exit_to_app</mat-icon>
+                  <span>Logout</span>
+                </button>
+              </mat-menu>
+              <img src="../../../../assets/images/logo-small.png" class="toplogosmall" *ngIf="smalllogo" />    
+            </div>             
+          </div> -->
           <!-- <div class="container-fluid"> -->
             <!-- <router-outlet fxHide.gt-sm></router-outlet>   -->          
             <nav class="navbar navbar-expand-lg navbar-transparent">
@@ -531,12 +549,29 @@
                     <!-- <mat-icon *ngIf="!isExpanded">chevron_right</mat-icon>
                     <mat-icon *ngIf="isExpanded">chevron_left</mat-icon> -->
                     <mat-icon>menu</mat-icon>
-                  </button>  
-                  <button mat-icon-button (click)="mobExpandMenu()" fxHide.gt-sm>           
+                  </button>                    
+                  <button mat-icon-button (click)="mobExpandMenu()" fxHide.gt-sm fxHide.sm>   
+                    <img src="../../../../assets/images/logo-small.png" class="mobtoplogosmall" *ngIf="smalllogo" />            
                     <mat-icon>menu</mat-icon>
                   </button>                                                   
-                  <a class="navbar-brand" href="javascript:void(0)">{{getTitle()}}</a>                   
-                </div>
+                  <a class="navbar-brand" href="javascript:void(0)">{{getTitle()}}</a>                     
+                             
+                  <button mat-icon-button [matMenuTriggerFor]="menu" class="topverticon" fxHide.gt-sm>
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                      <mat-icon>person</mat-icon>
+                      <span>Profile</span>
+                    </button>
+                    <button mat-menu-item (click)="logout()">
+                      <mat-icon>exit_to_app</mat-icon>
+                      <span>Logout</span>
+                    </button>
+                  </mat-menu>
+                </div>  
+                  <!-- <img src="../../../../assets/images/logo-small.png" class="toplogosmall" *ngIf="smalllogo" />     -->
+                     
                 <!-- <button mat-flat-button class="navbar-toggler" type="button" (click)="sidebarToggle()">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="navbar-toggler-icon icon-bar"></span>
@@ -549,9 +584,7 @@
                       <a class="nav-link" href="javascript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <i class="material-icons">notifications</i>
                           <span class="notification">5</span>
-                          <p>
-                              <span class="d-lg-none d-md-block">Some Actions</span>
-                          </p>
+                         
                       </a>
                       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                           <a class="dropdown-item" href="javascript:void(0)">Mike John responded to your email</a>
@@ -564,9 +597,7 @@
                     <li class="nav-item dropdown">
                       <a class="nav-link" href="javascript:void(0)" id="navbarDropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <i class="material-icons">person</i>
-                          <p>
-                              <span class="d-lg-none d-md-block">Account</span>
-                          </p>
+                          
                       </a>                      
                       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAccount">
                           <a class="dropdown-item" href="javascript:void(0)"><mat-icon>person</mat-icon> Profile</a>
@@ -576,7 +607,8 @@
                   </ul>
                 </div>
               </div>
-            </nav>              
+            </nav>   
+                
             <router-outlet></router-outlet>           
         </div>
       </div>           

@@ -49,6 +49,7 @@ export class SidebarComponent implements OnInit {
   @Input() expandMenuVisible: boolean;
   @ViewChild(MatSidenav, {static: true}) sidenav: MatSidenav;
   screenWidth: number;
+  smalllogo: boolean = true;
   private screenWidth$ = new BehaviorSubject<number>(window.innerWidth);
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -184,9 +185,9 @@ expandMenu(){
   // this.sidenavService.toggle();    // Fully hide sidenav  
 }
 mobExpandMenu() {
-  console.log('tst');
   this.isExpanded = !this.isExpanded; 
   this.sidenavService.toggle(); 
+  this.smalllogo = !this.smalllogo;
 }
 logout() {
     this.router.navigate(['/login']);

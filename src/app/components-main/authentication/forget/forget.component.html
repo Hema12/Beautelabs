@@ -1,9 +1,7 @@
 <div class="forgot-bg">
     <div class="row col-sm-12 col-md-12 col-xl-4 col-md-offset-5" style="height: 100vh;margin:0px;">      
         <mat-card class="loginpage">
-            <mat-card-header>
                 <img src="../../../../assets/images/logo.png" class="forgotpagelogo"/> 
-            </mat-card-header>
             <mat-card-content>
                 <div class="forgotpage-title">
                     <h2>Yo! Forgot your Password</h2>
@@ -20,7 +18,9 @@
                     </mat-card-actions>
                 </form>                            
             </mat-card-content>
-            <p><a (click)="gotoLogin()" class="linkText">Already Have an account? Login to your account</a></p>
+            <div class="col-md-12 col-sm-12 col-xl-12 col-lg-12">
+                <p><a (click)="gotoLogin()" class="loginlink">Already Have an account? Login to your account</a></p>
+            </div>
         </mat-card>
     </div>    
 </div>
