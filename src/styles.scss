@@ -73,6 +73,7 @@ body {
     font-family: $primary-font-family;
     color:#1A263A;
     line-height:$primary-line-height-xxl;
+    text-align: center !important;
 }
 .forgotpage-title h2 {
     font-size: $primary-font-size-xxl;
@@ -322,11 +323,21 @@ body {
 .mb-5 {
     margin-bottom: 5% !important;
 }
+.mobButton {
+    display: flex !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
+    background: linear-gradient(60deg, #ffa726, #fb8c00) !important;
+    color:$primary-color-white !important;
+}
 .toplogo {
     // width: 160px;
     margin-left: -2px;
     // height: 40px;
     // margin:10px 9px;
+}
+.mobtoplogo {
+    width:130px;
 }
 .toplogosmall {
     width:32px;

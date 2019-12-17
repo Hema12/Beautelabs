@@ -183,6 +183,11 @@ expandMenu(){
   this.isExpanded = !this.isExpanded;   // For hide sidenav remains icons
   // this.sidenavService.toggle();    // Fully hide sidenav  
 }
+mobExpandMenu() {
+  console.log('tst');
+  this.isExpanded = !this.isExpanded; 
+  this.sidenavService.toggle(); 
+}
 logout() {
     this.router.navigate(['/login']);
 }

@@ -390,8 +390,7 @@ export class AppointmentComponent implements OnInit {
     });               
   } 
   // onEventAfterRender(eventObj, $el) {
-  //   console.log($el);
-    
+  //   console.log($el);    
   //   $el.popover({
   //     title: eventObj.title,
   //     content: eventObj.description,
