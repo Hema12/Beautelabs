@@ -879,12 +879,12 @@ button:focus {
 //     color:#fff !important;
 // }
 .bookingbtn {
-    height: 30px !important;
+    height: 28px !important;
     margin-top: -0% !important;
     background-color: $primary-color-darkblue !important;
    // border-color:#3498db !important;
     color:#fff !important;
-    line-height: 30px !important;
+    line-height: 28px !important;
     padding:0px 6px !important;
     min-width: 60px !important;
     // border: 1px solid #fff !important;
@@ -1349,18 +1349,24 @@ button:focus {
 }
 .subheading {
     // background: #0163b7;    
-    background: #404a4a;
+    // background: #404a4a;
+    // padding: 3px 15px;
+    // // margin-bottom: 0px !important;
+    // font-weight: $primary-font-weight !important;
+    // font-size: $primary-font-size-lg !important;
+    // color:$primary-color-white !important;
     padding: 3px 15px;
-    // margin-bottom: 0px !important;
-    font-weight: $primary-font-weight !important;
-    font-size: $primary-font-size-lg !important;
-    color:$primary-color-white !important;
+    font-weight: normal !important;
+    font-size: 18px !important;
+    border-top: 3px solid #e67c2c;
+    background: #eef7ff;
+    border-bottom: 1px solid #eaeaea;
 }
 .customerProfile img {
     height: 80px !important;    
 }
 .customer img {
-    width:170px;
+    width: 170px;
     height: 160px;
     margin-bottom: 2%;
     border-radius: 50%;

@@ -299,6 +299,12 @@ span:focus {
 .mat-radio-label {
     font-family: $primary-font-family-table !important;
 }
+.mat-radio-button.mat-primary.mat-radio-checked .mat-radio-outer-circle {
+    border-color:#FC9209 !important;
+}
+.mat-radio-button.mat-primary .mat-radio-inner-circle {
+    background-color: #FC9209 !important;
+}
 .mat-card-footer .mat-icon {
     font-size: 20px !important;
 }
@@ -506,9 +512,9 @@ span:focus {
 .selplaceHolder {
     color:$primary-color-darkblue !important;
 }
-// textarea.mat-input-element {
-//     min-height: 8vh !important;
-// }
+textarea.mat-input-element {
+    min-height: 6vh !important;
+}
 .mat-option {
     line-height: 36px !important;
     height: 36px !important;
