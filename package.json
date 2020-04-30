@@ -51,7 +51,7 @@
     "date-fns": "^2.8.0",
     "flatpickr": "^4.6.3",
     "hammerjs": "^2.0.8",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jquery-ui": "^1.12.1",
     "mat-select-autocomplete": "^1.3.0",
     "mdbootstrap": "^4.8.10",
