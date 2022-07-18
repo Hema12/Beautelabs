@@ -52,7 +52,7 @@
     "flatpickr": "^4.6.3",
     "hammerjs": "^2.0.8",
     "jquery": "^3.4.1",
-    "jquery-ui": "^1.12.1",
+    "jquery-ui": "^1.13.2",
     "mat-select-autocomplete": "^1.3.0",
     "mdbootstrap": "^4.8.10",
     "moment": "^2.24.0",
